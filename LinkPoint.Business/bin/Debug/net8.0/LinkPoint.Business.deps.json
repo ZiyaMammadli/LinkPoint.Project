@@ -1,0 +1,49 @@
+{
+  "runtimeTarget": {
+    "name": ".NETCoreApp,Version=v8.0",
+    "signature": ""
+  },
+  "compilationOptions": {},
+  "targets": {
+    ".NETCoreApp,Version=v8.0": {
+      "LinkPoint.Business/1.0.0": {
+        "dependencies": {
+          "LinkPoint.Data": "1.0.0"
+        },
+        "runtime": {
+          "LinkPoint.Business.dll": {}
+        }
+      },
+      "LinkPoint.Core/1.0.0": {
+        "runtime": {
+          "LinkPoint.Core.dll": {}
+        }
+      },
+      "LinkPoint.Data/1.0.0": {
+        "dependencies": {
+          "LinkPoint.Core": "1.0.0"
+        },
+        "runtime": {
+          "LinkPoint.Data.dll": {}
+        }
+      }
+    }
+  },
+  "libraries": {
+    "LinkPoint.Business/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "LinkPoint.Core/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "LinkPoint.Data/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    }
+  }
+}

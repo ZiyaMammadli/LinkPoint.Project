@@ -1,0 +1,3 @@
+﻿<Project>
+  <Import Project="..\build\LinkPoint.API.props" />
+</Project>
