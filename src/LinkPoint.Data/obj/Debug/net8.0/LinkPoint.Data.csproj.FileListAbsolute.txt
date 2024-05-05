@@ -13,3 +13,4 @@ C:\Users\user\source\repos\LinkPoint\src\LinkPoint.Data\obj\Debug\net8.0\LinkPoi
 C:\Users\user\source\repos\LinkPoint\src\LinkPoint.Data\obj\Debug\net8.0\refint\LinkPoint.Data.dll
 C:\Users\user\source\repos\LinkPoint\src\LinkPoint.Data\obj\Debug\net8.0\LinkPoint.Data.pdb
 C:\Users\user\source\repos\LinkPoint\src\LinkPoint.Data\obj\Debug\net8.0\ref\LinkPoint.Data.dll
+C:\Users\user\source\repos\LinkPoint\src\LinkPoint.Data\obj\Debug\net8.0\LinkPoint.Data.sourcelink.json

@@ -9,3 +9,5 @@ C:\Users\user\source\repos\LinkPoint\src\LinkPoint.Core\obj\Debug\net8.0\LinkPoi
 C:\Users\user\source\repos\LinkPoint\src\LinkPoint.Core\obj\Debug\net8.0\refint\LinkPoint.Core.dll
 C:\Users\user\source\repos\LinkPoint\src\LinkPoint.Core\obj\Debug\net8.0\LinkPoint.Core.pdb
 C:\Users\user\source\repos\LinkPoint\src\LinkPoint.Core\obj\Debug\net8.0\ref\LinkPoint.Core.dll
+C:\Users\user\source\repos\LinkPoint\src\LinkPoint.Core\obj\Debug\net8.0\LinkPoint.Core.sourcelink.json
+C:\Users\user\source\repos\LinkPoint\src\LinkPoint.Core\obj\Debug\net8.0\LinkPoint.Core.csproj.AssemblyReference.cache
