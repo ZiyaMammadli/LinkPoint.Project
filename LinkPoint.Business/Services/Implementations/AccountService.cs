@@ -1,5 +1,6 @@
 ﻿using LinkPoint.Business.DTOs.AccountDTOs;
 using LinkPoint.Business.Services.Interfaces;
+using LinkPoint.Business.Utilities.Exceptions.CommonExceptions;
 using LinkPoint.Business.Utilities.Exceptions.NotFoundException;
 using LinkPoint.Core.Entities;
 using LinkPoint.Data.Contexts;
@@ -42,7 +43,7 @@ public class AccountService:IAccountService
 
     public async Task<TokenDto> GenerateTokenAsync(AppUser user)
     {
-        var securityKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_conf["JWT:Key"]));
+        var securityKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_conf["JWT:securityKey"]));
         var credentials = new SigningCredentials(securityKey, SecurityAlgorithms.HmacSha256);
 
         List<Claim> Claims = new List<Claim>()
@@ -57,10 +58,10 @@ public class AccountService:IAccountService
 
 
         var token = new JwtSecurityToken(
-            _conf["JWT:Issuer"],
-            _conf["JWT:Audience"],
+            _conf["JWT:issuer"],
+            _conf["JWT:audience"],
             claims: Claims,
-            expires: DateTime.UtcNow.AddSeconds(30),
+            expires: DateTime.UtcNow.AddSeconds(60),
             signingCredentials: credentials);
 
         var AccessToken = new JwtSecurityTokenHandler().WriteToken(token);
@@ -70,7 +71,7 @@ public class AccountService:IAccountService
         {
             AccesToken = AccessToken,
             RefreshToken = RefreshToken,
-            Expiration = DateTime.UtcNow.AddSeconds(60)
+            Expiration = DateTime.UtcNow.AddSeconds(90)
         };
 
         user.RefreshToken = tokenDto.RefreshToken;
@@ -82,11 +83,11 @@ public class AccountService:IAccountService
     public async Task<TokenDto> LoginAsync(LoginDto loginDto)
     {
         var user = await _userManager.FindByNameAsync(loginDto.UserName);
-        if (user is null) throw new Exception("Incorrect password or username");
+        if (user is null) throw new InvalidCredentialsException(401,"Incorrect password or username");
         var result = await _userManager.CheckPasswordAsync(user, loginDto.Password);
-        if (result is false) throw new Exception("Incorrect password or username");
+        if (result is false) throw new InvalidCredentialsException(401,"Incorrect password or username");
         var result1 = await _signInManager.PasswordSignInAsync(user, loginDto.Password, false, false);
-        if (!result1.Succeeded) throw new Exception("incorrect password or username");
+        if (!result1.Succeeded) throw new InvalidCredentialsException(401,"incorrect password or username");
         return await GenerateTokenAsync(user);
 
     }
@@ -107,18 +108,44 @@ public class AccountService:IAccountService
     public async Task RegisterAsync(RegisterDto registerDto)
     {
         var user = _context.Users.FirstOrDefault(u => u.Email == registerDto.Email);
-        if (user is not null) throw new Exception("Email already exist");
+        if (user is not null) throw new AlreadyExistException(403,"Email already exist");
         var user1 = _context.Users.FirstOrDefault(u => u.UserName == registerDto.UserName);
-        if (user1 is not null) throw new Exception("Username already exist");
+        if (user1 is not null) throw new AlreadyExistException(403,"Username already exist");
         AppUser appUser = new()
         {
             FirstName = registerDto.FirstName,
             LastName = registerDto.LastName,
             UserName = registerDto.UserName,
             Email = registerDto.Email,
+            RefreshToken="token",
+            CreatedDate = DateTime.UtcNow,
 
         };
         var result = await _userManager.CreateAsync(appUser, registerDto.Password);
-        await _userManager.AddToRoleAsync(appUser, "Member");
+        if (!result.Succeeded)
+        {
+            foreach (var error in result.Errors)
+            {
+                throw new Exception(error.Description);
+            }
+        }
+        var result1 = await _userManager.AddToRoleAsync(appUser, "Member");
+        if (!result1.Succeeded)
+        {
+            foreach (var error in result1.Errors)
+            {
+                throw new Exception(error.Description);
+            }
+        }
+        UserAbout userAbout = new()
+        {
+            UserId=appUser.Id,
+            Male = registerDto.Male,
+            Female = registerDto.Female,
+            CreatedDate = DateTime.UtcNow,
+            UpdatedDate = DateTime.UtcNow,
+        };
+        _context.UserAbouts.Add(userAbout);
+        await _context.SaveChangesAsync();
     }
 }
