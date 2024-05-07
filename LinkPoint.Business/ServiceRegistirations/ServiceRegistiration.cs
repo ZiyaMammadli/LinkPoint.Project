@@ -10,5 +10,6 @@ public static class ServiceRegistiration
     public static void AddServices(this IServiceCollection services)
     {
         services.AddScoped<IAccountService, AccountService>();
+        services.AddScoped<IEmailService, EmailService>();
     }
 }

@@ -152,3 +152,4 @@ C:\Users\user\source\repos\LinkPoint\src\LinkPoint.API\bin\Debug\net8.0\BouncyCa
 C:\Users\user\source\repos\LinkPoint\src\LinkPoint.API\bin\Debug\net8.0\MailKit.dll
 C:\Users\user\source\repos\LinkPoint\src\LinkPoint.API\bin\Debug\net8.0\MimeKit.dll
 C:\Users\user\source\repos\LinkPoint\src\LinkPoint.API\bin\Debug\net8.0\SmtpServer.dll
+C:\Users\user\source\repos\LinkPoint\src\LinkPoint.API\bin\Debug\net8.0\LinkPoint.API.staticwebassets.runtime.json

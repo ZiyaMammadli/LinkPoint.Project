@@ -1,11 +1,39 @@
 {
   "Version": 1,
-  "Hash": "LtjPoxKaIPjGQAXvo6Jb+YKRlBKNeTrMV8XdXGHB9UQ=",
+  "Hash": "WRoEde9534hWoCkB8Gf0/b8dxKBWgLS5s2IjEw8HPac=",
   "Source": "LinkPoint.API",
   "BasePath": "_content/LinkPoint.API",
   "Mode": "Default",
   "ManifestType": "Build",
   "ReferencedProjectsConfiguration": [],
-  "DiscoveryPatterns": [],
-  "Assets": []
+  "DiscoveryPatterns": [
+    {
+      "Name": "LinkPoint.API\\wwwroot",
+      "Source": "LinkPoint.API",
+      "ContentRoot": "C:\\Users\\user\\source\\repos\\LinkPoint\\src\\LinkPoint.API\\wwwroot\\",
+      "BasePath": "_content/LinkPoint.API",
+      "Pattern": "**"
+    }
+  ],
+  "Assets": [
+    {
+      "Identity": "C:\\Users\\user\\source\\repos\\LinkPoint\\src\\LinkPoint.API\\wwwroot\\email\\Register.html",
+      "SourceId": "LinkPoint.API",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\user\\source\\repos\\LinkPoint\\src\\LinkPoint.API\\wwwroot\\",
+      "BasePath": "_content/LinkPoint.API",
+      "RelativePath": "email/Register.html",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\email\\Register.html"
+    }
+  ]
 }

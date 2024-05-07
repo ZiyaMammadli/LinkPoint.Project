@@ -1,0 +1,25 @@
+{
+  "Files": [
+    {
+      "Id": "C:\\Users\\user\\source\\repos\\LinkPoint\\src\\LinkPoint.API\\wwwroot\\email\\Register.html",
+      "PackagePath": "staticwebassets\\email\\Register.html"
+    },
+    {
+      "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.LinkPoint.API.Microsoft.AspNetCore.StaticWebAssets.props",
+      "PackagePath": "build\\Microsoft.AspNetCore.StaticWebAssets.props"
+    },
+    {
+      "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.build.LinkPoint.API.props",
+      "PackagePath": "build\\LinkPoint.API.props"
+    },
+    {
+      "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.buildMultiTargeting.LinkPoint.API.props",
+      "PackagePath": "buildMultiTargeting\\LinkPoint.API.props"
+    },
+    {
+      "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.buildTransitive.LinkPoint.API.props",
+      "PackagePath": "buildTransitive\\LinkPoint.API.props"
+    }
+  ],
+  "ElementsToRemove": []
+}

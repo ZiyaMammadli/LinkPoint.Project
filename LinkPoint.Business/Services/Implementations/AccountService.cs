@@ -21,13 +21,15 @@ public class AccountService:IAccountService
     private readonly LinkPointDbContext _context;
     private readonly SignInManager<AppUser> _signInManager;
     private readonly IConfiguration _conf;
+    private readonly IEmailService _emailService;
 
-    public AccountService(UserManager<AppUser> userManager, LinkPointDbContext context, SignInManager<AppUser> signInManager, IConfiguration conf)
+    public AccountService(UserManager<AppUser> userManager, LinkPointDbContext context, SignInManager<AppUser> signInManager, IConfiguration conf,IEmailService emailService)
     {
         _userManager = userManager;
         _context = context;
         _signInManager = signInManager;
         _conf = conf;
+        _emailService = emailService;
     }
 
     public string GenerateRefreshToken()
@@ -54,9 +56,6 @@ public class AccountService:IAccountService
         };
         var roles = await _userManager.GetRolesAsync(user);
         Claims.AddRange(roles.Select(role => new Claim(ClaimTypes.Role, role)));
-
-
-
         var token = new JwtSecurityToken(
             _conf["JWT:issuer"],
             _conf["JWT:audience"],
@@ -147,5 +146,11 @@ public class AccountService:IAccountService
         };
         _context.UserAbouts.Add(userAbout);
         await _context.SaveChangesAsync();
+        string subject = "qeydiyyatdan kecdin qoqili";
+        string html =string.Empty;
+        string FilePath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "email", "Register.html");
+        html = System.IO.File.ReadAllText(FilePath);
+        html=html.Replace("{{userEmail}}",appUser.Email.ToString());
+        _emailService.SendEmail(appUser.Email, subject, html);
     }
 }
