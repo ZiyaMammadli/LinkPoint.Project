@@ -2,6 +2,7 @@
 using LinkPoint.Business.Services.Interfaces;
 using Microsoft.Extensions.DependencyInjection;
 
+
 namespace LinkPoint.Business.ServiceRegistirations;
 
 public static class ServiceRegistiration

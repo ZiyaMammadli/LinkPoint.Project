@@ -61,7 +61,7 @@ public class AccountService:IAccountService
             _conf["JWT:issuer"],
             _conf["JWT:audience"],
             claims: Claims,
-            expires: DateTime.UtcNow.AddSeconds(60),
+            expires: DateTime.UtcNow.AddHours(4),
             signingCredentials: credentials);
 
         var AccessToken = new JwtSecurityTokenHandler().WriteToken(token);
@@ -71,7 +71,7 @@ public class AccountService:IAccountService
         {
             AccesToken = AccessToken,
             RefreshToken = RefreshToken,
-            Expiration = DateTime.UtcNow.AddSeconds(90)
+            Expiration = DateTime.UtcNow.AddHours(5)
         };
 
         user.RefreshToken = tokenDto.RefreshToken;

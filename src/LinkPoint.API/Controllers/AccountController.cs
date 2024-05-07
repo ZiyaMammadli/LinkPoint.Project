@@ -4,6 +4,7 @@ using LinkPoint.Business.Utilities.Exceptions.CommonExceptions;
 using LinkPoint.Business.Utilities.Exceptions.NotFoundException;
 using LinkPoint.Core.Entities;
 using LinkPoint.Data.Contexts;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
@@ -58,8 +59,8 @@ namespace LinkPoint.API.Controllers
             {
                 return BadRequest(ex.Message);
             }
-        }
-        [HttpPost("[action]")]
+        }       
+        [HttpPost("[action]")]       
         public async Task<IActionResult> Register(RegisterDto registerDto)
         {
             try
@@ -76,47 +77,12 @@ namespace LinkPoint.API.Controllers
                 return BadRequest(ex.Message);
             }
         }
-        //[HttpGet("[action]")]
-        //public async Task<IActionResult> CreateUser()
-        //{
-        //    AppUser user = new AppUser()
-        //    {
-        //        FirstName = "Ziya",
-        //        LastName ="Memmedli",
-        //        UserName = "ziya_memmedli",
-        //        Email = "ziyarma@code.edu.az",
-        //        RefreshToken ="token",
-        //        CreatedDate= DateTime.UtcNow,
-        //    };
-        //    string password = "Salam123@";
-        //    await _userManager.CreateAsync(user, password);
-        //    await _userManager.AddToRoleAsync(user, "SuperAdmin");
-        //    UserAbout userAbout = new UserAbout()
-        //    {
-        //        UserId = user.Id,
-        //        Male=true,
-        //        Female=false,
-        //        CreatedDate = DateTime.UtcNow,
-        //        UpdatedDate = DateTime.UtcNow,
-        //        User =user,
-        //    };
-        //    await _context.AddAsync(userAbout);
-        //    await _context.SaveChangesAsync();
-        //    return Ok();
-        //}
-        //[HttpGet("[action]")]
-        //public async Task<IActionResult> CreateRole()
-        //{
+        [HttpGet("[action]")]
+        [Authorize(Roles = "Member")]
+        public IActionResult Getgetirmene()
+        {
+            return Ok("salam bro");
+        }
 
-        //    IdentityRole role = new IdentityRole("Admin");
-        //    IdentityRole role2 = new IdentityRole("SuperAdmin");
-        //    IdentityRole role3 = new IdentityRole("Member");
-
-
-        //    await _roleManager.CreateAsync(role);
-        //    await _roleManager.CreateAsync(role2);
-        //    await _roleManager.CreateAsync(role3);
-        //    return Ok();
-        //}
     }
 }
