@@ -1,5 +1,4 @@
-﻿using Azure.Core;
-using LinkPoint.Business.DTOs.AccountDTOs;
+﻿using LinkPoint.Business.DTOs.AccountDTOs;
 using LinkPoint.Business.Services.Interfaces;
 using LinkPoint.Business.Utilities.Exceptions.CommonExceptions;
 using LinkPoint.Business.Utilities.Exceptions.ConfirmedExceptions;
@@ -12,7 +11,6 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.Logging;
 using Microsoft.IdentityModel.Tokens;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
@@ -200,5 +198,10 @@ public class AccountService:IAccountService
                 throw new Exception(error.Description);
             }
         }
+    }
+
+    public async Task LogOutAsync()
+    {
+        await _signInManager.SignOutAsync();
     }
 }

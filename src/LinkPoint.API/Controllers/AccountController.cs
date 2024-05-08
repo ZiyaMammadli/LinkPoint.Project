@@ -89,7 +89,7 @@ namespace LinkPoint.API.Controllers
             try
             {
                 await _accountService.EmailConfirmAsync(UserId, code);
-                return Ok("Emil qaqa emailin tesdiqlendi");
+                return Ok();
             }
             catch(ValueNullException ex)
             {
@@ -104,20 +104,11 @@ namespace LinkPoint.API.Controllers
                 return BadRequest(ex.Message);
             }
         }
-
-
-
-
-
-
-
         [HttpGet("[action]")]
-        [Authorize(Roles = "Member")]
-        public IActionResult Getgetirmene()
+        public async Task<IActionResult> LogOut()
         {
-            return Ok("salam bro");
-                
+            await _accountService.LogOutAsync();
+            return Ok();
         }
-        
     }
 }
