@@ -1,12 +1,18 @@
-﻿using LinkPoint.Business.DTOs.AccountDTOs;
+﻿using Azure.Core;
+using LinkPoint.Business.DTOs.AccountDTOs;
 using LinkPoint.Business.Services.Interfaces;
 using LinkPoint.Business.Utilities.Exceptions.CommonExceptions;
+using LinkPoint.Business.Utilities.Exceptions.ConfirmedExceptions;
 using LinkPoint.Business.Utilities.Exceptions.NotFoundException;
+using LinkPoint.Business.Utilities.Exceptions.NotFoundExceptions;
 using LinkPoint.Core.Entities;
 using LinkPoint.Data.Contexts;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.Logging;
 using Microsoft.IdentityModel.Tokens;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
@@ -22,14 +28,24 @@ public class AccountService:IAccountService
     private readonly SignInManager<AppUser> _signInManager;
     private readonly IConfiguration _conf;
     private readonly IEmailService _emailService;
+    private readonly IHttpContextAccessor _httpContextAccessor;
+    private readonly IUrlHelper _urlHelper;
 
-    public AccountService(UserManager<AppUser> userManager, LinkPointDbContext context, SignInManager<AppUser> signInManager, IConfiguration conf,IEmailService emailService)
+    public AccountService(UserManager<AppUser> userManager, 
+        LinkPointDbContext context, 
+        SignInManager<AppUser> signInManager, 
+        IConfiguration conf,
+        IEmailService emailService,
+        IHttpContextAccessor httpContextAccessor,
+        IUrlHelper urlHelper)
     {
         _userManager = userManager;
         _context = context;
         _signInManager = signInManager;
         _conf = conf;
         _emailService = emailService;
+        _httpContextAccessor = httpContextAccessor;
+        _urlHelper = urlHelper;
     }
 
     public string GenerateRefreshToken()
@@ -85,8 +101,15 @@ public class AccountService:IAccountService
         if (user is null) throw new InvalidCredentialsException(401,"Incorrect password or username");
         var result = await _userManager.CheckPasswordAsync(user, loginDto.Password);
         if (result is false) throw new InvalidCredentialsException(401,"Incorrect password or username");
-        var result1 = await _signInManager.PasswordSignInAsync(user, loginDto.Password, false, false);
-        if (!result1.Succeeded) throw new InvalidCredentialsException(401,"incorrect password or username");
+        if(user.EmailConfirmed==true)
+        {
+            var result1 = await _signInManager.PasswordSignInAsync(user, loginDto.Password, false, false);
+            if (!result1.Succeeded) throw new InvalidCredentialsException(401,"incorrect password or username");
+        }
+        else
+        {
+            throw new EmailConfirmedException(401,"Email must be confirmed");
+        }
         return await GenerateTokenAsync(user);
 
     }
@@ -146,11 +169,36 @@ public class AccountService:IAccountService
         };
         _context.UserAbouts.Add(userAbout);
         await _context.SaveChangesAsync();
-        string subject = "qeydiyyatdan kecdin qoqili";
+        string code=await _userManager.GenerateEmailConfirmationTokenAsync(appUser);
+        string subject = "LinkPoint Register Succesfully";
         string html =string.Empty;
         string FilePath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "email", "Register.html");
         html = System.IO.File.ReadAllText(FilePath);
-        html=html.Replace("{{userEmail}}",appUser.Email.ToString());
+        var Url = _httpContextAccessor.HttpContext.Request.Scheme + "://" + _httpContextAccessor.HttpContext.Request.Host + _urlHelper.Action("EmailConfirm", "Account", new { UserId=appUser.Id, code });            
+        html=html.Replace("{{Url}}",System.Text.Encodings.Web.HtmlEncoder.Default.Encode(Url));
         _emailService.SendEmail(appUser.Email, subject, html);
+    }
+
+    public async Task EmailConfirmAsync(string UserId, string code)
+    {
+        if(UserId==null || code == null)
+        {
+            throw new ValueNullException("Value can't be null");
+        }
+        var user=await _userManager.FindByIdAsync(UserId);
+        if(user == null)
+        {
+            throw new UserNotFoundException(404, "User is not found");
+        }
+
+        //code=Encoding.UTF8.GetString(Convert.FromBase64String(code));
+        var result=await _userManager.ConfirmEmailAsync(user, code);
+        if (!result.Succeeded)
+        {
+            foreach (var error in result.Errors)
+            {
+                throw new Exception(error.Description);
+            }
+        }
     }
 }

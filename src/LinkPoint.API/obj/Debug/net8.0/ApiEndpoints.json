@@ -1,6 +1,27 @@
 [
   {
     "ContainingType": "LinkPoint.API.Controllers.AccountController",
+    "Method": "EmailConfirm",
+    "RelativePath": "api/Account/EmailConfirm",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "UserId",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "code",
+        "Type": "System.String",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "LinkPoint.API.Controllers.AccountController",
     "Method": "Getgetirmene",
     "RelativePath": "api/Account/Getgetirmene",
     "HttpMethod": "GET",

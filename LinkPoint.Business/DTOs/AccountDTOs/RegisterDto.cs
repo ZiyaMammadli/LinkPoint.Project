@@ -1,12 +1,22 @@
-﻿namespace LinkPoint.Business.DTOs.AccountDTOs;
+﻿using System.ComponentModel.DataAnnotations;
+
+namespace LinkPoint.Business.DTOs.AccountDTOs;
 
 public class RegisterDto
 {
+    [Required]
     public string FirstName { get; set; }
+    [Required]
     public string LastName { get; set; }
+    [Required]
     public string UserName { get; set; }
-    public string Email { get; set; }   
+    [Required]
+    [EmailAddress]
+    public string Email { get; set; }
+    [Required]
+    [Compare("ConfirmPassword")]
     public string Password { get; set; }
+    [Required]
     public string ConfirmPassword { get; set; }
     public bool Male { get; set; }
     public bool Female { get; set; }    

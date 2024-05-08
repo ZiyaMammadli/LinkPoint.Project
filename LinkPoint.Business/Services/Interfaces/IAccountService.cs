@@ -10,4 +10,5 @@ public interface IAccountService
     Task<TokenDto> GenerateTokenAsync(AppUser user);
     string GenerateRefreshToken();
     Task<TokenDto> RefreshTokenLoginAsync(string refreshToken);
+    Task EmailConfirmAsync(string UserId, string code);
 }

@@ -1,7 +1,9 @@
 ﻿using LinkPoint.Business.DTOs.AccountDTOs;
 using LinkPoint.Business.Services.Interfaces;
 using LinkPoint.Business.Utilities.Exceptions.CommonExceptions;
+using LinkPoint.Business.Utilities.Exceptions.ConfirmedExceptions;
 using LinkPoint.Business.Utilities.Exceptions.NotFoundException;
+using LinkPoint.Business.Utilities.Exceptions.NotFoundExceptions;
 using LinkPoint.Core.Entities;
 using LinkPoint.Data.Contexts;
 using Microsoft.AspNetCore.Authorization;
@@ -38,6 +40,10 @@ namespace LinkPoint.API.Controllers
             catch(InvalidCredentialException ex)
             {
                 return BadRequest(ex.Message);
+            }
+            catch (EmailConfirmedException ex)
+            {
+                return StatusCode(ex.StatusCode,ex.Message);
             }
             catch (Exception ex)
             {
@@ -77,12 +83,41 @@ namespace LinkPoint.API.Controllers
                 return BadRequest(ex.Message);
             }
         }
+        [HttpPost("[action]")]
+        public async Task<IActionResult> EmailConfirm([FromRoute]string UserId, [FromRoute]string code)
+        {
+            try
+            {
+                await _accountService.EmailConfirmAsync(UserId, code);
+                return Ok("Emil qaqa emailin tesdiqlendi");
+            }
+            catch(ValueNullException ex)
+            {
+                return BadRequest(ex.Message);
+            }
+            catch (UserNotFoundException ex)
+            {
+                return StatusCode(ex.StatusCode,ex.Message);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
+
+
+
+
+
+
+
         [HttpGet("[action]")]
         [Authorize(Roles = "Member")]
         public IActionResult Getgetirmene()
         {
             return Ok("salam bro");
+                
         }
-
+        
     }
 }
