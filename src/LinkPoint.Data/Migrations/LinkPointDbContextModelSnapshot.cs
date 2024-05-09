@@ -147,7 +147,7 @@ namespace LinkPoint.Data.Migrations
 
                     b.HasIndex("UserId");
 
-                    b.ToTable("Comments", (string)null);
+                    b.ToTable("Comments");
                 });
 
             modelBuilder.Entity("LinkPoint.Core.Entities.FriendShip", b =>
@@ -186,7 +186,7 @@ namespace LinkPoint.Data.Migrations
 
                     b.HasIndex("UserId");
 
-                    b.ToTable("FriendShips", (string)null);
+                    b.ToTable("FriendShips");
                 });
 
             modelBuilder.Entity("LinkPoint.Core.Entities.Image", b =>
@@ -222,7 +222,7 @@ namespace LinkPoint.Data.Migrations
 
                     b.HasIndex("UserId");
 
-                    b.ToTable("Images", (string)null);
+                    b.ToTable("Images");
                 });
 
             modelBuilder.Entity("LinkPoint.Core.Entities.Like", b =>
@@ -256,7 +256,7 @@ namespace LinkPoint.Data.Migrations
 
                     b.HasIndex("UserId");
 
-                    b.ToTable("Likes", (string)null);
+                    b.ToTable("Likes");
                 });
 
             modelBuilder.Entity("LinkPoint.Core.Entities.Post", b =>
@@ -303,7 +303,7 @@ namespace LinkPoint.Data.Migrations
 
                     b.HasIndex("VideoId");
 
-                    b.ToTable("Posts", (string)null);
+                    b.ToTable("Posts");
                 });
 
             modelBuilder.Entity("LinkPoint.Core.Entities.UserAbout", b =>
@@ -354,7 +354,7 @@ namespace LinkPoint.Data.Migrations
                     b.HasIndex("UserId")
                         .IsUnique();
 
-                    b.ToTable("UserAbouts", (string)null);
+                    b.ToTable("UserAbouts");
                 });
 
             modelBuilder.Entity("LinkPoint.Core.Entities.UserEducation", b =>
@@ -403,7 +403,7 @@ namespace LinkPoint.Data.Migrations
                     b.HasIndex("UserId")
                         .IsUnique();
 
-                    b.ToTable("UserEducations", (string)null);
+                    b.ToTable("UserEducations");
                 });
 
             modelBuilder.Entity("LinkPoint.Core.Entities.UserInterest", b =>
@@ -437,7 +437,7 @@ namespace LinkPoint.Data.Migrations
 
                     b.HasIndex("UserId");
 
-                    b.ToTable("UserInterests", (string)null);
+                    b.ToTable("UserInterests");
                 });
 
             modelBuilder.Entity("LinkPoint.Core.Entities.UserWork", b =>
@@ -449,7 +449,6 @@ namespace LinkPoint.Data.Migrations
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<string>("Company")
-                        .IsRequired()
                         .HasMaxLength(40)
                         .HasColumnType("nvarchar(40)");
 
@@ -457,22 +456,20 @@ namespace LinkPoint.Data.Migrations
                         .HasColumnType("datetime2");
 
                     b.Property<string>("Description")
-                        .IsRequired()
                         .HasMaxLength(300)
                         .HasColumnType("nvarchar(300)");
 
                     b.Property<string>("Designation")
-                        .IsRequired()
                         .HasMaxLength(40)
                         .HasColumnType("nvarchar(40)");
 
-                    b.Property<int>("FromDate")
+                    b.Property<int?>("FromDate")
                         .HasColumnType("int");
 
                     b.Property<bool>("IsDeleted")
                         .HasColumnType("bit");
 
-                    b.Property<int>("ToDate")
+                    b.Property<int?>("ToDate")
                         .HasColumnType("int");
 
                     b.Property<DateTime>("UpdatedDate")
@@ -488,7 +485,7 @@ namespace LinkPoint.Data.Migrations
                     b.HasIndex("UserId")
                         .IsUnique();
 
-                    b.ToTable("UserWorks", (string)null);
+                    b.ToTable("UserWorks");
                 });
 
             modelBuilder.Entity("LinkPoint.Core.Entities.Video", b =>
@@ -515,7 +512,7 @@ namespace LinkPoint.Data.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Videos", (string)null);
+                    b.ToTable("Videos");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>
@@ -851,13 +848,11 @@ namespace LinkPoint.Data.Migrations
                     b.Navigation("UserAbout")
                         .IsRequired();
 
-                    b.Navigation("UserEducation")
-                        .IsRequired();
+                    b.Navigation("UserEducation");
 
                     b.Navigation("UserInterests");
 
-                    b.Navigation("UserWork")
-                        .IsRequired();
+                    b.Navigation("UserWork");
 
                     b.Navigation("comments");
 
