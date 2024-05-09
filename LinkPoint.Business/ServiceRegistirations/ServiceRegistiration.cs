@@ -22,5 +22,6 @@ public static class ServiceRegistiration
             var factory = x.GetRequiredService<IUrlHelperFactory>();
             return factory.GetUrlHelper(actionContext);
         });
+
     }
 }

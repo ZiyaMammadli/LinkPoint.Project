@@ -153,3 +153,6 @@ C:\Users\user\source\repos\LinkPoint\src\LinkPoint.API\bin\Debug\net8.0\MailKit.
 C:\Users\user\source\repos\LinkPoint\src\LinkPoint.API\bin\Debug\net8.0\MimeKit.dll
 C:\Users\user\source\repos\LinkPoint\src\LinkPoint.API\bin\Debug\net8.0\SmtpServer.dll
 C:\Users\user\source\repos\LinkPoint\src\LinkPoint.API\bin\Debug\net8.0\LinkPoint.API.staticwebassets.runtime.json
+C:\Users\user\source\repos\LinkPoint\src\LinkPoint.API\bin\Debug\net8.0\FluentValidation.dll
+C:\Users\user\source\repos\LinkPoint\src\LinkPoint.API\bin\Debug\net8.0\FluentValidation.AspNetCore.dll
+C:\Users\user\source\repos\LinkPoint\src\LinkPoint.API\bin\Debug\net8.0\FluentValidation.DependencyInjectionExtensions.dll

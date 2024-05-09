@@ -18,17 +18,11 @@ namespace LinkPoint.API.Controllers
     [ApiController]
     public class AccountController : ControllerBase
     {
-        private readonly UserManager<AppUser> _userManager;
         private readonly IAccountService _accountService;
-        private readonly RoleManager<IdentityRole> _roleManager;
-        private readonly LinkPointDbContext _context;
 
-        public AccountController(UserManager<AppUser> userManager,IAccountService accountService,RoleManager<IdentityRole> roleManager,LinkPointDbContext context)
+        public AccountController(IAccountService accountService)
         {
-            _userManager = userManager;
             _accountService = accountService;
-            _roleManager = roleManager;
-            _context = context;
         }
         [HttpPost("[action]")]
         public async Task<IActionResult> Login(LoginDto loginDto)
