@@ -1,5 +1,5 @@
 ﻿namespace LinkPoint.Core.Entities;
-
+        
 public class UserAbout:BaseEntity
 {
     public string UserId { get; set; }

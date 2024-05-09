@@ -4,6 +4,8 @@ using Microsoft.AspNetCore.Mvc.Infrastructure;
 using Microsoft.AspNetCore.Mvc.Routing;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.DependencyInjection;
+using FluentValidation.AspNetCore;
+using LinkPoint.Business.Validators.UserAboutValidators;
 
 
 namespace LinkPoint.Business.ServiceRegistirations;
@@ -22,6 +24,9 @@ public static class ServiceRegistiration
             var factory = x.GetRequiredService<IUrlHelperFactory>();
             return factory.GetUrlHelper(actionContext);
         });
-
+        services.AddControllers().AddFluentValidation(opt =>
+        {
+            opt.RegisterValidatorsFromAssembly(typeof(UserAboutPostValidator).Assembly);
+        });
     }
 }
