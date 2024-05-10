@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.DependencyInjection;
 using FluentValidation.AspNetCore;
 using LinkPoint.Business.Validators.UserAboutValidators;
+using LinkPoint.Business.MappingProfiles;
 
 
 namespace LinkPoint.Business.ServiceRegistirations;
@@ -27,6 +28,7 @@ public static class ServiceRegistiration
         services.AddControllers().AddFluentValidation(opt =>
         {
             opt.RegisterValidatorsFromAssembly(typeof(UserAboutPutValidator).Assembly);
-        });       
+        });
+        services.AddAutoMapper(typeof(UserEducationMapProfile));
     }
 }

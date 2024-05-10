@@ -1,9 +1,10 @@
 {
   "version": 2,
-  "dgSpecHash": "+b6y581MduHQUQZec7ofxkYZJmszHoyjJxZjC4PdLnA4auHzOWGbevHLSMkY+Xx/952FhGxzC1uEMhNANpvqyA==",
+  "dgSpecHash": "3+UlrHSvAT7f9UtaZp1Bep+M33eh2kvOZ8MMTmhn0BwOZFZqZEYJtHREvyU8zW11ri8Cu2qrSrJtGKlne6PZ9g==",
   "success": true,
   "projectFilePath": "C:\\Users\\user\\source\\repos\\LinkPoint\\LinkPoint.Business\\LinkPoint.Business.csproj",
   "expectedPackageFiles": [
+    "C:\\Users\\user\\.nuget\\packages\\automapper\\13.0.1\\automapper.13.0.1.nupkg.sha512",
     "C:\\Users\\user\\.nuget\\packages\\azure.core\\1.35.0\\azure.core.1.35.0.nupkg.sha512",
     "C:\\Users\\user\\.nuget\\packages\\azure.identity\\1.10.3\\azure.identity.1.10.3.nupkg.sha512",
     "C:\\Users\\user\\.nuget\\packages\\bouncycastle.cryptography\\2.3.0\\bouncycastle.cryptography.2.3.0.nupkg.sha512",

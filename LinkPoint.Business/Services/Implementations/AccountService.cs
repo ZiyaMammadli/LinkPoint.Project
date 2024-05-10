@@ -124,7 +124,7 @@ public class AccountService:IAccountService
             throw new RefreshTokenNotFoundException(404,"RefreshToken is not found");
         }
     }
-
+   
     public async Task RegisterAsync(RegisterDto registerDto)
     {
         var user = _context.Users.FirstOrDefault(u => u.Email == registerDto.Email);
@@ -203,5 +203,15 @@ public class AccountService:IAccountService
     public async Task LogOutAsync()
     {
         await _signInManager.SignOutAsync();
+    }
+
+    public async Task ForgotPassword(ForgotPasswordDto forgotPasswordDto)
+    {
+        throw new NotImplementedException();
+    }
+
+    public Task ResetPassword(ResetPasswordDto resetPasswordDto)
+    {
+        throw new NotImplementedException();
     }
 }

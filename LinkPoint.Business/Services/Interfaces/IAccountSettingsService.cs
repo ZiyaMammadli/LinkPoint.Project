@@ -9,16 +9,15 @@ namespace LinkPoint.Business.Services.Interfaces;
 public interface IAccountSettingsService
 {
     Task UpdateUserAbout(UserAboutPutDto userAboutPostDto);
-    Task<UserAboutGetDto> GetUserAbout(int UserId);
+    Task<UserAboutGetDto> GetUserAbout(string UserId);
     Task CreateUserWork(UserWorkPostDto userWorkPostDto);
     Task UpdateUserWork(UserWorkPutDto userWorkPostDto);
-    Task<UserWorkGetDto>GetUserWork(int UserId);
-    Task CreateUserEducation(UserEducationPostDto userEducationPostDto);
-    Task UpdateUserEducation(UserEducationPutDto userEducationPutDto);
-    Task<UserEducationGetDto>GetUserEducation(int UserId);
+    Task<UserWorkGetDto>GetUserWork(string UserId);
+    Task UpdateUserEducation(string UserId,UserEducationPutDto userEducationPutDto);
+    Task<UserEducationGetDto>GetUserEducation(string UserId);
     Task CreateUserInterest(UserInterestPostDto userInterestPostDto);
     Task UpdateUserInterest(UserInterestPutDto userInterestPutDto);
-    Task<List<UserInterestGetDto>> GetAllUserInterests(int UserId);
-    Task ChangePassword(string UserId,ChangePasswordDto changePasswordDto);
+    Task<List<UserInterestGetDto>> GetAllUserInterests(string UserId);
+    Task ChangePassword(ChangePasswordDto changePasswordDto);
 }
     

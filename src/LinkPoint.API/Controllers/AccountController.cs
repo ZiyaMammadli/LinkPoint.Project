@@ -77,13 +77,13 @@ namespace LinkPoint.API.Controllers
                 return BadRequest(ex.Message);
             }
         }
-        [HttpPost("[action]")]
+        [HttpGet("[action]")]
         public async Task<IActionResult> EmailConfirm([FromRoute]string UserId, [FromRoute]string code)
         {
             try
             {
                 await _accountService.EmailConfirmAsync(UserId, code);
-                return Ok();
+                return Ok("Email Confirmed Succesfully");
             }
             catch(ValueNullException ex)
             {

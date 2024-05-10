@@ -12,4 +12,6 @@ public interface IAccountService
     Task<TokenDto> RefreshTokenLoginAsync(string refreshToken);
     Task EmailConfirmAsync(string UserId, string code);
     Task LogOutAsync();
+    Task ForgotPassword(ForgotPasswordDto forgotPasswordDto);
+    Task ResetPassword(ResetPasswordDto resetPasswordDto);
 }

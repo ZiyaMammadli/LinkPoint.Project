@@ -156,3 +156,4 @@ C:\Users\user\source\repos\LinkPoint\src\LinkPoint.API\bin\Debug\net8.0\LinkPoin
 C:\Users\user\source\repos\LinkPoint\src\LinkPoint.API\bin\Debug\net8.0\FluentValidation.dll
 C:\Users\user\source\repos\LinkPoint\src\LinkPoint.API\bin\Debug\net8.0\FluentValidation.AspNetCore.dll
 C:\Users\user\source\repos\LinkPoint\src\LinkPoint.API\bin\Debug\net8.0\FluentValidation.DependencyInjectionExtensions.dll
+C:\Users\user\source\repos\LinkPoint\src\LinkPoint.API\bin\Debug\net8.0\AutoMapper.dll
