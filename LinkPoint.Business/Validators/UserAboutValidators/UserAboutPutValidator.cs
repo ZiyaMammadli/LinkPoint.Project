@@ -3,9 +3,9 @@ using LinkPoint.Business.DTOs.AccountSettingsDTOs.UserAboutDTOs;
 
 namespace LinkPoint.Business.Validators.UserAboutValidators;
 
-public class UserAboutPostValidator : AbstractValidator<UserAboutPostDto>
+public class UserAboutPutValidator : AbstractValidator<UserAboutPutDto>
 {
-    public UserAboutPostValidator()
+    public UserAboutPutValidator()
     {
         RuleFor(ua => ua.UserId)
             .NotNull().WithMessage("UserId can't be null")

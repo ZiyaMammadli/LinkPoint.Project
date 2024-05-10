@@ -26,7 +26,7 @@ public static class ServiceRegistiration
         });
         services.AddControllers().AddFluentValidation(opt =>
         {
-            opt.RegisterValidatorsFromAssembly(typeof(UserAboutPostValidator).Assembly);
-        });
+            opt.RegisterValidatorsFromAssembly(typeof(UserAboutPutValidator).Assembly);
+        });       
     }
 }

@@ -1,6 +1,6 @@
 ﻿namespace LinkPoint.Business.DTOs.AccountSettingsDTOs.UserAboutDTOs;
 
-public class UserAboutPostDto
+public class UserAboutPutDto
 {
     public string UserId { get; set; }
     public string? AboutMe { get; set; }
