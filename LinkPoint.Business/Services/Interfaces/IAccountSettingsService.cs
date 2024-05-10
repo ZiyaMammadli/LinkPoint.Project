@@ -17,6 +17,6 @@ public interface IAccountSettingsService
     Task CreateUserInterest(UserInterestPostDto userInterestPostDto);
     Task DeleteUserInterest(int Id,UserInterestDeleteDto userInterestDeleteDto);
     Task<List<UserInterestGetDto>> GetAllUserInterests(string UserId);
-    Task ChangePassword(ChangePasswordDto changePasswordDto);
+    Task ChangePassword(string UserId,ChangePasswordDto changePasswordDto);
 }
     

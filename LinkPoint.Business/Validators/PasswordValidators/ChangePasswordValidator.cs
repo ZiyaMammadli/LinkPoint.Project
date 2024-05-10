@@ -7,6 +7,9 @@ public class ChangePasswordValidator:AbstractValidator<ChangePasswordDto>
 {
     public ChangePasswordValidator()
     {
+        RuleFor(uw => uw.UserId)
+            .NotNull().WithMessage("UserId can't be null")
+            .NotEmpty().WithMessage("UserId can't be empty");
         RuleFor(p=>p.OldPassword)
             .NotEmpty().WithMessage("Old password can't be empty")
             .NotNull().WithMessage("Old password can't be null")

@@ -5,6 +5,7 @@ using LinkPoint.Business.DTOs.AccountSettingsDTOs.UserEducationDTOs;
 using LinkPoint.Business.DTOs.AccountSettingsDTOs.UserInterestDTOs;
 using LinkPoint.Business.DTOs.AccountSettingsDTOs.UserWorkDTOs;
 using LinkPoint.Business.Services.Interfaces;
+using LinkPoint.Business.Utilities.Exceptions.CommonExceptions;
 using LinkPoint.Business.Utilities.Exceptions.NotFoundException;
 using LinkPoint.Business.Utilities.Exceptions.NotFoundExceptions;
 using LinkPoint.Business.Utilities.Exceptions.NotValidExceptions;
@@ -145,9 +146,13 @@ public class AccountSettingsService : IAccountSettingsService
             await _userAboutRepository.CommitAsync();
         }
     }
-    public Task ChangePassword(ChangePasswordDto changePasswordDto)
+    public async Task ChangePassword(string UserId,ChangePasswordDto changePasswordDto)
     {
-        throw new NotImplementedException();
+        if (UserId != changePasswordDto.UserId) throw new IdNotValidException(400, "UserId is not valid");
+        var user=await _userManager.FindByIdAsync(changePasswordDto.UserId);
+        var result=await _userManager.CheckPasswordAsync(user, changePasswordDto.OldPassword);
+        if(result is false) throw new InvalidCredentialsException(401, "Incorrect password");
+        await _userManager.ChangePasswordAsync(user,changePasswordDto.OldPassword,changePasswordDto.NewPassword);
     }
 
 
