@@ -21,16 +21,19 @@ public class AccountSettingsService : IAccountSettingsService
     private readonly UserManager<AppUser> _userManager;
     private readonly IMapper _mapper;
     private readonly IUserInterestRepository _userInterestRepository;
+    private readonly IUserWorkRepository _userWorkRepository;
 
     public AccountSettingsService(IUserEducationRepository userEducationRepository,
         UserManager<AppUser> userManager, 
         IMapper mapper,
-        IUserInterestRepository userInterestRepository)
+        IUserInterestRepository userInterestRepository,
+        IUserWorkRepository userWorkRepository)
     {
         _userEducationRepository = userEducationRepository;
         _userManager = userManager;
         _mapper = mapper;
         _userInterestRepository = userInterestRepository;
+        _userWorkRepository = userWorkRepository;
     }
     public async Task UpdateUserEducation(int Id ,UserEducationPutDto userEducationPutDto)
     {
@@ -50,7 +53,6 @@ public class AccountSettingsService : IAccountSettingsService
             userEdu.UpdatedDate = DateTime.UtcNow;
             await _userEducationRepository.CommitAsync();
         }
-
     }
     public async Task<UserEducationGetDto> GetUserEducation(string UserId)
     {
@@ -88,29 +90,37 @@ public class AccountSettingsService : IAccountSettingsService
         }
         return userInterestGetDtos;
     }
-    public Task CreateUserWork(UserWorkPostDto userWorkPostDto)
+    public async Task UpdateUserWork(int Id,UserWorkPutDto userWorkPutDto)
     {
-        throw new NotImplementedException();
+        if (Id != userWorkPutDto.Id) throw new IdNotValidException(400, "Id is not valid");
+        var userwork= await _userWorkRepository.GetByIdAsync(Id);
+        if(userwork is null)
+        {
+            var userworkk=_mapper.Map<UserWork>(userWorkPutDto);
+            userworkk.CreatedDate = DateTime.UtcNow;
+            userworkk.UpdatedDate = DateTime.UtcNow;
+            await _userWorkRepository.InsertAsync(userworkk);
+            await _userWorkRepository.CommitAsync();
+        }
+        else
+        {
+            var userWork = _mapper.Map(userWorkPutDto, userwork);
+            userWork.UpdatedDate = DateTime.UtcNow;
+            await _userWorkRepository.CommitAsync();
+        }
     }
-
-
+    public async Task<UserWorkGetDto> GetUserWork(string UserId)
+    {
+        var userWork=await _userWorkRepository.GetSingleAsync(uw=>uw.UserId==UserId);
+        if (userWork is null) throw new UserWorkNotFoundException(404, "UserWork is not found");
+        var userwork=_mapper.Map<UserWorkGetDto>(userWork);
+        return userwork;
+    }
     public Task<UserAboutGetDto> GetUserAbout(string UserId)
     {
         throw new NotImplementedException();
     }
-
-
-    public Task<UserWorkGetDto> GetUserWork(string UserId)
-    {
-        throw new NotImplementedException();
-    }
-
-    public Task UpdateUserAbout(UserAboutPutDto userAboutPostDto)
-    {
-        throw new NotImplementedException();
-    }
-
-    public Task UpdateUserWork(UserWorkPutDto userWorkPostDto)
+    public Task UpdateUserAbout(UserAboutPutDto userAboutPutDto)
     {
         throw new NotImplementedException();
     }

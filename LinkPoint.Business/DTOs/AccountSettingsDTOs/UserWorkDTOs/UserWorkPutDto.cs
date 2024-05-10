@@ -2,6 +2,7 @@
 
 public class UserWorkPutDto
 {
+    public int Id { get; set; } 
     public string UserId { get; set; }
     public int? FromDate { get; set; }
     public int? ToDate { get; set; }
