@@ -7,9 +7,12 @@ public class UserEducationPutValidator:AbstractValidator<UserEducationPutDto>
 {
     public UserEducationPutValidator()
     {
-        //RuleFor(ue => ue.UserId)
-        //   .NotNull().WithMessage("UserId can't be null")
-        //   .NotEmpty().WithMessage("UserId can't be empty");
+        RuleFor(ue => ue.UserId)
+           .NotNull().WithMessage("UserId can't be null")
+           .NotEmpty().WithMessage("UserId can't be empty");
+        RuleFor(ue => ue.Id)
+           .NotNull().WithMessage("Id can't be null")
+           .NotEmpty().WithMessage("Id can't be empty");
         RuleFor(ue => ue.FromDate)
             .LessThanOrEqualTo(DateTime.UtcNow.Year).WithMessage("The value of the FromDate must be down present time")
             .GreaterThan(1920).WithMessage("The value of the FromDate must be up 1920");

@@ -25,7 +25,7 @@ public class GenericRepository<TEntity> : IGenericRepository<TEntity> where TEnt
         Table.Remove(entity);
     }
 
-    public async Task<IEnumerable<TEntity>> GetAllAsync(Expression<Func<TEntity, bool>> expression = null, params string[] includes)
+    public async Task<List<TEntity>> GetAllAsync(Expression<Func<TEntity, bool>> expression = null, params string[] includes)
     {
         var query = Table.AsQueryable();
         if (includes is not null)

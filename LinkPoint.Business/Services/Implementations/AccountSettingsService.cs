@@ -7,9 +7,11 @@ using LinkPoint.Business.DTOs.AccountSettingsDTOs.UserWorkDTOs;
 using LinkPoint.Business.Services.Interfaces;
 using LinkPoint.Business.Utilities.Exceptions.NotFoundException;
 using LinkPoint.Business.Utilities.Exceptions.NotFoundExceptions;
+using LinkPoint.Business.Utilities.Exceptions.NotValidExceptions;
 using LinkPoint.Core.Entities;
 using LinkPoint.Core.Repositories;
 using Microsoft.AspNetCore.Identity;
+using System.Diagnostics;
 
 namespace LinkPoint.Business.Services.Implementations;
 
@@ -30,20 +32,18 @@ public class AccountSettingsService : IAccountSettingsService
         _mapper = mapper;
         _userInterestRepository = userInterestRepository;
     }
-    public async Task UpdateUserEducation(string UserId ,UserEducationPutDto userEducationPutDto)
+    public async Task UpdateUserEducation(int Id ,UserEducationPutDto userEducationPutDto)
     {
-        var user = await _userManager.FindByIdAsync(UserId);
-        if (user is null) throw new UserNotFoundException(404, "User is not found");
-        var userEducation=await _userEducationRepository.GetSingleAsync(ue=>ue.UserId==UserId);
+        if (Id != userEducationPutDto.Id) throw new IdNotValidException(400,"Id is not valid");
+        var userEducation=await _userEducationRepository.GetSingleAsync(ue=>ue.Id==Id);
         if (userEducation is null)
         {
             var userEducationn = _mapper.Map<UserEducation>(userEducationPutDto);
-            userEducationn.UserId = UserId; 
             userEducationn.CreatedDate = DateTime.UtcNow;
             userEducationn.UpdatedDate = DateTime.UtcNow;
             await _userEducationRepository.InsertAsync(userEducationn);
             await _userEducationRepository.CommitAsync();
-        }
+        } 
         else
         {
             var userEdu=_mapper.Map(userEducationPutDto, userEducation);
@@ -62,22 +62,37 @@ public class AccountSettingsService : IAccountSettingsService
     }
     public async Task CreateUserInterest(UserInterestPostDto userInterestPostDto)
     {
-        //var user = await _userManager.FindByIdAsync(userInterestPostDto.UserId);
-        //if (user is null) throw new UserNotFoundException(404, "User is not found");
-        //var userInterest=_mapper.Map<UserInterest>(userInterestPostDto);
-        //await _userInterestRepository.InsertAsync(userInterest);
-        //await _userInterestRepository.CommitAsync();
+        var user = await _userManager.FindByIdAsync(userInterestPostDto.UserId);
+        if (user is null) throw new UserNotFoundException(404, "User is not found");
+        var userInterest = _mapper.Map<UserInterest>(userInterestPostDto);
+        await _userInterestRepository.InsertAsync(userInterest);
+        await _userInterestRepository.CommitAsync();
     }
-
+    public async Task DeleteUserInterest(int Id, UserInterestDeleteDto userInterestDeleteDto)
+    {
+        if (Id != userInterestDeleteDto.Id) throw new IdNotValidException(400, "Id is not Valid");
+        var UserInterest=await _userInterestRepository.GetByIdAsync(Id);
+        _userInterestRepository.Delete(UserInterest);
+        await _userInterestRepository.CommitAsync();
+    }
+    public async Task<List<UserInterestGetDto>> GetAllUserInterests(string UserId)
+    {
+        var user = await _userManager.FindByIdAsync(UserId);
+        if (user is null) throw new UserNotFoundException(404, "User is not found");
+        List<UserInterestGetDto> userInterestGetDtos = new List<UserInterestGetDto>();
+        List<UserInterest> userInterests= await _userInterestRepository.GetAllAsync(ui=>ui.UserId==UserId);
+        foreach (var userInterest in userInterests)
+        {
+            var userInterestGetDto= _mapper.Map<UserInterestGetDto>(userInterest);
+            userInterestGetDtos.Add(userInterestGetDto);
+        }
+        return userInterestGetDtos;
+    }
     public Task CreateUserWork(UserWorkPostDto userWorkPostDto)
     {
         throw new NotImplementedException();
     }
 
-    public Task<List<UserInterestGetDto>> GetAllUserInterests(string UserId)
-    {
-        throw new NotImplementedException();
-    }
 
     public Task<UserAboutGetDto> GetUserAbout(string UserId)
     {
@@ -95,12 +110,6 @@ public class AccountSettingsService : IAccountSettingsService
         throw new NotImplementedException();
     }
 
-
-    public Task UpdateUserInterest(UserInterestPutDto userInterestPutDto)
-    {
-        throw new NotImplementedException();
-    }
-
     public Task UpdateUserWork(UserWorkPutDto userWorkPostDto)
     {
         throw new NotImplementedException();
@@ -109,4 +118,6 @@ public class AccountSettingsService : IAccountSettingsService
     {
         throw new NotImplementedException();
     }
+
+
 }

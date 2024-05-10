@@ -13,10 +13,10 @@ public interface IAccountSettingsService
     Task CreateUserWork(UserWorkPostDto userWorkPostDto);
     Task UpdateUserWork(UserWorkPutDto userWorkPostDto);
     Task<UserWorkGetDto>GetUserWork(string UserId);
-    Task UpdateUserEducation(string UserId,UserEducationPutDto userEducationPutDto);
+    Task UpdateUserEducation(int Id,UserEducationPutDto userEducationPutDto);
     Task<UserEducationGetDto>GetUserEducation(string UserId);
     Task CreateUserInterest(UserInterestPostDto userInterestPostDto);
-    Task UpdateUserInterest(UserInterestPutDto userInterestPutDto);
+    Task DeleteUserInterest(int Id,UserInterestDeleteDto userInterestDeleteDto);
     Task<List<UserInterestGetDto>> GetAllUserInterests(string UserId);
     Task ChangePassword(ChangePasswordDto changePasswordDto);
 }
