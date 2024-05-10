@@ -22,18 +22,21 @@ public class AccountSettingsService : IAccountSettingsService
     private readonly IMapper _mapper;
     private readonly IUserInterestRepository _userInterestRepository;
     private readonly IUserWorkRepository _userWorkRepository;
+    private readonly IUserAboutRepository _userAboutRepository;
 
     public AccountSettingsService(IUserEducationRepository userEducationRepository,
         UserManager<AppUser> userManager, 
         IMapper mapper,
         IUserInterestRepository userInterestRepository,
-        IUserWorkRepository userWorkRepository)
+        IUserWorkRepository userWorkRepository,
+        IUserAboutRepository userAboutRepository)
     {
         _userEducationRepository = userEducationRepository;
         _userManager = userManager;
         _mapper = mapper;
         _userInterestRepository = userInterestRepository;
         _userWorkRepository = userWorkRepository;
+        _userAboutRepository = userAboutRepository;
     }
     public async Task UpdateUserEducation(int Id ,UserEducationPutDto userEducationPutDto)
     {
@@ -116,13 +119,31 @@ public class AccountSettingsService : IAccountSettingsService
         var userwork=_mapper.Map<UserWorkGetDto>(userWork);
         return userwork;
     }
-    public Task<UserAboutGetDto> GetUserAbout(string UserId)
+    public async Task<UserAboutGetDto> GetUserAbout(string UserId)
     {
-        throw new NotImplementedException();
+        var userAbout= await _userAboutRepository.GetSingleAsync(ua=>ua.UserId==UserId);
+        if (userAbout is null) throw new UserAboutNotFoundException(404, "UserAbut is not found");
+        var userAboutGetDto=_mapper.Map<UserAboutGetDto>(userAbout);
+        return userAboutGetDto;
     }
-    public Task UpdateUserAbout(UserAboutPutDto userAboutPutDto)
+    public async Task UpdateUserAbout(int Id,UserAboutPutDto userAboutPutDto)
     {
-        throw new NotImplementedException();
+        if (Id != userAboutPutDto.Id) throw new IdNotValidException(400, "Id is not valid");
+        var CurrentUserAbout=await _userAboutRepository.GetByIdAsync(userAboutPutDto.Id);
+        if(CurrentUserAbout is null)
+        {
+            var userAbout=_mapper.Map<UserAbout>(userAboutPutDto);
+            userAbout.CreatedDate = DateTime.UtcNow;
+            userAbout.UpdatedDate = DateTime.UtcNow;
+            await _userAboutRepository.InsertAsync(userAbout);
+            await _userAboutRepository.CommitAsync();
+        }
+        else
+        {
+            var UserAbout = _mapper.Map(userAboutPutDto, CurrentUserAbout);
+            UserAbout.UpdatedDate= DateTime.UtcNow;
+            await _userAboutRepository.CommitAsync();
+        }
     }
     public Task ChangePassword(ChangePasswordDto changePasswordDto)
     {

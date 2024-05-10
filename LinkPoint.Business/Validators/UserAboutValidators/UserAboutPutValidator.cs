@@ -10,6 +10,9 @@ public class UserAboutPutValidator : AbstractValidator<UserAboutPutDto>
         RuleFor(ua => ua.UserId)
             .NotNull().WithMessage("UserId can't be null")
             .NotEmpty().WithMessage("UserId can't be empty");
+        RuleFor(ua => ua.Id)
+            .NotNull().WithMessage("Id can't be null")
+            .NotEmpty().WithMessage("Id can't be empty");
         RuleFor(ua => ua.AboutMe)
             .MaximumLength(300).WithMessage("The length of the AboutMe must be maximum 300");
         RuleFor(ua => ua.CityName)

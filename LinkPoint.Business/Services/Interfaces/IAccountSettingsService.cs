@@ -8,7 +8,7 @@ namespace LinkPoint.Business.Services.Interfaces;
 
 public interface IAccountSettingsService
 {
-    Task UpdateUserAbout(UserAboutPutDto userAboutPutDto);
+    Task UpdateUserAbout(int Id,UserAboutPutDto userAboutPutDto);
     Task<UserAboutGetDto> GetUserAbout(string UserId);
     Task UpdateUserWork(int Id,UserWorkPutDto userWorkPutDto);
     Task<UserWorkGetDto>GetUserWork(string UserId);
