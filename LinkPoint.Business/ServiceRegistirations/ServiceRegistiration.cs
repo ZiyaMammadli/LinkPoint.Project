@@ -17,6 +17,7 @@ public static class ServiceRegistiration
     {
         services.AddScoped<IAccountService, AccountService>();
         services.AddScoped<IAccountSettingsService, AccountSettingsService>();
+        services.AddScoped<IFriendShipService, FriendShipService>();
         services.AddScoped<IEmailService, EmailService>();
         services.AddHttpContextAccessor();
         services.AddSingleton<IActionContextAccessor, ActionContextAccessor>();
