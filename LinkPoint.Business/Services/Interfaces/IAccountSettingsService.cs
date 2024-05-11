@@ -8,15 +8,17 @@ namespace LinkPoint.Business.Services.Interfaces;
 
 public interface IAccountSettingsService
 {
-    Task UpdateUserAbout(int Id,UserAboutPutDto userAboutPutDto);
-    Task<UserAboutGetDto> GetUserAbout(string UserId);
-    Task UpdateUserWork(int Id,UserWorkPutDto userWorkPutDto);
-    Task<UserWorkGetDto>GetUserWork(string UserId);
-    Task UpdateUserEducation(int Id,UserEducationPutDto userEducationPutDto);
-    Task<UserEducationGetDto>GetUserEducation(string UserId);
-    Task CreateUserInterest(UserInterestPostDto userInterestPostDto);
-    Task DeleteUserInterest(int Id,UserInterestDeleteDto userInterestDeleteDto);
-    Task<List<UserInterestGetDto>> GetAllUserInterests(string UserId);
-    Task ChangePassword(string UserId,ChangePasswordDto changePasswordDto);
+    Task UpdateUserAboutAsync(int Id,UserAboutPutDto userAboutPutDto);//
+    Task<UserAboutGetDto> GetUserAboutAsync(string UserId);//
+    Task CreateUserWorkAsync(UserWorkPostDto userWorkPostDto);//
+    Task UpdateUserWorkAsync(int Id,UserWorkPutDto userWorkPutDto);//
+    Task<UserWorkGetDto>GetUserWorkAsync(string UserId);//
+    Task CreateUserEducationAsync(UserEducationPostDto userEducationPostDto);//
+    Task UpdateUserEducationAsync(int Id,UserEducationPutDto userEducationPutDto);//
+    Task<UserEducationGetDto>GetUserEducationAsync(string UserId);//
+    Task CreateUserInterestAsync(UserInterestPostDto userInterestPostDto);//
+    Task DeleteUserInterestAsync(int Id,UserInterestDeleteDto userInterestDeleteDto);//
+    Task<List<UserInterestGetDto>> GetAllUserInterestsAsync(string UserId);//
+    Task ChangePasswordAsync(string UserId,ChangePasswordDto changePasswordDto);//
 }
     

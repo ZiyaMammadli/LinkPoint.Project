@@ -16,6 +16,7 @@ public static class ServiceRegistiration
     public static void AddServices(this IServiceCollection services)
     {
         services.AddScoped<IAccountService, AccountService>();
+        services.AddScoped<IAccountSettingsService, AccountSettingsService>();
         services.AddScoped<IEmailService, EmailService>();
         services.AddHttpContextAccessor();
         services.AddSingleton<IActionContextAccessor, ActionContextAccessor>();

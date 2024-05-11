@@ -10,5 +10,6 @@ public class UserWorkMapProfile:Profile
     {
         CreateMap<UserWorkGetDto,UserWork>().ReverseMap();
         CreateMap<UserWorkPutDto,UserWork>().ReverseMap();
+        CreateMap<UserWorkPostDto,UserWork>().ReverseMap();
     }
 }

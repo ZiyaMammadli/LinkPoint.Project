@@ -3,7 +3,7 @@
     "ContainingType": "LinkPoint.API.Controllers.AccountController",
     "Method": "EmailConfirm",
     "RelativePath": "api/Account/EmailConfirm",
-    "HttpMethod": "POST",
+    "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,
     "Parameters": [
@@ -73,6 +73,223 @@
       {
         "Name": "registerDto",
         "Type": "LinkPoint.Business.DTOs.AccountDTOs.RegisterDto",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "LinkPoint.API.Controllers.AccountSettingsController",
+    "Method": "ChangePassword",
+    "RelativePath": "api/AccountSettings/ChangePassword/{UserId}",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "UserId",
+        "Type": "System.String",
+        "IsRequired": true
+      },
+      {
+        "Name": "changePasswordDto",
+        "Type": "LinkPoint.Business.DTOs.AccountSettingsDTOs.PasswordDTOs.ChangePasswordDto",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "LinkPoint.API.Controllers.AccountSettingsController",
+    "Method": "CreateUserEducation",
+    "RelativePath": "api/AccountSettings/CreateUserEducation",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "userEducationPostDto",
+        "Type": "LinkPoint.Business.DTOs.AccountSettingsDTOs.UserEducationDTOs.UserEducationPostDto",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "LinkPoint.API.Controllers.AccountSettingsController",
+    "Method": "CreateUserInterest",
+    "RelativePath": "api/AccountSettings/CreateUserInterest",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "userInterestPostDto",
+        "Type": "LinkPoint.Business.DTOs.AccountSettingsDTOs.UserInterestDTOs.UserInterestPostDto",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "LinkPoint.API.Controllers.AccountSettingsController",
+    "Method": "CreateUserWork",
+    "RelativePath": "api/AccountSettings/CreateUserWork",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "userWorkPostDto",
+        "Type": "LinkPoint.Business.DTOs.AccountSettingsDTOs.UserWorkDTOs.UserWorkPostDto",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "LinkPoint.API.Controllers.AccountSettingsController",
+    "Method": "DeleteUserInterest",
+    "RelativePath": "api/AccountSettings/DeleteUserInterest/{Id}",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "Id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      },
+      {
+        "Name": "userInterestDeleteDto",
+        "Type": "LinkPoint.Business.DTOs.AccountSettingsDTOs.UserInterestDTOs.UserInterestDeleteDto",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "LinkPoint.API.Controllers.AccountSettingsController",
+    "Method": "GetAllUserInterests",
+    "RelativePath": "api/AccountSettings/GetAllUserInterests/{UserId}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "UserId",
+        "Type": "System.String",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "LinkPoint.API.Controllers.AccountSettingsController",
+    "Method": "GetUserAbout",
+    "RelativePath": "api/AccountSettings/GetUserAbout/{UserId}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "UserId",
+        "Type": "System.String",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "LinkPoint.API.Controllers.AccountSettingsController",
+    "Method": "GetUserEducation",
+    "RelativePath": "api/AccountSettings/GetUserEducation/{UserId}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "UserId",
+        "Type": "System.String",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "LinkPoint.API.Controllers.AccountSettingsController",
+    "Method": "GetUserWork",
+    "RelativePath": "api/AccountSettings/GetUserWork/{UserId}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "UserId",
+        "Type": "System.String",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "LinkPoint.API.Controllers.AccountSettingsController",
+    "Method": "UpdateUserAbout",
+    "RelativePath": "api/AccountSettings/UpdateUserAbout/{Id}",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "Id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      },
+      {
+        "Name": "userAboutPutDto",
+        "Type": "LinkPoint.Business.DTOs.AccountSettingsDTOs.UserAboutDTOs.UserAboutPutDto",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "LinkPoint.API.Controllers.AccountSettingsController",
+    "Method": "UpdateUserEducation",
+    "RelativePath": "api/AccountSettings/UpdateUserEducation/{Id}",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "Id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      },
+      {
+        "Name": "userEducationPutDto",
+        "Type": "LinkPoint.Business.DTOs.AccountSettingsDTOs.UserEducationDTOs.UserEducationPutDto",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "LinkPoint.API.Controllers.AccountSettingsController",
+    "Method": "UpdateUserWork",
+    "RelativePath": "api/AccountSettings/UpdateUserWork/{Id}",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "Id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      },
+      {
+        "Name": "userWorkPutDto",
+        "Type": "LinkPoint.Business.DTOs.AccountSettingsDTOs.UserWorkDTOs.UserWorkPutDto",
         "IsRequired": true
       }
     ],
