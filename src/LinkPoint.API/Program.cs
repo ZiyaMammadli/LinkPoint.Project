@@ -27,8 +27,8 @@ builder.Services.AddIdentity<AppUser, IdentityRole>(opt =>
     opt.User.AllowedUserNameCharacters = "qwertyuiopasdfghjklzxcvbnmQWERTYUIOPASDFGHJKLZXCVBNM0123456789._";
     opt.User.RequireUniqueEmail = true;
 })
-              .AddEntityFrameworkStores<LinkPointDbContext>()
-              .AddDefaultTokenProviders();
+              .AddDefaultTokenProviders()
+              .AddEntityFrameworkStores<LinkPointDbContext>();
 
 builder.Services.AddAuthentication(opt =>
 {

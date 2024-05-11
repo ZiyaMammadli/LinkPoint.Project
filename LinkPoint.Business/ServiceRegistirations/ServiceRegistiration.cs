@@ -7,6 +7,8 @@ using Microsoft.Extensions.DependencyInjection;
 using FluentValidation.AspNetCore;
 using LinkPoint.Business.Validators.UserAboutValidators;
 using LinkPoint.Business.MappingProfiles;
+using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.AspNetCore.Http;
 
 
 namespace LinkPoint.Business.ServiceRegistirations;

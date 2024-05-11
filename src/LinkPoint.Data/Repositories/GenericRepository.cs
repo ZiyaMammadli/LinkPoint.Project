@@ -64,4 +64,8 @@ public class GenericRepository<TEntity> : IGenericRepository<TEntity> where TEnt
     {
         await Table.AddAsync(entity);
     }
+    public async Task<bool> IsExist(Expression<Func<TEntity, bool>> expression)
+    {
+        return await Table.AnyAsync(expression);
+    }
 }

@@ -294,5 +294,83 @@
       }
     ],
     "ReturnTypes": []
+  },
+  {
+    "ContainingType": "LinkPoint.API.Controllers.FriendShipsController",
+    "Method": "AcceptFriendShipRequest",
+    "RelativePath": "api/FriendShips/AcceptFriendShipRequest/{friendShipId}",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "friendShipId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "LinkPoint.API.Controllers.FriendShipsController",
+    "Method": "AddToFriendShip",
+    "RelativePath": "api/FriendShips/AddToFriendShip/{followingUserId}",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "followingUserId",
+        "Type": "System.String",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "LinkPoint.API.Controllers.FriendShipsController",
+    "Method": "GetAllAcceptedFollowerUsers",
+    "RelativePath": "api/FriendShips/GetAllAcceptedFollowerUsers",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "LinkPoint.API.Controllers.FriendShipsController",
+    "Method": "GetAllAcceptedFollowingUsers",
+    "RelativePath": "api/FriendShips/GetAllAcceptedFollowingUsers",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "LinkPoint.API.Controllers.FriendShipsController",
+    "Method": "GetAllPendingFollowerUsers",
+    "RelativePath": "api/FriendShips/GetAllPendingFollowerUsers",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "LinkPoint.API.Controllers.FriendShipsController",
+    "Method": "RejectFriendShipRequest",
+    "RelativePath": "api/FriendShips/RejectFriendShipRequest/{friendShipId}",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "friendShipId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
   }
 ]

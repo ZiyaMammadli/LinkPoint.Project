@@ -14,4 +14,5 @@ public interface IGenericRepository<TEntity> where TEntity : BaseEntity, new()
     Task<TEntity> GetByIdAsync(int id);
     void Delete(TEntity entity);
     Task<int> CommitAsync();
+    Task<bool> IsExist(Expression<Func<TEntity, bool>> expression);
 }

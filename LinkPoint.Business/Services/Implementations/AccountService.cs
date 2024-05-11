@@ -6,6 +6,8 @@ using LinkPoint.Business.Utilities.Exceptions.NotFoundException;
 using LinkPoint.Business.Utilities.Exceptions.NotFoundExceptions;
 using LinkPoint.Core.Entities;
 using LinkPoint.Data.Contexts;
+using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
@@ -101,6 +103,7 @@ public class AccountService:IAccountService
         if (result is false) throw new InvalidCredentialsException(401,"Incorrect password or username");
         if(user.EmailConfirmed==true)
         {
+           
             var result1 = await _signInManager.PasswordSignInAsync(user, loginDto.Password, false, false);
             if (!result1.Succeeded) throw new InvalidCredentialsException(401,"incorrect password or username");
         }

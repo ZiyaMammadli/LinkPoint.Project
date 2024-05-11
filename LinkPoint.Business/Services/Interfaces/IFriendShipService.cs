@@ -4,10 +4,10 @@ namespace LinkPoint.Business.Services.Interfaces;
 
 public interface IFriendShipService
 {
-    Task AddToFriendShip(string followingUserId);
-    Task AcceptFriendShipRequest(int friendShipId);
-    Task RejectFriendShipRequest(int FriednShipId);
-    Task<List<AppUser>> GetAllAcceptedFollowingUsers();
-    Task<List<AppUser>> GetAllAcceptedFollowerUsers();
-    Task<List<AppUser>> GetAllPendingFollowerUsers();
+    Task AddToFriendShipAsync(string followingUserId);//
+    Task AcceptFriendShipRequestAsync(int friendShipId);//
+    Task RejectFriendShipRequestAsync(int friednShipId);//
+    Task<List<AppUser>> GetAllAcceptedFollowingUsersAsync();//
+    Task<List<AppUser>> GetAllAcceptedFollowerUsersAsync();//
+    Task<List<AppUser>> GetAllPendingFollowerUsersAsync();//
 }
