@@ -209,6 +209,7 @@ public class AccountService:IAccountService
     public async Task LogOutAsync()
     {
         await _signInManager.SignOutAsync();
+        _httpContextAccessor.HttpContext.Response.Cookies.Delete("UserName");
     }
 
     public async Task ForgotPassword(ForgotPasswordDto forgotPasswordDto)

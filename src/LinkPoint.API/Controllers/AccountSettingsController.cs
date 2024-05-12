@@ -34,6 +34,10 @@ namespace LinkPoint.API.Controllers
             {
                 return StatusCode(ex.StatusCode,ex.Message);
             }
+            catch (UserNotFoundException ex)
+            {
+                return StatusCode(ex.StatusCode,ex.Message);
+            }
             catch (Exception ex)
             {
                 return BadRequest(ex.Message);
@@ -48,6 +52,10 @@ namespace LinkPoint.API.Controllers
                 return Ok();
             }
             catch(IdNotValidException ex)
+            {
+                return StatusCode(ex.StatusCode, ex.Message);   
+            } 
+            catch(UserNotFoundException ex)
             {
                 return StatusCode(ex.StatusCode, ex.Message);   
             }
@@ -118,6 +126,10 @@ namespace LinkPoint.API.Controllers
                 return Ok(await _accountSettingsService.GetUserWorkAsync(UserId));
             }
             catch (UserWorkNotFoundException ex)
+            {
+                return StatusCode(ex.StatusCode, ex.Message);
+            }
+            catch (UserNotFoundException ex)
             {
                 return StatusCode(ex.StatusCode, ex.Message);
             }

@@ -13,5 +13,6 @@ public static class RepositoryRegistiration
         services.AddScoped<IUserWorkRepository, UserWorkRepository>();
         services.AddScoped<IUserInterestRepository, UserInterestRepository>();
         services.AddScoped<IFriendShipRepository, FriendShipRepository>();
+        services.AddScoped<IImageRepository, ImageRepository>();
     }
 }

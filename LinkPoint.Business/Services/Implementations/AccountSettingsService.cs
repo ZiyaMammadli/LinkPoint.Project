@@ -10,7 +10,9 @@ using LinkPoint.Business.Utilities.Exceptions.NotFoundExceptions;
 using LinkPoint.Business.Utilities.Exceptions.NotValidExceptions;
 using LinkPoint.Core.Entities;
 using LinkPoint.Core.Repositories;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
+using Newtonsoft.Json;
 using System.Diagnostics;
 
 namespace LinkPoint.Business.Services.Implementations;
@@ -23,13 +25,15 @@ public class AccountSettingsService : IAccountSettingsService
     private readonly IUserInterestRepository _userInterestRepository;
     private readonly IUserWorkRepository _userWorkRepository;
     private readonly IUserAboutRepository _userAboutRepository;
+    private readonly IHttpContextAccessor _httpContextAccessor;
 
     public AccountSettingsService(IUserEducationRepository userEducationRepository,
         UserManager<AppUser> userManager, 
         IMapper mapper,
         IUserInterestRepository userInterestRepository,
         IUserWorkRepository userWorkRepository,
-        IUserAboutRepository userAboutRepository)
+        IUserAboutRepository userAboutRepository,
+        IHttpContextAccessor httpContextAccessor)
     {
         _userEducationRepository = userEducationRepository;
         _userManager = userManager;
@@ -37,6 +41,7 @@ public class AccountSettingsService : IAccountSettingsService
         _userInterestRepository = userInterestRepository;
         _userWorkRepository = userWorkRepository;
         _userAboutRepository = userAboutRepository;
+        _httpContextAccessor = httpContextAccessor;
     }
     public async Task UpdateUserEducationAsync(int Id ,UserEducationPutDto userEducationPutDto)
     {   
@@ -51,7 +56,7 @@ public class AccountSettingsService : IAccountSettingsService
     {
         var user = await _userManager.FindByIdAsync(UserId);
         if (user is null) throw new UserNotFoundException(404, "User is not found");
-        var userEducation=await _userEducationRepository.GetSingleAsync(ue=>ue.UserId==UserId);
+        var userEducation=await _userEducationRepository.GetSingleAsync(ue=>ue.UserId==user.Id);
         if (userEducation is null) throw new UserEducationNotFoundException(404, "UserEducation is not found");
         var userEducationGetDto=_mapper.Map<UserEducationGetDto>(userEducation);
         return userEducationGetDto;
@@ -76,7 +81,7 @@ public class AccountSettingsService : IAccountSettingsService
         var user = await _userManager.FindByIdAsync(UserId);
         if (user is null) throw new UserNotFoundException(404, "User is not found");
         List<UserInterestGetDto> userInterestGetDtos = new List<UserInterestGetDto>();
-        List<UserInterest> userInterests= await _userInterestRepository.GetAllAsync(ui=>ui.UserId==UserId);
+        List<UserInterest> userInterests= await _userInterestRepository.GetAllAsync(ui=>ui.UserId==user.Id);
         if (userInterests.Count==0) throw new UserInterestNotFoundException(404, "UserInterest is not found");
         foreach (var userInterest in userInterests)
         {
@@ -106,14 +111,18 @@ public class AccountSettingsService : IAccountSettingsService
     }
     public async Task<UserWorkGetDto> GetUserWorkAsync(string UserId)
     {
-        var userWork=await _userWorkRepository.GetSingleAsync(uw=>uw.UserId==UserId);
+        var user = await _userManager.FindByIdAsync(UserId);
+        if (user is null) throw new UserNotFoundException(404, "User is not found");
+        var userWork=await _userWorkRepository.GetSingleAsync(uw=>uw.UserId==user.Id);
         if (userWork is null) throw new UserWorkNotFoundException(404, "UserWork is not found");
         var userwork=_mapper.Map<UserWorkGetDto>(userWork);
         return userwork;
     }
     public async Task<UserAboutGetDto> GetUserAboutAsync(string UserId)
     {
-        var userAbout= await _userAboutRepository.GetSingleAsync(ua=>ua.UserId==UserId);
+        var user = await _userManager.FindByIdAsync(UserId);
+        if (user is null) throw new UserNotFoundException(404, "User is not found");
+        var userAbout= await _userAboutRepository.GetSingleAsync(ua=>ua.UserId==user.Id);
         if (userAbout is null) throw new UserAboutNotFoundException(404, "UserAbout is not found");
         var userAboutGetDto=_mapper.Map<UserAboutGetDto>(userAbout);
         return userAboutGetDto;

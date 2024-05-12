@@ -10,5 +10,6 @@ public class UserEducationMapProfile:Profile
     {
         CreateMap<UserEducationPutDto, UserEducation>().ReverseMap();
         CreateMap<UserEducationPostDto, UserEducation>().ReverseMap();
+        CreateMap<UserEducationGetDto, UserEducation>().ReverseMap();
     }
 }
