@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "3+UlrHSvAT7f9UtaZp1Bep+M33eh2kvOZ8MMTmhn0BwOZFZqZEYJtHREvyU8zW11ri8Cu2qrSrJtGKlne6PZ9g==",
+  "dgSpecHash": "htR0aYPz5JemZE0CQEgQnTmM7NZecYiBXyg2g241/E71hVOEFg4/fNAYJgF5oFOo7xLDu3YrbnGYPQJXsTE5ZQ==",
   "success": true,
   "projectFilePath": "C:\\Users\\user\\source\\repos\\LinkPoint\\LinkPoint.Business\\LinkPoint.Business.csproj",
   "expectedPackageFiles": [
@@ -46,6 +46,7 @@
     "C:\\Users\\user\\.nuget\\packages\\microsoft.sqlserver.server\\1.0.0\\microsoft.sqlserver.server.1.0.0.nupkg.sha512",
     "C:\\Users\\user\\.nuget\\packages\\microsoft.win32.systemevents\\6.0.0\\microsoft.win32.systemevents.6.0.0.nupkg.sha512",
     "C:\\Users\\user\\.nuget\\packages\\mimekit\\4.5.0\\mimekit.4.5.0.nupkg.sha512",
+    "C:\\Users\\user\\.nuget\\packages\\newtonsoft.json\\13.0.3\\newtonsoft.json.13.0.3.nupkg.sha512",
     "C:\\Users\\user\\.nuget\\packages\\smtpserver\\10.0.1\\smtpserver.10.0.1.nupkg.sha512",
     "C:\\Users\\user\\.nuget\\packages\\system.configuration.configurationmanager\\6.0.1\\system.configuration.configurationmanager.6.0.1.nupkg.sha512",
     "C:\\Users\\user\\.nuget\\packages\\system.diagnostics.diagnosticsource\\6.0.1\\system.diagnostics.diagnosticsource.6.0.1.nupkg.sha512",

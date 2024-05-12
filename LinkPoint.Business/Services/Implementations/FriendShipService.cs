@@ -6,6 +6,7 @@ using LinkPoint.Core.Enums;
 using LinkPoint.Core.Repositories;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
+using Newtonsoft.Json;
 
 namespace LinkPoint.Business.Services.Implementations;
 
@@ -14,8 +15,6 @@ public class FriendShipService : IFriendShipService
     private readonly UserManager<AppUser> _userManager;
     private readonly IHttpContextAccessor _httpContextAccessor;
     private readonly IFriendShipRepository _friendShipRepository;
-
-    public object JsonConvert { get; private set; }
 
     public FriendShipService(UserManager<AppUser> userManager, IHttpContextAccessor httpContextAccessor,IFriendShipRepository friendShipRepository)
     {
@@ -61,11 +60,9 @@ public class FriendShipService : IFriendShipService
 
     public async Task<List<AppUser>> GetAllAcceptedFollowingUsersAsync()
     {
-        if (_httpContextAccessor.HttpContext.User.Identity.IsAuthenticated)
-        {
-            string salam = "salam";
-        }   
-            string username = _httpContextAccessor.HttpContext.User.Identity.Name;
+        
+        var userName = _httpContextAccessor.HttpContext.Request.Cookies["UserName"];
+        string username = JsonConvert.DeserializeObject<string>(userName);
         var user = await _userManager.FindByNameAsync(username);
         if (user is null) throw new UserNotFoundException(404, "User is not found");                   
         if (!await _friendShipRepository.IsExist(fs => fs.UserId == user.Id && fs.Status == FollowStatus.Accepted)) throw new FriendShipNotFoundException(404, "FriendShip is not found");
@@ -76,12 +73,15 @@ public class FriendShipService : IFriendShipService
             var followingUser = await _userManager.FindByIdAsync(friendShip.FollowingUserId);
             followingUsers.Add(followingUser);
         }
+        
         return followingUsers;
     }
 
     public async Task<List<AppUser>> GetAllAcceptedFollowerUsersAsync()
     {
-        var user = await _userManager.FindByNameAsync(_httpContextAccessor.HttpContext.User.Identity.Name);
+        var userName = _httpContextAccessor.HttpContext.Request.Cookies["UserName"];
+        string username = JsonConvert.DeserializeObject<string>(userName);
+        var user = await _userManager.FindByNameAsync(username);
         if (user is null) throw new UserNotFoundException(404, "User is not found");
         if (!await _friendShipRepository.IsExist(fs => fs.FollowingUserId == user.Id && fs.Status == FollowStatus.Accepted)) throw new FriendShipNotFoundException(404, "FriendShip is not found");
         var FriendShips = await _friendShipRepository.GetAllAsync(fs => fs.FollowingUserId == user.Id && fs.Status == FollowStatus.Accepted);
@@ -96,7 +96,9 @@ public class FriendShipService : IFriendShipService
 
     public async Task<List<AppUser>> GetAllPendingFollowerUsersAsync()
     {
-        var user = await _userManager.FindByNameAsync(_httpContextAccessor.HttpContext.User.Identity.Name);
+        var userName = _httpContextAccessor.HttpContext.Request.Cookies["UserName"];
+        string username = JsonConvert.DeserializeObject<string>(userName);
+        var user = await _userManager.FindByNameAsync(username);
         if (user is null) throw new UserNotFoundException(404, "User is not found");
         if (!await _friendShipRepository.IsExist(fs => fs.FollowingUserId == user.Id && fs.Status == FollowStatus.Pending)) throw new FriendShipNotFoundException(404, "FriendShip is not found");
         var FriendShips = await _friendShipRepository.GetAllAsync(fs => fs.FollowingUserId == user.Id && fs.Status == FollowStatus.Pending);

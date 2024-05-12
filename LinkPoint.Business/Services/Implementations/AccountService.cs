@@ -6,14 +6,13 @@ using LinkPoint.Business.Utilities.Exceptions.NotFoundException;
 using LinkPoint.Business.Utilities.Exceptions.NotFoundExceptions;
 using LinkPoint.Core.Entities;
 using LinkPoint.Data.Contexts;
-using Microsoft.AspNetCore.Authentication.Cookies;
-using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.IdentityModel.Tokens;
+using Newtonsoft.Json;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Security.Cryptography;
@@ -106,6 +105,10 @@ public class AccountService:IAccountService
            
             var result1 = await _signInManager.PasswordSignInAsync(user, loginDto.Password, false, false);
             if (!result1.Succeeded) throw new InvalidCredentialsException(401,"incorrect password or username");
+            var username= JsonConvert.SerializeObject(user.UserName);
+
+            _httpContextAccessor.HttpContext.Response.Cookies.Append("UserName", username);
+            
         }
         else
         {
