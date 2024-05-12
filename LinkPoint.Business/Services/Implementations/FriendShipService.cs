@@ -107,7 +107,7 @@ public class FriendShipService : IFriendShipService
         List<AcceptedFollowerUserDto> followerUserDtos = new List<AcceptedFollowerUserDto>();
         foreach (var friendShip in FriendShips)
         {
-            var followerUser = await _userManager.FindByIdAsync(friendShip.FollowingUserId);
+            var followerUser = await _userManager.FindByIdAsync(friendShip.UserId);
             AcceptedFollowerUserDto followerUserDto = new AcceptedFollowerUserDto()
             {
                 UserId = followerUser.Id,
@@ -125,8 +125,8 @@ public class FriendShipService : IFriendShipService
         string username = JsonConvert.DeserializeObject<string>(userName);
         var user = await _userManager.FindByNameAsync(username);
         if (user is null) throw new UserNotFoundException(404, "User is not found");
-        if (!await _friendShipRepository.IsExist(fs => fs.FollowingUserId == user.Id && fs.Status == FollowStatus.Pending)) throw new FriendShipNotFoundException(404, "FriendShip is not found");
-        var FriendShips = await _friendShipRepository.GetAllAsync(fs => fs.FollowingUserId == user.Id && fs.Status == FollowStatus.Pending);
+        if (!await _friendShipRepository.IsExist(fs => fs.UserId == user.Id && fs.Status == FollowStatus.Pending)) throw new FriendShipNotFoundException(404, "FriendShip is not found");
+        var FriendShips = await _friendShipRepository.GetAllAsync(fs => fs.UserId == user.Id && fs.Status == FollowStatus.Pending);
         List<PendingFollowerUserDto> PendingFollowerUserDtos = new List<PendingFollowerUserDto>();
         foreach (var friendShip in FriendShips)
         {
