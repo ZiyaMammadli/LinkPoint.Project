@@ -372,5 +372,53 @@
       }
     ],
     "ReturnTypes": []
+  },
+  {
+    "ContainingType": "LinkPoint.API.Controllers.GoogleCloudTestController",
+    "Method": "GetImage",
+    "RelativePath": "api/GoogleCloudTest",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "ImageName",
+        "Type": "System.String",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "LinkPoint.API.Controllers.GoogleCloudTestController",
+    "Method": "AddFileToCloud",
+    "RelativePath": "api/GoogleCloudTest",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "file",
+        "Type": "Microsoft.AspNetCore.Http.IFormFile",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "LinkPoint.API.Controllers.GoogleCloudTestController",
+    "Method": "DeleteFile",
+    "RelativePath": "api/GoogleCloudTest/DeleteFile",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "FileName",
+        "Type": "System.String",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
   }
 ]
