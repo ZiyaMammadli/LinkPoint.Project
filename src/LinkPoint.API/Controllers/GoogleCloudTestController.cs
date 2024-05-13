@@ -25,7 +25,7 @@ namespace LinkPoint.API.Controllers
             var client = StorageClient.Create(credential);
             var objectName = $"Images/{ImageName}";
             var stream = new MemoryStream();
-            var obj = await client.DownloadObjectAsync("link_point", objectName, stream);
+            var obj = await client.GetObjectAsync("link_point", objectName, null);
             stream.Position = 0;
             return File(stream, obj.ContentType, obj.Name);
         }

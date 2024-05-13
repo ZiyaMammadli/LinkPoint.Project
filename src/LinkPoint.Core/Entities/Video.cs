@@ -3,5 +3,6 @@
 public class Video:BaseEntity
 {
     public string VideoUrl { get; set; }
-    public List<Post> posts { get; set; }
+    public int PostId { get; set; }
+    public Post Post { get; set; }
 }

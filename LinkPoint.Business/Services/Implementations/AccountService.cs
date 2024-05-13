@@ -4,7 +4,9 @@ using LinkPoint.Business.Utilities.Exceptions.CommonExceptions;
 using LinkPoint.Business.Utilities.Exceptions.ConfirmedExceptions;
 using LinkPoint.Business.Utilities.Exceptions.NotFoundException;
 using LinkPoint.Business.Utilities.Exceptions.NotFoundExceptions;
+using LinkPoint.Business.Utilities.Extentions;
 using LinkPoint.Core.Entities;
+using LinkPoint.Core.Repositories;
 using LinkPoint.Data.Contexts;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
@@ -29,6 +31,8 @@ public class AccountService:IAccountService
     private readonly IEmailService _emailService;
     private readonly IHttpContextAccessor _httpContextAccessor;
     private readonly IUrlHelper _urlHelper;
+    private readonly IImageRepository _imageRepository;
+    private readonly IConfiguration _configuration;
 
     public AccountService(UserManager<AppUser> userManager, 
         LinkPointDbContext context, 
@@ -36,7 +40,9 @@ public class AccountService:IAccountService
         IConfiguration conf,
         IEmailService emailService,
         IHttpContextAccessor httpContextAccessor,
-        IUrlHelper urlHelper)
+        IUrlHelper urlHelper,
+        IImageRepository imageRepository,
+        IConfiguration configuration)
     {
         _userManager = userManager;
         _context = context;
@@ -45,6 +51,8 @@ public class AccountService:IAccountService
         _emailService = emailService;
         _httpContextAccessor = httpContextAccessor;
         _urlHelper = urlHelper;
+        _imageRepository = imageRepository;
+        _configuration = configuration;
     }
 
     public string GenerateRefreshToken()
@@ -171,6 +179,18 @@ public class AccountService:IAccountService
             CreatedDate = DateTime.UtcNow,
             UpdatedDate = DateTime.UtcNow,
         };
+        string DefautlImagePath = "C:\\Users\\user\\source\\repos\\LinkPoint\\src\\LinkPoint.API\\wwwroot\\UserDefaultProfileImage\\DefaultPerson.jpg";
+        string DefaultImageName = "DefaultPerson.jpg";
+        string apiKey = _configuration["GoogleCloud:ApiKey"];
+        var DefaultProfileImage=FileManager.CreateIFormFile(DefautlImagePath, DefaultImageName);
+        Image ProfileImage = new()
+        {
+            UserId = appUser.Id,
+            PostId = null,
+            IsPostImage = false,
+            ImageUrl = DefaultProfileImage.SaveFile(apiKey)
+        };
+        await _imageRepository.InsertAsync(ProfileImage);
         _context.UserAbouts.Add(userAbout);
         await _context.SaveChangesAsync();
         string code=await _userManager.GenerateEmailConfirmationTokenAsync(appUser);

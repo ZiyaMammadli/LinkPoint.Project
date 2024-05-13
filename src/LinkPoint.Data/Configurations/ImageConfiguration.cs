@@ -8,7 +8,6 @@ public class ImageConfiguration : IEntityTypeConfiguration<Image>
 {
     public void Configure(EntityTypeBuilder<Image> builder)
     {
-        builder.Property(i=>i.ImageUrl).IsRequired().HasMaxLength(200);
-        builder.Property(i=>i.UserId).HasMaxLength(450);
+        builder.Property(i=>i.ImageUrl).IsRequired().HasMaxLength(200);       
     }
 }

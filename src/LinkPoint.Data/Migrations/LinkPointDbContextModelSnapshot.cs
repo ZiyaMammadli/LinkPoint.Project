@@ -211,14 +211,20 @@ namespace LinkPoint.Data.Migrations
                     b.Property<bool>("IsPostImage")
                         .HasColumnType("bit");
 
+                    b.Property<int?>("PostId")
+                        .HasColumnType("int");
+
                     b.Property<DateTime>("UpdatedDate")
                         .HasColumnType("datetime2");
 
                     b.Property<string>("UserId")
-                        .HasMaxLength(450)
                         .HasColumnType("nvarchar(450)");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("PostId")
+                        .IsUnique()
+                        .HasFilter("[PostId] IS NOT NULL");
 
                     b.HasIndex("UserId");
 
@@ -270,9 +276,6 @@ namespace LinkPoint.Data.Migrations
                     b.Property<DateTime>("CreatedDate")
                         .HasColumnType("datetime2");
 
-                    b.Property<int?>("ImageId")
-                        .HasColumnType("int");
-
                     b.Property<bool>("IsDeleted")
                         .HasColumnType("bit");
 
@@ -292,16 +295,9 @@ namespace LinkPoint.Data.Migrations
                         .HasMaxLength(450)
                         .HasColumnType("nvarchar(450)");
 
-                    b.Property<int?>("VideoId")
-                        .HasColumnType("int");
-
                     b.HasKey("Id");
 
-                    b.HasIndex("ImageId");
-
                     b.HasIndex("UserId");
-
-                    b.HasIndex("VideoId");
 
                     b.ToTable("Posts");
                 });
@@ -502,6 +498,9 @@ namespace LinkPoint.Data.Migrations
                     b.Property<bool>("IsDeleted")
                         .HasColumnType("bit");
 
+                    b.Property<int>("PostId")
+                        .HasColumnType("int");
+
                     b.Property<DateTime>("UpdatedDate")
                         .HasColumnType("datetime2");
 
@@ -511,6 +510,9 @@ namespace LinkPoint.Data.Migrations
                         .HasColumnType("nvarchar(200)");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("PostId")
+                        .IsUnique();
 
                     b.ToTable("Videos");
                 });
@@ -688,10 +690,17 @@ namespace LinkPoint.Data.Migrations
 
             modelBuilder.Entity("LinkPoint.Core.Entities.Image", b =>
                 {
+                    b.HasOne("LinkPoint.Core.Entities.Post", "Post")
+                        .WithOne("Image")
+                        .HasForeignKey("LinkPoint.Core.Entities.Image", "PostId")
+                        .OnDelete(DeleteBehavior.NoAction);
+
                     b.HasOne("LinkPoint.Core.Entities.AppUser", "User")
                         .WithMany("Images")
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade);
+
+                    b.Navigation("Post");
 
                     b.Navigation("User");
                 });
@@ -717,27 +726,13 @@ namespace LinkPoint.Data.Migrations
 
             modelBuilder.Entity("LinkPoint.Core.Entities.Post", b =>
                 {
-                    b.HasOne("LinkPoint.Core.Entities.Image", "Image")
-                        .WithMany("posts")
-                        .HasForeignKey("ImageId")
-                        .OnDelete(DeleteBehavior.NoAction);
-
                     b.HasOne("LinkPoint.Core.Entities.AppUser", "User")
                         .WithMany("Posts")
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("LinkPoint.Core.Entities.Video", "Video")
-                        .WithMany("posts")
-                        .HasForeignKey("VideoId")
-                        .OnDelete(DeleteBehavior.Cascade);
-
-                    b.Navigation("Image");
-
                     b.Navigation("User");
-
-                    b.Navigation("Video");
                 });
 
             modelBuilder.Entity("LinkPoint.Core.Entities.UserAbout", b =>
@@ -782,6 +777,17 @@ namespace LinkPoint.Data.Migrations
                         .IsRequired();
 
                     b.Navigation("User");
+                });
+
+            modelBuilder.Entity("LinkPoint.Core.Entities.Video", b =>
+                {
+                    b.HasOne("LinkPoint.Core.Entities.Post", "Post")
+                        .WithOne("Video")
+                        .HasForeignKey("LinkPoint.Core.Entities.Video", "PostId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Post");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
@@ -859,21 +865,15 @@ namespace LinkPoint.Data.Migrations
                     b.Navigation("likes");
                 });
 
-            modelBuilder.Entity("LinkPoint.Core.Entities.Image", b =>
-                {
-                    b.Navigation("posts");
-                });
-
             modelBuilder.Entity("LinkPoint.Core.Entities.Post", b =>
                 {
                     b.Navigation("Comments");
 
-                    b.Navigation("Likes");
-                });
+                    b.Navigation("Image");
 
-            modelBuilder.Entity("LinkPoint.Core.Entities.Video", b =>
-                {
-                    b.Navigation("posts");
+                    b.Navigation("Likes");
+
+                    b.Navigation("Video");
                 });
 #pragma warning restore 612, 618
         }
