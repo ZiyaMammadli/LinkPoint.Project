@@ -1,5 +1,4 @@
-﻿using Google.Apis.Auth.OAuth2;
-using Google.Cloud.Storage.V1;
+﻿
 using LinkPoint.Core.Entities;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
