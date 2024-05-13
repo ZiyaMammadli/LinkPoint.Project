@@ -10,9 +10,9 @@ C:\Users\user\source\repos\LinkPoint\LinkPoint.Business\obj\Debug\net8.0\LinkPoi
 C:\Users\user\source\repos\LinkPoint\LinkPoint.Business\obj\Debug\net8.0\LinkPoint.Business.AssemblyInfoInputs.cache
 C:\Users\user\source\repos\LinkPoint\LinkPoint.Business\obj\Debug\net8.0\LinkPoint.Business.AssemblyInfo.cs
 C:\Users\user\source\repos\LinkPoint\LinkPoint.Business\obj\Debug\net8.0\LinkPoint.Business.csproj.CoreCompileInputs.cache
+C:\Users\user\source\repos\LinkPoint\LinkPoint.Business\obj\Debug\net8.0\LinkPoint.Business.sourcelink.json
 C:\Users\user\source\repos\LinkPoint\LinkPoint.Business\obj\Debug\net8.0\LinkPoin.49291697.Up2Date
 C:\Users\user\source\repos\LinkPoint\LinkPoint.Business\obj\Debug\net8.0\LinkPoint.Business.dll
 C:\Users\user\source\repos\LinkPoint\LinkPoint.Business\obj\Debug\net8.0\refint\LinkPoint.Business.dll
 C:\Users\user\source\repos\LinkPoint\LinkPoint.Business\obj\Debug\net8.0\LinkPoint.Business.pdb
 C:\Users\user\source\repos\LinkPoint\LinkPoint.Business\obj\Debug\net8.0\ref\LinkPoint.Business.dll
-C:\Users\user\source\repos\LinkPoint\LinkPoint.Business\obj\Debug\net8.0\LinkPoint.Business.sourcelink.json
