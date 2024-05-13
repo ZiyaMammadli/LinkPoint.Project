@@ -3,20 +3,24 @@
   "WorkspaceRootPath": "C:\\Users\\user\\source\\repos\\LinkPoint\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{DD6BBD22-AC9C-42C7-A5F7-CA0EA83063E0}|src\\LinkPoint.API\\LinkPoint.API.csproj|c:\\users\\user\\source\\repos\\linkpoint\\src\\linkpoint.api\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
-      "RelativeMoniker": "D:0:0:{DD6BBD22-AC9C-42C7-A5F7-CA0EA83063E0}|src\\LinkPoint.API\\LinkPoint.API.csproj|solutionrelative:src\\linkpoint.api\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
+      "AbsoluteMoniker": "D:0:0:{DD6BBD22-AC9C-42C7-A5F7-CA0EA83063E0}|src\\LinkPoint.API\\LinkPoint.API.csproj|c:\\users\\user\\source\\repos\\linkpoint\\src\\linkpoint.api\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{DD6BBD22-AC9C-42C7-A5F7-CA0EA83063E0}|src\\LinkPoint.API\\LinkPoint.API.csproj|solutionrelative:src\\linkpoint.api\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{DD6BBD22-AC9C-42C7-A5F7-CA0EA83063E0}|src\\LinkPoint.API\\LinkPoint.API.csproj|c:\\users\\user\\source\\repos\\linkpoint\\src\\linkpoint.api\\controllers\\googlecloudtestcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{DD6BBD22-AC9C-42C7-A5F7-CA0EA83063E0}|src\\LinkPoint.API\\LinkPoint.API.csproj|solutionrelative:src\\linkpoint.api\\controllers\\googlecloudtestcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{3089F750-426F-4032-BB8D-33FC0FA9E42E}|LinkPoint.Business\\LinkPoint.Business.csproj|c:\\users\\user\\source\\repos\\linkpoint\\linkpoint.business\\utilities\\extentions\\filemanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{3089F750-426F-4032-BB8D-33FC0FA9E42E}|LinkPoint.Business\\LinkPoint.Business.csproj|solutionrelative:linkpoint.business\\utilities\\extentions\\filemanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{DD6BBD22-AC9C-42C7-A5F7-CA0EA83063E0}|src\\LinkPoint.API\\LinkPoint.API.csproj|c:\\users\\user\\source\\repos\\linkpoint\\src\\linkpoint.api\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
+      "RelativeMoniker": "D:0:0:{DD6BBD22-AC9C-42C7-A5F7-CA0EA83063E0}|src\\LinkPoint.API\\LinkPoint.API.csproj|solutionrelative:src\\linkpoint.api\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{DD6BBD22-AC9C-42C7-A5F7-CA0EA83063E0}|src\\LinkPoint.API\\LinkPoint.API.csproj|c:\\users\\user\\source\\repos\\linkpoint\\src\\linkpoint.api\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{DD6BBD22-AC9C-42C7-A5F7-CA0EA83063E0}|src\\LinkPoint.API\\LinkPoint.API.csproj|solutionrelative:src\\linkpoint.api\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{DD6BBD22-AC9C-42C7-A5F7-CA0EA83063E0}|src\\LinkPoint.API\\LinkPoint.API.csproj|c:\\users\\user\\source\\repos\\linkpoint\\src\\linkpoint.api\\linkpoint.api.http||{5703B403-55E7-4C63-8C88-A8F52C7A45C5}",
+      "RelativeMoniker": "D:0:0:{DD6BBD22-AC9C-42C7-A5F7-CA0EA83063E0}|src\\LinkPoint.API\\LinkPoint.API.csproj|solutionrelative:src\\linkpoint.api\\linkpoint.api.http||{5703B403-55E7-4C63-8C88-A8F52C7A45C5}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{3089F750-426F-4032-BB8D-33FC0FA9E42E}|LinkPoint.Business\\LinkPoint.Business.csproj|c:\\users\\user\\source\\repos\\linkpoint\\linkpoint.business\\utilities\\extentions\\filemanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{3089F750-426F-4032-BB8D-33FC0FA9E42E}|LinkPoint.Business\\LinkPoint.Business.csproj|solutionrelative:linkpoint.business\\utilities\\extentions\\filemanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -26,24 +30,37 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 3,
+          "SelectedChildIndex": 0,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 0,
               "Title": "Program.cs",
               "DocumentMoniker": "C:\\Users\\user\\source\\repos\\LinkPoint\\src\\LinkPoint.API\\Program.cs",
               "RelativeDocumentMoniker": "src\\LinkPoint.API\\Program.cs",
               "ToolTip": "C:\\Users\\user\\source\\repos\\LinkPoint\\src\\LinkPoint.API\\Program.cs",
               "RelativeToolTip": "src\\LinkPoint.API\\Program.cs",
-              "ViewState": "AQIAAAMAAAAAAAAAAAAAABkAAAApAAAA",
+              "ViewState": "AQIAACcAAAAAAAAAAAAAADsAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-05-13T12:04:19.194Z",
-              "IsPinned": true
+              "IsPinned": true,
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 3,
+              "Title": "LinkPoint.API.http",
+              "DocumentMoniker": "C:\\Users\\user\\source\\repos\\LinkPoint\\src\\LinkPoint.API\\LinkPoint.API.http",
+              "RelativeDocumentMoniker": "src\\LinkPoint.API\\LinkPoint.API.http",
+              "ToolTip": "C:\\Users\\user\\source\\repos\\LinkPoint\\src\\LinkPoint.API\\LinkPoint.API.http",
+              "RelativeToolTip": "src\\LinkPoint.API\\LinkPoint.API.http",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003502|",
+              "WhenOpened": "2024-05-13T15:05:53.878Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
               "Title": "FileManager.cs",
               "DocumentMoniker": "C:\\Users\\user\\source\\repos\\LinkPoint\\LinkPoint.Business\\Utilities\\Extentions\\FileManager.cs",
               "RelativeDocumentMoniker": "LinkPoint.Business\\Utilities\\Extentions\\FileManager.cs",
@@ -51,8 +68,7 @@
               "RelativeToolTip": "LinkPoint.Business\\Utilities\\Extentions\\FileManager.cs",
               "ViewState": "AQIAAAAAAAAAAAAAAAAAABsAAAA4AAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-05-13T12:19:27.748Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-05-13T12:19:27.748Z"
             },
             {
               "$type": "Document",
@@ -62,14 +78,13 @@
               "RelativeDocumentMoniker": "src\\LinkPoint.API\\Controllers\\GoogleCloudTestController.cs",
               "ToolTip": "C:\\Users\\user\\source\\repos\\LinkPoint\\src\\LinkPoint.API\\Controllers\\GoogleCloudTestController.cs",
               "RelativeToolTip": "src\\LinkPoint.API\\Controllers\\GoogleCloudTestController.cs",
-              "ViewState": "AQIAABQAAAAAAAAAAAAAwBAAAAALAAAA",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAABAAAAALAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-05-13T06:27:04.614Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-05-13T06:27:04.614Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 2,
               "Title": "appsettings.json",
               "DocumentMoniker": "C:\\Users\\user\\source\\repos\\LinkPoint\\src\\LinkPoint.API\\appsettings.json",
               "RelativeDocumentMoniker": "src\\LinkPoint.API\\appsettings.json",
@@ -77,8 +92,7 @@
               "RelativeToolTip": "src\\LinkPoint.API\\appsettings.json",
               "ViewState": "AQIAAAAAAAAAAAAAAAAAABYAAAASAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
-              "WhenOpened": "2024-05-12T21:49:23.251Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-05-12T21:49:23.251Z"
             }
           ]
         }
