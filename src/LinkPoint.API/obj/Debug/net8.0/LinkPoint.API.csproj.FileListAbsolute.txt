@@ -167,3 +167,4 @@ C:\Users\user\source\repos\LinkPoint\src\LinkPoint.API\obj\Debug\net8.0\refint\L
 C:\Users\user\source\repos\LinkPoint\src\LinkPoint.API\obj\Debug\net8.0\LinkPoint.API.pdb
 C:\Users\user\source\repos\LinkPoint\src\LinkPoint.API\obj\Debug\net8.0\LinkPoint.API.genruntimeconfig.cache
 C:\Users\user\source\repos\LinkPoint\src\LinkPoint.API\obj\Debug\net8.0\ref\LinkPoint.API.dll
+C:\Users\user\source\repos\LinkPoint\src\LinkPoint.API\bin\Debug\net8.0\linkpoint-423120-42dca35a8cbc.json
