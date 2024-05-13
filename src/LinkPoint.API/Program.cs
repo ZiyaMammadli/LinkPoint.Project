@@ -1,4 +1,6 @@
 
+using Google.Apis.Auth.OAuth2;
+using Google.Cloud.Storage.V1;
 using LinkPoint.Business.ServiceRegistirations;
 using LinkPoint.Core.Entities;
 using LinkPoint.Data.Contexts;
@@ -50,12 +52,12 @@ builder.Services.AddAuthentication(opt =>
         ClockSkew=TimeSpan.Zero,
     };
 });
-//builder.Services.AddSingleton(sp =>
-//{
-//    string credentialsPath = builder.Configuration["GoogleCloud:ApiKey"];
-//    var credential = GoogleCredential.FromFile(credentialsPath);
-//    return StorageClient.Create(credential);
-//});
+builder.Services.AddSingleton(sp =>
+{
+    string credentialsPath = builder.Configuration["GoogleCloud:ApiKey"];
+    var credential = GoogleCredential.FromFile(credentialsPath);
+    return StorageClient.Create(credential);
+});
 
 
 var app = builder.Build();
