@@ -179,18 +179,29 @@ public class AccountService:IAccountService
             CreatedDate = DateTime.UtcNow,
             UpdatedDate = DateTime.UtcNow,
         };
-        string DefautlImagePath = "C:\\Users\\user\\source\\repos\\LinkPoint\\src\\LinkPoint.API\\wwwroot\\UserDefaultProfileImage\\DefaultPerson.jpg";
-        string DefaultImageName = "DefaultPerson.jpg";
         string apiKey = _configuration["GoogleCloud:ApiKey"];
+        string DefautlImagePath = "C:\\Users\\user\\source\\repos\\LinkPoint\\src\\LinkPoint.API\\wwwroot\\UserDefaultProfileImage\\DefaultPerson.jpg";
+        string DefautlBackgroundImagePath = "C:\\Users\\user\\source\\repos\\LinkPoint\\src\\LinkPoint.API\\wwwroot\\UserDefaultProfileImage\\DefaultBackgraoundImage.jpg";
+        string DefaultImageName = "DefaultPerson.jpg";
+        string DefaultBackgroundImageName = "DefaultBackgraoundImage.jpg";
         var DefaultProfileImage=FileManager.CreateIFormFile(DefautlImagePath, DefaultImageName);
+        var DefaultBackgroundImage=FileManager.CreateIFormFile(DefautlBackgroundImagePath, DefaultBackgroundImageName);
         Image ProfileImage = new()
         {
             UserId = appUser.Id,
             PostId = null,
             IsPostImage = false,
             ImageUrl = DefaultProfileImage.SaveFile(apiKey)
+        }; 
+        Image BackgroundImage = new()
+        {
+            UserId = appUser.Id,
+            PostId = null,
+            IsPostImage = false,
+            ImageUrl = DefaultBackgroundImage.SaveFile(apiKey)
         };
         await _imageRepository.InsertAsync(ProfileImage);
+        await _imageRepository.InsertAsync(BackgroundImage);
         _context.UserAbouts.Add(userAbout);
         await _context.SaveChangesAsync();
         string code=await _userManager.GenerateEmailConfirmationTokenAsync(appUser);

@@ -1,6 +1,10 @@
 {
   "Files": [
     {
+      "Id": "C:\\Users\\user\\source\\repos\\LinkPoint\\src\\LinkPoint.API\\wwwroot\\UserDefaultProfileImage\\DefaultBackgraoundImage.jpg",
+      "PackagePath": "staticwebassets\\UserDefaultProfileImage\\DefaultBackgraoundImage.jpg"
+    },
+    {
       "Id": "C:\\Users\\user\\source\\repos\\LinkPoint\\src\\LinkPoint.API\\wwwroot\\UserDefaultProfileImage\\DefaultPerson.jpg",
       "PackagePath": "staticwebassets\\UserDefaultProfileImage\\DefaultPerson.jpg"
     },

@@ -15,16 +15,12 @@
       "RelativeMoniker": "D:0:0:{3089F750-426F-4032-BB8D-33FC0FA9E42E}|LinkPoint.Business\\LinkPoint.Business.csproj|solutionrelative:linkpoint.business\\utilities\\exceptions\\notfoundexceptions\\profileimagenotfoundexception.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{DD6BBD22-AC9C-42C7-A5F7-CA0EA83063E0}|src\\LinkPoint.API\\LinkPoint.API.csproj|c:\\users\\user\\source\\repos\\linkpoint\\src\\linkpoint.api\\controllers\\googlecloudtestcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{DD6BBD22-AC9C-42C7-A5F7-CA0EA83063E0}|src\\LinkPoint.API\\LinkPoint.API.csproj|solutionrelative:src\\linkpoint.api\\controllers\\googlecloudtestcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{DD6BBD22-AC9C-42C7-A5F7-CA0EA83063E0}|src\\LinkPoint.API\\LinkPoint.API.csproj|c:\\users\\user\\source\\repos\\linkpoint\\src\\linkpoint.api\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{DD6BBD22-AC9C-42C7-A5F7-CA0EA83063E0}|src\\LinkPoint.API\\LinkPoint.API.csproj|solutionrelative:src\\linkpoint.api\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{3089F750-426F-4032-BB8D-33FC0FA9E42E}|LinkPoint.Business\\LinkPoint.Business.csproj|c:\\users\\user\\source\\repos\\linkpoint\\linkpoint.business\\utilities\\extentions\\filemanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{3089F750-426F-4032-BB8D-33FC0FA9E42E}|LinkPoint.Business\\LinkPoint.Business.csproj|solutionrelative:linkpoint.business\\utilities\\extentions\\filemanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{DD6BBD22-AC9C-42C7-A5F7-CA0EA83063E0}|src\\LinkPoint.API\\LinkPoint.API.csproj|c:\\users\\user\\source\\repos\\linkpoint\\src\\linkpoint.api\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{DD6BBD22-AC9C-42C7-A5F7-CA0EA83063E0}|src\\LinkPoint.API\\LinkPoint.API.csproj|solutionrelative:src\\linkpoint.api\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -34,11 +30,11 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 5,
+          "SelectedChildIndex": 4,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 5,
+              "DocumentIndex": 3,
               "Title": "Program.cs",
               "DocumentMoniker": "C:\\Users\\user\\source\\repos\\LinkPoint\\src\\LinkPoint.API\\Program.cs",
               "RelativeDocumentMoniker": "src\\LinkPoint.API\\Program.cs",
@@ -71,7 +67,7 @@
               "RelativeDocumentMoniker": "LinkPoint.Business\\Services\\Implementations\\FriendShipService.cs",
               "ToolTip": "C:\\Users\\user\\source\\repos\\LinkPoint\\LinkPoint.Business\\Services\\Implementations\\FriendShipService.cs",
               "RelativeToolTip": "LinkPoint.Business\\Services\\Implementations\\FriendShipService.cs",
-              "ViewState": "AQIAAHoAAAAAAAAAAAAswJMAAAA3AAAA",
+              "ViewState": "AQIAAFoAAAAAAAAAAAAowF8AAAAhAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-05-13T19:29:49.653Z",
               "EditorCaption": ""
@@ -91,26 +87,13 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "GoogleCloudTestController.cs",
-              "DocumentMoniker": "C:\\Users\\user\\source\\repos\\LinkPoint\\src\\LinkPoint.API\\Controllers\\GoogleCloudTestController.cs",
-              "RelativeDocumentMoniker": "src\\LinkPoint.API\\Controllers\\GoogleCloudTestController.cs",
-              "ToolTip": "C:\\Users\\user\\source\\repos\\LinkPoint\\src\\LinkPoint.API\\Controllers\\GoogleCloudTestController.cs",
-              "RelativeToolTip": "src\\LinkPoint.API\\Controllers\\GoogleCloudTestController.cs",
-              "ViewState": "AQIAABgAAAAAAAAAAAAYwB4AAAAJAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-05-13T17:02:22.956Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
               "DocumentIndex": 0,
               "Title": "AccountService.cs",
               "DocumentMoniker": "C:\\Users\\user\\source\\repos\\LinkPoint\\LinkPoint.Business\\Services\\Implementations\\AccountService.cs",
               "RelativeDocumentMoniker": "LinkPoint.Business\\Services\\Implementations\\AccountService.cs",
               "ToolTip": "C:\\Users\\user\\source\\repos\\LinkPoint\\LinkPoint.Business\\Services\\Implementations\\AccountService.cs",
               "RelativeToolTip": "LinkPoint.Business\\Services\\Implementations\\AccountService.cs",
-              "ViewState": "AQIAAKkAAAAAAAAAAAAowMIAAAAqAAAA",
+              "ViewState": "AQIAALIAAAAAAAAAAAAowM4AAABUAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-05-13T16:52:06.14Z",
               "EditorCaption": ""

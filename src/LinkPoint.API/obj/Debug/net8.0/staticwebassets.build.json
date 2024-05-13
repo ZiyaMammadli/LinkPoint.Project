@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "Y0VWYwiwzpJFX2rQ6IKpMVRd7BleJdWhBLnJHODzzS4=",
+  "Hash": "XmeW1HxwqJankz5oG6Jr12sf4Riokp0Bv77oAoB75tc=",
   "Source": "LinkPoint.API",
   "BasePath": "_content/LinkPoint.API",
   "Mode": "Default",
@@ -34,6 +34,25 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\email\\Register.html"
+    },
+    {
+      "Identity": "C:\\Users\\user\\source\\repos\\LinkPoint\\src\\LinkPoint.API\\wwwroot\\UserDefaultProfileImage\\DefaultBackgraoundImage.jpg",
+      "SourceId": "LinkPoint.API",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\user\\source\\repos\\LinkPoint\\src\\LinkPoint.API\\wwwroot\\",
+      "BasePath": "_content/LinkPoint.API",
+      "RelativePath": "UserDefaultProfileImage/DefaultBackgraoundImage.jpg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\UserDefaultProfileImage\\DefaultBackgraoundImage.jpg"
     },
     {
       "Identity": "C:\\Users\\user\\source\\repos\\LinkPoint\\src\\LinkPoint.API\\wwwroot\\UserDefaultProfileImage\\DefaultPerson.jpg",
