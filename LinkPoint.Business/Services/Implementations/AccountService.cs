@@ -197,7 +197,7 @@ public class AccountService:IAccountService
         {
             UserId = appUser.Id,
             PostId = null,
-            IsPostImage = false,
+            IsPostImage = null,
             ImageUrl = DefaultBackgroundImage.SaveFile(apiKey)
         };
         await _imageRepository.InsertAsync(ProfileImage);

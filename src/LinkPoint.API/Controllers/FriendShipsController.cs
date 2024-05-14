@@ -25,6 +25,10 @@ namespace LinkPoint.API.Controllers
             {
                 return StatusCode(ex.StatusCode,ex.Message);
             }    
+            catch(ProfileImageNotFoundException ex)
+            {
+                return StatusCode(ex.StatusCode,ex.Message);
+            }    
             catch(FriendShipNotFoundException ex)
             {
                 return StatusCode(ex.StatusCode,ex.Message);
@@ -45,6 +49,10 @@ namespace LinkPoint.API.Controllers
             {
                 return StatusCode(ex.StatusCode, ex.Message);
             }
+            catch (ProfileImageNotFoundException ex)
+            {
+                return StatusCode(ex.StatusCode, ex.Message);
+            }
             catch (FriendShipNotFoundException ex)
             {
                 return StatusCode(ex.StatusCode, ex.Message);
@@ -62,6 +70,10 @@ namespace LinkPoint.API.Controllers
                 return Ok(await _friendShipService.GetAllPendingFollowerUsersAsync());
             }
             catch (UserNotFoundException ex)
+            {
+                return StatusCode(ex.StatusCode, ex.Message);
+            }
+            catch (ProfileImageNotFoundException ex)
             {
                 return StatusCode(ex.StatusCode, ex.Message);
             }

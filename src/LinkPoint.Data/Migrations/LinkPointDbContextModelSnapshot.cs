@@ -208,7 +208,7 @@ namespace LinkPoint.Data.Migrations
                     b.Property<bool>("IsDeleted")
                         .HasColumnType("bit");
 
-                    b.Property<bool>("IsPostImage")
+                    b.Property<bool?>("IsPostImage")
                         .HasColumnType("bit");
 
                     b.Property<int?>("PostId")
