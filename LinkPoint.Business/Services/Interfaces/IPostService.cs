@@ -10,7 +10,7 @@ public interface IPostService
     Task<List<PostGetDto>> GetAllPostsAsync();
     Task CreatePostWithImageAsync(PostCreateWithImageDto postCreateWithImageDto);
     Task CreatePostWithVideoAsync(PostCreateWithVideoDto postCreateWithVideoDto);
-    Task CreatePostWithTextAsync(PostCreateWithTextDto postCreateWithImageDto);
+    Task CreatePostWithTextAsync(PostCreateWithTextDto postCreateWithTextDto);
     Task UpdatePostWithTextAsync(int PostId,PostUpdateWithTextDto postUpdateWithTextDto);
     Task SoftDeletePostAsync(int PostId,PostDeleteDto postDeleteDto);
 }

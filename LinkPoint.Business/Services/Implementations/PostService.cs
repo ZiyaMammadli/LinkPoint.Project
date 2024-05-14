@@ -162,9 +162,21 @@ public class PostService : IPostService
         await _imageRepository.CommitAsync();
     }
 
-    public Task CreatePostWithTextAsync(PostCreateWithTextDto postCreateWithImageDto)
+    public async Task CreatePostWithTextAsync(PostCreateWithTextDto postCreateWithTextDto)
     {
-        throw new NotImplementedException();
+        var userName = _httpContextAccessor.HttpContext.Request.Cookies["UserName"];
+        var user = await _userManager.FindByNameAsync(userName);
+        if (user is null) throw new UserNotFoundException(404, "User is not found");
+        Post post = new Post()
+        {
+            UserId = user.Id,
+            Text = postCreateWithTextDto.Text,
+            LikeCount = 0,
+            CreatedDate = DateTime.UtcNow,
+            UpdatedDate = DateTime.UtcNow,
+        };
+        await _postRepository.InsertAsync(post);
+        await _postRepository.CommitAsync();
     }
 
     public Task CreatePostWithVideoAsync(PostCreateWithVideoDto postCreateWithVideoDto)
