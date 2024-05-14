@@ -103,6 +103,35 @@ public class PostService : IPostService
         };
         return postGetDto;
     }
+    public async Task<List<PostGetDto>> GetAllAuthUserPostsAsync()
+    {
+        var userName = _httpContextAccessor.HttpContext.Request.Cookies["UserName"];
+        var user=await _userManager.FindByNameAsync(userName);
+        if (user is null) throw new UserNotFoundException(404, "User is not found");
+        var profileImage = await _imageRepository.GetSingleAsync(i => i.UserId == user.Id && i.IsPostImage == false);
+        if (profileImage is null)
+        {
+            throw new ProfileImageNotFoundException(404, "ProfileImage is not found");
+        }
+        if (!await _postRepository.IsExist(p => p.UserId == user.Id)) throw new PostNotFoundException(404, "Post is not found");
+        var UserPosts = await _postRepository.GetAllAsync(p => p.UserId == user.Id, "Image", "Video");
+        List<PostGetDto> posts = new List<PostGetDto>();
+        foreach (var UserPost in UserPosts)
+        {
+            PostGetDto Post = new PostGetDto()
+            {
+                UserName = user.UserName,
+                LikeCount = UserPost.LikeCount,
+                Text = UserPost.Text,
+                UserProfileImage = profileImage.ImageUrl,
+                ImageUrl = UserPost.Image.ImageUrl,
+                VideoUrl = UserPost.Video.VideoUrl
+            };
+            posts.Add(Post);
+        }
+        return posts;
+
+    }
     public Task CreatePostWithImageAsync(PostCreateWithImageDto postCreateWithImageDto)
     {
         throw new NotImplementedException();
@@ -126,4 +155,6 @@ public class PostService : IPostService
     {
         throw new NotImplementedException();
     }
+
+
 }
