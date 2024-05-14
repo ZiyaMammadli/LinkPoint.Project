@@ -7,7 +7,7 @@ namespace LinkPoint.Business.Utilities.Extentions;
 
 public static class FileManager
 {
-    public static string SaveFile(this IFormFile File, string ApiKey)
+    public static string SaveFile(this IFormFile File, string ApiKey,string Folder)
     {
         var credential = GoogleCredential.FromFile(ApiKey);
         var client = StorageClient.Create(credential);
@@ -16,7 +16,7 @@ public static class FileManager
         {
             File.CopyTo(memoryStream);
             memoryStream.Position = 0;
-            var objectName = $"Images/{Guid.NewGuid()}_{File.FileName}";
+            var objectName = $"{Folder}/{Guid.NewGuid()}_{File.FileName}";
             var bucketName = "link_point";
             client.UploadObject(bucketName, objectName, null, memoryStream);
             var url = $"https://storage.googleapis.com/{bucketName}/{objectName}";

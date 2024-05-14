@@ -1,6 +1,7 @@
 ﻿using LinkPoint.Business.DTOs.PostDTOs;
 using LinkPoint.Business.Services.Interfaces;
 using LinkPoint.Business.Utilities.Exceptions.NotFoundExceptions;
+using LinkPoint.Business.Utilities.Extentions;
 using LinkPoint.Core.Entities;
 using LinkPoint.Core.Repositories;
 using Microsoft.AspNetCore.Http;
@@ -132,9 +133,33 @@ public class PostService : IPostService
         return posts;
 
     }
-    public Task CreatePostWithImageAsync(PostCreateWithImageDto postCreateWithImageDto)
+    public async Task CreatePostWithImageAsync(PostCreateWithImageDto postCreateWithImageDto)
     {
-        throw new NotImplementedException();
+        var userName = _httpContextAccessor.HttpContext.Request.Cookies["UserName"];
+        var user = await _userManager.FindByNameAsync(userName);
+        if (user is null) throw new UserNotFoundException(404, "User is not found");
+        Post post = new Post()
+        {
+            UserId= user.Id,
+            Text = postCreateWithImageDto.Text,
+            LikeCount = 0,
+            CreatedDate = DateTime.UtcNow,
+            UpdatedDate = DateTime.UtcNow,
+        };
+        await _postRepository.InsertAsync(post);
+        await _postRepository.CommitAsync();
+        string apiKey = _configuration["GoogleCloud:ApiKey"];
+        Image image = new Image()
+        {
+            UserId=null,
+            PostId=post.Id,
+            IsPostImage=true,
+            ImageUrl=postCreateWithImageDto.PostImageFile.SaveFile(apiKey,"Images"),
+            CreatedDate = DateTime.UtcNow,
+            UpdatedDate = DateTime.UtcNow,
+        };
+        await _imageRepository.InsertAsync(image);
+        await _imageRepository.CommitAsync();
     }
 
     public Task CreatePostWithTextAsync(PostCreateWithTextDto postCreateWithImageDto)
@@ -146,15 +171,13 @@ public class PostService : IPostService
     {
         throw new NotImplementedException();
     }
-    public Task SoftDeletePostAsync(int PostId, PostDeleteDto postDeleteDto)
-    {
-        throw new NotImplementedException();
-    }
-
     public Task UpdatePostWithTextAsync(int PostId, PostUpdateWithTextDto postUpdateWithTextDto)
     {
         throw new NotImplementedException();
     }
-
+    public Task SoftDeletePostAsync(int PostId, PostDeleteDto postDeleteDto)
+    {
+        throw new NotImplementedException();
+    }
 
 }
