@@ -15,21 +15,29 @@ public class PostService : IPostService
     private readonly IConfiguration _configuration;
     private readonly IHttpContextAccessor _httpContextAccessor;
     private readonly UserManager<AppUser> _userManager;
+    private readonly IImageRepository _imageRepository;
 
     public PostService(IPostRepository postRepository,
         IConfiguration configuration,
         IHttpContextAccessor httpContextAccessor,
-        UserManager<AppUser> userManager)
+        UserManager<AppUser> userManager,
+        IImageRepository imageRepository)
     {
         _postRepository = postRepository;
         _configuration = configuration;
         _httpContextAccessor = httpContextAccessor;
         _userManager = userManager;
+        _imageRepository = imageRepository;
     }
     public async Task<List<PostGetDto>> GetAllOneUserPostsAsync(string UserId)
     {
         var user=await _userManager.FindByIdAsync(UserId);
         if (user is null) throw new UserNotFoundException(404, "User is not found");
+        var profileImage = await _imageRepository.GetSingleAsync(i => i.UserId == user.Id && i.IsPostImage == false);
+        if (profileImage is null)
+        {
+            throw new ProfileImageNotFoundException(404, "ProfileImage is not found");
+        }
         if (!await _postRepository.IsExist(p => p.UserId == user.Id)) throw new PostNotFoundException(404, "Post is not found"); 
         var UserPosts=await _postRepository.GetAllAsync(p=>p.UserId==user.Id,"Image","Video");
         List<PostGetDto> posts = new List<PostGetDto>();
@@ -37,10 +45,11 @@ public class PostService : IPostService
         {
             PostGetDto Post = new PostGetDto()
             {
-                UserId=UserPost.UserId,
+                UserName=user.UserName,
                 LikeCount=UserPost.LikeCount,
                 Text=UserPost.Text,
-                ImageUrl=UserPost.Image.ImageUrl,
+                UserProfileImage= profileImage.ImageUrl,
+                ImageUrl =UserPost.Image.ImageUrl,
                 VideoUrl=UserPost.Video.VideoUrl
             };
             posts.Add(Post);
@@ -48,9 +57,30 @@ public class PostService : IPostService
         return posts;
     }
 
-    public Task<List<PostGetDto>> GetAllPostsAsync()
+    public async Task<List<PostGetDto>> GetAllPostsAsync()
     {
-        throw new NotImplementedException();
+        var posts=await _postRepository.GetAllAsync(null,"Image","Video","User");
+        if(posts.Count==0) throw new PostNotFoundException(404,"Post is not found");
+        List<PostGetDto> postGetDtos = new List<PostGetDto>();
+        foreach (var Post in posts)
+        {
+            var profileImage = await _imageRepository.GetSingleAsync(i => i.UserId == Post.User.Id && i.IsPostImage == false);
+            if (profileImage is null)
+            {
+                throw new ProfileImageNotFoundException(404, "ProfileImage is not found");
+            }
+            PostGetDto postGetDto = new PostGetDto()
+            {
+                UserName = Post.User.UserName,
+                LikeCount = Post.LikeCount,
+                Text = Post.Text,
+                UserProfileImage= profileImage.ImageUrl,
+                ImageUrl = Post.Image.ImageUrl,
+                VideoUrl = Post.Video.VideoUrl
+            };
+            postGetDtos.Add(postGetDto);
+        }
+        return postGetDtos;
     }
 
     public Task<PostGetDto> GetByIdPostAsync(int PostId)
