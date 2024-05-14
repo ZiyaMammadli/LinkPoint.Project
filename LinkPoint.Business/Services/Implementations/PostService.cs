@@ -1,6 +1,7 @@
 ﻿using LinkPoint.Business.DTOs.PostDTOs;
 using LinkPoint.Business.Services.Interfaces;
 using LinkPoint.Business.Utilities.Exceptions.NotFoundExceptions;
+using LinkPoint.Business.Utilities.Exceptions.NotValidExceptions;
 using LinkPoint.Business.Utilities.Extentions;
 using LinkPoint.Core.Entities;
 using LinkPoint.Core.Repositories;
@@ -17,18 +18,21 @@ public class PostService : IPostService
     private readonly IHttpContextAccessor _httpContextAccessor;
     private readonly UserManager<AppUser> _userManager;
     private readonly IImageRepository _imageRepository;
+    private readonly IVideoRepository _videoRepository;
 
     public PostService(IPostRepository postRepository,
         IConfiguration configuration,
         IHttpContextAccessor httpContextAccessor,
         UserManager<AppUser> userManager,
-        IImageRepository imageRepository)
+        IImageRepository imageRepository,
+        IVideoRepository videoRepository)
     {
         _postRepository = postRepository;
         _configuration = configuration;
         _httpContextAccessor = httpContextAccessor;
         _userManager = userManager;
         _imageRepository = imageRepository;
+        _videoRepository = videoRepository;
     }
     public async Task<List<PostGetDto>> GetAllOneUserPostsAsync(string UserId)
     {
@@ -179,13 +183,38 @@ public class PostService : IPostService
         await _postRepository.CommitAsync();
     }
 
-    public Task CreatePostWithVideoAsync(PostCreateWithVideoDto postCreateWithVideoDto)
+    public async Task CreatePostWithVideoAsync(PostCreateWithVideoDto postCreateWithVideoDto)
     {
-        throw new NotImplementedException();
+        var userName = _httpContextAccessor.HttpContext.Request.Cookies["UserName"];
+        var user = await _userManager.FindByNameAsync(userName);
+        if (user is null) throw new UserNotFoundException(404, "User is not found");
+        Post post = new Post()
+        {
+            UserId = user.Id,
+            Text = postCreateWithVideoDto.Text,
+            LikeCount = 0,
+            CreatedDate = DateTime.UtcNow,
+            UpdatedDate = DateTime.UtcNow,
+        };
+        await _postRepository.InsertAsync(post);
+        await _postRepository.CommitAsync();
+        string apiKey = _configuration["GoogleCloud:ApiKey"];
+        Video video = new Video()
+        {
+            PostId = post.Id,
+            VideoUrl=postCreateWithVideoDto.PostVideoFile.SaveFile(apiKey,"Videos")
+        };
+        await _videoRepository.InsertAsync(video);
+        await _videoRepository.CommitAsync();
     }
-    public Task UpdatePostWithTextAsync(int PostId, PostUpdateWithTextDto postUpdateWithTextDto)
+    public async Task UpdatePostWithTextAsync(int PostId, PostUpdateWithTextDto postUpdateWithTextDto)
     {
-        throw new NotImplementedException();
+        if(PostId!=postUpdateWithTextDto.Id) throw new IdNotValidException(400, "Id is not Valid");
+        var currentPost=await _postRepository.GetByIdAsync(postUpdateWithTextDto.Id);
+        if (currentPost is null) throw new PostNotFoundException(404, "Post is not found");
+        currentPost.Text = postUpdateWithTextDto.Text;
+        currentPost.UpdatedDate = DateTime.UtcNow;
+        await _postRepository.CommitAsync();
     }
     public Task SoftDeletePostAsync(int PostId, PostDeleteDto postDeleteDto)
     {

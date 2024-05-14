@@ -7,32 +7,20 @@
       "RelativeMoniker": "D:0:0:{3089F750-426F-4032-BB8D-33FC0FA9E42E}|LinkPoint.Business\\LinkPoint.Business.csproj|solutionrelative:linkpoint.business\\services\\implementations\\postservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{3089F750-426F-4032-BB8D-33FC0FA9E42E}|LinkPoint.Business\\LinkPoint.Business.csproj|c:\\users\\user\\source\\repos\\linkpoint\\linkpoint.business\\dtos\\postdtos\\postcreatewithtextdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{3089F750-426F-4032-BB8D-33FC0FA9E42E}|LinkPoint.Business\\LinkPoint.Business.csproj|solutionrelative:linkpoint.business\\dtos\\postdtos\\postcreatewithtextdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{E87A09CB-C66F-48A0-88F5-2C5B17245375}|src\\LinkPoint.Core\\LinkPoint.Core.csproj|c:\\users\\user\\source\\repos\\linkpoint\\src\\linkpoint.core\\entities\\post.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{E87A09CB-C66F-48A0-88F5-2C5B17245375}|src\\LinkPoint.Core\\LinkPoint.Core.csproj|solutionrelative:src\\linkpoint.core\\entities\\post.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{3089F750-426F-4032-BB8D-33FC0FA9E42E}|LinkPoint.Business\\LinkPoint.Business.csproj|c:\\users\\user\\source\\repos\\linkpoint\\linkpoint.business\\services\\interfaces\\ipostservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{3089F750-426F-4032-BB8D-33FC0FA9E42E}|LinkPoint.Business\\LinkPoint.Business.csproj|solutionrelative:linkpoint.business\\services\\interfaces\\ipostservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{E87A09CB-C66F-48A0-88F5-2C5B17245375}|src\\LinkPoint.Core\\LinkPoint.Core.csproj|c:\\users\\user\\source\\repos\\linkpoint\\src\\linkpoint.core\\entities\\image.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{E87A09CB-C66F-48A0-88F5-2C5B17245375}|src\\LinkPoint.Core\\LinkPoint.Core.csproj|solutionrelative:src\\linkpoint.core\\entities\\image.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{E87A09CB-C66F-48A0-88F5-2C5B17245375}|src\\LinkPoint.Core\\LinkPoint.Core.csproj|c:\\users\\user\\source\\repos\\linkpoint\\src\\linkpoint.core\\entities\\post.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{E87A09CB-C66F-48A0-88F5-2C5B17245375}|src\\LinkPoint.Core\\LinkPoint.Core.csproj|solutionrelative:src\\linkpoint.core\\entities\\post.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{3089F750-426F-4032-BB8D-33FC0FA9E42E}|LinkPoint.Business\\LinkPoint.Business.csproj|c:\\users\\user\\source\\repos\\linkpoint\\linkpoint.business\\utilities\\extentions\\filemanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{3089F750-426F-4032-BB8D-33FC0FA9E42E}|LinkPoint.Business\\LinkPoint.Business.csproj|solutionrelative:linkpoint.business\\utilities\\extentions\\filemanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{3089F750-426F-4032-BB8D-33FC0FA9E42E}|LinkPoint.Business\\LinkPoint.Business.csproj|c:\\users\\user\\source\\repos\\linkpoint\\linkpoint.business\\services\\implementations\\accountservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{3089F750-426F-4032-BB8D-33FC0FA9E42E}|LinkPoint.Business\\LinkPoint.Business.csproj|solutionrelative:linkpoint.business\\services\\implementations\\accountservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{3089F750-426F-4032-BB8D-33FC0FA9E42E}|LinkPoint.Business\\LinkPoint.Business.csproj|c:\\users\\user\\source\\repos\\linkpoint\\linkpoint.business\\dtos\\postdtos\\postgetdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{3089F750-426F-4032-BB8D-33FC0FA9E42E}|LinkPoint.Business\\LinkPoint.Business.csproj|solutionrelative:linkpoint.business\\dtos\\postdtos\\postgetdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{3089F750-426F-4032-BB8D-33FC0FA9E42E}|LinkPoint.Business\\LinkPoint.Business.csproj|c:\\users\\user\\source\\repos\\linkpoint\\linkpoint.business\\utilities\\extentions\\filemanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{3089F750-426F-4032-BB8D-33FC0FA9E42E}|LinkPoint.Business\\LinkPoint.Business.csproj|solutionrelative:linkpoint.business\\utilities\\extentions\\filemanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -42,36 +30,23 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 7,
+          "SelectedChildIndex": 4,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "PostCreateWithTextDto.cs",
-              "DocumentMoniker": "C:\\Users\\user\\source\\repos\\LinkPoint\\LinkPoint.Business\\DTOs\\PostDTOs\\PostCreateWithTextDto.cs",
-              "RelativeDocumentMoniker": "LinkPoint.Business\\DTOs\\PostDTOs\\PostCreateWithTextDto.cs",
-              "ToolTip": "C:\\Users\\user\\source\\repos\\LinkPoint\\LinkPoint.Business\\DTOs\\PostDTOs\\PostCreateWithTextDto.cs",
-              "RelativeToolTip": "LinkPoint.Business\\DTOs\\PostDTOs\\PostCreateWithTextDto.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-05-14T16:55:46.887Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 6,
+              "DocumentIndex": 3,
               "Title": "AccountService.cs",
               "DocumentMoniker": "C:\\Users\\user\\source\\repos\\LinkPoint\\LinkPoint.Business\\Services\\Implementations\\AccountService.cs",
               "RelativeDocumentMoniker": "LinkPoint.Business\\Services\\Implementations\\AccountService.cs",
               "ToolTip": "C:\\Users\\user\\source\\repos\\LinkPoint\\LinkPoint.Business\\Services\\Implementations\\AccountService.cs",
               "RelativeToolTip": "LinkPoint.Business\\Services\\Implementations\\AccountService.cs",
-              "ViewState": "AQIAAK8AAAAAAAAAAAAvwMgAAABHAAAA",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAMgAAABHAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-05-14T16:39:56.872Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
+              "DocumentIndex": 4,
               "Title": "FileManager.cs",
               "DocumentMoniker": "C:\\Users\\user\\source\\repos\\LinkPoint\\LinkPoint.Business\\Utilities\\Extentions\\FileManager.cs",
               "RelativeDocumentMoniker": "LinkPoint.Business\\Utilities\\Extentions\\FileManager.cs",
@@ -83,32 +58,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "Image.cs",
-              "DocumentMoniker": "C:\\Users\\user\\source\\repos\\LinkPoint\\src\\LinkPoint.Core\\Entities\\Image.cs",
-              "RelativeDocumentMoniker": "src\\LinkPoint.Core\\Entities\\Image.cs",
-              "ToolTip": "C:\\Users\\user\\source\\repos\\LinkPoint\\src\\LinkPoint.Core\\Entities\\Image.cs",
-              "RelativeToolTip": "src\\LinkPoint.Core\\Entities\\Image.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-05-14T16:37:06.799Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 7,
-              "Title": "PostGetDto.cs",
-              "DocumentMoniker": "C:\\Users\\user\\source\\repos\\LinkPoint\\LinkPoint.Business\\DTOs\\PostDTOs\\PostGetDto.cs",
-              "RelativeDocumentMoniker": "LinkPoint.Business\\DTOs\\PostDTOs\\PostGetDto.cs",
-              "ToolTip": "C:\\Users\\user\\source\\repos\\LinkPoint\\LinkPoint.Business\\DTOs\\PostDTOs\\PostGetDto.cs",
-              "RelativeToolTip": "LinkPoint.Business\\DTOs\\PostDTOs\\PostGetDto.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAkAAAApAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-05-14T13:15:07.508Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 1,
               "Title": "Post.cs",
               "DocumentMoniker": "C:\\Users\\user\\source\\repos\\LinkPoint\\src\\LinkPoint.Core\\Entities\\Post.cs",
               "RelativeDocumentMoniker": "src\\LinkPoint.Core\\Entities\\Post.cs",
@@ -116,8 +66,7 @@
               "RelativeToolTip": "src\\LinkPoint.Core\\Entities\\Post.cs",
               "ViewState": "AQIAAAAAAAAAAAAAAAAAAAgAAAAlAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-05-14T06:56:03.206Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-05-14T06:56:03.206Z"
             },
             {
               "$type": "Document",
@@ -129,8 +78,7 @@
               "RelativeToolTip": "LinkPoint.Business\\Services\\Interfaces\\IPostService.cs",
               "ViewState": "AQIAAAAAAAAAAAAAAAAAAAwAAABMAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-05-14T05:29:07.818Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-05-14T05:29:07.818Z"
             },
             {
               "$type": "Document",
@@ -140,7 +88,7 @@
               "RelativeDocumentMoniker": "LinkPoint.Business\\Services\\Implementations\\PostService.cs",
               "ToolTip": "C:\\Users\\user\\source\\repos\\LinkPoint\\LinkPoint.Business\\Services\\Implementations\\PostService.cs",
               "RelativeToolTip": "LinkPoint.Business\\Services\\Implementations\\PostService.cs",
-              "ViewState": "AQIAAKEAAAAAAAAAAAAAwKQAAAAtAAAA",
+              "ViewState": "AQIAAMEAAAAAAAAAAAAAANEAAAAtAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-05-14T12:54:52.583Z",
               "EditorCaption": ""
