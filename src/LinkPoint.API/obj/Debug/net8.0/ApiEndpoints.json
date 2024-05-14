@@ -420,5 +420,157 @@
       }
     ],
     "ReturnTypes": []
+  },
+  {
+    "ContainingType": "LinkPoint.API.Controllers.PostsController",
+    "Method": "CreatePostWithImage",
+    "RelativePath": "api/Posts/CreatePostWithImage",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "Text",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "PostImageFile",
+        "Type": "Microsoft.AspNetCore.Http.IFormFile",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "LinkPoint.API.Controllers.PostsController",
+    "Method": "CreatePostWithText",
+    "RelativePath": "api/Posts/CreatePostWithText",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "postCreateWithTextDto",
+        "Type": "LinkPoint.Business.DTOs.PostDTOs.PostCreateWithTextDto",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "LinkPoint.API.Controllers.PostsController",
+    "Method": "CreatePostWithVideo",
+    "RelativePath": "api/Posts/CreatePostWithVideo",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "Text",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "PostVideoFile",
+        "Type": "Microsoft.AspNetCore.Http.IFormFile",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "LinkPoint.API.Controllers.PostsController",
+    "Method": "GetAllAuthUserPosts",
+    "RelativePath": "api/Posts/GetAllAuthUserPosts",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "LinkPoint.API.Controllers.PostsController",
+    "Method": "GetAllOneUserPosts",
+    "RelativePath": "api/Posts/GetAllOneUserPosts/{UserId}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "UserId",
+        "Type": "System.String",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "LinkPoint.API.Controllers.PostsController",
+    "Method": "GetAllPosts",
+    "RelativePath": "api/Posts/GetAllPosts",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "LinkPoint.API.Controllers.PostsController",
+    "Method": "GetByIdPost",
+    "RelativePath": "api/Posts/GetByIdPost/{PostId}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "PostId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "LinkPoint.API.Controllers.PostsController",
+    "Method": "SoftDeletePost",
+    "RelativePath": "api/Posts/SoftDeletePost/{PostId}",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "PostId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      },
+      {
+        "Name": "postDeleteDto",
+        "Type": "LinkPoint.Business.DTOs.PostDTOs.PostDeleteDto",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "LinkPoint.API.Controllers.PostsController",
+    "Method": "UpdatePostWithText",
+    "RelativePath": "api/Posts/UpdatePostWithText/{PostId}",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "PostId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      },
+      {
+        "Name": "postUpdateWithTextDto",
+        "Type": "LinkPoint.Business.DTOs.PostDTOs.PostUpdateWithTextDto",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
   }
 ]

@@ -8,6 +8,7 @@ using LinkPoint.Core.Repositories;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.Configuration;
+using Newtonsoft.Json;
 
 namespace LinkPoint.Business.Services.Implementations;
 
@@ -48,16 +49,46 @@ public class PostService : IPostService
         List<PostGetDto> posts = new List<PostGetDto>();
         foreach (var UserPost in UserPosts)
         {
-            PostGetDto Post = new PostGetDto()
+            if (UserPost.Image is null && UserPost.Video is null && UserPost.IsDeleted==false)
             {
-                UserName=user.UserName,
-                LikeCount=UserPost.LikeCount,
-                Text=UserPost.Text,
-                UserProfileImage= profileImage.ImageUrl,
-                ImageUrl =UserPost.Image.ImageUrl,
-                VideoUrl=UserPost.Video.VideoUrl
-            };
-            posts.Add(Post);
+                PostGetDto Post = new PostGetDto()
+                {
+                    UserName = user.UserName,
+                    LikeCount = UserPost.LikeCount,
+                    Text = UserPost.Text,
+                    UserProfileImage = profileImage.ImageUrl,
+                    ImageUrl = null,
+                    VideoUrl = null
+                };
+                posts.Add(Post);
+                continue;
+            }
+            if (UserPost.Image is null && UserPost.IsDeleted == false)
+            {
+                PostGetDto Post = new PostGetDto()
+                {
+                    UserName = user.UserName,
+                    LikeCount = UserPost.LikeCount,
+                    Text = UserPost.Text,
+                    UserProfileImage = profileImage.ImageUrl,
+                    ImageUrl = null,
+                    VideoUrl = UserPost.Video.VideoUrl
+                };
+                posts.Add(Post);
+            }
+            if (UserPost.Video is null && UserPost.IsDeleted == false)
+            {
+                PostGetDto Post = new PostGetDto()
+                {
+                    UserName = user.UserName,
+                    LikeCount = UserPost.LikeCount,
+                    Text = UserPost.Text,
+                    UserProfileImage = profileImage.ImageUrl,
+                    ImageUrl = UserPost.Image.ImageUrl,
+                    VideoUrl = null
+                };
+                posts.Add(Post);
+            }
         }
         return posts;
     }
@@ -74,16 +105,46 @@ public class PostService : IPostService
             {
                 throw new ProfileImageNotFoundException(404, "ProfileImage is not found");
             }
-            PostGetDto postGetDto = new PostGetDto()
+            if (Post.Image is null && Post.Video is null && Post.IsDeleted == false)
             {
-                UserName = Post.User.UserName,
-                LikeCount = Post.LikeCount,
-                Text = Post.Text,
-                UserProfileImage= profileImage.ImageUrl,
-                ImageUrl = Post.Image.ImageUrl,
-                VideoUrl = Post.Video.VideoUrl
-            };
-            postGetDtos.Add(postGetDto);
+                PostGetDto postGetDto = new PostGetDto()
+                {
+                    UserName = Post.User.UserName,
+                    LikeCount = Post.LikeCount,
+                    Text = Post.Text,
+                    UserProfileImage = profileImage.ImageUrl,
+                    ImageUrl = null,
+                    VideoUrl = null
+                };
+                postGetDtos.Add(postGetDto);
+                continue;
+            }
+            if (Post.Image is null && Post.IsDeleted == false)
+            {
+                PostGetDto postGetDto = new PostGetDto()
+                {
+                    UserName = Post.User.UserName,
+                    LikeCount = Post.LikeCount,
+                    Text = Post.Text,
+                    UserProfileImage = profileImage.ImageUrl,
+                    ImageUrl = null,
+                    VideoUrl = Post.Video.VideoUrl
+                };
+                postGetDtos.Add(postGetDto);
+            }
+            if (Post.Video is null && Post.IsDeleted == false)
+            {
+                PostGetDto postGetDto = new PostGetDto()
+                {
+                    UserName = Post.User.UserName,
+                    LikeCount = Post.LikeCount,
+                    Text = Post.Text,
+                    UserProfileImage = profileImage.ImageUrl,
+                    ImageUrl = Post.Image.ImageUrl,
+                    VideoUrl = null
+                };
+                postGetDtos.Add(postGetDto);
+            }
         }
         return postGetDtos;
     }
@@ -97,21 +158,42 @@ public class PostService : IPostService
         {
             throw new ProfileImageNotFoundException(404, "ProfileImage is not found");
         }
-        PostGetDto postGetDto = new PostGetDto()
+        PostGetDto postGetDto = new PostGetDto();
+        if (post.Image is null && post.Video is null && post.IsDeleted == false)
         {
-            UserName = post.User.UserName,
-            LikeCount = post.LikeCount,
-            Text = post.Text,
-            UserProfileImage = profileImage.ImageUrl,
-            ImageUrl = post.Image.ImageUrl,
-            VideoUrl = post.Video.VideoUrl
-        };
-        return postGetDto;
+            postGetDto.UserName = post.User.UserName;
+            postGetDto.LikeCount = post.LikeCount;
+            postGetDto.Text = post.Text;
+            postGetDto.UserProfileImage = profileImage.ImageUrl;
+            postGetDto.ImageUrl = null;
+            postGetDto.VideoUrl = null;
+            return postGetDto;
+        }
+        if (post.Image is null && post.IsDeleted == false)
+        {
+            postGetDto.UserName = post.User.UserName;
+            postGetDto.LikeCount = post.LikeCount;
+            postGetDto.Text = post.Text;
+            postGetDto.UserProfileImage = profileImage.ImageUrl;
+            postGetDto.ImageUrl = null;
+            postGetDto.VideoUrl = post.Video.VideoUrl;
+        }
+        if (post.Video is null && post.IsDeleted == false)
+        {
+            postGetDto.UserName = post.User.UserName;
+            postGetDto.LikeCount = post.LikeCount;
+            postGetDto.Text = post.Text;
+            postGetDto.UserProfileImage = profileImage.ImageUrl;
+            postGetDto.ImageUrl = post.Image.ImageUrl;
+            postGetDto.VideoUrl = null;
+        }
+        return postGetDto;      
     }
     public async Task<List<PostGetDto>> GetAllAuthUserPostsAsync()
     {
         var userName = _httpContextAccessor.HttpContext.Request.Cookies["UserName"];
-        var user=await _userManager.FindByNameAsync(userName);
+        string username = JsonConvert.DeserializeObject<string>(userName);
+        var user=await _userManager.FindByNameAsync(username);
         if (user is null) throw new UserNotFoundException(404, "User is not found");
         var profileImage = await _imageRepository.GetSingleAsync(i => i.UserId == user.Id && i.IsPostImage == false);
         if (profileImage is null)
@@ -123,16 +205,46 @@ public class PostService : IPostService
         List<PostGetDto> posts = new List<PostGetDto>();
         foreach (var UserPost in UserPosts)
         {
-            PostGetDto Post = new PostGetDto()
+            if (UserPost.Image is null && UserPost.Video is null && UserPost.IsDeleted == false)
             {
-                UserName = user.UserName,
-                LikeCount = UserPost.LikeCount,
-                Text = UserPost.Text,
-                UserProfileImage = profileImage.ImageUrl,
-                ImageUrl = UserPost.Image.ImageUrl,
-                VideoUrl = UserPost.Video.VideoUrl
-            };
-            posts.Add(Post);
+                PostGetDto Post = new PostGetDto()
+                {
+                    UserName = user.UserName,
+                    LikeCount = UserPost.LikeCount,
+                    Text = UserPost.Text,
+                    UserProfileImage = profileImage.ImageUrl,
+                    ImageUrl = null,
+                    VideoUrl = null
+                };
+                posts.Add(Post);
+                continue;
+            }
+            if (UserPost.Image is null && UserPost.IsDeleted == false)
+            {
+                PostGetDto Post = new PostGetDto()
+                {
+                    UserName = user.UserName,
+                    LikeCount = UserPost.LikeCount,
+                    Text = UserPost.Text,
+                    UserProfileImage = profileImage.ImageUrl,
+                    ImageUrl = null,
+                    VideoUrl = UserPost.Video.VideoUrl
+                };
+                posts.Add(Post);
+            }
+            if (UserPost.Video is null && UserPost.IsDeleted == false)
+            {
+                PostGetDto Post = new PostGetDto()
+                {
+                    UserName = user.UserName,
+                    LikeCount = UserPost.LikeCount,
+                    Text = UserPost.Text,
+                    UserProfileImage = profileImage.ImageUrl,
+                    ImageUrl = UserPost.Image.ImageUrl,
+                    VideoUrl = null
+                };
+                posts.Add(Post);
+            }
         }
         return posts;
 
@@ -140,7 +252,8 @@ public class PostService : IPostService
     public async Task CreatePostWithImageAsync(PostCreateWithImageDto postCreateWithImageDto)
     {
         var userName = _httpContextAccessor.HttpContext.Request.Cookies["UserName"];
-        var user = await _userManager.FindByNameAsync(userName);
+        string username = JsonConvert.DeserializeObject<string>(userName);
+        var user = await _userManager.FindByNameAsync(username);
         if (user is null) throw new UserNotFoundException(404, "User is not found");
         Post post = new Post()
         {
@@ -169,7 +282,8 @@ public class PostService : IPostService
     public async Task CreatePostWithTextAsync(PostCreateWithTextDto postCreateWithTextDto)
     {
         var userName = _httpContextAccessor.HttpContext.Request.Cookies["UserName"];
-        var user = await _userManager.FindByNameAsync(userName);
+        string username = JsonConvert.DeserializeObject<string>(userName);
+        var user = await _userManager.FindByNameAsync(username);
         if (user is null) throw new UserNotFoundException(404, "User is not found");
         Post post = new Post()
         {
@@ -186,7 +300,8 @@ public class PostService : IPostService
     public async Task CreatePostWithVideoAsync(PostCreateWithVideoDto postCreateWithVideoDto)
     {
         var userName = _httpContextAccessor.HttpContext.Request.Cookies["UserName"];
-        var user = await _userManager.FindByNameAsync(userName);
+        string username = JsonConvert.DeserializeObject<string>(userName);
+        var user = await _userManager.FindByNameAsync(username);
         if (user is null) throw new UserNotFoundException(404, "User is not found");
         Post post = new Post()
         {
@@ -202,7 +317,9 @@ public class PostService : IPostService
         Video video = new Video()
         {
             PostId = post.Id,
-            VideoUrl=postCreateWithVideoDto.PostVideoFile.SaveFile(apiKey,"Videos")
+            VideoUrl=postCreateWithVideoDto.PostVideoFile.SaveFile(apiKey,"Videos"),
+            CreatedDate = DateTime.UtcNow,
+            UpdatedDate = DateTime.UtcNow,
         };
         await _videoRepository.InsertAsync(video);
         await _videoRepository.CommitAsync();

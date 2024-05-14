@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("LinkPoint.Core")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+de82a9656ff6f930bbf4712766d984e7c25110a0")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+8bf5f1e2515c20dc5282f815a4e7f42fee7fffaf")]
 [assembly: System.Reflection.AssemblyProductAttribute("LinkPoint.Core")]
 [assembly: System.Reflection.AssemblyTitleAttribute("LinkPoint.Core")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

@@ -10,7 +10,7 @@ public class PostConfiguration : IEntityTypeConfiguration<Post>
     {
         builder.Property(p => p.LikeCount).IsRequired();
         builder.Property(p => p.UserId).HasMaxLength(450);
-        builder.Property(p => p.Text).IsRequired().HasMaxLength(300);
+        builder.Property(p => p.Text).HasMaxLength(300);
 
         builder.HasOne(p => p.Image)
             .WithOne(i => i.Post)
