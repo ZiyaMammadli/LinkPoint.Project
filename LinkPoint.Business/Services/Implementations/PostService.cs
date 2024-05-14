@@ -83,9 +83,25 @@ public class PostService : IPostService
         return postGetDtos;
     }
 
-    public Task<PostGetDto> GetByIdPostAsync(int PostId)
+    public async Task<PostGetDto> GetByIdPostAsync(int PostId)
     {
-        throw new NotImplementedException();
+        var post=await _postRepository.GetSingleAsync(p=>p.Id==PostId,"User","Video","Image");
+        if (post is null) throw new PostNotFoundException(404,"Post is not found");
+        var profileImage = await _imageRepository.GetSingleAsync(i => i.UserId == post.User.Id && i.IsPostImage == false);
+        if (profileImage is null)
+        {
+            throw new ProfileImageNotFoundException(404, "ProfileImage is not found");
+        }
+        PostGetDto postGetDto = new PostGetDto()
+        {
+            UserName = post.User.UserName,
+            LikeCount = post.LikeCount,
+            Text = post.Text,
+            UserProfileImage = profileImage.ImageUrl,
+            ImageUrl = post.Image.ImageUrl,
+            VideoUrl = post.Video.VideoUrl
+        };
+        return postGetDto;
     }
     public Task CreatePostWithImageAsync(PostCreateWithImageDto postCreateWithImageDto)
     {
