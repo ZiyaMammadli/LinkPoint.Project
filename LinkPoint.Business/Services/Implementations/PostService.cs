@@ -216,9 +216,13 @@ public class PostService : IPostService
         currentPost.UpdatedDate = DateTime.UtcNow;
         await _postRepository.CommitAsync();
     }
-    public Task SoftDeletePostAsync(int PostId, PostDeleteDto postDeleteDto)
+    public async Task SoftDeletePostAsync(int PostId, PostDeleteDto postDeleteDto)
     {
-        throw new NotImplementedException();
+        if (PostId != postDeleteDto.Id) throw new IdNotValidException(400, "Id is not Valid");
+        var currentPost = await _postRepository.GetByIdAsync(postDeleteDto.Id);
+        if (currentPost is null) throw new PostNotFoundException(404, "Post is not found");
+        currentPost.IsDeleted = true;
+        await _postRepository.CommitAsync();
     }
 
 }
