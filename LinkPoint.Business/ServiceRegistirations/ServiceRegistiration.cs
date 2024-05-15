@@ -1,14 +1,12 @@
-﻿using LinkPoint.Business.Services.Implementations;
+﻿using FluentValidation.AspNetCore;
+using LinkPoint.Business.MappingProfiles;
+using LinkPoint.Business.Services.Implementations;
 using LinkPoint.Business.Services.Interfaces;
+using LinkPoint.Business.Validators.UserAboutValidators;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Infrastructure;
 using Microsoft.AspNetCore.Mvc.Routing;
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.DependencyInjection;
-using FluentValidation.AspNetCore;
-using LinkPoint.Business.Validators.UserAboutValidators;
-using LinkPoint.Business.MappingProfiles;
-using Microsoft.AspNetCore.Authentication.Cookies;
-using Microsoft.AspNetCore.Http;
 
 
 namespace LinkPoint.Business.ServiceRegistirations;

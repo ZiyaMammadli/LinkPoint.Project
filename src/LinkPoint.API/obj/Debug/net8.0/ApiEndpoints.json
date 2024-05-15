@@ -296,6 +296,80 @@
     "ReturnTypes": []
   },
   {
+    "ContainingType": "LinkPoint.API.Controllers.CommentsController",
+    "Method": "CreateComment",
+    "RelativePath": "api/Comments/CreateComment",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "commentPostDto",
+        "Type": "LinkPoint.Business.DTOs.CommentDTOs.CommentPostDto",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "LinkPoint.API.Controllers.CommentsController",
+    "Method": "GetAllCommentForPost",
+    "RelativePath": "api/Comments/GetAllCommentForPost",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "PostId",
+        "Type": "System.Int32",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "LinkPoint.API.Controllers.CommentsController",
+    "Method": "SoftDeleteComment",
+    "RelativePath": "api/Comments/SoftDeleteComment",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "CommentId",
+        "Type": "System.Int32",
+        "IsRequired": false
+      },
+      {
+        "Name": "commentDeleteDto",
+        "Type": "LinkPoint.Business.DTOs.CommentDTOs.CommentDeleteDto",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "LinkPoint.API.Controllers.CommentsController",
+    "Method": "UpdateComment",
+    "RelativePath": "api/Comments/UpdateComment",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "CommentId",
+        "Type": "System.Int32",
+        "IsRequired": false
+      },
+      {
+        "Name": "commentPutDto",
+        "Type": "LinkPoint.Business.DTOs.CommentDTOs.CommentPutDto",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
     "ContainingType": "LinkPoint.API.Controllers.FriendShipsController",
     "Method": "AcceptFriendShipRequest",
     "RelativePath": "api/FriendShips/AcceptFriendShipRequest/{friendShipId}",

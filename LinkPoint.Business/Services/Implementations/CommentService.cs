@@ -7,6 +7,7 @@ using LinkPoint.Core.Entities;
 using LinkPoint.Core.Repositories;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
+using Newtonsoft.Json;
 
 namespace LinkPoint.Business.Services.Implementations;
 
@@ -54,9 +55,10 @@ public class CommentService : ICommentService
 
     public async Task CreateCommentAsync(CommentPostDto commentPostDto)
     {
-        if (!await _postRepository.IsExist(p => p.Id == commentPostDto.PostId)) throw new PostNotFoundException(404, "Post is not found");
-        string UserName = _httpContextAccessor.HttpContext.Request.Cookies["UserName"];
-        var user=await _userManager.FindByNameAsync(UserName);
+        if (!await _postRepository.IsExist(p => p.Id == commentPostDto.PostId && p.IsDeleted==false)) throw new PostNotFoundException(404, "Post is not found");
+        var userName = _httpContextAccessor.HttpContext.Request.Cookies["UserName"];
+        string username = JsonConvert.DeserializeObject<string>(userName);
+        var user=await _userManager.FindByNameAsync(username);
         Comment comment = new Comment()
         {
             PostId = commentPostDto.PostId,

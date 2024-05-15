@@ -20,13 +20,15 @@ public class PostService : IPostService
     private readonly UserManager<AppUser> _userManager;
     private readonly IImageRepository _imageRepository;
     private readonly IVideoRepository _videoRepository;
+    private readonly ICommentRepository _commentRepository;
 
     public PostService(IPostRepository postRepository,
         IConfiguration configuration,
         IHttpContextAccessor httpContextAccessor,
         UserManager<AppUser> userManager,
         IImageRepository imageRepository,
-        IVideoRepository videoRepository)
+        IVideoRepository videoRepository,
+        ICommentRepository commentRepository)
     {
         _postRepository = postRepository;
         _configuration = configuration;
@@ -34,6 +36,7 @@ public class PostService : IPostService
         _userManager = userManager;
         _imageRepository = imageRepository;
         _videoRepository = videoRepository;
+        _commentRepository = commentRepository;
     }
     public async Task<List<PostGetDto>> GetAllOneUserPostsAsync(string UserId)
     {
@@ -350,6 +353,16 @@ public class PostService : IPostService
         if (PostId != postDeleteDto.Id) throw new IdNotValidException(400, "Id is not Valid");
         var currentPost = await _postRepository.GetByIdAsync(postDeleteDto.Id);
         if (currentPost is null) throw new PostNotFoundException(404, "Post is not found");
+        var postImage = await _imageRepository.GetSingleAsync(i=>i.PostId==postDeleteDto.Id && i.IsDeleted==false);
+        if (postImage is not null) postImage.IsDeleted = true;
+        var postComments=await _commentRepository.GetAllAsync(c=>c.PostId==postDeleteDto.Id && c.IsDeleted==false);
+        if(postComments.Count > 0)
+        {
+            foreach (var postComment in postComments)
+            {
+                postComment.IsDeleted = true;
+            }
+        }
         currentPost.IsDeleted = true;
         await _postRepository.CommitAsync();
     }
