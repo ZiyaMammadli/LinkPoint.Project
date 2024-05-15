@@ -6,6 +6,6 @@ public interface ICommentService
 {
     Task<List<CommentGetDto>> GetAllCommentForPostAsync(int PostId);
     Task CreateCommentAsync(CommentPostDto commentPostDto);
-    Task UpdateCommentAsync(CommentPutDto commentPutDto);
+    Task UpdateCommentAsync(int CommentId,CommentPutDto commentPutDto);
     Task SoftDeleteComment(int CommentId,CommentDeleteDto commentDeleteDto);
 }

@@ -1,6 +1,7 @@
 ﻿using LinkPoint.Business.DTOs.CommentDTOs;
 using LinkPoint.Business.Services.Interfaces;
 using LinkPoint.Business.Utilities.Exceptions.NotFoundExceptions;
+using LinkPoint.Business.Utilities.Exceptions.NotValidExceptions;
 using LinkPoint.Business.Utilities.Extentions;
 using LinkPoint.Core.Entities;
 using LinkPoint.Core.Repositories;
@@ -69,9 +70,14 @@ public class CommentService : ICommentService
         await _commentRepository.CommitAsync();
     }
 
-    public Task UpdateCommentAsync(CommentPutDto commentPutDto)
+    public async Task UpdateCommentAsync(int CommentId, CommentPutDto commentPutDto)
     {
-        throw new NotImplementedException();
+        if (CommentId != commentPutDto.CommentId) throw new IdNotValidException(404, "CommentId is not valid");
+        var currentComment=await _commentRepository.GetByIdAsync(commentPutDto.CommentId);
+        if (currentComment is null) throw new CommentNotFoundException(404, "Comment is not found");
+        currentComment.Text = commentPutDto.Text;
+        currentComment.UpdatedDate = DateTime.UtcNow;
+        await _commentRepository.CommitAsync();
     }
 
     public Task SoftDeleteComment(int CommentId, CommentDeleteDto commentDeleteDto)
