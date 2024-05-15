@@ -45,11 +45,11 @@ public class PostService : IPostService
             throw new ProfileImageNotFoundException(404, "ProfileImage is not found");
         }
         if (!await _postRepository.IsExist(p => p.UserId == user.Id)) throw new PostNotFoundException(404, "Post is not found"); 
-        var UserPosts=await _postRepository.GetAllAsync(p=>p.UserId==user.Id,"Image","Video");
+        var UserPosts=await _postRepository.GetAllAsync(p=>p.UserId==user.Id && p.IsDeleted==false,"Image","Video");
         List<PostGetDto> posts = new List<PostGetDto>();
         foreach (var UserPost in UserPosts)
         {
-            if (UserPost.Image is null && UserPost.Video is null && UserPost.IsDeleted==false)
+            if (UserPost.Image is null && UserPost.Video is null)
             {
                 PostGetDto Post = new PostGetDto()
                 {
@@ -58,12 +58,13 @@ public class PostService : IPostService
                     Text = UserPost.Text,
                     UserProfileImage = profileImage.ImageUrl,
                     ImageUrl = null,
-                    VideoUrl = null
+                    VideoUrl = null,
+                    ElapsedTime=UserPost.CreatedDate.GetElapsedTime(),
                 };
                 posts.Add(Post);
                 continue;
             }
-            if (UserPost.Image is null && UserPost.IsDeleted == false)
+            if (UserPost.Image is null)
             {
                 PostGetDto Post = new PostGetDto()
                 {
@@ -72,11 +73,12 @@ public class PostService : IPostService
                     Text = UserPost.Text,
                     UserProfileImage = profileImage.ImageUrl,
                     ImageUrl = null,
-                    VideoUrl = UserPost.Video.VideoUrl
+                    VideoUrl = UserPost.Video.VideoUrl,
+                    ElapsedTime = UserPost.CreatedDate.GetElapsedTime(),
                 };
                 posts.Add(Post);
             }
-            if (UserPost.Video is null && UserPost.IsDeleted == false)
+            if (UserPost.Video is null)
             {
                 PostGetDto Post = new PostGetDto()
                 {
@@ -85,7 +87,8 @@ public class PostService : IPostService
                     Text = UserPost.Text,
                     UserProfileImage = profileImage.ImageUrl,
                     ImageUrl = UserPost.Image.ImageUrl,
-                    VideoUrl = null
+                    VideoUrl = null,
+                    ElapsedTime = UserPost.CreatedDate.GetElapsedTime(),
                 };
                 posts.Add(Post);
             }
@@ -95,7 +98,7 @@ public class PostService : IPostService
 
     public async Task<List<PostGetDto>> GetAllPostsAsync()
     {
-        var posts=await _postRepository.GetAllAsync(null,"Image","Video","User");
+        var posts=await _postRepository.GetAllAsync(p=>p.IsDeleted==false,"Image","Video","User");
         if(posts.Count==0) throw new PostNotFoundException(404,"Post is not found");
         List<PostGetDto> postGetDtos = new List<PostGetDto>();
         foreach (var Post in posts)
@@ -105,7 +108,7 @@ public class PostService : IPostService
             {
                 throw new ProfileImageNotFoundException(404, "ProfileImage is not found");
             }
-            if (Post.Image is null && Post.Video is null && Post.IsDeleted == false)
+            if (Post.Image is null && Post.Video is null)
             {
                 PostGetDto postGetDto = new PostGetDto()
                 {
@@ -114,12 +117,13 @@ public class PostService : IPostService
                     Text = Post.Text,
                     UserProfileImage = profileImage.ImageUrl,
                     ImageUrl = null,
-                    VideoUrl = null
+                    VideoUrl = null,
+                    ElapsedTime = Post.CreatedDate.GetElapsedTime(),
                 };
                 postGetDtos.Add(postGetDto);
                 continue;
             }
-            if (Post.Image is null && Post.IsDeleted == false)
+            if (Post.Image is null)
             {
                 PostGetDto postGetDto = new PostGetDto()
                 {
@@ -128,11 +132,12 @@ public class PostService : IPostService
                     Text = Post.Text,
                     UserProfileImage = profileImage.ImageUrl,
                     ImageUrl = null,
-                    VideoUrl = Post.Video.VideoUrl
+                    VideoUrl = Post.Video.VideoUrl,
+                    ElapsedTime = Post.CreatedDate.GetElapsedTime(),
                 };
                 postGetDtos.Add(postGetDto);
             }
-            if (Post.Video is null && Post.IsDeleted == false)
+            if (Post.Video is null)
             {
                 PostGetDto postGetDto = new PostGetDto()
                 {
@@ -141,7 +146,8 @@ public class PostService : IPostService
                     Text = Post.Text,
                     UserProfileImage = profileImage.ImageUrl,
                     ImageUrl = Post.Image.ImageUrl,
-                    VideoUrl = null
+                    VideoUrl = null,
+                    ElapsedTime = Post.CreatedDate.GetElapsedTime(),
                 };
                 postGetDtos.Add(postGetDto);
             }
@@ -151,7 +157,7 @@ public class PostService : IPostService
 
     public async Task<PostGetDto> GetByIdPostAsync(int PostId)
     {
-        var post=await _postRepository.GetSingleAsync(p=>p.Id==PostId,"User","Video","Image");
+        var post=await _postRepository.GetSingleAsync(p=>p.Id==PostId && p.IsDeleted==false,"User","Video","Image");
         if (post is null) throw new PostNotFoundException(404,"Post is not found");
         var profileImage = await _imageRepository.GetSingleAsync(i => i.UserId == post.User.Id && i.IsPostImage == false);
         if (profileImage is null)
@@ -159,7 +165,7 @@ public class PostService : IPostService
             throw new ProfileImageNotFoundException(404, "ProfileImage is not found");
         }
         PostGetDto postGetDto = new PostGetDto();
-        if (post.Image is null && post.Video is null && post.IsDeleted == false)
+        if (post.Image is null && post.Video is null)
         {
             postGetDto.UserName = post.User.UserName;
             postGetDto.LikeCount = post.LikeCount;
@@ -167,9 +173,10 @@ public class PostService : IPostService
             postGetDto.UserProfileImage = profileImage.ImageUrl;
             postGetDto.ImageUrl = null;
             postGetDto.VideoUrl = null;
+            postGetDto.ElapsedTime = post.CreatedDate.GetElapsedTime();
             return postGetDto;
         }
-        if (post.Image is null && post.IsDeleted == false)
+        if (post.Image is null)
         {
             postGetDto.UserName = post.User.UserName;
             postGetDto.LikeCount = post.LikeCount;
@@ -177,8 +184,9 @@ public class PostService : IPostService
             postGetDto.UserProfileImage = profileImage.ImageUrl;
             postGetDto.ImageUrl = null;
             postGetDto.VideoUrl = post.Video.VideoUrl;
+            postGetDto.ElapsedTime = post.CreatedDate.GetElapsedTime();
         }
-        if (post.Video is null && post.IsDeleted == false)
+        if (post.Video is null)
         {
             postGetDto.UserName = post.User.UserName;
             postGetDto.LikeCount = post.LikeCount;
@@ -186,6 +194,7 @@ public class PostService : IPostService
             postGetDto.UserProfileImage = profileImage.ImageUrl;
             postGetDto.ImageUrl = post.Image.ImageUrl;
             postGetDto.VideoUrl = null;
+            postGetDto.ElapsedTime = post.CreatedDate.GetElapsedTime();
         }
         return postGetDto;      
     }
@@ -201,11 +210,11 @@ public class PostService : IPostService
             throw new ProfileImageNotFoundException(404, "ProfileImage is not found");
         }
         if (!await _postRepository.IsExist(p => p.UserId == user.Id)) throw new PostNotFoundException(404, "Post is not found");
-        var UserPosts = await _postRepository.GetAllAsync(p => p.UserId == user.Id, "Image", "Video");
+        var UserPosts = await _postRepository.GetAllAsync(p => p.UserId == user.Id && p.IsDeleted == false, "Image", "Video");
         List<PostGetDto> posts = new List<PostGetDto>();
         foreach (var UserPost in UserPosts)
         {
-            if (UserPost.Image is null && UserPost.Video is null && UserPost.IsDeleted == false)
+            if (UserPost.Image is null && UserPost.Video is null)
             {
                 PostGetDto Post = new PostGetDto()
                 {
@@ -214,12 +223,13 @@ public class PostService : IPostService
                     Text = UserPost.Text,
                     UserProfileImage = profileImage.ImageUrl,
                     ImageUrl = null,
-                    VideoUrl = null
+                    VideoUrl = null,
+                    ElapsedTime = UserPost.CreatedDate.GetElapsedTime(),
                 };
                 posts.Add(Post);
                 continue;
             }
-            if (UserPost.Image is null && UserPost.IsDeleted == false)
+            if (UserPost.Image is null)
             {
                 PostGetDto Post = new PostGetDto()
                 {
@@ -228,11 +238,12 @@ public class PostService : IPostService
                     Text = UserPost.Text,
                     UserProfileImage = profileImage.ImageUrl,
                     ImageUrl = null,
-                    VideoUrl = UserPost.Video.VideoUrl
+                    VideoUrl = UserPost.Video.VideoUrl,
+                    ElapsedTime = UserPost.CreatedDate.GetElapsedTime(),
                 };
                 posts.Add(Post);
             }
-            if (UserPost.Video is null && UserPost.IsDeleted == false)
+            if (UserPost.Video is null)
             {
                 PostGetDto Post = new PostGetDto()
                 {
@@ -241,7 +252,8 @@ public class PostService : IPostService
                     Text = UserPost.Text,
                     UserProfileImage = profileImage.ImageUrl,
                     ImageUrl = UserPost.Image.ImageUrl,
-                    VideoUrl = null
+                    VideoUrl = null,
+                    ElapsedTime = UserPost.CreatedDate.GetElapsedTime(),
                 };
                 posts.Add(Post);
             }

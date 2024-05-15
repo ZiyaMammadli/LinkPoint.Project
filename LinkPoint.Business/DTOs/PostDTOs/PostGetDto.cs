@@ -8,4 +8,5 @@ public class PostGetDto
     public string UserProfileImage { get; set; }
     public string? ImageUrl { get; set; }
     public string? VideoUrl { get; set; }
+    public string ElapsedTime { get; set; }
 }
