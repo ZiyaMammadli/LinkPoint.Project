@@ -7,7 +7,6 @@ using LinkPoint.Core.Entities;
 using LinkPoint.Core.Repositories;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
-using System.Diagnostics;
 
 namespace LinkPoint.Business.Services.Implementations;
 
@@ -80,8 +79,12 @@ public class CommentService : ICommentService
         await _commentRepository.CommitAsync();
     }
 
-    public Task SoftDeleteComment(int CommentId, CommentDeleteDto commentDeleteDto)
+    public async Task SoftDeleteCommentAsync(int CommentId, CommentDeleteDto commentDeleteDto)
     {
-        throw new NotImplementedException();
+        if (CommentId != commentDeleteDto.CommentId) throw new IdNotValidException(404, "CommentId is not valid");
+        var currentComment = await _commentRepository.GetByIdAsync(commentDeleteDto.CommentId);
+        if (currentComment is null) throw new CommentNotFoundException(404, "Comment is not found");
+        currentComment.IsDeleted = true;
+        await _commentRepository.CommitAsync();
     }
 }
