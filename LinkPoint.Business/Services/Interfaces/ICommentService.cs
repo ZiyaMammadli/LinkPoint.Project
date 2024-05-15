@@ -4,7 +4,6 @@ namespace LinkPoint.Business.Services.Interfaces;
 
 public interface ICommentService
 {
-    Task<List<CommentGetDto>> GetAllCommentForUser(int UserId);
     Task<List<CommentGetDto>> GetAllCommentForPostAsync(int PostId);
     Task CreateCommentAsync(CommentPostDto commentPostDto);
     Task UpdateCommentAsync(CommentPutDto commentPutDto);
