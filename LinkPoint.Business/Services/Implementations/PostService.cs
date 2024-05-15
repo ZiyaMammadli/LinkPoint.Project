@@ -44,7 +44,7 @@ public class PostService : IPostService
         {
             throw new ProfileImageNotFoundException(404, "ProfileImage is not found");
         }
-        if (!await _postRepository.IsExist(p => p.UserId == user.Id)) throw new PostNotFoundException(404, "Post is not found"); 
+        if (!await _postRepository.IsExist(p => p.UserId == user.Id && p.IsDeleted == false)) throw new PostNotFoundException(404, "Post is not found"); 
         var UserPosts=await _postRepository.GetAllAsync(p=>p.UserId==user.Id && p.IsDeleted==false,"Image","Video");
         List<PostGetDto> posts = new List<PostGetDto>();
         foreach (var UserPost in UserPosts)
@@ -209,7 +209,7 @@ public class PostService : IPostService
         {
             throw new ProfileImageNotFoundException(404, "ProfileImage is not found");
         }
-        if (!await _postRepository.IsExist(p => p.UserId == user.Id)) throw new PostNotFoundException(404, "Post is not found");
+        if (!await _postRepository.IsExist(p => p.UserId == user.Id && p.IsDeleted == false)) throw new PostNotFoundException(404, "Post is not found");
         var UserPosts = await _postRepository.GetAllAsync(p => p.UserId == user.Id && p.IsDeleted == false, "Image", "Video");
         List<PostGetDto> posts = new List<PostGetDto>();
         foreach (var UserPost in UserPosts)
