@@ -13,6 +13,7 @@ using LinkPoint.Business.Utilities.Exceptions.NotValidExceptions;
 using LinkPoint.Business.Utilities.Extentions;
 using LinkPoint.Core.Entities;
 using LinkPoint.Core.Repositories;
+using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.Configuration;
@@ -33,6 +34,7 @@ public class AccountSettingsService : IAccountSettingsService
     private readonly IHttpContextAccessor _httpContextAccessor;
     private readonly IImageRepository _imageRepository;
     private readonly IConfiguration _configuration;
+    private readonly IWebHostEnvironment _webHostEnvironment;
 
     public AccountSettingsService(IUserEducationRepository userEducationRepository,
         UserManager<AppUser> userManager, 
@@ -42,7 +44,8 @@ public class AccountSettingsService : IAccountSettingsService
         IUserAboutRepository userAboutRepository,
         IHttpContextAccessor httpContextAccessor,
         IImageRepository imageRepository,
-        IConfiguration configuration)
+        IConfiguration configuration,
+        IWebHostEnvironment webHostEnvironment)
     {
         _userEducationRepository = userEducationRepository;
         _userManager = userManager;
@@ -53,6 +56,7 @@ public class AccountSettingsService : IAccountSettingsService
         _httpContextAccessor = httpContextAccessor;
         _imageRepository = imageRepository;
         _configuration = configuration;
+        _webHostEnvironment = webHostEnvironment;
     }
     public async Task UpdateUserEducationAsync(int Id ,UserEducationPutDto userEducationPutDto)
     {   
@@ -186,27 +190,81 @@ public class AccountSettingsService : IAccountSettingsService
         var currentImage=await _imageRepository.GetByIdAsync(profileImagePostDto.ImageId);
         if (currentImage is null) throw new ImageNotFoundException(404, "Image is not found");
         string apiKey = _configuration["GoogleCloud:ApiKey"];
-        int startIndex = currentImage.ImageUrl.Length-55;
-        int lentgh = 55;
-        string fileName=currentImage.ImageUrl.Substring(startIndex,lentgh);
+        //int startIndex = currentImage.ImageUrl.Length-55;
+        //int lentgh = 55;
+        string fileName=currentImage.ImageUrl.Substring(50);
         await FileManager.DeleteFile(fileName, apiKey,"Images");
         currentImage.ImageUrl = profileImagePostDto.ProfileImage.SaveFile(apiKey, "Images");
         currentImage.UpdatedDate = DateTime.UtcNow;
         await _imageRepository.CommitAsync();
     }
 
-    public Task DeleteUserProfileImageAsync(int ImageId, ProfileImageDeleteDto profileImageDeleteDto)
+    public async Task DeleteUserProfileImageAsync(int ImageId, ProfileImageDeleteDto profileImageDeleteDto)
     {
-        throw new NotImplementedException();
+        if (ImageId != profileImageDeleteDto.ImageId) throw new IdNotValidException(400, "ImageId is not Valid");
+        var currentImage = await _imageRepository.GetByIdAsync(profileImageDeleteDto.ImageId);
+        if (currentImage is null) throw new ImageNotFoundException(404, "Image is not found");
+        string apiKey = _configuration["GoogleCloud:ApiKey"];
+        string fileName = currentImage.ImageUrl.Substring(50);
+        await FileManager.DeleteFile(fileName, apiKey, "Images");
+        var userName = _httpContextAccessor.HttpContext.Request.Cookies["UserName"];
+        string username = JsonConvert.DeserializeObject<string>(userName);
+        var user = await _userManager.FindByNameAsync(username);
+        if (user is null) throw new UserNotFoundException(404, "User is not found");
+        string DefaultImageName = "DefaultPerson.jpg";
+        string DefautlImagePath = Path.Combine(_webHostEnvironment.WebRootPath, "UserDefaultProfileImage", DefaultImageName);
+        var DefaultProfileImage = FileManager.CreateIFormFile(DefautlImagePath, DefaultImageName);
+        Image ProfileImage = new()
+        {
+            UserId = user.Id,
+            PostId = null,
+            IsPostImage = false,
+            ImageUrl = DefaultProfileImage.SaveFile(apiKey, "Images"),
+            CreatedDate = DateTime.UtcNow,
+            UpdatedDate = DateTime.UtcNow,
+        };
+        await _imageRepository.InsertAsync(ProfileImage);
+        await _imageRepository.CommitAsync();
     }
 
-    public Task UpdateUserBacgroundImageAsync(int ImageId, BackgroundImagePutDto backgroundImagePutDto)
+    public async Task UpdateUserBacgroundImageAsync(int ImageId, BackgroundImagePutDto backgroundImagePutDto)
     {
-        throw new NotImplementedException();
+        if (ImageId != backgroundImagePutDto.ImageId) throw new IdNotValidException(400, "ImageId is not Valid");
+        var currentImage = await _imageRepository.GetByIdAsync(backgroundImagePutDto.ImageId);
+        if (currentImage is null) throw new ImageNotFoundException(404, "Image is not found");
+        string apiKey = _configuration["GoogleCloud:ApiKey"];
+        string fileName = currentImage.ImageUrl.Substring(50);
+        await FileManager.DeleteFile(fileName, apiKey, "Images");
+        currentImage.ImageUrl = backgroundImagePutDto.BackgroundImage.SaveFile(apiKey, "Images");
+        currentImage.UpdatedDate = DateTime.UtcNow;
+        await _imageRepository.CommitAsync();
     }
 
-    public Task DeleteUserBackgroundImageAsync(int ImageId, BackgroundImageDeleteDto backgroundImageDeleteDto)
+    public async Task DeleteUserBackgroundImageAsync(int ImageId, BackgroundImageDeleteDto backgroundImageDeleteDto)
     {
-        throw new NotImplementedException();
+        if (ImageId != backgroundImageDeleteDto.ImageId) throw new IdNotValidException(400, "ImageId is not Valid");
+        var currentImage = await _imageRepository.GetByIdAsync(backgroundImageDeleteDto.ImageId);
+        if (currentImage is null) throw new ImageNotFoundException(404, "Image is not found");
+        string apiKey = _configuration["GoogleCloud:ApiKey"];
+        string fileName = currentImage.ImageUrl.Substring(50);
+        await FileManager.DeleteFile(fileName, apiKey, "Images");
+        var userName = _httpContextAccessor.HttpContext.Request.Cookies["UserName"];
+        string username = JsonConvert.DeserializeObject<string>(userName);
+        var user = await _userManager.FindByNameAsync(username);
+        if (user is null) throw new UserNotFoundException(404, "User is not found");
+        string DefaultImageName = "DefaultBackgraoundImage.jpg";
+        string DefautlImagePath = Path.Combine(_webHostEnvironment.WebRootPath, "UserDefaultProfileImage", DefaultImageName);
+        var DefaultBackgroundImage = FileManager.CreateIFormFile(DefautlImagePath, DefaultImageName);
+        Image BackgroundImage = new()
+        {
+            UserId = user.Id,
+            PostId = null,
+            IsPostImage = null,
+            ImageUrl = DefaultBackgroundImage.SaveFile(apiKey, "Images"),
+            CreatedDate = DateTime.UtcNow,
+            UpdatedDate = DateTime.UtcNow,
+        };
+        await _imageRepository.InsertAsync(BackgroundImage);
+        await _imageRepository.CommitAsync();
     }
 }
