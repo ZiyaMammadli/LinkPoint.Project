@@ -1,5 +1,7 @@
 ﻿using AutoMapper;
+using LinkPoint.Business.DTOs.AccountSettingsDTOs.BackgroundImageDTOs;
 using LinkPoint.Business.DTOs.AccountSettingsDTOs.PasswordDTOs;
+using LinkPoint.Business.DTOs.AccountSettingsDTOs.ProfileImageDTOs;
 using LinkPoint.Business.DTOs.AccountSettingsDTOs.UserAboutDTOs;
 using LinkPoint.Business.DTOs.AccountSettingsDTOs.UserEducationDTOs;
 using LinkPoint.Business.DTOs.AccountSettingsDTOs.UserInterestDTOs;
@@ -8,10 +10,13 @@ using LinkPoint.Business.Services.Interfaces;
 using LinkPoint.Business.Utilities.Exceptions.CommonExceptions;
 using LinkPoint.Business.Utilities.Exceptions.NotFoundExceptions;
 using LinkPoint.Business.Utilities.Exceptions.NotValidExceptions;
+using LinkPoint.Business.Utilities.Extentions;
 using LinkPoint.Core.Entities;
 using LinkPoint.Core.Repositories;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.DependencyInjection;
 using Newtonsoft.Json;
 using System.Diagnostics;
 
@@ -26,6 +31,8 @@ public class AccountSettingsService : IAccountSettingsService
     private readonly IUserWorkRepository _userWorkRepository;
     private readonly IUserAboutRepository _userAboutRepository;
     private readonly IHttpContextAccessor _httpContextAccessor;
+    private readonly IImageRepository _imageRepository;
+    private readonly IConfiguration _configuration;
 
     public AccountSettingsService(IUserEducationRepository userEducationRepository,
         UserManager<AppUser> userManager, 
@@ -33,7 +40,9 @@ public class AccountSettingsService : IAccountSettingsService
         IUserInterestRepository userInterestRepository,
         IUserWorkRepository userWorkRepository,
         IUserAboutRepository userAboutRepository,
-        IHttpContextAccessor httpContextAccessor)
+        IHttpContextAccessor httpContextAccessor,
+        IImageRepository imageRepository,
+        IConfiguration configuration)
     {
         _userEducationRepository = userEducationRepository;
         _userManager = userManager;
@@ -42,6 +51,8 @@ public class AccountSettingsService : IAccountSettingsService
         _userWorkRepository = userWorkRepository;
         _userAboutRepository = userAboutRepository;
         _httpContextAccessor = httpContextAccessor;
+        _imageRepository = imageRepository;
+        _configuration = configuration;
     }
     public async Task UpdateUserEducationAsync(int Id ,UserEducationPutDto userEducationPutDto)
     {   
@@ -166,5 +177,36 @@ public class AccountSettingsService : IAccountSettingsService
         userEducation.UpdatedDate = DateTime.UtcNow;
         await _userEducationRepository.InsertAsync(userEducation);
         await _userEducationRepository.CommitAsync();   
+    }
+
+    public async Task UpdateUserProfileImageAsync(int ImageId, ProfileImagePutDto profileImagePostDto)
+    {
+       
+        if (ImageId != profileImagePostDto.ImageId) throw new IdNotValidException(400, "ImageId is not Valid");
+        var currentImage=await _imageRepository.GetByIdAsync(profileImagePostDto.ImageId);
+        if (currentImage is null) throw new ImageNotFoundException(404, "Image is not found");
+        string apiKey = _configuration["GoogleCloud:ApiKey"];
+        int startIndex = currentImage.ImageUrl.Length-55;
+        int lentgh = 55;
+        string fileName=currentImage.ImageUrl.Substring(startIndex,lentgh);
+        await FileManager.DeleteFile(fileName, apiKey,"Images");
+        currentImage.ImageUrl = profileImagePostDto.ProfileImage.SaveFile(apiKey, "Images");
+        currentImage.UpdatedDate = DateTime.UtcNow;
+        await _imageRepository.CommitAsync();
+    }
+
+    public Task DeleteUserProfileImageAsync(int ImageId, ProfileImageDeleteDto profileImageDeleteDto)
+    {
+        throw new NotImplementedException();
+    }
+
+    public Task UpdateUserBacgroundImageAsync(int ImageId, BackgroundImagePutDto backgroundImagePutDto)
+    {
+        throw new NotImplementedException();
+    }
+
+    public Task DeleteUserBackgroundImageAsync(int ImageId, BackgroundImageDeleteDto backgroundImageDeleteDto)
+    {
+        throw new NotImplementedException();
     }
 }

@@ -1,4 +1,6 @@
-﻿using LinkPoint.Business.DTOs.AccountSettingsDTOs.PasswordDTOs;
+﻿using LinkPoint.Business.DTOs.AccountSettingsDTOs.BackgroundImageDTOs;
+using LinkPoint.Business.DTOs.AccountSettingsDTOs.PasswordDTOs;
+using LinkPoint.Business.DTOs.AccountSettingsDTOs.ProfileImageDTOs;
 using LinkPoint.Business.DTOs.AccountSettingsDTOs.UserAboutDTOs;
 using LinkPoint.Business.DTOs.AccountSettingsDTOs.UserEducationDTOs;
 using LinkPoint.Business.DTOs.AccountSettingsDTOs.UserInterestDTOs;
@@ -21,5 +23,9 @@ public interface IAccountSettingsService
     Task DeleteUserInterestAsync(int Id,UserInterestDeleteDto userInterestDeleteDto);//
     Task<List<UserInterestGetDto>> GetAllUserInterestsAsync(string UserId);//
     Task ChangePasswordAsync(string UserId,ChangePasswordDto changePasswordDto);//
+    Task UpdateUserProfileImageAsync(int ImageId,ProfileImagePutDto profileImagePostDto);
+    Task DeleteUserProfileImageAsync(int ImageId, ProfileImageDeleteDto profileImageDeleteDto);
+    Task UpdateUserBacgroundImageAsync(int ImageId,BackgroundImagePutDto backgroundImagePutDto);
+    Task DeleteUserBackgroundImageAsync(int ImageId,BackgroundImageDeleteDto backgroundImageDeleteDto);
 }
     

@@ -24,11 +24,11 @@ public static class FileManager
         }
         return fileUrl;
     }
-    public static async Task DeleteFile(string FileName, string ApiKey)
+    public static async Task DeleteFile(string FileName, string ApiKey,string folder)
     {
         var credential = GoogleCredential.FromFile(ApiKey);
         var client = StorageClient.Create(credential);
-        var objectName = $"Images/{FileName}";
+        var objectName = $"{folder}/{FileName}";
         var bucketName = "link_point";
         await client.DeleteObjectAsync(bucketName, objectName, null);
     }
