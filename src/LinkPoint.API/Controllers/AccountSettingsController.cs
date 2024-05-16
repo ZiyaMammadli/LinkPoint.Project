@@ -1,4 +1,6 @@
-﻿using LinkPoint.Business.DTOs.AccountSettingsDTOs.PasswordDTOs;
+﻿using LinkPoint.Business.DTOs.AccountSettingsDTOs.BackgroundImageDTOs;
+using LinkPoint.Business.DTOs.AccountSettingsDTOs.PasswordDTOs;
+using LinkPoint.Business.DTOs.AccountSettingsDTOs.ProfileImageDTOs;
 using LinkPoint.Business.DTOs.AccountSettingsDTOs.UserAboutDTOs;
 using LinkPoint.Business.DTOs.AccountSettingsDTOs.UserEducationDTOs;
 using LinkPoint.Business.DTOs.AccountSettingsDTOs.UserInterestDTOs;
@@ -243,6 +245,98 @@ namespace LinkPoint.API.Controllers
                 return StatusCode(ex.StatusCode, ex.Message);
             } 
             catch (InvalidCredentialsException ex)
+            {
+                return StatusCode(ex.StatusCode, ex.Message);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
+        [HttpPut("[action]/{ImageId}")]
+        public async Task<IActionResult> UpdateUserProfileImage(int ImageId, ProfileImagePutDto profileImagePostDto)
+        {
+            try
+            {
+                await _accountSettingsService.UpdateUserProfileImageAsync(ImageId, profileImagePostDto);
+                return Ok();
+            }
+            catch (IdNotValidException ex)
+            {
+                return StatusCode(ex.StatusCode, ex.Message);
+            }
+            catch (ImageNotFoundException ex)
+            {
+                return StatusCode(ex.StatusCode, ex.Message);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
+        [HttpDelete("[action]/{ImageId}")]
+        public async Task<IActionResult> DeleteUserProfileImage(int ImageId, ProfileImageDeleteDto profileImageDeleteDto)
+        {
+            try
+            {
+                await _accountSettingsService.DeleteUserProfileImageAsync(ImageId, profileImageDeleteDto);
+                return Ok();
+            }
+            catch (IdNotValidException ex)
+            {
+                return StatusCode(ex.StatusCode, ex.Message);
+            }
+            catch (ImageNotFoundException ex)
+            {
+                return StatusCode(ex.StatusCode, ex.Message);
+            }
+            catch (UserNotFoundException ex)
+            {
+                return StatusCode(ex.StatusCode, ex.Message);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
+        [HttpPut("[action]/{ImageId}")]
+        public async Task<IActionResult> UpdateUserBacgroundImage(int ImageId, BackgroundImagePutDto backgroundImagePutDto)
+        {
+            try
+            {
+                await _accountSettingsService.UpdateUserBacgroundImageAsync(ImageId, backgroundImagePutDto);
+                return Ok();
+            }
+            catch (IdNotValidException ex)
+            {
+                return StatusCode(ex.StatusCode, ex.Message);
+            }
+            catch (ImageNotFoundException ex)
+            {
+                return StatusCode(ex.StatusCode, ex.Message);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
+        [HttpDelete("[action]/{ImageId}")]
+        public async Task<IActionResult> DeleteUserBackgroundImage(int ImageId, BackgroundImageDeleteDto backgroundImageDeleteDto)
+        {
+            try
+            {
+                await _accountSettingsService.DeleteUserBackgroundImageAsync(ImageId, backgroundImageDeleteDto);
+                return Ok();
+            }
+            catch (IdNotValidException ex)
+            {
+                return StatusCode(ex.StatusCode, ex.Message);
+            }
+            catch (ImageNotFoundException ex)
+            {
+                return StatusCode(ex.StatusCode, ex.Message);
+            }
+            catch (UserNotFoundException ex)
             {
                 return StatusCode(ex.StatusCode, ex.Message);
             }

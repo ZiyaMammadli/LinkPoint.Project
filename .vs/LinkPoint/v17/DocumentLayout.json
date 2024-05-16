@@ -3,8 +3,16 @@
   "WorkspaceRootPath": "C:\\Users\\user\\source\\repos\\LinkPoint\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{DD6BBD22-AC9C-42C7-A5F7-CA0EA83063E0}|src\\LinkPoint.API\\LinkPoint.API.csproj|c:\\users\\user\\source\\repos\\linkpoint\\src\\linkpoint.api\\controllers\\accountsettingscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{DD6BBD22-AC9C-42C7-A5F7-CA0EA83063E0}|src\\LinkPoint.API\\LinkPoint.API.csproj|solutionrelative:src\\linkpoint.api\\controllers\\accountsettingscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{3089F750-426F-4032-BB8D-33FC0FA9E42E}|LinkPoint.Business\\LinkPoint.Business.csproj|c:\\users\\user\\source\\repos\\linkpoint\\linkpoint.business\\services\\implementations\\accountsettingsservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{3089F750-426F-4032-BB8D-33FC0FA9E42E}|LinkPoint.Business\\LinkPoint.Business.csproj|solutionrelative:linkpoint.business\\services\\implementations\\accountsettingsservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{3089F750-426F-4032-BB8D-33FC0FA9E42E}|LinkPoint.Business\\LinkPoint.Business.csproj|c:\\users\\user\\source\\repos\\linkpoint\\linkpoint.business\\services\\interfaces\\iaccountsettingsservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{3089F750-426F-4032-BB8D-33FC0FA9E42E}|LinkPoint.Business\\LinkPoint.Business.csproj|solutionrelative:linkpoint.business\\services\\interfaces\\iaccountsettingsservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{3089F750-426F-4032-BB8D-33FC0FA9E42E}|LinkPoint.Business\\LinkPoint.Business.csproj|c:\\users\\user\\source\\repos\\linkpoint\\linkpoint.business\\services\\implementations\\accountservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -13,10 +21,6 @@
     {
       "AbsoluteMoniker": "D:0:0:{DD6BBD22-AC9C-42C7-A5F7-CA0EA83063E0}|src\\LinkPoint.API\\LinkPoint.API.csproj|c:\\users\\user\\source\\repos\\linkpoint\\src\\linkpoint.api\\controllers\\googlecloudtestcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{DD6BBD22-AC9C-42C7-A5F7-CA0EA83063E0}|src\\LinkPoint.API\\LinkPoint.API.csproj|solutionrelative:src\\linkpoint.api\\controllers\\googlecloudtestcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{3089F750-426F-4032-BB8D-33FC0FA9E42E}|LinkPoint.Business\\LinkPoint.Business.csproj|c:\\users\\user\\source\\repos\\linkpoint\\linkpoint.business\\services\\interfaces\\iaccountsettingsservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{3089F750-426F-4032-BB8D-33FC0FA9E42E}|LinkPoint.Business\\LinkPoint.Business.csproj|solutionrelative:linkpoint.business\\services\\interfaces\\iaccountsettingsservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{3089F750-426F-4032-BB8D-33FC0FA9E42E}|LinkPoint.Business\\LinkPoint.Business.csproj|c:\\users\\user\\source\\repos\\linkpoint\\linkpoint.business\\services\\implementations\\postservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -38,11 +42,50 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 6,
+          "SelectedChildIndex": 0,
           "Children": [
             {
               "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "AccountSettingsController.cs",
+              "DocumentMoniker": "C:\\Users\\user\\source\\repos\\LinkPoint\\src\\LinkPoint.API\\Controllers\\AccountSettingsController.cs",
+              "RelativeDocumentMoniker": "src\\LinkPoint.API\\Controllers\\AccountSettingsController.cs",
+              "ToolTip": "C:\\Users\\user\\source\\repos\\LinkPoint\\src\\LinkPoint.API\\Controllers\\AccountSettingsController.cs",
+              "RelativeToolTip": "src\\LinkPoint.API\\Controllers\\AccountSettingsController.cs",
+              "ViewState": "AQIAAD8BAAAAAAAAAAAuwE8BAAANAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-05-16T13:52:00.674Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "IAccountSettingsService.cs",
+              "DocumentMoniker": "C:\\Users\\user\\source\\repos\\LinkPoint\\LinkPoint.Business\\Services\\Interfaces\\IAccountSettingsService.cs",
+              "RelativeDocumentMoniker": "LinkPoint.Business\\Services\\Interfaces\\IAccountSettingsService.cs",
+              "ToolTip": "C:\\Users\\user\\source\\repos\\LinkPoint\\LinkPoint.Business\\Services\\Interfaces\\IAccountSettingsService.cs",
+              "RelativeToolTip": "LinkPoint.Business\\Services\\Interfaces\\IAccountSettingsService.cs",
+              "ViewState": "AQIAABAAAAAAAAAAAAAgwBwAAABlAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-05-16T08:15:11.42Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
               "DocumentIndex": 1,
+              "Title": "AccountSettingsService.cs",
+              "DocumentMoniker": "C:\\Users\\user\\source\\repos\\LinkPoint\\LinkPoint.Business\\Services\\Implementations\\AccountSettingsService.cs",
+              "RelativeDocumentMoniker": "LinkPoint.Business\\Services\\Implementations\\AccountSettingsService.cs",
+              "ToolTip": "C:\\Users\\user\\source\\repos\\LinkPoint\\LinkPoint.Business\\Services\\Implementations\\AccountSettingsService.cs",
+              "RelativeToolTip": "LinkPoint.Business\\Services\\Implementations\\AccountSettingsService.cs",
+              "ViewState": "AQIAAPMAAAAAAAAAAAAYwOsAAAA+AAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-05-16T08:15:09.401Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
               "Title": "AccountService.cs",
               "DocumentMoniker": "C:\\Users\\user\\source\\repos\\LinkPoint\\LinkPoint.Business\\Services\\Implementations\\AccountService.cs",
               "RelativeDocumentMoniker": "LinkPoint.Business\\Services\\Implementations\\AccountService.cs",
@@ -50,12 +93,11 @@
               "RelativeToolTip": "LinkPoint.Business\\Services\\Implementations\\AccountService.cs",
               "ViewState": "AQIAAK0AAAAAAAAAAAAswMcAAAAgAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-05-16T12:08:15.502Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-05-16T12:08:15.502Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 4,
               "Title": "GoogleCloudTestController.cs",
               "DocumentMoniker": "C:\\Users\\user\\source\\repos\\LinkPoint\\src\\LinkPoint.API\\Controllers\\GoogleCloudTestController.cs",
               "RelativeDocumentMoniker": "src\\LinkPoint.API\\Controllers\\GoogleCloudTestController.cs",
@@ -63,12 +105,11 @@
               "RelativeToolTip": "src\\LinkPoint.API\\Controllers\\GoogleCloudTestController.cs",
               "ViewState": "AQIAABUAAAAAAAAAAAAYwBgAAAA6AAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-05-16T11:28:19.617Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-05-16T11:28:19.617Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
+              "DocumentIndex": 6,
               "Title": "FileManager.cs",
               "DocumentMoniker": "C:\\Users\\user\\source\\repos\\LinkPoint\\LinkPoint.Business\\Utilities\\Extentions\\FileManager.cs",
               "RelativeDocumentMoniker": "LinkPoint.Business\\Utilities\\Extentions\\FileManager.cs",
@@ -80,7 +121,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 6,
+              "DocumentIndex": 7,
               "Title": "LikeService.cs",
               "DocumentMoniker": "C:\\Users\\user\\source\\repos\\LinkPoint\\LinkPoint.Business\\Services\\Implementations\\LikeService.cs",
               "RelativeDocumentMoniker": "LinkPoint.Business\\Services\\Implementations\\LikeService.cs",
@@ -92,7 +133,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 5,
               "Title": "PostService.cs",
               "DocumentMoniker": "C:\\Users\\user\\source\\repos\\LinkPoint\\LinkPoint.Business\\Services\\Implementations\\PostService.cs",
               "RelativeDocumentMoniker": "LinkPoint.Business\\Services\\Implementations\\PostService.cs",
@@ -100,34 +141,7 @@
               "RelativeToolTip": "LinkPoint.Business\\Services\\Implementations\\PostService.cs",
               "ViewState": "AQIAADABAAAAAAAAAAAwwD8BAABUAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-05-16T11:02:12.574Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "IAccountSettingsService.cs",
-              "DocumentMoniker": "C:\\Users\\user\\source\\repos\\LinkPoint\\LinkPoint.Business\\Services\\Interfaces\\IAccountSettingsService.cs",
-              "RelativeDocumentMoniker": "LinkPoint.Business\\Services\\Interfaces\\IAccountSettingsService.cs",
-              "ToolTip": "C:\\Users\\user\\source\\repos\\LinkPoint\\LinkPoint.Business\\Services\\Interfaces\\IAccountSettingsService.cs",
-              "RelativeToolTip": "LinkPoint.Business\\Services\\Interfaces\\IAccountSettingsService.cs",
-              "ViewState": "AQIAAAsAAAAAAAAAAAAAABwAAABnAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-05-16T08:15:11.42Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "AccountSettingsService.cs",
-              "DocumentMoniker": "C:\\Users\\user\\source\\repos\\LinkPoint\\LinkPoint.Business\\Services\\Implementations\\AccountSettingsService.cs",
-              "RelativeDocumentMoniker": "LinkPoint.Business\\Services\\Implementations\\AccountSettingsService.cs",
-              "ToolTip": "C:\\Users\\user\\source\\repos\\LinkPoint\\LinkPoint.Business\\Services\\Implementations\\AccountSettingsService.cs",
-              "RelativeToolTip": "LinkPoint.Business\\Services\\Implementations\\AccountSettingsService.cs",
-              "ViewState": "AQIAAPEAAAAAAAAAAAAQwM8AAAA+AAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-05-16T08:15:09.401Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-05-16T11:02:12.574Z"
             }
           ]
         }

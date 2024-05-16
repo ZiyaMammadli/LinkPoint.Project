@@ -23,9 +23,9 @@ public interface IAccountSettingsService
     Task DeleteUserInterestAsync(int Id,UserInterestDeleteDto userInterestDeleteDto);//
     Task<List<UserInterestGetDto>> GetAllUserInterestsAsync(string UserId);//
     Task ChangePasswordAsync(string UserId,ChangePasswordDto changePasswordDto);//
-    Task UpdateUserProfileImageAsync(int ImageId,ProfileImagePutDto profileImagePostDto);
-    Task DeleteUserProfileImageAsync(int ImageId, ProfileImageDeleteDto profileImageDeleteDto);
-    Task UpdateUserBacgroundImageAsync(int ImageId,BackgroundImagePutDto backgroundImagePutDto);
+    Task UpdateUserProfileImageAsync(int ImageId,ProfileImagePutDto profileImagePostDto);//
+    Task DeleteUserProfileImageAsync(int ImageId, ProfileImageDeleteDto profileImageDeleteDto);//
+    Task UpdateUserBacgroundImageAsync(int ImageId,BackgroundImagePutDto backgroundImagePutDto);//
     Task DeleteUserBackgroundImageAsync(int ImageId,BackgroundImageDeleteDto backgroundImageDeleteDto);
 }
     
