@@ -1,4 +1,5 @@
 ﻿using LinkPoint.Business.Services.Interfaces;
+using LinkPoint.Business.Utilities.Exceptions.CommonExceptions;
 using LinkPoint.Business.Utilities.Exceptions.NotFoundExceptions;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -15,6 +16,31 @@ namespace LinkPoint.API.Controllers
         {
             _likeService = likeService;
         }
+
+        [HttpGet("[action]/{PostId}")]
+        public async Task<IActionResult> GetAllUsersLikedPost(int PostId)
+        {
+            try
+            {               
+                return Ok(await _likeService.GetAllUsersLikedPostAsync(PostId));
+            }
+            catch (LikeNotFoundException ex)
+            {
+                return StatusCode(ex.StatusCode, ex.Message);
+            }
+            catch (UserNotFoundException ex)
+            {
+                return StatusCode(ex.StatusCode, ex.Message);
+            }
+            catch (PostNotFoundException ex)
+            {
+                return StatusCode(ex.StatusCode, ex.Message);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
         [HttpPost("[action]/{PostId}")]
         public async Task<IActionResult> AddLikeToPost(int PostId)
         {
@@ -22,6 +48,10 @@ namespace LinkPoint.API.Controllers
             {
                 await _likeService.AddLikeToPostAsync(PostId);
                 return Ok();
+            }
+            catch(AlreadyExistException ex)
+            {
+                return StatusCode(ex.StatusCode,ex.Message);
             }
             catch(UserNotFoundException ex)
             {

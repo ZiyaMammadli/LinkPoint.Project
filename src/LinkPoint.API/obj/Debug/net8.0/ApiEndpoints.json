@@ -513,6 +513,22 @@
   },
   {
     "ContainingType": "LinkPoint.API.Controllers.LikesController",
+    "Method": "GetAllUsersLikedPost",
+    "RelativePath": "api/Likes/GetAllUsersLikedPost/{PostId}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "PostId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "LinkPoint.API.Controllers.LikesController",
     "Method": "RemoveLikeFromPost",
     "RelativePath": "api/Likes/RemoveLikeFromPost/{PostId}",
     "HttpMethod": "POST",
