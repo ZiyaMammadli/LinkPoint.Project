@@ -2,6 +2,6 @@
 
 public interface ILikeService
 {
-    Task AddLikeToPost(int PostId);
-    Task RemoveLikeFromPost(int PostId);
+    Task AddLikeToPostAsync(int PostId);
+    Task RemoveLikeFromPostAsync(int PostId);
 }

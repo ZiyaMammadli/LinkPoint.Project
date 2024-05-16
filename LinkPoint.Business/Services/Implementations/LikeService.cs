@@ -26,7 +26,7 @@ public class LikeService : ILikeService
         _httpContextAccessor = httpContextAccessor;
         _userManager = userManager;
     }
-    public async Task AddLikeToPost(int PostId)
+    public async Task AddLikeToPostAsync(int PostId)
     {
         var userName = _httpContextAccessor.HttpContext.Request.Cookies["UserName"];
         string username = JsonConvert.DeserializeObject<string>(userName);
@@ -46,7 +46,7 @@ public class LikeService : ILikeService
         await _likeRepository.CommitAsync();
     }
 
-    public async Task RemoveLikeFromPost(int PostId)
+    public async Task RemoveLikeFromPostAsync(int PostId)
     {
         var userName = _httpContextAccessor.HttpContext.Request.Cookies["UserName"];
         string username = JsonConvert.DeserializeObject<string>(userName);

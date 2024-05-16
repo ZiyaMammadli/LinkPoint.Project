@@ -496,6 +496,38 @@
     "ReturnTypes": []
   },
   {
+    "ContainingType": "LinkPoint.API.Controllers.LikesController",
+    "Method": "AddLikeToPost",
+    "RelativePath": "api/Likes/AddLikeToPost/{PostId}",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "PostId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "LinkPoint.API.Controllers.LikesController",
+    "Method": "RemoveLikeFromPost",
+    "RelativePath": "api/Likes/RemoveLikeFromPost/{PostId}",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "PostId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
     "ContainingType": "LinkPoint.API.Controllers.PostsController",
     "Method": "CreatePostWithImage",
     "RelativePath": "api/Posts/CreatePostWithImage",
