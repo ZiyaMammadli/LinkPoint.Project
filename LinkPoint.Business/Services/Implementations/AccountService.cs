@@ -191,14 +191,18 @@ public class AccountService:IAccountService
             UserId = appUser.Id,
             PostId = null,
             IsPostImage = false,
-            ImageUrl = DefaultProfileImage.SaveFile(apiKey,"Images")
+            ImageUrl = DefaultProfileImage.SaveFile(apiKey,"Images"),
+            CreatedDate= DateTime.UtcNow,
+            UpdatedDate= DateTime.UtcNow,
         }; 
         Image BackgroundImage = new()
         {
             UserId = appUser.Id,
             PostId = null,
             IsPostImage = null,
-            ImageUrl = DefaultBackgroundImage.SaveFile(apiKey,"Images")
+            ImageUrl = DefaultBackgroundImage.SaveFile(apiKey,"Images"),
+            CreatedDate=DateTime.UtcNow,
+            UpdatedDate= DateTime.UtcNow,
         };
         await _imageRepository.InsertAsync(ProfileImage);
         await _imageRepository.InsertAsync(BackgroundImage);

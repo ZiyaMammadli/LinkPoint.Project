@@ -646,5 +646,21 @@
       }
     ],
     "ReturnTypes": []
+  },
+  {
+    "ContainingType": "LinkPoint.API.Controllers.ValuesController",
+    "Method": "SetUserDefalutImages",
+    "RelativePath": "api/Values",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "UserId",
+        "Type": "System.String",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
   }
 ]

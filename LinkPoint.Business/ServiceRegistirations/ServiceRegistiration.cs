@@ -20,6 +20,7 @@ public static class ServiceRegistiration
         services.AddScoped<IFriendShipService, FriendShipService>();
         services.AddScoped<IPostService, PostService>();
         services.AddScoped<ICommentService, CommentService>();
+        services.AddScoped<ILikeService, LikeService>();
         services.AddScoped<IEmailService, EmailService>();
         services.AddHttpContextAccessor();
         services.AddSingleton<IActionContextAccessor, ActionContextAccessor>();
