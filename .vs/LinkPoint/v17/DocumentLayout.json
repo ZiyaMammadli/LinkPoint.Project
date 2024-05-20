@@ -3,32 +3,16 @@
   "WorkspaceRootPath": "C:\\Users\\user\\source\\repos\\LinkPoint\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{E87A09CB-C66F-48A0-88F5-2C5B17245375}|src\\LinkPoint.Core\\LinkPoint.Core.csproj|c:\\users\\user\\source\\repos\\linkpoint\\src\\linkpoint.core\\entities\\conversation.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{E87A09CB-C66F-48A0-88F5-2C5B17245375}|src\\LinkPoint.Core\\LinkPoint.Core.csproj|solutionrelative:src\\linkpoint.core\\entities\\conversation.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{3089F750-426F-4032-BB8D-33FC0FA9E42E}|LinkPoint.Business\\LinkPoint.Business.csproj|c:\\users\\user\\source\\repos\\linkpoint\\linkpoint.business\\hubs\\chathub.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{3089F750-426F-4032-BB8D-33FC0FA9E42E}|LinkPoint.Business\\LinkPoint.Business.csproj|solutionrelative:linkpoint.business\\hubs\\chathub.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{CF92D72E-4C6F-4F37-8804-3196252F92F7}|src\\LinkPoint.Data\\LinkPoint.Data.csproj|c:\\users\\user\\source\\repos\\linkpoint\\src\\linkpoint.data\\contexts\\linkpointdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{CF92D72E-4C6F-4F37-8804-3196252F92F7}|src\\LinkPoint.Data\\LinkPoint.Data.csproj|solutionrelative:src\\linkpoint.data\\contexts\\linkpointdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{CF92D72E-4C6F-4F37-8804-3196252F92F7}|src\\LinkPoint.Data\\LinkPoint.Data.csproj|c:\\users\\user\\source\\repos\\linkpoint\\src\\linkpoint.data\\repositories\\messagerepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{CF92D72E-4C6F-4F37-8804-3196252F92F7}|src\\LinkPoint.Data\\LinkPoint.Data.csproj|solutionrelative:src\\linkpoint.data\\repositories\\messagerepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{E87A09CB-C66F-48A0-88F5-2C5B17245375}|src\\LinkPoint.Core\\LinkPoint.Core.csproj|c:\\users\\user\\source\\repos\\linkpoint\\src\\linkpoint.core\\entities\\message.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{E87A09CB-C66F-48A0-88F5-2C5B17245375}|src\\LinkPoint.Core\\LinkPoint.Core.csproj|solutionrelative:src\\linkpoint.core\\entities\\message.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{E87A09CB-C66F-48A0-88F5-2C5B17245375}|src\\LinkPoint.Core\\LinkPoint.Core.csproj|c:\\users\\user\\source\\repos\\linkpoint\\src\\linkpoint.core\\entities\\appuser.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{E87A09CB-C66F-48A0-88F5-2C5B17245375}|src\\LinkPoint.Core\\LinkPoint.Core.csproj|solutionrelative:src\\linkpoint.core\\entities\\appuser.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{CF92D72E-4C6F-4F37-8804-3196252F92F7}|src\\LinkPoint.Data\\LinkPoint.Data.csproj|c:\\users\\user\\source\\repos\\linkpoint\\src\\linkpoint.data\\configurations\\messageconfiguration.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{CF92D72E-4C6F-4F37-8804-3196252F92F7}|src\\LinkPoint.Data\\LinkPoint.Data.csproj|solutionrelative:src\\linkpoint.data\\configurations\\messageconfiguration.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{CF92D72E-4C6F-4F37-8804-3196252F92F7}|src\\LinkPoint.Data\\LinkPoint.Data.csproj|c:\\users\\user\\source\\repos\\linkpoint\\src\\linkpoint.data\\configurations\\appuserconfiguration.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{CF92D72E-4C6F-4F37-8804-3196252F92F7}|src\\LinkPoint.Data\\LinkPoint.Data.csproj|solutionrelative:src\\linkpoint.data\\configurations\\appuserconfiguration.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{CF92D72E-4C6F-4F37-8804-3196252F92F7}|src\\LinkPoint.Data\\LinkPoint.Data.csproj|c:\\users\\user\\source\\repos\\linkpoint\\src\\linkpoint.data\\configurations\\conversationconfiguration.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{CF92D72E-4C6F-4F37-8804-3196252F92F7}|src\\LinkPoint.Data\\LinkPoint.Data.csproj|solutionrelative:src\\linkpoint.data\\configurations\\conversationconfiguration.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{E87A09CB-C66F-48A0-88F5-2C5B17245375}|src\\LinkPoint.Core\\LinkPoint.Core.csproj|c:\\users\\user\\source\\repos\\linkpoint\\src\\linkpoint.core\\repositories\\imessagerepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{E87A09CB-C66F-48A0-88F5-2C5B17245375}|src\\LinkPoint.Core\\LinkPoint.Core.csproj|solutionrelative:src\\linkpoint.core\\repositories\\imessagerepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -38,97 +22,45 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 6,
+          "SelectedChildIndex": 0,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "MessageConfiguration.cs",
-              "DocumentMoniker": "C:\\Users\\user\\source\\repos\\LinkPoint\\src\\LinkPoint.Data\\Configurations\\MessageConfiguration.cs",
-              "RelativeDocumentMoniker": "src\\LinkPoint.Data\\Configurations\\MessageConfiguration.cs",
-              "ToolTip": "C:\\Users\\user\\source\\repos\\LinkPoint\\src\\LinkPoint.Data\\Configurations\\MessageConfiguration.cs",
-              "RelativeToolTip": "src\\LinkPoint.Data\\Configurations\\MessageConfiguration.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAwAAABGAAAA",
+              "DocumentIndex": 0,
+              "Title": "ChatHub.cs",
+              "DocumentMoniker": "C:\\Users\\user\\source\\repos\\LinkPoint\\LinkPoint.Business\\Hubs\\ChatHub.cs",
+              "RelativeDocumentMoniker": "LinkPoint.Business\\Hubs\\ChatHub.cs",
+              "ToolTip": "C:\\Users\\user\\source\\repos\\LinkPoint\\LinkPoint.Business\\Hubs\\ChatHub.cs",
+              "RelativeToolTip": "LinkPoint.Business\\Hubs\\ChatHub.cs",
+              "ViewState": "AQIAAAgAAAAAAAAAAAAIwBMAAAAcAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-05-20T05:14:17.707Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 6,
-              "Title": "ConversationConfiguration.cs",
-              "DocumentMoniker": "C:\\Users\\user\\source\\repos\\LinkPoint\\src\\LinkPoint.Data\\Configurations\\ConversationConfiguration.cs",
-              "RelativeDocumentMoniker": "src\\LinkPoint.Data\\Configurations\\ConversationConfiguration.cs",
-              "ToolTip": "C:\\Users\\user\\source\\repos\\LinkPoint\\src\\LinkPoint.Data\\Configurations\\ConversationConfiguration.cs",
-              "RelativeToolTip": "src\\LinkPoint.Data\\Configurations\\ConversationConfiguration.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAwAAAAAAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-05-20T04:56:10.149Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 5,
-              "Title": "AppUserConfiguration.cs",
-              "DocumentMoniker": "C:\\Users\\user\\source\\repos\\LinkPoint\\src\\LinkPoint.Data\\Configurations\\AppUserConfiguration.cs",
-              "RelativeDocumentMoniker": "src\\LinkPoint.Data\\Configurations\\AppUserConfiguration.cs",
-              "ToolTip": "C:\\Users\\user\\source\\repos\\LinkPoint\\src\\LinkPoint.Data\\Configurations\\AppUserConfiguration.cs",
-              "RelativeToolTip": "src\\LinkPoint.Data\\Configurations\\AppUserConfiguration.cs",
-              "ViewState": "AQIAADEAAAAAAAAAAAAQwEsAAAAjAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-05-20T04:43:40.422Z",
+              "WhenOpened": "2024-05-20T05:48:01.608Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 1,
-              "Title": "LinkPointDbContext.cs",
-              "DocumentMoniker": "C:\\Users\\user\\source\\repos\\LinkPoint\\src\\LinkPoint.Data\\Contexts\\LinkPointDbContext.cs",
-              "RelativeDocumentMoniker": "src\\LinkPoint.Data\\Contexts\\LinkPointDbContext.cs",
-              "ToolTip": "C:\\Users\\user\\source\\repos\\LinkPoint\\src\\LinkPoint.Data\\Contexts\\LinkPointDbContext.cs",
-              "RelativeToolTip": "src\\LinkPoint.Data\\Contexts\\LinkPointDbContext.cs",
-              "ViewState": "AQIAAAwAAAAAAAAAAAA1wBkAAAAzAAAA",
+              "Title": "MessageRepository.cs",
+              "DocumentMoniker": "C:\\Users\\user\\source\\repos\\LinkPoint\\src\\LinkPoint.Data\\Repositories\\MessageRepository.cs",
+              "RelativeDocumentMoniker": "src\\LinkPoint.Data\\Repositories\\MessageRepository.cs",
+              "ToolTip": "C:\\Users\\user\\source\\repos\\LinkPoint\\src\\LinkPoint.Data\\Repositories\\MessageRepository.cs",
+              "RelativeToolTip": "src\\LinkPoint.Data\\Repositories\\MessageRepository.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAsAAAABAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-05-19T11:13:10.997Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "AppUser.cs",
-              "DocumentMoniker": "C:\\Users\\user\\source\\repos\\LinkPoint\\src\\LinkPoint.Core\\Entities\\AppUser.cs",
-              "RelativeDocumentMoniker": "src\\LinkPoint.Core\\Entities\\AppUser.cs",
-              "ToolTip": "C:\\Users\\user\\source\\repos\\LinkPoint\\src\\LinkPoint.Core\\Entities\\AppUser.cs",
-              "RelativeToolTip": "src\\LinkPoint.Core\\Entities\\AppUser.cs",
-              "ViewState": "AQIAAAYAAAAAAAAAAAA1wBMAAAA2AAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-05-19T11:10:40.494Z",
+              "WhenOpened": "2024-05-20T05:46:12.839Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 2,
-              "Title": "Message.cs",
-              "DocumentMoniker": "C:\\Users\\user\\source\\repos\\LinkPoint\\src\\LinkPoint.Core\\Entities\\Message.cs",
-              "RelativeDocumentMoniker": "src\\LinkPoint.Core\\Entities\\Message.cs",
-              "ToolTip": "C:\\Users\\user\\source\\repos\\LinkPoint\\src\\LinkPoint.Core\\Entities\\Message.cs",
-              "RelativeToolTip": "src\\LinkPoint.Core\\Entities\\Message.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAwAAAAAAAAA",
+              "Title": "IMessageRepository.cs",
+              "DocumentMoniker": "C:\\Users\\user\\source\\repos\\LinkPoint\\src\\LinkPoint.Core\\Repositories\\IMessageRepository.cs",
+              "RelativeDocumentMoniker": "src\\LinkPoint.Core\\Repositories\\IMessageRepository.cs",
+              "ToolTip": "C:\\Users\\user\\source\\repos\\LinkPoint\\src\\LinkPoint.Core\\Repositories\\IMessageRepository.cs",
+              "RelativeToolTip": "src\\LinkPoint.Core\\Repositories\\IMessageRepository.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAcAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-05-19T11:01:34.195Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "Conversation.cs",
-              "DocumentMoniker": "C:\\Users\\user\\source\\repos\\LinkPoint\\src\\LinkPoint.Core\\Entities\\Conversation.cs",
-              "RelativeDocumentMoniker": "src\\LinkPoint.Core\\Entities\\Conversation.cs",
-              "ToolTip": "C:\\Users\\user\\source\\repos\\LinkPoint\\src\\LinkPoint.Core\\Entities\\Conversation.cs",
-              "RelativeToolTip": "src\\LinkPoint.Core\\Entities\\Conversation.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAoAAAABAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-05-19T10:58:37.194Z",
+              "WhenOpened": "2024-05-20T05:45:09.795Z",
               "EditorCaption": ""
             }
           ]
