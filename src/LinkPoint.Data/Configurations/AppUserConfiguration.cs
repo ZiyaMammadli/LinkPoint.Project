@@ -62,6 +62,21 @@ public class AppUserConfiguration : IEntityTypeConfiguration<AppUser>
             .WithOne(i=>i.User)
             .HasForeignKey(i=>i.UserId)
             .OnDelete(DeleteBehavior.Cascade);
+        builder
+            .HasMany(u=>u.ConversationsAsUser1)
+            .WithOne(conv=>conv.User1)
+            .HasForeignKey(conv=>conv.User1Id)
+            .OnDelete(DeleteBehavior.NoAction);
+        builder
+            .HasMany(u=>u.ConversationsAsUser2)
+            .WithOne(conv=>conv.User2)
+            .HasForeignKey(conv=>conv.User2Id)
+            .OnDelete(DeleteBehavior.NoAction); 
+        builder
+            .HasMany(u=>u.messages)
+            .WithOne(m=>m.User)
+            .HasForeignKey(m=>m.UserId)
+            .OnDelete(DeleteBehavior.NoAction);
     }
 }
     

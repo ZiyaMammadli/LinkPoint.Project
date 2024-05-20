@@ -150,6 +150,43 @@ namespace LinkPoint.Data.Migrations
                     b.ToTable("Comments");
                 });
 
+            modelBuilder.Entity("LinkPoint.Core.Entities.Conversation", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<DateTime>("CreatedDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("bit");
+
+                    b.Property<DateTime?>("LastMessageDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime>("UpdatedDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("User1Id")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("User2Id")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(450)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("User1Id");
+
+                    b.HasIndex("User2Id");
+
+                    b.ToTable("Conversations");
+                });
+
             modelBuilder.Entity("LinkPoint.Core.Entities.FriendShip", b =>
                 {
                     b.Property<int>("Id")
@@ -263,6 +300,44 @@ namespace LinkPoint.Data.Migrations
                     b.HasIndex("UserId");
 
                     b.ToTable("Likes");
+                });
+
+            modelBuilder.Entity("LinkPoint.Core.Entities.Message", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("Content")
+                        .IsRequired()
+                        .HasMaxLength(240)
+                        .HasColumnType("nvarchar(240)");
+
+                    b.Property<int>("ConversationId")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("CreatedDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("bit");
+
+                    b.Property<DateTime>("UpdatedDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("UserId")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(450)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("ConversationId");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("Messages");
                 });
 
             modelBuilder.Entity("LinkPoint.Core.Entities.Post", b =>
@@ -668,6 +743,25 @@ namespace LinkPoint.Data.Migrations
                     b.Navigation("User");
                 });
 
+            modelBuilder.Entity("LinkPoint.Core.Entities.Conversation", b =>
+                {
+                    b.HasOne("LinkPoint.Core.Entities.AppUser", "User1")
+                        .WithMany("ConversationsAsUser1")
+                        .HasForeignKey("User1Id")
+                        .OnDelete(DeleteBehavior.NoAction)
+                        .IsRequired();
+
+                    b.HasOne("LinkPoint.Core.Entities.AppUser", "User2")
+                        .WithMany("ConversationsAsUser2")
+                        .HasForeignKey("User2Id")
+                        .OnDelete(DeleteBehavior.NoAction)
+                        .IsRequired();
+
+                    b.Navigation("User1");
+
+                    b.Navigation("User2");
+                });
+
             modelBuilder.Entity("LinkPoint.Core.Entities.FriendShip", b =>
                 {
                     b.HasOne("LinkPoint.Core.Entities.AppUser", "FollowingUser")
@@ -719,6 +813,25 @@ namespace LinkPoint.Data.Migrations
                         .IsRequired();
 
                     b.Navigation("Post");
+
+                    b.Navigation("User");
+                });
+
+            modelBuilder.Entity("LinkPoint.Core.Entities.Message", b =>
+                {
+                    b.HasOne("LinkPoint.Core.Entities.Conversation", "Conversation")
+                        .WithMany("messages")
+                        .HasForeignKey("ConversationId")
+                        .OnDelete(DeleteBehavior.NoAction)
+                        .IsRequired();
+
+                    b.HasOne("LinkPoint.Core.Entities.AppUser", "User")
+                        .WithMany("messages")
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.NoAction)
+                        .IsRequired();
+
+                    b.Navigation("Conversation");
 
                     b.Navigation("User");
                 });
@@ -842,6 +955,10 @@ namespace LinkPoint.Data.Migrations
 
             modelBuilder.Entity("LinkPoint.Core.Entities.AppUser", b =>
                 {
+                    b.Navigation("ConversationsAsUser1");
+
+                    b.Navigation("ConversationsAsUser2");
+
                     b.Navigation("FollowingFriendships");
 
                     b.Navigation("Friendships");
@@ -862,6 +979,13 @@ namespace LinkPoint.Data.Migrations
                     b.Navigation("comments");
 
                     b.Navigation("likes");
+
+                    b.Navigation("messages");
+                });
+
+            modelBuilder.Entity("LinkPoint.Core.Entities.Conversation", b =>
+                {
+                    b.Navigation("messages");
                 });
 
             modelBuilder.Entity("LinkPoint.Core.Entities.Post", b =>

@@ -149,6 +149,27 @@
   },
   {
     "ContainingType": "LinkPoint.API.Controllers.AccountSettingsController",
+    "Method": "DeleteUserBackgroundImage",
+    "RelativePath": "api/AccountSettings/DeleteUserBackgroundImage/{ImageId}",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "ImageId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      },
+      {
+        "Name": "backgroundImageDeleteDto",
+        "Type": "LinkPoint.Business.DTOs.AccountSettingsDTOs.BackgroundImageDTOs.BackgroundImageDeleteDto",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "LinkPoint.API.Controllers.AccountSettingsController",
     "Method": "DeleteUserInterest",
     "RelativePath": "api/AccountSettings/DeleteUserInterest/{Id}",
     "HttpMethod": "DELETE",
@@ -163,6 +184,27 @@
       {
         "Name": "userInterestDeleteDto",
         "Type": "LinkPoint.Business.DTOs.AccountSettingsDTOs.UserInterestDTOs.UserInterestDeleteDto",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "LinkPoint.API.Controllers.AccountSettingsController",
+    "Method": "DeleteUserProfileImage",
+    "RelativePath": "api/AccountSettings/DeleteUserProfileImage/{ImageId}",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "ImageId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      },
+      {
+        "Name": "profileImageDeleteDto",
+        "Type": "LinkPoint.Business.DTOs.AccountSettingsDTOs.ProfileImageDTOs.ProfileImageDeleteDto",
         "IsRequired": true
       }
     ],
@@ -255,6 +297,27 @@
   },
   {
     "ContainingType": "LinkPoint.API.Controllers.AccountSettingsController",
+    "Method": "UpdateUserBacgroundImage",
+    "RelativePath": "api/AccountSettings/UpdateUserBacgroundImage/{ImageId}",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "ImageId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      },
+      {
+        "Name": "BackgroundImage",
+        "Type": "Microsoft.AspNetCore.Http.IFormFile",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "LinkPoint.API.Controllers.AccountSettingsController",
     "Method": "UpdateUserEducation",
     "RelativePath": "api/AccountSettings/UpdateUserEducation/{Id}",
     "HttpMethod": "PUT",
@@ -270,6 +333,27 @@
         "Name": "userEducationPutDto",
         "Type": "LinkPoint.Business.DTOs.AccountSettingsDTOs.UserEducationDTOs.UserEducationPutDto",
         "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "LinkPoint.API.Controllers.AccountSettingsController",
+    "Method": "UpdateUserProfileImage",
+    "RelativePath": "api/AccountSettings/UpdateUserProfileImage/{ImageId}",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "ImageId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      },
+      {
+        "Name": "ProfileImage",
+        "Type": "Microsoft.AspNetCore.Http.IFormFile",
+        "IsRequired": false
       }
     ],
     "ReturnTypes": []

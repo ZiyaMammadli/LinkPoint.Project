@@ -1,6 +1,7 @@
 
 using Google.Apis.Auth.OAuth2;
 using Google.Cloud.Storage.V1;
+using LinkPoint.Business.Hubs;
 using LinkPoint.Business.ServiceRegistirations;
 using LinkPoint.Core.Entities;
 using LinkPoint.Data.Contexts;
@@ -73,7 +74,7 @@ app.UseHttpsRedirection();
 
 app.UseAuthentication();
 app.UseAuthorization();
-
+app.UseCors();
 app.MapControllers();
-
+app.MapHub<ChatHub>("/Chat");   
 app.Run();

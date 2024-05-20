@@ -19,5 +19,8 @@ public class AppUser:IdentityUser
     public UserEducation? UserEducation { get; set; }
     public List<FriendShip>? Friendships { get; set; }
     public List<FriendShip>? FollowingFriendships { get; set; }
+    public List<Message>? messages { get; set; }
+    public List<Conversation>? ConversationsAsUser1 { get; set; }
+    public List<Conversation>? ConversationsAsUser2 { get; set; }
 
 }

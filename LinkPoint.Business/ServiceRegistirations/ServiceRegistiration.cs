@@ -35,5 +35,16 @@ public static class ServiceRegistiration
             opt.RegisterValidatorsFromAssembly(typeof(UserAboutPutValidator).Assembly);
         });
         services.AddAutoMapper(typeof(UserEducationMapProfile));
+        services.AddSignalR();
+        services.AddCors(opt =>
+        {
+            opt.AddDefaultPolicy(policy =>
+            {
+                policy.AllowCredentials();  
+                policy.AllowAnyHeader();
+                policy.AllowAnyMethod();
+                policy.SetIsOriginAllowed(x => true);
+            });
+        });
     }
 }

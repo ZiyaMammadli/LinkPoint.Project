@@ -192,7 +192,7 @@ public class AccountSettingsService : IAccountSettingsService
         string apiKey = _configuration["GoogleCloud:ApiKey"];
         //int startIndex = currentImage.ImageUrl.Length-55;
         //int lentgh = 55;
-        string fileName=currentImage.ImageUrl.Substring(50);
+        string fileName=currentImage.ImageUrl.Substring(49);
         await FileManager.DeleteFile(fileName, apiKey,"Images");
         currentImage.ImageUrl = profileImagePostDto.ProfileImage.SaveFile(apiKey, "Images");
         currentImage.UpdatedDate = DateTime.UtcNow;
@@ -205,7 +205,7 @@ public class AccountSettingsService : IAccountSettingsService
         var currentImage = await _imageRepository.GetByIdAsync(profileImageDeleteDto.ImageId);
         if (currentImage is null) throw new ImageNotFoundException(404, "Image is not found");
         string apiKey = _configuration["GoogleCloud:ApiKey"];
-        string fileName = currentImage.ImageUrl.Substring(50);
+        string fileName = currentImage.ImageUrl.Substring(49);
         await FileManager.DeleteFile(fileName, apiKey, "Images");
         var userName = _httpContextAccessor.HttpContext.Request.Cookies["UserName"];
         string username = JsonConvert.DeserializeObject<string>(userName);
@@ -223,6 +223,7 @@ public class AccountSettingsService : IAccountSettingsService
             CreatedDate = DateTime.UtcNow,
             UpdatedDate = DateTime.UtcNow,
         };
+        _imageRepository.Delete(currentImage);
         await _imageRepository.InsertAsync(ProfileImage);
         await _imageRepository.CommitAsync();
     }
@@ -233,7 +234,7 @@ public class AccountSettingsService : IAccountSettingsService
         var currentImage = await _imageRepository.GetByIdAsync(backgroundImagePutDto.ImageId);
         if (currentImage is null) throw new ImageNotFoundException(404, "Image is not found");
         string apiKey = _configuration["GoogleCloud:ApiKey"];
-        string fileName = currentImage.ImageUrl.Substring(50);
+        string fileName = currentImage.ImageUrl.Substring(49);
         await FileManager.DeleteFile(fileName, apiKey, "Images");
         currentImage.ImageUrl = backgroundImagePutDto.BackgroundImage.SaveFile(apiKey, "Images");
         currentImage.UpdatedDate = DateTime.UtcNow;
@@ -246,7 +247,7 @@ public class AccountSettingsService : IAccountSettingsService
         var currentImage = await _imageRepository.GetByIdAsync(backgroundImageDeleteDto.ImageId);
         if (currentImage is null) throw new ImageNotFoundException(404, "Image is not found");
         string apiKey = _configuration["GoogleCloud:ApiKey"];
-        string fileName = currentImage.ImageUrl.Substring(50);
+        string fileName = currentImage.ImageUrl.Substring(49);
         await FileManager.DeleteFile(fileName, apiKey, "Images");
         var userName = _httpContextAccessor.HttpContext.Request.Cookies["UserName"];
         string username = JsonConvert.DeserializeObject<string>(userName);
@@ -264,6 +265,7 @@ public class AccountSettingsService : IAccountSettingsService
             CreatedDate = DateTime.UtcNow,
             UpdatedDate = DateTime.UtcNow,
         };
+        _imageRepository.Delete(currentImage);
         await _imageRepository.InsertAsync(BackgroundImage);
         await _imageRepository.CommitAsync();
     }
