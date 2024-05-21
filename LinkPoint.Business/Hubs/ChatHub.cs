@@ -26,13 +26,13 @@ public class ChatHub:Hub
         await Clients.Group(conversationId.ToString()).SendAsync("ReceiveMessage",userId, messageContent);
     }
 
-    public async Task JoinConservationAsync(int conversationId)
+    public async Task JoinConversationAsync(int conversationId)
     {
         await Groups.AddToGroupAsync(Context.ConnectionId, conversationId.ToString());
     }
 
-    public async Task LeaveConservationAsync(int conversationId)
-    {
+    public async Task LeaveConversationAsync(int conversationId)
+    {           
         await Groups.RemoveFromGroupAsync(Context.ConnectionId, conversationId.ToString());
     }
 }

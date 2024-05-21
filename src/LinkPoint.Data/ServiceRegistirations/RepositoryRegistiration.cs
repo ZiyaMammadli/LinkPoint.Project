@@ -18,5 +18,7 @@ public static class RepositoryRegistiration
         services.AddScoped<IVideoRepository, VideoRepository>();
         services.AddScoped<ICommentRepository, CommentRepository>();
         services.AddScoped<ILikeRepository, LikeRepository>();
+        services.AddScoped<IMessageRepository, MessageRepository>();
+        services.AddScoped<IConversationRepository, ConversationRepository>();
     }
 }
