@@ -71,5 +71,22 @@ namespace LinkPoint.API.Controllers
                 return BadRequest(ex.Message);  
             }
         }
+        [HttpPost("[action]/{User2Id}")]
+        public async Task<IActionResult> CreateConversation(string User2Id)
+        {
+            try
+            {
+                await _conversationService.CreateConversationAsync(User2Id);
+                return Ok();
+            }
+            catch (UserNotFoundException ex)
+            {
+                return StatusCode(ex.StatusCode, ex.Message);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
     }
 }

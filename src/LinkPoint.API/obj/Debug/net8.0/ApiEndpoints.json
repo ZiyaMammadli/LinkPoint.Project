@@ -454,6 +454,48 @@
     "ReturnTypes": []
   },
   {
+    "ContainingType": "LinkPoint.API.Controllers.ConversationsController",
+    "Method": "CreateConversation",
+    "RelativePath": "api/Conversations/CreateConversation/{User2Id}",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "User2Id",
+        "Type": "System.String",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "LinkPoint.API.Controllers.ConversationsController",
+    "Method": "GetAllConversations",
+    "RelativePath": "api/Conversations/GetAllConversations",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "LinkPoint.API.Controllers.ConversationsController",
+    "Method": "GetByIdConversation",
+    "RelativePath": "api/Conversations/GetByIdConversation/{conversationId}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "conversationId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
     "ContainingType": "LinkPoint.API.Controllers.FriendShipsController",
     "Method": "AcceptFriendShipRequest",
     "RelativePath": "api/FriendShips/AcceptFriendShipRequest/{friendShipId}",
