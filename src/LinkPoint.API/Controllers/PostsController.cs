@@ -39,6 +39,46 @@ namespace LinkPoint.API.Controllers
             }
         }
         [HttpGet("[action]")]
+        public async Task<IActionResult> GetAllPostsForImage() 
+        {
+            try
+            {
+                return Ok(await _postService.GetAllPostsForImageAsync());
+            }
+            catch(PostNotFoundException ex)
+            {
+                return StatusCode(ex.StatusCode,ex.Message);    
+            } 
+            catch(ProfileImageNotFoundException ex)
+            {
+                return StatusCode(ex.StatusCode,ex.Message);    
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
+        [HttpGet("[action]")]
+        public async Task<IActionResult> GetAllPostsForVideo() 
+        {
+            try
+            {
+                return Ok(await _postService.GetAllPostsForVideoAsync());
+            }
+            catch(PostNotFoundException ex)
+            {
+                return StatusCode(ex.StatusCode,ex.Message);    
+            } 
+            catch(ProfileImageNotFoundException ex)
+            {
+                return StatusCode(ex.StatusCode,ex.Message);    
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
+        [HttpGet("[action]")]
         public async Task<IActionResult> GetAllAuthUserPosts()
         {
             try
@@ -46,6 +86,58 @@ namespace LinkPoint.API.Controllers
                 return Ok(await _postService.GetAllAuthUserPostsAsync());
             }
             catch (UserNotFoundException ex)
+            {
+                return StatusCode(ex.StatusCode, ex.Message);
+            }
+            catch (ProfileImageNotFoundException ex)
+            {
+                return StatusCode(ex.StatusCode, ex.Message);
+            }
+            catch (PostNotFoundException ex)
+            {
+                return StatusCode(ex.StatusCode, ex.Message);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
+        [HttpGet("[action]")]
+        public async Task<IActionResult> GetAllAuthUserPostsForVideo()
+        {
+            try
+            {
+                return Ok(await _postService.GetAllAuthUserPostsForVideoAsync());
+            }
+            catch (UserNotFoundException ex)
+            {
+                return StatusCode(ex.StatusCode, ex.Message);
+            }
+            catch (PostNotFoundException ex)
+            {
+                return StatusCode(ex.StatusCode, ex.Message);
+            }
+            catch (ProfileImageNotFoundException ex)
+            {
+                return StatusCode(ex.StatusCode, ex.Message);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
+        [HttpGet("[action]")]
+        public async Task<IActionResult> GetAllAuthUserPostsForImage()
+        {
+            try
+            {
+                return Ok(await _postService.GetAllAuthUserPostsForImageAsync());
+            }
+            catch (UserNotFoundException ex)
+            {
+                return StatusCode(ex.StatusCode, ex.Message);
+            }
+            catch (PostNotFoundException ex)
             {
                 return StatusCode(ex.StatusCode, ex.Message);
             }

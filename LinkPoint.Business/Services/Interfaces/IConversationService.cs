@@ -6,5 +6,5 @@ public interface IConversationService
 {
     Task<List<ConversationGetDto>> GetAllConversationsAsync();//
     Task<ConversationGetDto> GetByIdConversationAsync(int conversationId);//
-    Task CreateConversationAsync(string User2Id); 
+    Task CreateConversationAsync(string User2Id);// 
 }
