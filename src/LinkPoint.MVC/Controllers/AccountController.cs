@@ -28,9 +28,10 @@ namespace LinkPoint.MVC.Controllers
                 var response = await client.PostAsJsonAsync(baseAdress + "/Account/Login", loginViewModel);
                 if (response.IsSuccessStatusCode)
                 {
-                    var tokenResponse=await response.Content.ReadFromJsonAsync<TokenViewModel>();
+                    var tokenResponse = await response.Content.ReadFromJsonAsync<TokenViewModel>();
                     HttpContext.Session.SetString("JWToken", tokenResponse.AccesToken);
-                    return RedirectToAction("Index","home");
+                    HttpContext.Response.Cookies.Append("UserId",tokenResponse.UserId);
+                    return RedirectToAction("Index", "NewsFeed");
                 }
                 else
                 {

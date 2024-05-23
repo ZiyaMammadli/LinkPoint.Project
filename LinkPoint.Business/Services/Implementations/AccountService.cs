@@ -1,4 +1,5 @@
-﻿using LinkPoint.Business.DTOs.AccountDTOs;
+﻿using Google.Apis.Auth.OAuth2.Responses;
+using LinkPoint.Business.DTOs.AccountDTOs;
 using LinkPoint.Business.Services.Interfaces;
 using LinkPoint.Business.Utilities.Exceptions.CommonExceptions;
 using LinkPoint.Business.Utilities.Exceptions.ConfirmedExceptions;
@@ -113,17 +114,14 @@ public class AccountService:IAccountService
            
             var result1 = await _signInManager.PasswordSignInAsync(user, loginDto.Password, false, false);
             if (!result1.Succeeded) throw new InvalidCredentialsException(401,"incorrect password or username");
-            var username= JsonConvert.SerializeObject(user.UserName);
-
-            _httpContextAccessor.HttpContext.Response.Cookies.Append("UserName", username);
-            
         }
         else
         {
             throw new EmailConfirmedException(401,"Email must be confirmed");
         }
-        return await GenerateTokenAsync(user);
-
+        var tokens = await GenerateTokenAsync(user);
+        tokens.UserId = user.Id;
+        return tokens;
     }
 
     public async Task<TokenDto> RefreshTokenLoginAsync(string refreshToken)
@@ -244,7 +242,6 @@ public class AccountService:IAccountService
     public async Task LogOutAsync()
     {
         await _signInManager.SignOutAsync();
-        _httpContextAccessor.HttpContext.Response.Cookies.Delete("UserName");
     }
 
     public async Task ForgotPassword(ForgotPasswordDto forgotPasswordDto)

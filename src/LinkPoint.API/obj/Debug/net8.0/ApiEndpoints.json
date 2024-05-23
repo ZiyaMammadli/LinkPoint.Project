@@ -228,6 +228,22 @@
   },
   {
     "ContainingType": "LinkPoint.API.Controllers.AccountSettingsController",
+    "Method": "GetAuthUserInfo",
+    "RelativePath": "api/AccountSettings/GetAuthUserInfo/{UserId}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "UserId",
+        "Type": "System.String",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "LinkPoint.API.Controllers.AccountSettingsController",
     "Method": "GetUserAbout",
     "RelativePath": "api/AccountSettings/GetUserAbout/{UserId}",
     "HttpMethod": "GET",
@@ -514,11 +530,16 @@
   {
     "ContainingType": "LinkPoint.API.Controllers.FriendShipsController",
     "Method": "AddToFriendShip",
-    "RelativePath": "api/FriendShips/AddToFriendShip/{followingUserId}",
+    "RelativePath": "api/FriendShips/AddToFriendShip/{UserId}/{followingUserId}",
     "HttpMethod": "POST",
     "IsController": true,
     "Order": 0,
     "Parameters": [
+      {
+        "Name": "UserId",
+        "Type": "System.String",
+        "IsRequired": true
+      },
       {
         "Name": "followingUserId",
         "Type": "System.String",
@@ -540,11 +561,17 @@
   {
     "ContainingType": "LinkPoint.API.Controllers.FriendShipsController",
     "Method": "GetAllAcceptedFollowingUsers",
-    "RelativePath": "api/FriendShips/GetAllAcceptedFollowingUsers",
+    "RelativePath": "api/FriendShips/GetAllAcceptedFollowingUsers/{UserId}",
     "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,
-    "Parameters": [],
+    "Parameters": [
+      {
+        "Name": "UserId",
+        "Type": "System.String",
+        "IsRequired": true
+      }
+    ],
     "ReturnTypes": []
   },
   {

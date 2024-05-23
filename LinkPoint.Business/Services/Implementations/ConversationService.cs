@@ -29,12 +29,10 @@ public class ConversationService : IConversationService
         _messageRepository = messageRepository;
         _httpContextAccessor = httpContextAccessor;
     }
-    public async Task CreateConversationAsync(string User2Id)
+    public async Task CreateConversationAsync(string UserId,string User2Id)
     {
         if (User2Id is null) throw new UserNotFoundException(404, "User is not found");
-        var userName = _httpContextAccessor.HttpContext.Request.Cookies["UserName"];
-        var username=JsonConvert.DeserializeObject<string>(userName);
-        var user=await _userManager.FindByNameAsync(username);
+        var user=await _userManager.FindByIdAsync(UserId);
         if (user is null) throw new UserNotFoundException(404, "User is not found");
         Conversation conversation = new Conversation()
         {

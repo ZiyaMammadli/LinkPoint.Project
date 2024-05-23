@@ -12,7 +12,7 @@ namespace LinkPoint.Business.Services.Interfaces;
 
 public interface IAccountSettingsService
 {
-    Task<AuthUserGetDto> GetAuthUserInfo();
+    Task<AuthUserGetDto> GetAuthUserInfoAsync(string UserId);//
     Task UpdateUserAboutAsync(int Id,UserAboutPutDto userAboutPutDto);//
     Task<UserAboutGetDto> GetUserAboutAsync(string UserId);//
     Task CreateUserWorkAsync(UserWorkPostDto userWorkPostDto);//

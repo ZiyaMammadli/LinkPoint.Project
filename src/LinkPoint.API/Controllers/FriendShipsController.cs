@@ -1,6 +1,7 @@
 ﻿using LinkPoint.Business.Services.Interfaces;
 using LinkPoint.Business.Utilities.Exceptions.NotFoundExceptions;
 using Microsoft.AspNetCore.Mvc;
+using System.Globalization;
 
 namespace LinkPoint.API.Controllers
 {
@@ -14,12 +15,12 @@ namespace LinkPoint.API.Controllers
         {
             _friendShipService = friendShipService;
         }
-        [HttpGet("[action]")]
-        public async Task<IActionResult> GetAllAcceptedFollowingUsers()
+        [HttpGet("[action]/{UserId}")]
+        public async Task<IActionResult> GetAllAcceptedFollowingUsers(string UserId)
         {
             try
             {
-                return Ok(await _friendShipService.GetAllAcceptedFollowingUsersAsync());
+                return Ok(await _friendShipService.GetAllAcceptedFollowingUsersAsync(UserId));
             }
             catch(UserNotFoundException ex)
             {
@@ -38,12 +39,12 @@ namespace LinkPoint.API.Controllers
                 return BadRequest(ex.Message);
             }
         }
-        [HttpGet("[action]")]
-        public async Task<IActionResult> GetAllAcceptedFollowerUsers()
+        [HttpGet("[action]/{UserId}")]
+        public async Task<IActionResult> GetAllAcceptedFollowerUsers(string UserId)
         {
             try
             {
-                return Ok(await _friendShipService.GetAllAcceptedFollowerUsersAsync());
+                return Ok(await _friendShipService.GetAllAcceptedFollowerUsersAsync(UserId));
             }
             catch (UserNotFoundException ex)
             {
@@ -62,12 +63,12 @@ namespace LinkPoint.API.Controllers
                 return BadRequest(ex.Message);
             }
         }
-        [HttpGet("[action]")]
-        public async Task<IActionResult> GetAllPendingFollowerUsers()
+        [HttpGet("[action]/{UserId}")]
+        public async Task<IActionResult> GetAllPendingFollowerUsers(string UserId)
         {
             try
             {
-                return Ok(await _friendShipService.GetAllPendingFollowerUsersAsync());
+                return Ok(await _friendShipService.GetAllPendingFollowerUsersAsync(UserId));
             }
             catch (UserNotFoundException ex)
             {
@@ -86,12 +87,12 @@ namespace LinkPoint.API.Controllers
                 return BadRequest(ex.Message);
             }
         }
-        [HttpPost("[action]/{followingUserId}")]
-        public async Task<IActionResult> AddToFriendShip(string followingUserId)
+        [HttpPost("[action]/{UserId}/{followingUserId}")]
+        public async Task<IActionResult> AddToFriendShip(string UserId, string followingUserId)
         {
             try
             {
-                await _friendShipService.AddToFriendShipAsync(followingUserId);
+                await _friendShipService.AddToFriendShipAsync(UserId, followingUserId);
                 return Ok();
             }
             catch (UserNotFoundException ex)

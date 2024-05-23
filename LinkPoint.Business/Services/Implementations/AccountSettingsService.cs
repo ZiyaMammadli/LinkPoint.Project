@@ -210,10 +210,8 @@ public class AccountSettingsService : IAccountSettingsService
         if (currentImage is null) throw new ImageNotFoundException(404, "Image is not found");
         string apiKey = _configuration["GoogleCloud:ApiKey"];
         string fileName = currentImage.ImageUrl.Substring(49);
-        await FileManager.DeleteFile(fileName, apiKey, "Images");
-        var userName = _httpContextAccessor.HttpContext.Request.Cookies["UserName"];
-        string username = JsonConvert.DeserializeObject<string>(userName);
-        var user = await _userManager.FindByNameAsync(username);
+        await FileManager.DeleteFile(fileName, apiKey, "Images");        
+        var user = await _userManager.FindByIdAsync(profileImageDeleteDto.UserId);
         if (user is null) throw new UserNotFoundException(404, "User is not found");
         string DefaultImageName = "DefaultPerson.jpg";
         string DefautlImagePath = Path.Combine(_webHostEnvironment.WebRootPath, "UserDefaultProfileImage", DefaultImageName);
@@ -253,9 +251,7 @@ public class AccountSettingsService : IAccountSettingsService
         string apiKey = _configuration["GoogleCloud:ApiKey"];
         string fileName = currentImage.ImageUrl.Substring(49);
         await FileManager.DeleteFile(fileName, apiKey, "Images");
-        var userName = _httpContextAccessor.HttpContext.Request.Cookies["UserName"];
-        string username = JsonConvert.DeserializeObject<string>(userName);
-        var user = await _userManager.FindByNameAsync(username);
+        var user = await _userManager.FindByIdAsync(backgroundImageDeleteDto.UserId);
         if (user is null) throw new UserNotFoundException(404, "User is not found");
         string DefaultImageName = "DefaultBackgraoundImage.jpg";
         string DefautlImagePath = Path.Combine(_webHostEnvironment.WebRootPath, "UserDefaultProfileImage", DefaultImageName);
@@ -274,16 +270,14 @@ public class AccountSettingsService : IAccountSettingsService
         await _imageRepository.CommitAsync();
     }
 
-    public async Task<AuthUserGetDto> GetAuthUserInfo()
+    public async Task<AuthUserGetDto> GetAuthUserInfoAsync(string UserId)
     {
-        var userName = _httpContextAccessor.HttpContext.Request.Cookies["UserName"];
-        string username = JsonConvert.DeserializeObject<string>(userName);
-        var user = await _userManager.FindByNameAsync(username);
+        var user = await _userManager.FindByIdAsync(UserId);
         if (user is null) throw new UserNotFoundException(404, "User is not found");
         var profileImage = await _imageRepository.GetSingleAsync(i => i.UserId == user.Id && i.IsPostImage == false);
         if (profileImage is null) throw new ProfileImageNotFoundException(404, "ProfileImage is not found");
-        var followings=await _friendShipService.GetAllAcceptedFollowingUsersAsync();
-        var followers=await _friendShipService.GetAllPendingFollowerUsersAsync();
+        var followings=await _friendShipService.GetAllAcceptedFollowingUsersAsync(UserId);
+        var followers=await _friendShipService.GetAllAcceptedFollowerUsersAsync(UserId);
         AuthUserGetDto authUserGetDto = new AuthUserGetDto()
         {
             UserId = user.Id,

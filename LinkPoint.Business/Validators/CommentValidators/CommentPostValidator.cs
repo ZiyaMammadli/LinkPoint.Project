@@ -9,6 +9,9 @@ public class CommentPostValidator:AbstractValidator<CommentPostDto>
     {
         RuleFor(c=>c.PostId)
             .NotNull().WithMessage("PostId can't be null")
+            .NotEmpty().WithMessage("PostId can't be empty"); 
+        RuleFor(c=>c.UserId)
+            .NotNull().WithMessage("PostId can't be null")
             .NotEmpty().WithMessage("PostId can't be empty");
         RuleFor(c => c.Text)
            .NotNull().WithMessage("Text can't be null")

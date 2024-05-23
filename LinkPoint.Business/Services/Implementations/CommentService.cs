@@ -43,6 +43,7 @@ public class CommentService : ICommentService
 
             CommentGetDto commentGetDto = new CommentGetDto()
             {
+                CommentId = comment.Id,
                 Text = comment.Text,
                 UserName = comment.User.UserName,
                 UserProfileImage = userProfileImage.ImageUrl,
@@ -56,9 +57,7 @@ public class CommentService : ICommentService
     public async Task CreateCommentAsync(CommentPostDto commentPostDto)
     {
         if (!await _postRepository.IsExist(p => p.Id == commentPostDto.PostId && p.IsDeleted==false)) throw new PostNotFoundException(404, "Post is not found");
-        var userName = _httpContextAccessor.HttpContext.Request.Cookies["UserName"];
-        string username = JsonConvert.DeserializeObject<string>(userName);
-        var user=await _userManager.FindByNameAsync(username);
+        var user=await _userManager.FindByIdAsync(commentPostDto.UserId);
         Comment comment = new Comment()
         {
             PostId = commentPostDto.PostId,

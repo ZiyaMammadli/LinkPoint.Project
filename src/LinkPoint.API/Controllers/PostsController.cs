@@ -78,78 +78,8 @@ namespace LinkPoint.API.Controllers
                 return BadRequest(ex.Message);
             }
         }
-        [HttpGet("[action]")]
-        public async Task<IActionResult> GetAllAuthUserPosts()
-        {
-            try
-            {
-                return Ok(await _postService.GetAllAuthUserPostsAsync());
-            }
-            catch (UserNotFoundException ex)
-            {
-                return StatusCode(ex.StatusCode, ex.Message);
-            }
-            catch (ProfileImageNotFoundException ex)
-            {
-                return StatusCode(ex.StatusCode, ex.Message);
-            }
-            catch (PostNotFoundException ex)
-            {
-                return StatusCode(ex.StatusCode, ex.Message);
-            }
-            catch (Exception ex)
-            {
-                return BadRequest(ex.Message);
-            }
-        }
-        [HttpGet("[action]")]
-        public async Task<IActionResult> GetAllAuthUserPostsForVideo()
-        {
-            try
-            {
-                return Ok(await _postService.GetAllAuthUserPostsForVideoAsync());
-            }
-            catch (UserNotFoundException ex)
-            {
-                return StatusCode(ex.StatusCode, ex.Message);
-            }
-            catch (PostNotFoundException ex)
-            {
-                return StatusCode(ex.StatusCode, ex.Message);
-            }
-            catch (ProfileImageNotFoundException ex)
-            {
-                return StatusCode(ex.StatusCode, ex.Message);
-            }
-            catch (Exception ex)
-            {
-                return BadRequest(ex.Message);
-            }
-        }
-        [HttpGet("[action]")]
-        public async Task<IActionResult> GetAllAuthUserPostsForImage()
-        {
-            try
-            {
-                return Ok(await _postService.GetAllAuthUserPostsForImageAsync());
-            }
-            catch (UserNotFoundException ex)
-            {
-                return StatusCode(ex.StatusCode, ex.Message);
-            }
-            catch (PostNotFoundException ex)
-            {
-                return StatusCode(ex.StatusCode, ex.Message);
-            }
-            catch (ProfileImageNotFoundException ex)
-            {
-                return StatusCode(ex.StatusCode, ex.Message);
-            }
-            catch (Exception ex)
-            {
-                return BadRequest(ex.Message);
-            }
-        }
+        
+        
         [HttpGet("[action]/{UserId}")]
         public async Task<IActionResult> GetAllOneUserPosts(string UserId)
         {

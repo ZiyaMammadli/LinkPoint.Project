@@ -24,6 +24,26 @@ namespace LinkPoint.API.Controllers
             _accountSettingsService = accountSettingsService;
         }
         [HttpGet("[action]/{UserId}")]
+        public async Task<IActionResult> GetAuthUserInfo(string UserId)
+        {
+            try
+            {
+                return Ok(await _accountSettingsService.GetAuthUserInfoAsync(UserId));
+            }
+            catch (ProfileImageNotFoundException ex)
+            {
+                return StatusCode(ex.StatusCode, ex.Message);
+            }
+            catch (UserNotFoundException ex)
+            {
+                return StatusCode(ex.StatusCode, ex.Message);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
+        [HttpGet("[action]/{UserId}")]
         public async Task<IActionResult> GetUserAbout(string UserId)
         {
             try

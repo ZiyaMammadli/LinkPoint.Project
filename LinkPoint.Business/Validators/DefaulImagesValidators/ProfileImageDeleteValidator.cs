@@ -9,6 +9,9 @@ public class ProfileImageDeleteValidator:AbstractValidator<ProfileImageDeleteDto
     {
         RuleFor(p => p.ImageId)
             .NotNull().WithMessage("ImageId can't be null")
+            .NotEmpty().WithMessage("ImageId can't be empty"); 
+        RuleFor(p => p.UserId)
+            .NotNull().WithMessage("ImageId can't be null")
             .NotEmpty().WithMessage("ImageId can't be empty");
     }
 }

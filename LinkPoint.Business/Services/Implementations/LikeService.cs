@@ -59,11 +59,9 @@ public class LikeService : ILikeService
         }
         return likeGetDtos;
     }
-    public async Task AddLikeToPostAsync(int PostId)
+    public async Task AddLikeToPostAsync(string UserId, int PostId)
     {
-        var userName = _httpContextAccessor.HttpContext.Request.Cookies["UserName"];
-        string username = JsonConvert.DeserializeObject<string>(userName);
-        var user = await _userManager.FindByNameAsync(username);
+        var user = await _userManager.FindByIdAsync(UserId);
         if (user is null) throw new UserNotFoundException(404, "User is not found");
         var post=await _postRepository.GetByIdAsync(PostId);
         if (post is null) throw new PostNotFoundException(404, "Post is not found");
@@ -79,11 +77,9 @@ public class LikeService : ILikeService
         await _likeRepository.InsertAsync(like);
         await _likeRepository.CommitAsync();
     }
-    public async Task RemoveLikeFromPostAsync(int PostId)
+    public async Task RemoveLikeFromPostAsync(string UserId,int PostId)
     {
-        var userName = _httpContextAccessor.HttpContext.Request.Cookies["UserName"];
-        string username = JsonConvert.DeserializeObject<string>(userName);
-        var user = await _userManager.FindByNameAsync(username);
+        var user = await _userManager.FindByIdAsync(UserId);
         if (user is null) throw new UserNotFoundException(404, "User is not found");
         var post = await _postRepository.GetByIdAsync(PostId);
         if (post is null) throw new PostNotFoundException(404, "Post is not found");

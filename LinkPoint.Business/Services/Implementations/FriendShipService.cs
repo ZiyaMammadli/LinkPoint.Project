@@ -28,13 +28,11 @@ public class FriendShipService : IFriendShipService
         _mapper = mapper;
         _imageRepository = imageRepository;
     }
-    public async Task AddToFriendShipAsync(string followingUserId)
+    public async Task AddToFriendShipAsync(string UserId,string followingUserId)
     {
         var followingUser= await _userManager.FindByIdAsync(followingUserId);
         if (followingUser is null) throw new UserNotFoundException(404, "User is not found");
-        var userName = _httpContextAccessor.HttpContext.Request.Cookies["UserName"];
-        string username = JsonConvert.DeserializeObject<string>(userName);
-        var user = await _userManager.FindByNameAsync(username);
+        var user = await _userManager.FindByIdAsync(UserId);
         if (user is null) throw new UserNotFoundException(404, "User is not found");
         FriendShip friendShip = new FriendShip()
         {
@@ -66,89 +64,92 @@ public class FriendShipService : IFriendShipService
         
     }
 
-    public async Task<List<AcceptedFollowingUserDto>> GetAllAcceptedFollowingUsersAsync()
+    public async Task<List<AcceptedFollowingUserDto>> GetAllAcceptedFollowingUsersAsync(string UserId)
     {
-        
-        var userName = _httpContextAccessor.HttpContext.Request.Cookies["UserName"];
-        string username = JsonConvert.DeserializeObject<string>(userName);
-        var user = await _userManager.FindByNameAsync(username);
+        var user = await _userManager.FindByIdAsync(UserId);
         if (user is null) throw new UserNotFoundException(404, "User is not found");                   
-        if (!await _friendShipRepository.IsExist(fs => fs.UserId == user.Id && fs.Status == FollowStatus.Accepted)) throw new FriendShipNotFoundException(404, "FriendShip is not found");
+        //if (!await _friendShipRepository.IsExist(fs => fs.UserId == user.Id && fs.Status == FollowStatus.Accepted)) throw new FriendShipNotFoundException(404, "FriendShip is not found");
         var FriendShips = await _friendShipRepository.GetAllAsync(fs => fs.UserId == user.Id && fs.Status == FollowStatus.Accepted);
         List<AcceptedFollowingUserDto> followingUserDtos = new List<AcceptedFollowingUserDto>();
-        foreach (var friendShip in FriendShips)
+        if (FriendShips.Count > 0)
         {
-            var followingUser = await _userManager.FindByIdAsync(friendShip.FollowingUserId);
-            var profileImage = await _imageRepository.GetSingleAsync(i => i.UserId == followingUser.Id && i.IsPostImage == false);
-            if (profileImage is null)
+            foreach (var friendShip in FriendShips)
             {
-                throw new ProfileImageNotFoundException(404, "ProfileImage is not found");
+                var followingUser = await _userManager.FindByIdAsync(friendShip.FollowingUserId);
+                var profileImage = await _imageRepository.GetSingleAsync(i => i.UserId == followingUser.Id && i.IsPostImage == false);
+                if (profileImage is null)
+                {
+                    throw new ProfileImageNotFoundException(404, "ProfileImage is not found");
+                }
+
+                AcceptedFollowingUserDto followingUserDto = new AcceptedFollowingUserDto()
+                {
+                    UserId = followingUser.Id,
+                    UserName = followingUser.UserName,
+                    ProfileImageUrl = profileImage.ImageUrl
+                };
+                followingUserDtos.Add(followingUserDto);
             }
-            AcceptedFollowingUserDto followingUserDto = new AcceptedFollowingUserDto()
-            {
-                UserId = followingUser.Id,
-                UserName = followingUser.UserName,
-                ProfileImageUrl = profileImage.ImageUrl
-            };
-            followingUserDtos.Add(followingUserDto);
-        }
-        
+        }    
         return followingUserDtos;
     }
 
-    public async Task<List<AcceptedFollowerUserDto>> GetAllAcceptedFollowerUsersAsync()
+    public async Task<List<AcceptedFollowerUserDto>> GetAllAcceptedFollowerUsersAsync(string UserId)
     {
-        var userName = _httpContextAccessor.HttpContext.Request.Cookies["UserName"];
-        string username = JsonConvert.DeserializeObject<string>(userName);
-        var user = await _userManager.FindByNameAsync(username);
+        var user = await _userManager.FindByIdAsync(UserId);
         if (user is null) throw new UserNotFoundException(404, "User is not found");
-        if (!await _friendShipRepository.IsExist(fs => fs.FollowingUserId == user.Id && fs.Status == FollowStatus.Accepted)) throw new FriendShipNotFoundException(404, "FriendShip is not found");
+        //if (!await _friendShipRepository.IsExist(fs => fs.FollowingUserId == user.Id && fs.Status == FollowStatus.Accepted)) throw new FriendShipNotFoundException(404, "FriendShip is not found");
         var FriendShips = await _friendShipRepository.GetAllAsync(fs => fs.FollowingUserId == user.Id && fs.Status == FollowStatus.Accepted);
         List<AcceptedFollowerUserDto> followerUserDtos = new List<AcceptedFollowerUserDto>();
-        foreach (var friendShip in FriendShips)
+        if(FriendShips.Count > 0)
         {
-            var followerUser = await _userManager.FindByIdAsync(friendShip.UserId);
-            var profileImage = await _imageRepository.GetSingleAsync(i => i.UserId == followerUser.Id && i.IsPostImage == false);
-            if (profileImage is null)
+            foreach (var friendShip in FriendShips)
             {
-                throw new ProfileImageNotFoundException(404, "ProfileImage is not found");
+                var followerUser = await _userManager.FindByIdAsync(friendShip.UserId);
+                var profileImage = await _imageRepository.GetSingleAsync(i => i.UserId == followerUser.Id && i.IsPostImage == false);
+                if (profileImage is null)
+                {
+                    throw new ProfileImageNotFoundException(404, "ProfileImage is not found");
+                }
+                AcceptedFollowerUserDto followerUserDto = new AcceptedFollowerUserDto()
+                {
+                    UserId = followerUser.Id,
+                    UserName = followerUser.UserName,
+                    ProfileImageUrl = profileImage.ImageUrl
+                };
+                followerUserDtos.Add(followerUserDto);
             }
-            AcceptedFollowerUserDto followerUserDto = new AcceptedFollowerUserDto()
-            {
-                UserId = followerUser.Id,
-                UserName = followerUser.UserName,
-                ProfileImageUrl = profileImage.ImageUrl
-            };
-            followerUserDtos.Add(followerUserDto);
-        }
+        }        
         return followerUserDtos;
     }
 
-    public async Task<List<PendingFollowerUserDto>> GetAllPendingFollowerUsersAsync()
+    public async Task<List<PendingFollowerUserDto>> GetAllPendingFollowerUsersAsync(string UserId)
     {
-        var userName = _httpContextAccessor.HttpContext.Request.Cookies["UserName"];
-        string username = JsonConvert.DeserializeObject<string>(userName);
-        var user = await _userManager.FindByNameAsync(username);
+        var user = await _userManager.FindByIdAsync(UserId);
         if (user is null) throw new UserNotFoundException(404, "User is not found");
-        if (!await _friendShipRepository.IsExist(fs => fs.UserId == user.Id && fs.Status == FollowStatus.Pending)) throw new FriendShipNotFoundException(404, "FriendShip is not found");
+        //if (!await _friendShipRepository.IsExist(fs => fs.UserId == user.Id && fs.Status == FollowStatus.Pending)) throw new FriendShipNotFoundException(404, "FriendShip is not found");
         var FriendShips = await _friendShipRepository.GetAllAsync(fs => fs.UserId == user.Id && fs.Status == FollowStatus.Pending);
         List<PendingFollowerUserDto> PendingFollowerUserDtos = new List<PendingFollowerUserDto>();
-        foreach (var friendShip in FriendShips)
+        if(FriendShips.Count > 0)
         {
-            var PendingFollowerUser = await _userManager.FindByIdAsync(friendShip.FollowingUserId);
-            var profileImage = await _imageRepository.GetSingleAsync(i => i.UserId == PendingFollowerUser.Id && i.IsPostImage == false);
-            if (profileImage is null)
+            foreach (var friendShip in FriendShips)
             {
-                throw new ProfileImageNotFoundException(404, "ProfileImage is not found");
+                var PendingFollowerUser = await _userManager.FindByIdAsync(friendShip.FollowingUserId);
+                var profileImage = await _imageRepository.GetSingleAsync(i => i.UserId == PendingFollowerUser.Id && i.IsPostImage == false);
+                if (profileImage is null)
+                {
+                    throw new ProfileImageNotFoundException(404, "ProfileImage is not found");
+                }
+                PendingFollowerUserDto pendingFollowerUserDto = new PendingFollowerUserDto()
+                {
+                    FriendShipId=friendShip.Id,
+                    UserId = PendingFollowerUser.Id,
+                    UserName = PendingFollowerUser.UserName,
+                    ProfileImageUrl = profileImage.ImageUrl
+                };
+                PendingFollowerUserDtos.Add(pendingFollowerUserDto);
             }
-            PendingFollowerUserDto pendingFollowerUserDto = new PendingFollowerUserDto()
-            {
-                UserId = PendingFollowerUser.Id,
-                UserName = PendingFollowerUser.UserName,
-                ProfileImageUrl = profileImage.ImageUrl
-            };
-            PendingFollowerUserDtos.Add(pendingFollowerUserDto);
-        }
+        }        
         return PendingFollowerUserDtos;
     }
 }

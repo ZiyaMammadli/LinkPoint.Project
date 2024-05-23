@@ -9,6 +9,9 @@ public class PostCreateWithImageValidator:AbstractValidator<PostCreateWithImageD
     {
         RuleFor(p => p.Text)
            .MaximumLength(300).WithMessage("Max lenth of text is 300 ");
+        RuleFor(c => c.UserId)
+            .NotNull().WithMessage("PostId can't be null")
+            .NotEmpty().WithMessage("PostId can't be empty");
         RuleFor(p => p.PostImageFile)
             .NotNull().WithMessage("PostImage can't be null")
             .Must(p => p.Length > 0).WithMessage("PostImage can't be empty")

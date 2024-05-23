@@ -10,5 +10,8 @@ public class BackgroundImageDeleteValidator:AbstractValidator<BackgroundImageDel
         RuleFor(p => p.ImageId)
             .NotNull().WithMessage("ImageId can't be null")
             .NotEmpty().WithMessage("ImageId can't be empty");
+        RuleFor(p => p.UserId)
+            .NotNull().WithMessage("ImageId can't be null")
+            .NotEmpty().WithMessage("ImageId can't be empty");
     }
 }

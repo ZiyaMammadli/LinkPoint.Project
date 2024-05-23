@@ -41,12 +41,12 @@ namespace LinkPoint.API.Controllers
                 return BadRequest(ex.Message);
             }
         }
-        [HttpPost("[action]/{PostId}")]
-        public async Task<IActionResult> AddLikeToPost(int PostId)
+        [HttpPost("[action]/{UserId}/{PostId}")]
+        public async Task<IActionResult> AddLikeToPost(string UserId,int PostId)
         {
             try
             {
-                await _likeService.AddLikeToPostAsync(PostId);
+                await _likeService.AddLikeToPostAsync(UserId,PostId);
                 return Ok();
             }
             catch(AlreadyExistException ex)
@@ -66,12 +66,12 @@ namespace LinkPoint.API.Controllers
                 return BadRequest(ex.Message);
             }
         }
-        [HttpPost("[action]/{PostId}")]
-        public async Task<IActionResult> RemoveLikeFromPost(int PostId)
+        [HttpPost("[action]/{UserId}/{PostId}")]
+        public async Task<IActionResult> RemoveLikeFromPost(string UserId,int PostId)
         {
             try
             {
-                await _likeService.RemoveLikeFromPostAsync(PostId);
+                await _likeService.RemoveLikeFromPostAsync(UserId, PostId);
                 return Ok();
             }
             catch (UserNotFoundException ex)
