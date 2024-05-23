@@ -3,6 +3,7 @@ using LinkPoint.Business.DTOs.AccountSettingsDTOs.BackgroundImageDTOs;
 using LinkPoint.Business.DTOs.AccountSettingsDTOs.PasswordDTOs;
 using LinkPoint.Business.DTOs.AccountSettingsDTOs.ProfileImageDTOs;
 using LinkPoint.Business.DTOs.AccountSettingsDTOs.UserAboutDTOs;
+using LinkPoint.Business.DTOs.AccountSettingsDTOs.UserDTOs;
 using LinkPoint.Business.DTOs.AccountSettingsDTOs.UserEducationDTOs;
 using LinkPoint.Business.DTOs.AccountSettingsDTOs.UserInterestDTOs;
 using LinkPoint.Business.DTOs.AccountSettingsDTOs.UserWorkDTOs;
@@ -35,6 +36,7 @@ public class AccountSettingsService : IAccountSettingsService
     private readonly IImageRepository _imageRepository;
     private readonly IConfiguration _configuration;
     private readonly IWebHostEnvironment _webHostEnvironment;
+    private readonly IFriendShipService _friendShipService;
 
     public AccountSettingsService(IUserEducationRepository userEducationRepository,
         UserManager<AppUser> userManager, 
@@ -45,7 +47,8 @@ public class AccountSettingsService : IAccountSettingsService
         IHttpContextAccessor httpContextAccessor,
         IImageRepository imageRepository,
         IConfiguration configuration,
-        IWebHostEnvironment webHostEnvironment)
+        IWebHostEnvironment webHostEnvironment,
+        IFriendShipService friendShipService)
     {
         _userEducationRepository = userEducationRepository;
         _userManager = userManager;
@@ -57,6 +60,7 @@ public class AccountSettingsService : IAccountSettingsService
         _imageRepository = imageRepository;
         _configuration = configuration;
         _webHostEnvironment = webHostEnvironment;
+        _friendShipService = friendShipService;
     }
     public async Task UpdateUserEducationAsync(int Id ,UserEducationPutDto userEducationPutDto)
     {   
@@ -268,5 +272,26 @@ public class AccountSettingsService : IAccountSettingsService
         _imageRepository.Delete(currentImage);
         await _imageRepository.InsertAsync(BackgroundImage);
         await _imageRepository.CommitAsync();
+    }
+
+    public async Task<AuthUserGetDto> GetAuthUserInfo()
+    {
+        var userName = _httpContextAccessor.HttpContext.Request.Cookies["UserName"];
+        string username = JsonConvert.DeserializeObject<string>(userName);
+        var user = await _userManager.FindByNameAsync(username);
+        if (user is null) throw new UserNotFoundException(404, "User is not found");
+        var profileImage = await _imageRepository.GetSingleAsync(i => i.UserId == user.Id && i.IsPostImage == false);
+        if (profileImage is null) throw new ProfileImageNotFoundException(404, "ProfileImage is not found");
+        var followings=await _friendShipService.GetAllAcceptedFollowingUsersAsync();
+        var followers=await _friendShipService.GetAllPendingFollowerUsersAsync();
+        AuthUserGetDto authUserGetDto = new AuthUserGetDto()
+        {
+            UserId = user.Id,
+            UserName = user.UserName,
+            ProfileImage= profileImage.ImageUrl,
+            FollowersCount= followers.Count,
+            FollowingsCount= followings.Count,
+        };
+        return authUserGetDto;
     }
 }

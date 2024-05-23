@@ -2,6 +2,7 @@
 using LinkPoint.Business.DTOs.AccountSettingsDTOs.PasswordDTOs;
 using LinkPoint.Business.DTOs.AccountSettingsDTOs.ProfileImageDTOs;
 using LinkPoint.Business.DTOs.AccountSettingsDTOs.UserAboutDTOs;
+using LinkPoint.Business.DTOs.AccountSettingsDTOs.UserDTOs;
 using LinkPoint.Business.DTOs.AccountSettingsDTOs.UserEducationDTOs;
 using LinkPoint.Business.DTOs.AccountSettingsDTOs.UserInterestDTOs;
 using LinkPoint.Business.DTOs.AccountSettingsDTOs.UserWorkDTOs;
@@ -11,6 +12,7 @@ namespace LinkPoint.Business.Services.Interfaces;
 
 public interface IAccountSettingsService
 {
+    Task<AuthUserGetDto> GetAuthUserInfo();
     Task UpdateUserAboutAsync(int Id,UserAboutPutDto userAboutPutDto);//
     Task<UserAboutGetDto> GetUserAboutAsync(string UserId);//
     Task CreateUserWorkAsync(UserWorkPostDto userWorkPostDto);//
