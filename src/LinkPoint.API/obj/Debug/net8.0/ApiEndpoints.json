@@ -739,6 +739,26 @@
   },
   {
     "ContainingType": "LinkPoint.API.Controllers.PostsController",
+    "Method": "GetAllAuthUserPostsForImage",
+    "RelativePath": "api/Posts/GetAllAuthUserPostsForImage",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "LinkPoint.API.Controllers.PostsController",
+    "Method": "GetAllAuthUserPostsForVideo",
+    "RelativePath": "api/Posts/GetAllAuthUserPostsForVideo",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "LinkPoint.API.Controllers.PostsController",
     "Method": "GetAllOneUserPosts",
     "RelativePath": "api/Posts/GetAllOneUserPosts/{UserId}",
     "HttpMethod": "GET",
@@ -757,6 +777,26 @@
     "ContainingType": "LinkPoint.API.Controllers.PostsController",
     "Method": "GetAllPosts",
     "RelativePath": "api/Posts/GetAllPosts",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "LinkPoint.API.Controllers.PostsController",
+    "Method": "GetAllPostsForImage",
+    "RelativePath": "api/Posts/GetAllPostsForImage",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "LinkPoint.API.Controllers.PostsController",
+    "Method": "GetAllPostsForVideo",
+    "RelativePath": "api/Posts/GetAllPostsForVideo",
     "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,

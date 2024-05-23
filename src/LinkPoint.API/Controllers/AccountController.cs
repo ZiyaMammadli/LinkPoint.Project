@@ -33,15 +33,15 @@ namespace LinkPoint.API.Controllers
             }
             catch(InvalidCredentialException ex)
             {
-                return BadRequest(ex.Message);
+                return BadRequest(new ErrorDto { message = ex.Message });
             }
             catch (EmailConfirmedException ex)
             {
-                return StatusCode(ex.StatusCode,ex.Message);
+                return BadRequest(new ErrorDto { message = ex.Message });
             }
             catch (Exception ex)
             {
-                return BadRequest(ex.Message);
+                return BadRequest(new ErrorDto { message = ex.Message });
             }
         }
         [HttpPost("[action]")]
@@ -70,11 +70,11 @@ namespace LinkPoint.API.Controllers
             }
             catch(AlreadyExistException ex)
             {
-                return BadRequest(ex.Message);
+                return BadRequest(new ErrorDto { message=ex.Message});
             }
             catch (Exception ex)
             {
-                return BadRequest(ex.Message);
+                return BadRequest(new ErrorDto { message = ex.Message });
             }
         }
         [HttpGet("[action]")]

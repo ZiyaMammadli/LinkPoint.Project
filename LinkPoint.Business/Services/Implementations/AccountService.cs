@@ -213,8 +213,8 @@ public class AccountService:IAccountService
         string html =string.Empty;
         string FilePath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "email", "Register.html");
         html = System.IO.File.ReadAllText(FilePath);
-        var Url = _httpContextAccessor.HttpContext.Request.Scheme + "://" + _httpContextAccessor.HttpContext.Request.Host + _urlHelper.Action("EmailConfirm", "Account", new { UserId=appUser.Id, code });            
-        html=html.Replace("{{Url}}",System.Text.Encodings.Web.HtmlEncoder.Default.Encode(Url));
+        var Url = _httpContextAccessor.HttpContext.Request.Scheme + "://" + _httpContextAccessor.HttpContext.Request.Host + _urlHelper.Action("EmailConfirm", "Account", new { UserId = appUser.Id, code });
+        html =html.Replace("{{Url}}",System.Text.Encodings.Web.HtmlEncoder.Default.Encode(Url));
         _emailService.SendEmail(appUser.Email, subject, html);
     }
 
