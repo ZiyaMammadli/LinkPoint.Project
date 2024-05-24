@@ -20,6 +20,7 @@ namespace LinkPoint.MVC.Controllers
         public async Task <IActionResult> Index()
         {
             var token = HttpContext.Session.GetString("JWToken");
+            var userId = HttpContext.Request.Cookies["UserId"];
             if (string.IsNullOrEmpty(token))
             {
                 return RedirectToAction("Login", "Account");
@@ -28,7 +29,7 @@ namespace LinkPoint.MVC.Controllers
             var client = _httpClientFactory.CreateClient();
             client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
 
-            var response = await client.GetAsync(baseAdress+ "/AccountSettings/GetAuthUserInfo");
+            var response = await client.GetAsync(baseAdress+ "/AccountSettings/GetAuthUserInfo/"+ userId);
             if (response.IsSuccessStatusCode)
             {
                 

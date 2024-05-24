@@ -1,4 +1,5 @@
-﻿using LinkPoint.Business.DTOs.PostDTOs;
+﻿using LinkPoint.Business.DTOs.CommentDTOs;
+using LinkPoint.Business.DTOs.PostDTOs;
 using LinkPoint.Business.Services.Interfaces;
 using LinkPoint.Business.Utilities.Exceptions.NotFoundExceptions;
 using LinkPoint.Business.Utilities.Exceptions.NotValidExceptions;
@@ -52,41 +53,7 @@ public class PostService : IPostService
         List<PostGetDto> posts = new List<PostGetDto>();
         foreach (var UserPost in UserPosts)
         {
-            if (UserPost.Image is null && UserPost.Video is null)
-            {
-                PostGetDto Post = new PostGetDto()
-                {
-                    PostId = UserPost.Id,
-                    UserName = user.UserName,
-                    LikeCount = UserPost.LikeCount,
-                    Text = UserPost.Text,
-                    UserProfileImage = profileImage.ImageUrl,
-                    ImageUrl = null,
-                    VideoUrl = null,
-                    ElapsedTime=UserPost.CreatedDate.GetElapsedTime(),
-                    Comments = UserPost.Comments
-                };
-                posts.Add(Post);
-                continue;
-            }
-            if (UserPost.Image is null)
-            {
-                PostGetDto Post = new PostGetDto()
-                {
-                    PostId= UserPost.Id,
-                    UserName = user.UserName,
-                    LikeCount = UserPost.LikeCount,
-                    Text = UserPost.Text,
-                    UserProfileImage = profileImage.ImageUrl,
-                    ImageUrl = null,
-                    VideoUrl = UserPost.Video.VideoUrl,
-                    ElapsedTime = UserPost.CreatedDate.GetElapsedTime(),
-                    Comments = UserPost.Comments
-                };
-                posts.Add(Post);
-            }
-            if (UserPost.Video is null)
-            {
+            
                 PostGetDto Post = new PostGetDto()
                 {
                     PostId= UserPost.Id,    
@@ -94,13 +61,19 @@ public class PostService : IPostService
                     LikeCount = UserPost.LikeCount,
                     Text = UserPost.Text,
                     UserProfileImage = profileImage.ImageUrl,
-                    ImageUrl = UserPost.Image.ImageUrl,
-                    VideoUrl = null,
+                    ImageUrl = UserPost.Image?.ImageUrl,
+                    VideoUrl = UserPost.Video?.VideoUrl,
                     ElapsedTime = UserPost.CreatedDate.GetElapsedTime(),
-                    Comments = UserPost.Comments
+                    Comments = UserPost.Comments.Select(c => new CommentGetDto
+                    {
+                        CommentId = c.Id,
+                        Text = c.Text,
+                        UserName = UserPost.User.UserName,
+                        UserProfileImage = profileImage.ImageUrl,
+                        ElapsedTime = c.CreatedDate.GetElapsedTime(),
+                    }).ToList()
                 };
                 posts.Add(Post);
-            }
         }
         return posts;
     }
@@ -117,8 +90,6 @@ public class PostService : IPostService
             {
                 throw new ProfileImageNotFoundException(404, "ProfileImage is not found");
             }
-            if (Post.Image is null && Post.Video is null)
-            {
                 PostGetDto postGetDto = new PostGetDto()
                 {
                     PostId=Post.Id,
@@ -126,46 +97,19 @@ public class PostService : IPostService
                     LikeCount = Post.LikeCount,
                     Text = Post.Text,
                     UserProfileImage = profileImage.ImageUrl,
-                    ImageUrl = null,
-                    VideoUrl = null,
+                    ImageUrl = Post.Image?.ImageUrl,
+                    VideoUrl = Post.Video?.VideoUrl,
                     ElapsedTime = Post.CreatedDate.GetElapsedTime(),
-                    Comments=Post.Comments
+                    Comments = Post.Comments.Select(c => new CommentGetDto
+                    {
+                        CommentId = c.Id,
+                        Text = c.Text,
+                        UserName = Post.User.UserName,
+                        UserProfileImage = profileImage.ImageUrl,
+                        ElapsedTime = c.CreatedDate.GetElapsedTime(),
+                    }).ToList()
                 };
                 postGetDtos.Add(postGetDto);
-                continue;
-            }
-            if (Post.Image is null)
-            {
-                PostGetDto postGetDto = new PostGetDto()
-                {
-                    PostId=Post.Id,
-                    UserName = Post.User.UserName,
-                    LikeCount = Post.LikeCount,
-                    Text = Post.Text,
-                    UserProfileImage = profileImage.ImageUrl,
-                    ImageUrl = null,
-                    VideoUrl = Post.Video.VideoUrl,
-                    ElapsedTime = Post.CreatedDate.GetElapsedTime(),
-                    Comments = Post.Comments
-                };
-                postGetDtos.Add(postGetDto);
-            }
-            if (Post.Video is null)
-            {
-                PostGetDto postGetDto = new PostGetDto()
-                {
-                    PostId=Post.Id,
-                    UserName = Post.User.UserName,
-                    LikeCount = Post.LikeCount,
-                    Text = Post.Text,
-                    UserProfileImage = profileImage.ImageUrl,
-                    ImageUrl = Post.Image.ImageUrl,
-                    VideoUrl = null,
-                    ElapsedTime = Post.CreatedDate.GetElapsedTime(),
-                    Comments = Post.Comments
-                };
-                postGetDtos.Add(postGetDto);
-            }
         }
         return postGetDtos;
     }
@@ -179,44 +123,25 @@ public class PostService : IPostService
         {
             throw new ProfileImageNotFoundException(404, "ProfileImage is not found");
         }
-        PostGetDto postGetDto = new PostGetDto();
-        if (post.Image is null && post.Video is null)
+        PostGetDto postGetDto = new PostGetDto()
         {
-            postGetDto.PostId = PostId;
-            postGetDto.UserName = post.User.UserName;
-            postGetDto.LikeCount = post.LikeCount;
-            postGetDto.Text = post.Text;
-            postGetDto.UserProfileImage = profileImage.ImageUrl;
-            postGetDto.ImageUrl = null;
-            postGetDto.VideoUrl = null;
-            postGetDto.ElapsedTime = post.CreatedDate.GetElapsedTime();
-            postGetDto.Comments = post.Comments;
-            return postGetDto;
-        }
-        if (post.Image is null)
-        {
-            postGetDto.PostId = PostId;
-            postGetDto.UserName = post.User.UserName;
-            postGetDto.LikeCount = post.LikeCount;
-            postGetDto.Text = post.Text;
-            postGetDto.UserProfileImage = profileImage.ImageUrl;
-            postGetDto.ImageUrl = null;
-            postGetDto.VideoUrl = post.Video.VideoUrl;
-            postGetDto.ElapsedTime = post.CreatedDate.GetElapsedTime();
-            postGetDto.Comments = post.Comments;
-        }
-        if (post.Video is null)
-        {
-            postGetDto.PostId = PostId;
-            postGetDto.UserName = post.User.UserName;
-            postGetDto.LikeCount = post.LikeCount;
-            postGetDto.Text = post.Text;
-            postGetDto.UserProfileImage = profileImage.ImageUrl;
-            postGetDto.ImageUrl = post.Image.ImageUrl;
-            postGetDto.VideoUrl = null;
-            postGetDto.ElapsedTime = post.CreatedDate.GetElapsedTime();
-            postGetDto.Comments = post.Comments;
-        }
+            PostId = PostId,
+            UserName = post.User.UserName,
+            LikeCount = post.LikeCount,
+            Text = post.Text,
+            UserProfileImage = profileImage.ImageUrl,
+            ImageUrl = post.Image?.ImageUrl,
+            VideoUrl = post.Video?.VideoUrl,
+            ElapsedTime = post.CreatedDate.GetElapsedTime(),
+            Comments = post.Comments.Select(c => new CommentGetDto
+            {
+                CommentId = c.Id,
+                Text = c.Text,
+                UserName = post.User.UserName,
+                UserProfileImage = profileImage.ImageUrl,
+                ElapsedTime = c.CreatedDate.GetElapsedTime(),
+            }).ToList()
+        };                  
         return postGetDto;      
     }
     public async Task CreatePostWithImageAsync(PostCreateWithImageDto postCreateWithImageDto)
@@ -335,7 +260,14 @@ public class PostService : IPostService
                     ImageUrl = null,
                     VideoUrl = Post.Video.VideoUrl,
                     ElapsedTime = Post.CreatedDate.GetElapsedTime(),
-                    Comments=Post.Comments
+                    Comments = Post.Comments.Select(c => new CommentGetDto
+                    {
+                        CommentId = c.Id,
+                        Text = c.Text,
+                        UserName = Post.User.UserName,
+                        UserProfileImage = profileImage.ImageUrl,
+                        ElapsedTime = c.CreatedDate.GetElapsedTime(),
+                    }).ToList()
                 };
                 postGetDtos.Add(postGetDto);
         }
@@ -361,7 +293,14 @@ public class PostService : IPostService
                     ImageUrl = Post.Image.ImageUrl,
                     VideoUrl = null,
                     ElapsedTime = Post.CreatedDate.GetElapsedTime(),
-                    Comments=Post.Comments
+                    Comments = Post.Comments.Select(c => new CommentGetDto
+                    {
+                        CommentId = c.Id,
+                        Text = c.Text,
+                        UserName = Post.User.UserName,
+                        UserProfileImage = profileImage.ImageUrl,
+                        ElapsedTime = c.CreatedDate.GetElapsedTime(),
+                    }).ToList()
                 };
                 postGetDtos.Add(postGetDto);
         }

@@ -472,11 +472,16 @@
   {
     "ContainingType": "LinkPoint.API.Controllers.ConversationsController",
     "Method": "CreateConversation",
-    "RelativePath": "api/Conversations/CreateConversation/{User2Id}",
+    "RelativePath": "api/Conversations/CreateConversation/{UserId}/{User2Id}",
     "HttpMethod": "POST",
     "IsController": true,
     "Order": 0,
     "Parameters": [
+      {
+        "Name": "UserId",
+        "Type": "System.String",
+        "IsRequired": true
+      },
       {
         "Name": "User2Id",
         "Type": "System.String",
@@ -551,11 +556,17 @@
   {
     "ContainingType": "LinkPoint.API.Controllers.FriendShipsController",
     "Method": "GetAllAcceptedFollowerUsers",
-    "RelativePath": "api/FriendShips/GetAllAcceptedFollowerUsers",
+    "RelativePath": "api/FriendShips/GetAllAcceptedFollowerUsers/{UserId}",
     "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,
-    "Parameters": [],
+    "Parameters": [
+      {
+        "Name": "UserId",
+        "Type": "System.String",
+        "IsRequired": true
+      }
+    ],
     "ReturnTypes": []
   },
   {
@@ -577,11 +588,17 @@
   {
     "ContainingType": "LinkPoint.API.Controllers.FriendShipsController",
     "Method": "GetAllPendingFollowerUsers",
-    "RelativePath": "api/FriendShips/GetAllPendingFollowerUsers",
+    "RelativePath": "api/FriendShips/GetAllPendingFollowerUsers/{UserId}",
     "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,
-    "Parameters": [],
+    "Parameters": [
+      {
+        "Name": "UserId",
+        "Type": "System.String",
+        "IsRequired": true
+      }
+    ],
     "ReturnTypes": []
   },
   {
@@ -651,11 +668,16 @@
   {
     "ContainingType": "LinkPoint.API.Controllers.LikesController",
     "Method": "AddLikeToPost",
-    "RelativePath": "api/Likes/AddLikeToPost/{PostId}",
+    "RelativePath": "api/Likes/AddLikeToPost/{UserId}/{PostId}",
     "HttpMethod": "POST",
     "IsController": true,
     "Order": 0,
     "Parameters": [
+      {
+        "Name": "UserId",
+        "Type": "System.String",
+        "IsRequired": true
+      },
       {
         "Name": "PostId",
         "Type": "System.Int32",
@@ -683,11 +705,16 @@
   {
     "ContainingType": "LinkPoint.API.Controllers.LikesController",
     "Method": "RemoveLikeFromPost",
-    "RelativePath": "api/Likes/RemoveLikeFromPost/{PostId}",
+    "RelativePath": "api/Likes/RemoveLikeFromPost/{UserId}/{PostId}",
     "HttpMethod": "POST",
     "IsController": true,
     "Order": 0,
     "Parameters": [
+      {
+        "Name": "UserId",
+        "Type": "System.String",
+        "IsRequired": true
+      },
       {
         "Name": "PostId",
         "Type": "System.Int32",
@@ -704,6 +731,11 @@
     "IsController": true,
     "Order": 0,
     "Parameters": [
+      {
+        "Name": "UserId",
+        "Type": "System.String",
+        "IsRequired": false
+      },
       {
         "Name": "Text",
         "Type": "System.String",
@@ -742,6 +774,11 @@
     "Order": 0,
     "Parameters": [
       {
+        "Name": "UserId",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
         "Name": "Text",
         "Type": "System.String",
         "IsRequired": false
@@ -752,36 +789,6 @@
         "IsRequired": false
       }
     ],
-    "ReturnTypes": []
-  },
-  {
-    "ContainingType": "LinkPoint.API.Controllers.PostsController",
-    "Method": "GetAllAuthUserPosts",
-    "RelativePath": "api/Posts/GetAllAuthUserPosts",
-    "HttpMethod": "GET",
-    "IsController": true,
-    "Order": 0,
-    "Parameters": [],
-    "ReturnTypes": []
-  },
-  {
-    "ContainingType": "LinkPoint.API.Controllers.PostsController",
-    "Method": "GetAllAuthUserPostsForImage",
-    "RelativePath": "api/Posts/GetAllAuthUserPostsForImage",
-    "HttpMethod": "GET",
-    "IsController": true,
-    "Order": 0,
-    "Parameters": [],
-    "ReturnTypes": []
-  },
-  {
-    "ContainingType": "LinkPoint.API.Controllers.PostsController",
-    "Method": "GetAllAuthUserPostsForVideo",
-    "RelativePath": "api/Posts/GetAllAuthUserPostsForVideo",
-    "HttpMethod": "GET",
-    "IsController": true,
-    "Order": 0,
-    "Parameters": [],
     "ReturnTypes": []
   },
   {

@@ -1,4 +1,5 @@
-﻿using LinkPoint.Core.Entities;
+﻿using LinkPoint.Business.DTOs.CommentDTOs;
+using LinkPoint.Core.Entities;
 
 namespace LinkPoint.Business.DTOs.PostDTOs;
 
@@ -12,5 +13,5 @@ public class PostGetDto
     public string? ImageUrl { get; set; }
     public string? VideoUrl { get; set; }
     public string ElapsedTime { get; set; }
-    public List<Comment> Comments { get; set; }
+    public List<CommentGetDto> Comments { get; set; }
 }
