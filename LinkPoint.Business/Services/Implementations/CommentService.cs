@@ -54,7 +54,7 @@ public class CommentService : ICommentService
         return commentGetDtos;
     }
 
-    public async Task CreateCommentAsync(CommentPostDto commentPostDto)
+    public async Task<CommentGetDto> CreateCommentAsync(CommentPostDto commentPostDto)
     {
         if (!await _postRepository.IsExist(p => p.Id == commentPostDto.PostId && p.IsDeleted==false)) throw new PostNotFoundException(404, "Post is not found");
         var user=await _userManager.FindByIdAsync(commentPostDto.UserId);
@@ -65,9 +65,21 @@ public class CommentService : ICommentService
             Text = commentPostDto.Text,
             CreatedDate=DateTime.UtcNow,
             UpdatedDate=DateTime.UtcNow,
+            User=user,
         };
         await _commentRepository.InsertAsync(comment);
         await _commentRepository.CommitAsync();
+        var userProfileImage = await _imageRepository.GetSingleAsync(i => i.UserId == commentPostDto.UserId && i.IsDeleted == false);
+        if (userProfileImage is null) throw new ProfileImageNotFoundException(404, "ProfileImage is not found");
+        CommentGetDto commentGetDto = new CommentGetDto()
+        {
+            CommentId=comment.Id,
+            Text=commentPostDto.Text,
+            UserName= user.UserName,
+            UserProfileImage=userProfileImage.ImageUrl,
+            ElapsedTime=comment.CreatedDate.GetElapsedTime(),
+        };
+        return commentGetDto;
     }
 
     public async Task UpdateCommentAsync(int CommentId, CommentPutDto commentPutDto)

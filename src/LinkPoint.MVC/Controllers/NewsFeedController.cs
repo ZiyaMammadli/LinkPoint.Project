@@ -28,17 +28,22 @@ namespace LinkPoint.MVC.Controllers
 
             var client = _httpClientFactory.CreateClient();
             client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
-
+            
             var response = await client.GetAsync(baseAdress+ "/AccountSettings/GetAuthUserInfo/"+ userId);
-            if (response.IsSuccessStatusCode)
-            {
-                
-                var data = await response.Content.ReadFromJsonAsync<UserInfoViewModel>();
-                return View(data);
-            }
+            response.EnsureSuccessStatusCode();               
+            var json1 = await response.Content.ReadAsStringAsync();
+            var userInfo = JsonConvert.DeserializeObject<UserInfoViewModel>(json1);
 
-            ModelState.AddModelError(string.Empty, "An error occurred while fetching data.");
-            return View();
+            var response2 = await client.GetAsync(baseAdress + "/Posts/GetAllPosts");
+            response2.EnsureSuccessStatusCode();
+            var json2 = await response2.Content.ReadAsStringAsync();
+            var posts = JsonConvert.DeserializeObject<List<PostGetViewModel>>(json2);
+            NewsFeedViewModel newsFeedViewModel = new NewsFeedViewModel()
+            {
+                UserInfo= userInfo,
+                Posts= posts
+            };
+            return View(newsFeedViewModel);
         }
     }
 }

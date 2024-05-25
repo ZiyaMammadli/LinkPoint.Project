@@ -44,8 +44,8 @@ namespace LinkPoint.API.Controllers
         {
             try
             {
-                await _commentService.CreateCommentAsync(commentPostDto);
-                return Ok();
+                
+                return Ok( await _commentService.CreateCommentAsync(commentPostDto));
             }
             catch (PostNotFoundException ex)
             {
