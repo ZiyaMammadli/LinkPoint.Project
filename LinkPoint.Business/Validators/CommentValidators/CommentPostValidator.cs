@@ -15,7 +15,7 @@ public class CommentPostValidator:AbstractValidator<CommentPostDto>
             .NotEmpty().WithMessage("PostId can't be empty");
         RuleFor(c => c.Text)
            .NotNull().WithMessage("Text can't be null")
-           .NotEmpty().WithMessage("Text can't be empty")
+           .NotEmpty().WithMessage("Please enter comment")
            .MaximumLength(300).WithMessage("Max lenth of text is 300 ");
     }
 }

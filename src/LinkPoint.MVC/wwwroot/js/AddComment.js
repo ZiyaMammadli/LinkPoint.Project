@@ -3,6 +3,7 @@
         var postId = $(this).data('post-id');
         var commentText = $('#comment-text-' + postId).val();
         var userId = $('#user-id-' + postId).val();
+        var token = $('#tokenid').val(); 
 
         console.log("Button clicked for post: " + postId); 
 
@@ -10,6 +11,9 @@
             url: 'https://localhost:7255/api/Comments/CreateComment', // API endpoint
             type: 'POST',
             contentType: 'application/json',
+            headers: {
+                'Authorization': 'Bearer ' + token 
+            },
             data: JSON.stringify({
                 text: commentText,
                 userId: userId,
@@ -26,8 +30,13 @@
                 $('#comment-text-' + postId).val(''); 
             },
             error: function (xhr, status, error) {
-                console.error('Yorum eklenirken bir hata oluştu: ' + xhr.responseText);
-                alert('Yorum eklenirken bir hata oluştu: ' + xhr.responseText);
+                var errors = JSON.parse(xhr.responseText).errors;
+                $('#commentValidationErrors-' + postId).html('');
+                for (var key in errors) {
+                    if (errors.hasOwnProperty(key)) {
+                        $('#commentValidationErrors-' + postId).append('<p>' + errors[key] + '</p>');
+                    }
+                }
             }
         });
     });

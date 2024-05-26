@@ -3901,6 +3901,10 @@
       "PackagePath": "staticwebassets\\images\\users\\user-9.jpg"
     },
     {
+      "Id": "C:\\Users\\user\\source\\repos\\LinkPoint\\src\\LinkPoint.MVC\\wwwroot\\js\\CreateImageVideoAndTextPosts.js",
+      "PackagePath": "staticwebassets\\js\\CreateImageVideoAndTextPosts.js"
+    },
+    {
       "Id": "C:\\Users\\user\\source\\repos\\LinkPoint\\src\\LinkPoint.MVC\\wwwroot\\js\\bootstrap.min.js",
       "PackagePath": "staticwebassets\\js\\bootstrap.min.js"
     },

@@ -42,24 +42,129 @@
                     <div class="create-post">
                         <div class="row">
                             <div class="col-md-7 col-sm-7">
+                                <form id="TextCreateBox">
                                 <div class="form-group">
                                     <img src="@Model.UserInfo.ProfileImage" alt="" class="profile-photo-md" />
-                                    <textarea name="texts" id="exampleTextarea" cols="30" rows="1" class="form-control" placeholder="Write what you wish"></textarea>
+                                    <input type="hidden" id="tokenidd" value="@Model.Token">
+                                    <input type="hidden" id="user-idd" value="@Model.UserInfo.UserId">
+                                    <textarea id="postTextt" cols="30" rows="1" class="form-control" placeholder="Write what you wish"></textarea>
                                 </div>
+                                <div class="form-group">
+                                    <div id="textValidationErrorss" class="text-danger"></div>
+                                </div>
+                                </form>                               
                             </div>
                             <div class="col-md-5 col-sm-5">
                                 <div class="tools">
                                     <ul class="publishing-tools list-inline">
-                                        <li><a href="#"><i class="ion-compose"></i></a></li>
-                                        <li><a href="#"><i class="ion-images"></i></a></li>
-                                        <li><a href="#"><i class="ion-ios-videocam"></i></a></li>
-                                        <li><a href="#"><i class="ion-map"></i></a></li>
+                                        <li><a href="#" id="compose-icon"><i class="ion-compose"></i></a></li>
+                                        <li><a href="#" id="images-icon"><i class="ion-images"></i></a></li>
+                                        <li><a href="#" id="video-icon"><i class="ion-ios-videocam"></i></a></li>
                                     </ul>
-                                    <button class="btn btn-primary pull-right">Publish</button>
+                                <button class="btn btn-primary pull-right" id="CreateTextPost">Publish</button>
                                 </div>
                             </div>
                         </div>
-                    </div><!-- Post Create Box End-->
+                    </div>
+
+                <!-- Text Modal -->
+                <div id="textModal" class="modal fade" tabindex="-1" role="dialog">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title">Create Text Post</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <div class="modal-body">
+                                <form id="textForm" method="post" action="CreatePostWithtext">
+                                    <div class="form-group">
+                                        <input type="hidden" id="tokenid" value="@Model.Token">
+                                        <input type="hidden" id="user-id" value="@Model.UserInfo.UserId">
+                                        <textarea class="form-control" id="postText" placeholder="Write something..."></textarea>
+                                    </div>
+                                    <div class="form-group">
+                                        <div id="textValidationErrors" class="text-danger"></div>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-primary" id="submitTextPost">Post</button>
+                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                    </div>
+                                </form>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Image Modal -->
+                <div id="imageModal" class="modal fade" tabindex="-1" role="dialog">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title">Create Image Post</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <div class="modal-body">
+                                <form id="imageForm">
+                                    <div class="form-group">
+                                        <input type="hidden" id="tokenid-forimage" value="@Model.Token">
+                                        <input type="hidden" id="user-id-forimage" name="UserId" value="@Model.UserInfo.UserId">
+                                        <textarea class="form-control" id="imageText" name="Text" placeholder="Write something..."></textarea>
+                                    </div>
+                                    <div class="form-group">
+                                        <input type="file" class="form-control-file" name="PostImageFile" id="imageFile">
+                                    </div>
+                                    <div class="form-group">
+                                        <div id="imageValidationErrors" class="text-danger"></div>
+                                    </div>
+                                </form>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-primary" id="submitImagePost">Post</button>
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Video Modal -->
+                <div id="videoModal" class="modal fade" tabindex="-1" role="dialog">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title">Create Video Post</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <div class="modal-body">
+                                <form id="videoForm">
+                                    <div class="form-group">
+                                        <input type="hidden" id="tokenid-forvideo" value="@Model.Token">
+                                        <input type="hidden" id="user-id-forvideo" name="UserId" value="@Model.UserInfo.UserId">
+                                        <textarea class="form-control" id="videoText" name="Text" placeholder="Write something..."></textarea>
+                                    </div>
+                                    <div class="form-group">
+                                        <input type="file" class="form-control-file" name="PostVideoFile" id="videoFile">
+                                    </div>
+                                    <div class="form-group">
+                                        <div id="videoValidationErrors" class="text-danger"></div>
+                                    </div>
+                                </form>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-primary" id="submitVideoPost">Post</button>
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                                                           
+                    <!-- Post Create Box End-->
                 <!-- Post Content
                 ================================================= -->
                     @foreach (var post in Model.Posts)
@@ -107,9 +212,12 @@
                                     <img src="@Model.UserInfo.ProfileImage" alt="" class="profile-photo-sm" />
                                     <input type="hidden" id="user-id-@post.PostId" value="@Model.UserInfo.UserId">
                                     <input type="hidden" id="post-id-@post.PostId" value="@post.PostId">
+                                    <input type="hidden" id="tokenid" value="@Model.Token">
                                     <input type="text" id="comment-text-@post.PostId" class="form-control" placeholder="Post a comment">
                                     <button class="adddd-comment-button" data-post-id="@post.PostId" style="width:60px;height:30px;">Send</button>
                                 </div>
+                                <div id="commentValidationErrors-@post.PostId" class="text-danger"></div>
+
 
 
                             </div>

@@ -38,10 +38,12 @@ namespace LinkPoint.MVC.Controllers
             response2.EnsureSuccessStatusCode();
             var json2 = await response2.Content.ReadAsStringAsync();
             var posts = JsonConvert.DeserializeObject<List<PostGetViewModel>>(json2);
+            var SortedPosts= posts.OrderByDescending(post=>post.PostId).ToList();
             NewsFeedViewModel newsFeedViewModel = new NewsFeedViewModel()
             {
+                Token = token,
                 UserInfo= userInfo,
-                Posts= posts
+                Posts= SortedPosts
             };
             return View(newsFeedViewModel);
         }

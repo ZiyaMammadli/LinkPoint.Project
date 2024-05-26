@@ -1,14 +1,17 @@
-﻿using LinkPoint.Business.DTOs.CommentDTOs;
+﻿using FluentValidation.AspNetCore;
+using LinkPoint.Business.DTOs.CommentDTOs;
 using LinkPoint.Business.Services.Interfaces;
 using LinkPoint.Business.Utilities.Exceptions.NotFoundExceptions;
 using LinkPoint.Business.Utilities.Exceptions.NotValidExceptions;
 using LinkPoint.Core.Entities;
 using LinkPoint.Core.Repositories;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace LinkPoint.API.Controllers
 {
+    [Authorize(Roles = "Member")]
     [Route("api/[controller]")]
     [ApiController]
     public class CommentsController : ControllerBase
@@ -39,6 +42,7 @@ namespace LinkPoint.API.Controllers
                 return BadRequest(ex.Message);
             }
         }
+
         [HttpPost("[action]")]
         public async Task<IActionResult> CreateComment(CommentPostDto commentPostDto)
         {
