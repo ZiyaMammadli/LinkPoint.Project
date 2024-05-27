@@ -59,7 +59,7 @@ public class LikeService : ILikeService
         }
         return likeGetDtos;
     }
-    public async Task AddLikeToPostAsync(string UserId, int PostId)
+    public async Task<int> AddLikeToPostAsync(string UserId, int PostId)
     {
         var user = await _userManager.FindByIdAsync(UserId);
         if (user is null) throw new UserNotFoundException(404, "User is not found");
@@ -76,8 +76,10 @@ public class LikeService : ILikeService
         post.LikeCount++;
         await _likeRepository.InsertAsync(like);
         await _likeRepository.CommitAsync();
+        var likeCount = post.LikeCount;
+        return likeCount;
     }
-    public async Task RemoveLikeFromPostAsync(string UserId,int PostId)
+    public async Task<int> RemoveLikeFromPostAsync(string UserId,int PostId)
     {
         var user = await _userManager.FindByIdAsync(UserId);
         if (user is null) throw new UserNotFoundException(404, "User is not found");
@@ -87,5 +89,25 @@ public class LikeService : ILikeService
         _likeRepository.Delete(like);
         post.LikeCount--;
         await _likeRepository.CommitAsync();
+        var likeCount = post.LikeCount;
+        return likeCount;
+    }
+
+    public async Task<List<LikeGetAllDto>> GetAllLikesAsync()
+    {
+        var likes= await _likeRepository.GetAllAsync();
+        if (likes.Count == 0) throw new LikeNotFoundException(404, "Like is not found");
+        List<LikeGetAllDto> likeGetAllDtos = new List<LikeGetAllDto>();
+        foreach (var like in likes)
+        {
+            LikeGetAllDto likeGetAllDto = new LikeGetAllDto()
+            {
+                LikeId = like.Id,
+                PostId=like.PostId,
+                UserId=like.UserId,
+            };
+            likeGetAllDtos.Add(likeGetAllDto);
+        }
+        return likeGetAllDtos;
     }
 }

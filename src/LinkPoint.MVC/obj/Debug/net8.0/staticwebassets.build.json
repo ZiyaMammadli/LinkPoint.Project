@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "ag911A1ft+llnZzp5gMuwz+GU0T8is9vcIPcygA/VI8=",
+  "Hash": "9CLWmf2Nbmo0ePmJBsXsiWVRArG9oEexGzO78fVzzKg=",
   "Source": "LinkPoint.MVC",
   "BasePath": "_content/LinkPoint.MVC",
   "Mode": "Default",
@@ -72,6 +72,25 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\css\\bootstrap.min.css"
+    },
+    {
+      "Identity": "C:\\Users\\user\\source\\repos\\LinkPoint\\src\\LinkPoint.MVC\\wwwroot\\css\\DropDownMenu.css",
+      "SourceId": "LinkPoint.MVC",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\user\\source\\repos\\LinkPoint\\src\\LinkPoint.MVC\\wwwroot\\",
+      "BasePath": "_content/LinkPoint.MVC",
+      "RelativePath": "css/DropDownMenu.css",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\css\\DropDownMenu.css"
     },
     {
       "Identity": "C:\\Users\\user\\source\\repos\\LinkPoint\\src\\LinkPoint.MVC\\wwwroot\\css\\emoji.css",
@@ -18561,6 +18580,25 @@
       "OriginalItemSpec": "wwwroot\\images\\users\\user-9.jpg"
     },
     {
+      "Identity": "C:\\Users\\user\\source\\repos\\LinkPoint\\src\\LinkPoint.MVC\\wwwroot\\js\\AddLikeToPost.js",
+      "SourceId": "LinkPoint.MVC",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\user\\source\\repos\\LinkPoint\\src\\LinkPoint.MVC\\wwwroot\\",
+      "BasePath": "_content/LinkPoint.MVC",
+      "RelativePath": "js/AddLikeToPost.js",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\js\\AddLikeToPost.js"
+    },
+    {
       "Identity": "C:\\Users\\user\\source\\repos\\LinkPoint\\src\\LinkPoint.MVC\\wwwroot\\js\\bootstrap.min.js",
       "SourceId": "LinkPoint.MVC",
       "SourceType": "Discovered",
@@ -18713,6 +18751,25 @@
       "OriginalItemSpec": "wwwroot\\js\\masonry.pkgd.min.js"
     },
     {
+      "Identity": "C:\\Users\\user\\source\\repos\\LinkPoint\\src\\LinkPoint.MVC\\wwwroot\\js\\PlayVideoWithScroll.js",
+      "SourceId": "LinkPoint.MVC",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\user\\source\\repos\\LinkPoint\\src\\LinkPoint.MVC\\wwwroot\\",
+      "BasePath": "_content/LinkPoint.MVC",
+      "RelativePath": "js/PlayVideoWithScroll.js",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\js\\PlayVideoWithScroll.js"
+    },
+    {
       "Identity": "C:\\Users\\user\\source\\repos\\LinkPoint\\src\\LinkPoint.MVC\\wwwroot\\js\\script.js",
       "SourceId": "LinkPoint.MVC",
       "SourceType": "Discovered",
@@ -18730,6 +18787,25 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\js\\script.js"
+    },
+    {
+      "Identity": "C:\\Users\\user\\source\\repos\\LinkPoint\\src\\LinkPoint.MVC\\wwwroot\\js\\ShowUsersLikedPost.js",
+      "SourceId": "LinkPoint.MVC",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\user\\source\\repos\\LinkPoint\\src\\LinkPoint.MVC\\wwwroot\\",
+      "BasePath": "_content/LinkPoint.MVC",
+      "RelativePath": "js/ShowUsersLikedPost.js",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\js\\ShowUsersLikedPost.js"
     },
     {
       "Identity": "C:\\Users\\user\\source\\repos\\LinkPoint\\src\\LinkPoint.MVC\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.css",

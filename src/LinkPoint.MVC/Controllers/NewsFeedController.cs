@@ -39,11 +39,17 @@ namespace LinkPoint.MVC.Controllers
             var json2 = await response2.Content.ReadAsStringAsync();
             var posts = JsonConvert.DeserializeObject<List<PostGetViewModel>>(json2);
             var SortedPosts= posts.OrderByDescending(post=>post.PostId).ToList();
+
+            var response3 = await client.GetAsync(baseAdress + "/Likes/GetAllLikes");
+            response3.EnsureSuccessStatusCode();
+            var json3 = await response3.Content.ReadAsStringAsync();
+            var likes = JsonConvert.DeserializeObject<List<LikeGetAllViewModel>>(json3);
             NewsFeedViewModel newsFeedViewModel = new NewsFeedViewModel()
             {
                 Token = token,
                 UserInfo= userInfo,
-                Posts= SortedPosts
+                Posts= SortedPosts,
+                LikeList=likes
             };
             return View(newsFeedViewModel);
         }

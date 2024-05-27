@@ -688,6 +688,16 @@
   },
   {
     "ContainingType": "LinkPoint.API.Controllers.LikesController",
+    "Method": "GetAllLikes",
+    "RelativePath": "api/Likes/GetAllLikes",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "LinkPoint.API.Controllers.LikesController",
     "Method": "GetAllUsersLikedPost",
     "RelativePath": "api/Likes/GetAllUsersLikedPost/{PostId}",
     "HttpMethod": "GET",

@@ -89,7 +89,6 @@
                                     </div>
                                     <div class="modal-footer">
                                         <button type="button" class="btn btn-primary" id="submitTextPost">Post</button>
-                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                                     </div>
                                 </form>
                             </div>
@@ -125,7 +124,6 @@
                             </div>
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-primary" id="submitImagePost">Post</button>
-                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                             </div>
                         </div>
                     </div>
@@ -158,7 +156,6 @@
                             </div>
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-primary" id="submitVideoPost">Post</button>
-                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                             </div>
                         </div>
                     </div>
@@ -169,6 +166,8 @@
                 ================================================= -->
                     @foreach (var post in Model.Posts)
                 {
+                    var isliked = Model.LikeList.Any(l => l.PostId == post.PostId && l.UserId == Model.UserInfo.UserId);
+                    var LikeButtonClass = isliked ? "text-red addlike" : "text-green addlike";
 
                     <div class="post-content">
                         @if (!string.IsNullOrEmpty(post.ImageUrl))
@@ -186,8 +185,13 @@
                                     <h5><a href="timeline.html" class="profile-link">@post.UserName</a> <span class="following">following</span></h5>
                                     <p class="text-muted">@post.ElapsedTime</p>
                                 </div>
-                                <div class="reaction">
-                                    <a class="btn text-green"><i class="icon ion-thumbsup"></i>@post.LikeCount</a>
+                                <div class="reaction" data-post-id="@post.PostId" data-user-id="@Model.UserInfo.UserId">
+                                    <input type="hidden" id="tokenidd" value="@Model.Token">
+                                    <button class="btn-group @LikeButtonClass" style="border:hidden;padding: 3px 12px"><i class="icon ion-thumbsup"></i></button>
+                                    <div class="like-users-dropdown dropdown-menu" id="like-users-dropdown-@post.PostId">
+                                        
+                                    </div>
+                                    <button class="btn like-count"  href="">@post.LikeCount</button>
                                 </div>
                                 <div class="line-divider"></div>
                                 <div class="post-text">

@@ -1,0 +1,45 @@
+﻿/* Dropdown menü temel stilleri */
+.like-users-dropdown {
+    position: absolute;
+    left: -200px; /* Menü sol tarafa açılacak şekilde ayarlandı */
+    top: 0;
+    width: 200px;
+    background-color: white;
+    border: 1px solid #ccc;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 10px;
+    display: none;
+    opacity: 0;
+    transform: translateX(-20px);
+    transition: all 0.3s ease;
+}
+
+    /* Animasyonlu görünür hale getirme */
+    .like-users-dropdown.show {
+        display: block;
+        opacity: 1;
+        transform: translateX(0);
+    }
+
+/* Kullanıcı öğesi stilleri */
+.like-user {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.user-profile-image {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    margin-right: 10px;
+}
+
+.user-name {
+    font-weight: bold;
+}
+
+/* Sayfa dışında bir yere tıklanırsa dropdown menüyü kapatma */
+body {
+    position: relative;
+}

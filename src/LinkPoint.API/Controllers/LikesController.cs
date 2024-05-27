@@ -17,6 +17,23 @@ namespace LinkPoint.API.Controllers
             _likeService = likeService;
         }
 
+        [HttpGet("[action]")]
+        public async Task<IActionResult> GetAllLikes()
+        {
+            try
+            {
+                return Ok(await _likeService.GetAllLikesAsync());
+            }
+            catch (LikeNotFoundException ex)
+            {
+                return StatusCode(ex.StatusCode, ex.Message);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
+
         [HttpGet("[action]/{PostId}")]
         public async Task<IActionResult> GetAllUsersLikedPost(int PostId)
         {
@@ -45,9 +62,8 @@ namespace LinkPoint.API.Controllers
         public async Task<IActionResult> AddLikeToPost(string UserId,int PostId)
         {
             try
-            {
-                await _likeService.AddLikeToPostAsync(UserId,PostId);
-                return Ok();
+            {               
+                return Ok(await _likeService.AddLikeToPostAsync(UserId, PostId));
             }
             catch(AlreadyExistException ex)
             {
@@ -71,8 +87,7 @@ namespace LinkPoint.API.Controllers
         {
             try
             {
-                await _likeService.RemoveLikeFromPostAsync(UserId, PostId);
-                return Ok();
+                return Ok(await _likeService.RemoveLikeFromPostAsync(UserId, PostId));
             }
             catch (UserNotFoundException ex)
             {
