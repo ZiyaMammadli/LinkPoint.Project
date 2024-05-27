@@ -23,6 +23,45 @@ namespace LinkPoint.API.Controllers
         {
             _accountSettingsService = accountSettingsService;
         }
+
+        [HttpGet("[action]/{UserId}/{count}")]
+        public async Task<IActionResult> GetAllDontFollowingUsers(string UserId,int count)
+        {
+            try
+            {
+                return Ok(await _accountSettingsService.GetAllDontFollowingUsersAsync(UserId, count));
+            }
+            catch (UserNotFoundException ex)
+            {
+                return StatusCode(ex.StatusCode, ex.Message);
+            }
+            catch (ProfileImageNotFoundException ex)
+            {
+                return StatusCode(ex.StatusCode, ex.Message);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
+
+        [HttpGet("[action]")]
+        public async Task<IActionResult> GetAllUsers()
+        {
+            try
+            {
+                return Ok(await _accountSettingsService.GetAllUsersAsync());
+            }
+            catch (ProfileImageNotFoundException ex)
+            {
+                return StatusCode(ex.StatusCode, ex.Message);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
+
         [HttpGet("[action]/{UserId}")]
         public async Task<IActionResult> GetAuthUserInfo(string UserId)
         {

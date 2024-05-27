@@ -212,6 +212,27 @@
   },
   {
     "ContainingType": "LinkPoint.API.Controllers.AccountSettingsController",
+    "Method": "GetAllDontFollowingUsers",
+    "RelativePath": "api/AccountSettings/GetAllDontFollowingUsers/{UserId}/{count}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "UserId",
+        "Type": "System.String",
+        "IsRequired": true
+      },
+      {
+        "Name": "count",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "LinkPoint.API.Controllers.AccountSettingsController",
     "Method": "GetAllUserInterests",
     "RelativePath": "api/AccountSettings/GetAllUserInterests/{UserId}",
     "HttpMethod": "GET",
@@ -224,6 +245,16 @@
         "IsRequired": true
       }
     ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "LinkPoint.API.Controllers.AccountSettingsController",
+    "Method": "GetAllUsers",
+    "RelativePath": "api/AccountSettings/GetAllUsers",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
     "ReturnTypes": []
   },
   {

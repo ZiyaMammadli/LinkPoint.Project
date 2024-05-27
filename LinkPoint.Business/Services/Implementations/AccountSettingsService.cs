@@ -12,15 +12,13 @@ using LinkPoint.Business.Utilities.Exceptions.CommonExceptions;
 using LinkPoint.Business.Utilities.Exceptions.NotFoundExceptions;
 using LinkPoint.Business.Utilities.Exceptions.NotValidExceptions;
 using LinkPoint.Business.Utilities.Extentions;
+using LinkPoint.Business.Utilities.Helpers;
 using LinkPoint.Core.Entities;
 using LinkPoint.Core.Repositories;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.DependencyInjection;
-using Newtonsoft.Json;
-using System.Diagnostics;
 
 namespace LinkPoint.Business.Services.Implementations;
 
@@ -37,6 +35,7 @@ public class AccountSettingsService : IAccountSettingsService
     private readonly IConfiguration _configuration;
     private readonly IWebHostEnvironment _webHostEnvironment;
     private readonly IFriendShipService _friendShipService;
+    private readonly IAppUserRepository _appUserRepository;
 
     public AccountSettingsService(IUserEducationRepository userEducationRepository,
         UserManager<AppUser> userManager, 
@@ -48,7 +47,8 @@ public class AccountSettingsService : IAccountSettingsService
         IImageRepository imageRepository,
         IConfiguration configuration,
         IWebHostEnvironment webHostEnvironment,
-        IFriendShipService friendShipService)
+        IFriendShipService friendShipService,
+        IAppUserRepository appUserRepository)
     {
         _userEducationRepository = userEducationRepository;
         _userManager = userManager;
@@ -61,6 +61,7 @@ public class AccountSettingsService : IAccountSettingsService
         _configuration = configuration;
         _webHostEnvironment = webHostEnvironment;
         _friendShipService = friendShipService;
+        _appUserRepository = appUserRepository;
     }
     public async Task UpdateUserEducationAsync(int Id ,UserEducationPutDto userEducationPutDto)
     {   
@@ -287,5 +288,51 @@ public class AccountSettingsService : IAccountSettingsService
             FollowingsCount= followings.Count,
         };
         return authUserGetDto;
+    }
+
+    public async Task<List<UserGetDto>> GetAllUsersAsync()
+    {
+        var users=await _appUserRepository.GetAllAsync(u=>u.EmailConfirmed==true);
+        List<UserGetDto> usersDto = new List<UserGetDto>();
+        if (users.Count > 0)
+        {            
+            foreach (var user in users)
+            {
+                var profileImage = await _imageRepository.GetSingleAsync(i => i.UserId == user.Id && i.IsPostImage == false);
+                if (profileImage is null) throw new ProfileImageNotFoundException(404, "ProfileImage is not found");
+                UserGetDto userGetDto = new UserGetDto()
+                {
+                    UserId = user.Id,
+                    UserName = user.UserName,
+                    ProfileImage = profileImage.ImageUrl
+                };
+                usersDto.Add(userGetDto);
+            }
+        }
+        return usersDto;
+    }
+
+    public async Task<List<UserGetDto>> GetAllDontFollowingUsersAsync(string UserId,int count)
+    {
+        var followingUsers = await _friendShipService.GetAllAcceptedFollowingUsersAsync(UserId);
+        List<UserGetDto> userGetDtos = new List<UserGetDto>();
+        if (followingUsers.Count>0)
+        {
+            foreach (var user in followingUsers)
+            {
+                UserGetDto userGetDto = new UserGetDto()
+                {
+                    UserId = user.UserId,
+                    UserName = user.UserName,
+                    ProfileImage = user.ProfileImageUrl
+                };
+                userGetDtos.Add(userGetDto);
+            }
+        }       
+        var AllUsers = await GetAllUsersAsync();
+        var notFollowedUsers = AllUsers.Except(userGetDtos, new UserGetDtoComparer()).ToList();
+        var random = new Random();
+        var randomUsers=notFollowedUsers.OrderBy(u => random.Next()).Take(count).ToList();
+        return randomUsers;
     }
 }

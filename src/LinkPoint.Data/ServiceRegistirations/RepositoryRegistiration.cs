@@ -20,5 +20,6 @@ public static class RepositoryRegistiration
         services.AddScoped<ILikeRepository, LikeRepository>();
         services.AddScoped<IMessageRepository, MessageRepository>();
         services.AddScoped<IConversationRepository, ConversationRepository>();
+        services.AddScoped<IAppUserRepository, AppUserRepository>();
     }
 }
