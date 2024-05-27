@@ -160,7 +160,28 @@
                         </div>
                     </div>
                 </div>
-                                                           
+                 
+                <!-- Modal View for user liked -->                
+                <div id="likeUsersModal" class="modal fade" tabindex="-1" role="dialog">
+                    <div class="modal-dialog modal-dialog-centered" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title">Users who liked this post</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <div class="modal-body">
+                                <div id="like-users-container" class="like-users-container">
+                                    <!-- Dinamik içerik burada yüklenecek -->
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+
                     <!-- Post Create Box End-->
                 <!-- Post Content
                 ================================================= -->
@@ -188,9 +209,9 @@
                                 <div class="reaction" data-post-id="@post.PostId" data-user-id="@Model.UserInfo.UserId">
                                     <input type="hidden" id="tokenidd" value="@Model.Token">
                                     <button class="btn-group @LikeButtonClass" style="border:hidden;padding: 3px 12px"><i class="icon ion-thumbsup"></i></button>
-                                    <div class="like-users-dropdown dropdown-menu" id="like-users-dropdown-@post.PostId">
+@*                                     <div class="like-users-dropdown dropdown-menu" id="like-users-dropdown-@post.PostId">
                                         
-                                    </div>
+                                    </div> *@
                                     <button class="btn like-count"  href="">@post.LikeCount</button>
                                 </div>
                                 <div class="line-divider"></div>

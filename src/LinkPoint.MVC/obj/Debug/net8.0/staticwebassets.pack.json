@@ -9,6 +9,10 @@
       "PackagePath": "staticwebassets\\css\\DropDownMenu.css"
     },
     {
+      "Id": "C:\\Users\\user\\source\\repos\\LinkPoint\\src\\LinkPoint.MVC\\wwwroot\\css\\UserLikedModalView.css",
+      "PackagePath": "staticwebassets\\css\\UserLikedModalView.css"
+    },
+    {
       "Id": "C:\\Users\\user\\source\\repos\\LinkPoint\\src\\LinkPoint.MVC\\wwwroot\\css\\bootstrap.min.css",
       "PackagePath": "staticwebassets\\css\\bootstrap.min.css"
     },

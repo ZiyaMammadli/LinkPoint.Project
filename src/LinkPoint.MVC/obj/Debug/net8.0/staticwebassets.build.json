@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "9CLWmf2Nbmo0ePmJBsXsiWVRArG9oEexGzO78fVzzKg=",
+  "Hash": "FBmiQCNepbW6pp6aswOVpFPmJPj+PBMnP4KuFO2mPL8=",
   "Source": "LinkPoint.MVC",
   "BasePath": "_content/LinkPoint.MVC",
   "Mode": "Default",
@@ -16925,6 +16925,25 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\css\\style.css"
+    },
+    {
+      "Identity": "C:\\Users\\user\\source\\repos\\LinkPoint\\src\\LinkPoint.MVC\\wwwroot\\css\\UserLikedModalView.css",
+      "SourceId": "LinkPoint.MVC",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\user\\source\\repos\\LinkPoint\\src\\LinkPoint.MVC\\wwwroot\\",
+      "BasePath": "_content/LinkPoint.MVC",
+      "RelativePath": "css/UserLikedModalView.css",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\css\\UserLikedModalView.css"
     },
     {
       "Identity": "C:\\Users\\user\\source\\repos\\LinkPoint\\src\\LinkPoint.MVC\\wwwroot\\fonts\\agency-fb.eot",

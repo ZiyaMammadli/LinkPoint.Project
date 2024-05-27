@@ -1,0 +1,35 @@
+﻿/*
+.like-users-container {
+    max-height: 400px; 
+    overflow-y: auto; 
+    padding: 10px;
+}
+
+
+.like-user {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.user-profile-image {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    margin-right: 10px;
+}
+
+.user-name {
+    font-weight: bold;
+}
+
+
+.modal.fade .modal-dialog {
+    transition: transform 0.3s ease-out;
+    transform: translateY(-100px);
+}
+
+.modal.show .modal-dialog {
+    transform: translateY(0);
+}
+*/

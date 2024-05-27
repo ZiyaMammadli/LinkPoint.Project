@@ -11,6 +11,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <_ContentIncludedByDefault Remove="wwwroot\css\UserLikedModalView.css" />
     <_ContentIncludedByDefault Remove="wwwroot\js\AddComment.js" />
   </ItemGroup>
 
