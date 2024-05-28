@@ -45,12 +45,12 @@ namespace LinkPoint.API.Controllers
             }
         }
 
-        [HttpGet("[action]")]
-        public async Task<IActionResult> GetAllUsers()
+        [HttpGet("[action]/{query}")]
+        public async Task<IActionResult> GetAllUsers(string query)
         {
             try
             {
-                return Ok(await _accountSettingsService.GetAllUsersAsync());
+                return Ok(await _accountSettingsService.GetAllUsersAsync(query));
             }
             catch (ProfileImageNotFoundException ex)
             {

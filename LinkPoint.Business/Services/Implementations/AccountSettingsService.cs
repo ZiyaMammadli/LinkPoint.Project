@@ -290,12 +290,12 @@ public class AccountSettingsService : IAccountSettingsService
         return authUserGetDto;
     }
 
-    public async Task<List<UserGetDto>> GetAllUsersAsync()
+    public async Task<List<UserGetDto>> GetAllUsersAsync(string query)
     {
         var users=await _appUserRepository.GetAllAsync(u=>u.EmailConfirmed==true);
         List<UserGetDto> usersDto = new List<UserGetDto>();
         if (users.Count > 0)
-        {            
+        {       
             foreach (var user in users)
             {
                 var profileImage = await _imageRepository.GetSingleAsync(i => i.UserId == user.Id && i.IsPostImage == false);
@@ -309,7 +309,8 @@ public class AccountSettingsService : IAccountSettingsService
                 usersDto.Add(userGetDto);
             }
         }
-        return usersDto;
+        var userss = usersDto.Where(u => u.UserName.Contains(query)).ToList();
+        return userss;
     }
 
     public async Task<List<UserGetDto>> GetAllDontFollowingUsersAsync(string UserId,int count)
@@ -328,9 +329,25 @@ public class AccountSettingsService : IAccountSettingsService
                 };
                 userGetDtos.Add(userGetDto);
             }
-        }       
-        var AllUsers = await GetAllUsersAsync();
-        var notFollowedUsers = AllUsers.Except(userGetDtos, new UserGetDtoComparer()).ToList();
+        }
+        var users = await _appUserRepository.GetAllAsync(u => u.EmailConfirmed == true && u.Id !=UserId);
+        List<UserGetDto> usersDto = new List<UserGetDto>();
+        if (users.Count > 0)
+        {
+            foreach (var user in users)
+            {
+                var profileImage = await _imageRepository.GetSingleAsync(i => i.UserId == user.Id && i.IsPostImage == false);
+                if (profileImage is null) throw new ProfileImageNotFoundException(404, "ProfileImage is not found");
+                UserGetDto userGetDto = new UserGetDto()
+                {
+                    UserId = user.Id,
+                    UserName = user.UserName,
+                    ProfileImage = profileImage.ImageUrl
+                };
+                usersDto.Add(userGetDto);
+            }
+        }
+        var notFollowedUsers = usersDto.Except(userGetDtos, new UserGetDtoComparer()).ToList();
         var random = new Random();
         var randomUsers=notFollowedUsers.OrderBy(u => random.Next()).Take(count).ToList();
         return randomUsers;

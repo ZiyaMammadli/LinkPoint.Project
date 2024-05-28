@@ -250,11 +250,17 @@
   {
     "ContainingType": "LinkPoint.API.Controllers.AccountSettingsController",
     "Method": "GetAllUsers",
-    "RelativePath": "api/AccountSettings/GetAllUsers",
+    "RelativePath": "api/AccountSettings/GetAllUsers/{query}",
     "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,
-    "Parameters": [],
+    "Parameters": [
+      {
+        "Name": "query",
+        "Type": "System.String",
+        "IsRequired": true
+      }
+    ],
     "ReturnTypes": []
   },
   {

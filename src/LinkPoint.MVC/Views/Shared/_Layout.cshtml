@@ -18,6 +18,7 @@
     <link rel="stylesheet" href="~/css/font-awesome.min.css" />
     <link href="~/css/emoji.css" rel="stylesheet">
     <link href="~/css/UserLikedModalView.css" rel="stylesheet" />
+    <link href="~/css/DropDownMenu.css" rel="stylesheet" />
 
     <!--Google Font-->
     <link href="https://fonts.googleapis.com/css?family=Lato:300,400,400i,700,700i" rel="stylesheet">
@@ -102,12 +103,18 @@
                         </li>
                         <li class="dropdown"><a href="contact.html">Contact</a></li>
                     </ul>
+
                     <form class="navbar-form navbar-right hidden-sm">
                         <div class="form-group">
                             <i class="icon ion-android-search"></i>
-                            <input type="text" class="form-control" placeholder="Search friends, photos, videos">
+                            <input type="text" id="searchBox" class="form-control" placeholder="Search friends, photos, videos">
                         </div>
                     </form>
+                    <div id="searchResults" class="dropdown-menu">
+                        <!-- Dropdown results will be injected here -->
+                    </div>
+
+
                 </div><!-- /.navbar-collapse -->
             </div><!-- /.container -->
         </nav>
@@ -179,7 +186,7 @@
             <p>Thunder Team © 2016. All rights reserved</p>
         </div>
     </footer>
-
+    @RenderSection("Scripts", required: false)
     <!--preloader-->
     <div id="spinner-wrapper">
         <div class="spinner"></div>
@@ -200,6 +207,63 @@
     <script src="~/js/PlayVideoWithScroll.js"></script>
     <script src="~/js/AddLikeToPost.js"></script>
     <script src="~/js/ShowUsersLikedPost.js"></script>
+        <script>
+        $(document).ready(function () {
+            function positionDropdown() {
+                var searchBox = $('#searchBox');
+                var searchBoxOffset = searchBox.offset();
+                var searchBoxHeight = searchBox.outerHeight();
+
+                // Get the scroll position of the window
+                var scrollTop = $(window).scrollTop();
+
+                $('#searchResults').css({
+                    top: searchBoxOffset.top + searchBoxHeight - scrollTop + "px", // Adjust position based on scroll
+                    left: '50%',
+                    transform: 'translateX(-50%) translateY(0)',
+                    width: '500px'
+                });
+            }
+
+            $('#searchBox').on('input', function () {
+                var query = $(this).val();
+
+                if (query.length >= 2) {
+                    $.get('@Url.Action("SearchResults", "NewsFeed")', { query: query }, function (data) {
+                        $('#searchResults').html(data).css({
+                            display: "block",
+                            opacity: 1,
+                            visibility: 'visible'
+                        }).addClass('show');
+                        positionDropdown();
+                    });
+                } else {
+                    $('#searchResults').removeClass('show').css({
+                        display: 'none',
+                        opacity: 0,
+                        visibility: 'hidden'
+                    });
+                }
+            });
+
+
+            $(window).on('scroll resize', function () {
+                if ($('#searchResults').hasClass('show')) {
+                    positionDropdown();
+                }
+            });
+
+            $(document).click(function (e) {
+                if (!$(e.target).closest('#searchBox').length) {
+                    $('#searchResults').removeClass('show').css({
+                        display: 'none',
+                        opacity: 0,
+                        visibility: 'hidden'
+                    });
+                }
+            });
+        });
+        </script>
 </body>
 
 <!-- Mirrored from themified.com/friend-finder/newsfeed.html by HTTrack Website Copier/3.x [XR&CO'2014], Sun, 05 May 2024 14:17:04 GMT -->

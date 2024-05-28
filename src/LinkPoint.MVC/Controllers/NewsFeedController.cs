@@ -44,14 +44,39 @@ namespace LinkPoint.MVC.Controllers
             response3.EnsureSuccessStatusCode();
             var json3 = await response3.Content.ReadAsStringAsync();
             var likes = JsonConvert.DeserializeObject<List<LikeGetAllViewModel>>(json3);
+
+            var response4 = await client.GetAsync(baseAdress + "/AccountSettings/GetAllDontFollowingUsers/"+userId+"/"+4);
+            response4.EnsureSuccessStatusCode();
+            var json4 = await response4.Content.ReadAsStringAsync();
+            var dontFollowingUsers = JsonConvert.DeserializeObject<List<DontFollowingUsersViewModel>>(json4);
             NewsFeedViewModel newsFeedViewModel = new NewsFeedViewModel()
             {
                 Token = token,
                 UserInfo= userInfo,
                 Posts= SortedPosts,
-                LikeList=likes
+                LikeList=likes,
+                DontFollowingUsers= dontFollowingUsers
             };
             return View(newsFeedViewModel);
+        }
+        [HttpGet]
+        public async Task<IActionResult> SearchResults(string query)
+        {
+            var token = HttpContext.Session.GetString("JWToken");
+            var userId = HttpContext.Request.Cookies["UserId"];
+            if (string.IsNullOrEmpty(token))
+            {
+                return RedirectToAction("Login", "Account");
+            }
+
+            var client = _httpClientFactory.CreateClient();
+            client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
+
+            var response = await client.GetAsync(baseAdress + "/AccountSettings/GetAllUsers/"+query);
+            response.EnsureSuccessStatusCode();
+            var json = await response.Content.ReadAsStringAsync();
+            var users = JsonConvert.DeserializeObject<List<UserGetViewModel>>(json);
+            return PartialView("_UserDropdownPartial", users);
         }
     }
 }

@@ -13,7 +13,7 @@ namespace LinkPoint.Business.Services.Interfaces;
 public interface IAccountSettingsService
 {
     Task<List<UserGetDto>> GetAllDontFollowingUsersAsync(string UserId,int count);// Userin izlemediyi butun userleri gosterir
-    Task<List<UserGetDto>> GetAllUsersAsync();//
+    Task<List<UserGetDto>> GetAllUsersAsync(string query);//
     Task<AuthUserGetDto> GetAuthUserInfoAsync(string UserId);//
     Task UpdateUserAboutAsync(int Id,UserAboutPutDto userAboutPutDto);//
     Task<UserAboutGetDto> GetUserAboutAsync(string UserId);//

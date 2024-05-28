@@ -1,45 +1,48 @@
-﻿/* Dropdown menü temel stilleri */
-.like-users-dropdown {
-    position: absolute;
-    left: -200px; /* Menü sol tarafa açılacak şekilde ayarlandı */
-    top: 0;
-    width: 200px;
+﻿
+
+#searchResults {
+    position: fixed;
+    z-index: 1000;
     background-color: white;
     border: 1px solid #ccc;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    padding: 10px;
-    display: none;
+    width: 500px;
+    max-height: 300px;
+    overflow-y: auto;
+    border-radius: 0 0 5px 5px;
+    left: 50%;
+    transform: translateX(-50%) translateY(0) !important;
     opacity: 0;
-    transform: translateX(-20px);
-    transition: all 0.3s ease;
+    visibility: hidden;
+    transition: opacity 0.3s ease, transform 0.3s ease !important;
 }
 
-    /* Animasyonlu görünür hale getirme */
-    .like-users-dropdown.show {
-        display: block;
+    #searchResults.show {
         opacity: 1;
-        transform: translateX(0);
+        visibility: visible; 
+        transform: translateX(-50%) translateY(0) !important;
     }
 
-/* Kullanıcı öğesi stilleri */
-.like-user {
+.dropdown-itemmm {
+    padding: 10px;
+    margin-right: 15px;
+    cursor: pointer;
     display: flex;
     align-items: center;
-    margin-bottom: 10px;
+    background-color: white;
+    border-radius: 5px;
+    list-style-type: none; /* Liste işaretlerini kaldır */
 }
 
-.user-profile-image {
-    width: 30px;
-    height: 30px;
-    border-radius: 50%;
-    margin-right: 10px;
-}
+    .dropdown-itemmm img {
+        border-radius: 50%;
+        margin-right: 10px;
+    }
 
-.user-name {
-    font-weight: bold;
-}
+    .dropdown-itemmm:hover {
+        background-color: #27aae1;
+    }
 
-/* Sayfa dışında bir yere tıklanırsa dropdown menüyü kapatma */
-body {
-    position: relative;
-}
+
+
+
+
