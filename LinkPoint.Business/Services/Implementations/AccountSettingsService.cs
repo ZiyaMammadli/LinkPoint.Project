@@ -277,6 +277,8 @@ public class AccountSettingsService : IAccountSettingsService
         if (user is null) throw new UserNotFoundException(404, "User is not found");
         var profileImage = await _imageRepository.GetSingleAsync(i => i.UserId == user.Id && i.IsPostImage == false);
         if (profileImage is null) throw new ProfileImageNotFoundException(404, "ProfileImage is not found");
+        var backgroundImage = await _imageRepository.GetSingleAsync(i => i.UserId == user.Id && i.IsPostImage == null);
+        if (backgroundImage is null) throw new ProfileImageNotFoundException(404, "BackgroundImage is not found");
         var followings=await _friendShipService.GetAllAcceptedFollowingUsersAsync(UserId);
         var followers=await _friendShipService.GetAllAcceptedFollowerUsersAsync(UserId);
         AuthUserGetDto authUserGetDto = new AuthUserGetDto()
@@ -284,6 +286,7 @@ public class AccountSettingsService : IAccountSettingsService
             UserId = user.Id,
             UserName = user.UserName,
             ProfileImage= profileImage.ImageUrl,
+            BackgroundImage= backgroundImage.ImageUrl,
             FollowersCount= followers.Count,
             FollowingsCount= followings.Count,
         };

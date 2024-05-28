@@ -30,7 +30,7 @@
     align-items: center;
     background-color: white;
     border-radius: 5px;
-    list-style-type: none; /* Liste işaretlerini kaldır */
+    list-style-type: none;
 }
 
     .dropdown-itemmm img {

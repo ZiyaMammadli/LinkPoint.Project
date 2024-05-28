@@ -8,7 +8,7 @@
                 <div class="col-md-3 static">
                     <div class="profile-card">
                         <img src="@Model.UserInfo.ProfileImage" alt="user" class="profile-photo" />
-                        <h5><a href="timeline.html" class="text-white">@Model.UserInfo.UserName</a></h5>
+                        <h5><a href="/AuthUserProfile/Index" class="text-white">@Model.UserInfo.UserName</a></h5>
                         <a href="#" class="text-white"><i class="ion ion-android-person-add"></i> @Model.UserInfo.FollowersCount followers</a><br />
                         <a href="#" class="text-white"><i class="ion ion-android-person-add"></i> @Model.UserInfo.FollowingsCount followings</a>
                     </div><!--profile card ends-->
@@ -187,6 +187,11 @@
                 ================================================= -->
                     @foreach (var post in Model.Posts)
                 {
+                    var userProfilee = "";
+                    if (post.UserName == Model.UserInfo.UserName)
+                    {
+                        userProfilee = "/AuthUserProfile/Index";
+                    }
                     var isliked = Model.LikeList.Any(l => l.PostId == post.PostId && l.UserId == Model.UserInfo.UserId);
                     var LikeButtonClass = isliked ? "text-red addlike" : "text-green addlike";
 
@@ -203,7 +208,7 @@
                             <img src="@Model.UserInfo.ProfileImage" alt="user" class="profile-photo-md pull-left" />
                             <div class="post-detail">
                                 <div class="user-info">
-                                    <h5><a href="timeline.html" class="profile-link">@post.UserName</a> <span class="following">following</span></h5>
+                                    <h5><a href="@userProfilee" class="profile-link">@post.UserName</a> <span class="following">following</span></h5>
                                     <p class="text-muted">@post.ElapsedTime</p>
                                 </div>
                                 <div class="reaction" data-post-id="@post.PostId" data-user-id="@Model.UserInfo.UserId">
@@ -224,10 +229,14 @@
                                 <div class="line-divider"></div>
                                 @foreach (var comment in post.Comments)
                                 {
-                                   
+                                    var userProfile = "";
+                                    if (comment.UserName == Model.UserInfo.UserName)
+                                    {
+                                        userProfile = "/AuthUserProfile/Index";
+                                    }
                                     <div class="post-comment">
                                         <img src="@comment.UserProfileImage" alt="" class="profile-photo-sm" />
-                                        <p><a href="timeline.html" class="profile-link">@comment.UserName </a>@comment.Text </p>
+                                        <p><a href="@userProfile" class="profile-link">@comment.UserName </a>@comment.Text </p>
                                     </div>
                                 }
                                 <div id="comments-@post.PostId">
