@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "FBmiQCNepbW6pp6aswOVpFPmJPj+PBMnP4KuFO2mPL8=",
+  "Hash": "ISq4DGhU/2RO71Bsl8gclb1Ga5hW1wW4TLMKZYTqSlo=",
   "Source": "LinkPoint.MVC",
   "BasePath": "_content/LinkPoint.MVC",
   "Mode": "Default",
@@ -18635,6 +18635,25 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\js\\bootstrap.min.js"
+    },
+    {
+      "Identity": "C:\\Users\\user\\source\\repos\\LinkPoint\\src\\LinkPoint.MVC\\wwwroot\\js\\ChangeUserProfileImage.js",
+      "SourceId": "LinkPoint.MVC",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\user\\source\\repos\\LinkPoint\\src\\LinkPoint.MVC\\wwwroot\\",
+      "BasePath": "_content/LinkPoint.MVC",
+      "RelativePath": "js/ChangeUserProfileImage.js",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\js\\ChangeUserProfileImage.js"
     },
     {
       "Identity": "C:\\Users\\user\\source\\repos\\LinkPoint\\src\\LinkPoint.MVC\\wwwroot\\js\\CreateImageVideoAndTextPosts.js",

@@ -6,19 +6,19 @@
         ================================================= -->
         <div class="timeline">
             <div class="timeline-cover"style="background-image: url('@Model.UserInfo.BackgroundImage');">
-
                 <!--Timeline Menu for Large Screens-->
                 <div class="timeline-nav-bar hidden-sm hidden-xs">
                     <div class="row">
                         <div class="col-md-3">
                             <div class="profile-info">
                                 <img src="@Model.UserInfo.ProfileImage" alt="" class="img-responsive profile-photo" />
+                                <button class="btn" style="background-color:#8dc63f;color:white;border-radius:15px" data-toggle="modal" data-target="#profileImageModal">Edit</button>
                                 <h3>@Model.UserInfo.UserName</h3>
                             </div>
                         </div>
                         <div class="col-md-9">
                             <ul class="list-inline profile-menu">
-                                <li><a href="timeline.html" class="active">Timeline</a></li>
+                                <li><a href="/AuthUserProfile/Index" class="active">My Posts</a></li>
                                 <li><a href="timeline-about.html">About</a></li>
                                 <li><a href="timeline-album.html">Album</a></li>
                                 <li><a href="timeline-friends.html">Friends</a></li>
@@ -26,168 +26,269 @@
                             <ul class="follow-me list-inline">
                                 <li>@Model.UserInfo.FollowersCount<a href=""> Followers</a> </li>
                                 <li>@Model.UserInfo.FollowingsCount<a href=""> Followings </a></li>
+                                <input type="hidden" id="tokenidd" value="@Model.UserInfo.BackgroundImageId">
+                                <button class="btn" style="background-color:#8dc63f;color:white;border-radius:15px">Edit</button>
                             </ul>
                         </div>
                     </div>
                 </div><!--Timeline Menu for Large Screens End-->
 
+            <!-- Modal içindeki HTML kodu -->
+            <div class="modal fade" id="profileImageModal" tabindex="-1" aria-labelledby="editModalLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="editModalLabel">Edit Profile Image</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <input type="file" id="profileImage" name="profileImage" />
+                            <input type="hidden" id="profileImageId" value="@Model.UserInfo.ProfileImageId">
+                            <input type="hidden" id="userId" value="@Model.UserInfo.UserId">
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-danger" id="deleteProfileImageBtn">Delete Profile Image</button>
+                            <button type="button" class="btn btn-primary" id="updateProfileImageBtn">Save changes</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+
 
             </div>
             <div id="page-contents">
                 <div class="row">
-                    <div class="col-md-3"></div>
-                    <div class="col-md-7">
+                    <div class="col-md-3" style="padding-top:50px;padding-left:65px">
 
+                    </div>
+                    <div class="col-md-7">
                         <!-- Post Create Box
                         ================================================= -->
-                        <div class="create-post">
-                            <div class="row">
-                                <div class="col-md-7 col-sm-7">
+                    <div class="create-post">
+                        <div class="row">
+                            <div class="col-md-7 col-sm-7">
+                                <form id="TextCreateBox">
                                     <div class="form-group">
-                                        <img src="~/images/users/user-1.jpg" alt="" class="profile-photo-md" />
-                                        <textarea name="texts" id="exampleTextarea" cols="30" rows="1" class="form-control" placeholder="Write what you wish"></textarea>
+                                        <img src="@Model.UserInfo.ProfileImage" alt="" class="profile-photo-md" />
+                                        <input type="hidden" id="tokenidd" value="@Model.Token">
+                                        <input type="hidden" id="user-idd" value="@Model.UserInfo.UserId">
+                                        <textarea id="postTextt" cols="30" rows="1" class="form-control" placeholder="Write what you wish"></textarea>
                                     </div>
-                                </div>
-                                <div class="col-md-5 col-sm-5">
-                                    <div class="tools">
-                                        <ul class="publishing-tools list-inline">
-                                            <li><a href="#"><i class="ion-compose"></i></a></li>
-                                            <li><a href="#"><i class="ion-images"></i></a></li>
-                                            <li><a href="#"><i class="ion-ios-videocam"></i></a></li>
-                                            <li><a href="#"><i class="ion-map"></i></a></li>
-                                        </ul>
-                                        <button class="btn btn-primary pull-right">Publish</button>
+                                    <div class="form-group">
+                                        <div id="textValidationErrorss" class="text-danger"></div>
                                     </div>
+                                </form>
+                            </div>
+                            <div class="col-md-5 col-sm-5">
+                                <div class="tools">
+                                    <ul class="publishing-tools list-inline">
+                                        <li><a href="#" id="compose-icon"><i class="ion-compose"></i></a></li>
+                                        <li><a href="#" id="images-icon"><i class="ion-images"></i></a></li>
+                                        <li><a href="#" id="video-icon"><i class="ion-ios-videocam"></i></a></li>
+                                    </ul>
+                                    <button class="btn btn-primary pull-right" id="CreateTextPost">Publish</button>
                                 </div>
                             </div>
-                        </div><!-- Post Create Box End-->
-                        <!-- Post Content
-                        ================================================= -->
-                        <div class="post-content">
+                        </div>
+                    </div>
 
-                            <!--Post Date-->
-                            <div class="post-date hidden-xs hidden-sm">
-                                <h5>Sarah</h5>
-                                <p class="text-grey">Sometimes ago</p>
-                            </div><!--Post Date End-->
+                    <!-- Text Modal -->
+                    <div id="textModal" class="modal fade" tabindex="-1" role="dialog">
+                        <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title">Create Text Post</h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <div class="modal-body">
+                                    <form id="textForm" method="post" action="CreatePostWithtext">
+                                        <div class="form-group">
+                                            <input type="hidden" id="tokenid" value="@Model.Token">
+                                            <input type="hidden" id="user-id" value="@Model.UserInfo.UserId">
+                                            <textarea class="form-control" id="postText" placeholder="Write something..."></textarea>
+                                        </div>
+                                        <div class="form-group">
+                                            <div id="textValidationErrors" class="text-danger"></div>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-primary" id="submitTextPost">Post</button>
+                                        </div>
+                                    </form>
+                                </div>
 
-                            <img src="~/images/post-images/12.jpg" alt="post-image" class="img-responsive post-image" />
-                            <div class="post-container">
-                                <img src="~/images/users/user-1.jpg" alt="user" class="profile-photo-md pull-left" />
-                                <div class="post-detail">
-                                    <div class="user-info">
-                                        <h5><a href="timeline.html" class="profile-link">Sarah Cruiz</a> <span class="following">following</span></h5>
-                                        <p class="text-muted">Published a photo about 15 mins ago</p>
-                                    </div>
-                                    <div class="reaction">
-                                        <a class="btn text-green"><i class="icon ion-thumbsup"></i> 13</a>
-                                        <a class="btn text-red"><i class="fa fa-thumbs-down"></i> 0</a>
-                                    </div>
-                                    <div class="line-divider"></div>
-                                    <div class="post-text">
-                                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. <i class="em em-anguished"></i> <i class="em em-anguished"></i> <i class="em em-anguished"></i></p>
-                                    </div>
-                                    <div class="line-divider"></div>
-                                    <div class="post-comment">
-                                        <img src="~/images/users/user-11.jpg" alt="" class="profile-photo-sm" />
-                                        <p><a href="timeline.html" class="profile-link">Diana </a><i class="em em-laughing"></i> Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud </p>
-                                    </div>
-                                    <div class="post-comment">
-                                        <img src="~/images/users/user-4.jpg" alt="" class="profile-photo-sm" />
-                                        <p><a href="timeline.html" class="profile-link">John</a> Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud </p>
-                                    </div>
-                                    <div class="post-comment">
-                                        <img src="~/images/users/user-1.jpg" alt="" class="profile-photo-sm" />
-                                        <input type="text" class="form-control" placeholder="Post a comment">
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Image Modal -->
+                    <div id="imageModal" class="modal fade" tabindex="-1" role="dialog">
+                        <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title">Create Image Post</h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <div class="modal-body">
+                                    <form id="imageForm">
+                                        <div class="form-group">
+                                            <input type="hidden" id="tokenid-forimage" value="@Model.Token">
+                                            <input type="hidden" id="user-id-forimage" name="UserId" value="@Model.UserInfo.UserId">
+                                            <textarea class="form-control" id="imageText" name="Text" placeholder="Write something..."></textarea>
+                                        </div>
+                                        <div class="form-group">
+                                            <input type="file" class="form-control-file" name="PostImageFile" id="imageFile">
+                                        </div>
+                                        <div class="form-group">
+                                            <div id="imageValidationErrors" class="text-danger"></div>
+                                        </div>
+                                    </form>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-primary" id="submitImagePost">Post</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Video Modal -->
+                    <div id="videoModal" class="modal fade" tabindex="-1" role="dialog">
+                        <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title">Create Video Post</h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <div class="modal-body">
+                                    <form id="videoForm">
+                                        <div class="form-group">
+                                            <input type="hidden" id="tokenid-forvideo" value="@Model.Token">
+                                            <input type="hidden" id="user-id-forvideo" name="UserId" value="@Model.UserInfo.UserId">
+                                            <textarea class="form-control" id="videoText" name="Text" placeholder="Write something..."></textarea>
+                                        </div>
+                                        <div class="form-group">
+                                            <input type="file" class="form-control-file" name="PostVideoFile" id="videoFile">
+                                        </div>
+                                        <div class="form-group">
+                                            <div id="videoValidationErrors" class="text-danger"></div>
+                                        </div>
+                                    </form>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-primary" id="submitVideoPost">Post</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Modal View for user liked -->
+                    <div id="likeUsersModal" class="modal fade" tabindex="-1" role="dialog">
+                        <div class="modal-dialog modal-dialog-centered" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title">Users who liked this post</h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <div class="modal-body">
+                                    <div id="like-users-container" class="like-users-container">
+                                        <!-- Dinamik içerik burada yüklenecek -->
                                     </div>
                                 </div>
                             </div>
                         </div>
+                    </div>
 
                         <!-- Post Content
                         ================================================= -->
+                    @foreach (var post in Model.Posts)
+                    {
+                        var userProfilee = "";
+                        if (post.UserName == Model.UserInfo.UserName)
+                        {
+                            userProfilee = "/AuthUserProfile/Index";
+                        }
+                        var isliked = Model.LikeList.Any(l => l.PostId == post.PostId && l.UserId == Model.UserInfo.UserId);
+                        var LikeButtonClass = isliked ? "text-red addlike" : "text-green addlike";
+
                         <div class="post-content">
-
-                            <!--Post Date-->
                             <div class="post-date hidden-xs hidden-sm">
-                                <h5>Sarah</h5>
-                                <p class="text-grey">10/22/2016</p>
+                                <h5>@post.UploadTime</h5>
                             </div><!--Post Date End-->
-
-                            <img src="~/images/post-images/13.jpg" alt="post-image" class="img-responsive post-image" />
+                            @if (!string.IsNullOrEmpty(post.ImageUrl))
+                            {
+                                <img src="@post.ImageUrl" alt="post-image" class="img-responsive post-image">
+                            }
+                            @if (!string.IsNullOrEmpty(post.VideoUrl))
+                            {
+                                <video class="post-video" controls> <source src="@post.VideoUrl" type="video/mp4"> </video>
+                            }
                             <div class="post-container">
-                                <img src="~/images/users/user-1.jpg" alt="user" class="profile-photo-md pull-left" />
+                                <img src="@Model.UserInfo.ProfileImage" alt="user" class="profile-photo-md pull-left" />
                                 <div class="post-detail">
                                     <div class="user-info">
-                                        <h5><a href="timeline.html" class="profile-link">Sarah Cruiz</a> <span class="following">following</span></h5>
-                                        <p class="text-muted">Yesterday</p>
+                                        <h5><a href="@userProfilee" class="profile-link">@post.UserName</a> <span class="following">following</span></h5>
+                                        <p class="text-muted">@post.ElapsedTime</p>
                                     </div>
-                                    <div class="reaction">
-                                        <a class="btn text-green"><i class="icon ion-thumbsup"></i> 49</a>
-                                        <a class="btn text-red"><i class="fa fa-thumbs-down"></i> 0</a>
+                                    <div class="reaction" data-post-id="@post.PostId" data-user-id="@Model.UserInfo.UserId">
+                                        <input type="hidden" id="tokenidd" value="@Model.Token">
+                                        <button class="btn-group @LikeButtonClass" style="border:hidden;padding: 3px 12px"><i class="icon ion-thumbsup"></i></button>
+                                        @*                                     <div class="like-users-dropdown dropdown-menu" id="like-users-dropdown-@post.PostId">
+
+                                    </div> *@
+                                        <button class="btn like-count" href="">@post.LikeCount</button>
                                     </div>
                                     <div class="line-divider"></div>
                                     <div class="post-text">
-                                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. <i class="em em-anguished"></i> <i class="em em-anguished"></i> <i class="em em-anguished"></i></p>
+                                        @if (!string.IsNullOrEmpty(post.Text))
+                                        {
+                                            <p>@post.Text</p>
+                                        }
                                     </div>
                                     <div class="line-divider"></div>
-                                    <div class="post-comment">
-                                        <img src="~/images/users/user-11.jpg" alt="" class="profile-photo-sm" />
-                                        <p><a href="timeline.html" class="profile-link">Diana </a><i class="em em-laughing"></i> Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud </p>
+                                    @foreach (var comment in post.Comments)
+                                    {
+                                        var userProfile = "";
+                                        if (comment.UserName == Model.UserInfo.UserName)
+                                        {
+                                            userProfile = "/AuthUserProfile/Index";
+                                        }
+                                        <div class="post-comment">
+                                            <img src="@comment.UserProfileImage" alt="" class="profile-photo-sm" />
+                                            <p><a href="@userProfile" class="profile-link">@comment.UserName </a>@comment.Text </p>
+                                        </div>
+                                    }
+                                    <div id="comments-@post.PostId">
                                     </div>
+
                                     <div class="post-comment">
-                                        <img src="~/images/users/user-4.jpg" alt="" class="profile-photo-sm" />
-                                        <p><a href="timeline.html" class="profile-link">John</a> Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud </p>
+                                        <img src="@Model.UserInfo.ProfileImage" alt="" class="profile-photo-sm" />
+                                        <input type="hidden" id="user-id-@post.PostId" value="@Model.UserInfo.UserId">
+                                        <input type="hidden" id="post-id-@post.PostId" value="@post.PostId">
+                                        <input type="hidden" id="tokenid" value="@Model.Token">
+                                        <input type="text" id="comment-text-@post.PostId" class="form-control" placeholder="Post a comment">
+                                        <button class="adddd-comment-button" data-post-id="@post.PostId" style="width:60px;height:30px;">Send</button>
                                     </div>
-                                    <div class="post-comment">
-                                        <img src="~/images/users/user-1.jpg" alt="" class="profile-photo-sm" />
-                                        <input type="text" class="form-control" placeholder="Post a comment">
-                                    </div>
+                                    <div id="commentValidationErrors-@post.PostId" class="text-danger"></div>
+
+
+
                                 </div>
                             </div>
                         </div>
+                    }
 
-                        <!-- Post Content
-                        ================================================= -->
-                        <div class="post-content">
-
-                            <!--Post Date-->
-                            <div class="post-date hidden-xs hidden-sm">
-                                <h5>Sarah</h5>
-                                <p class="text-grey">10/21/2016</p>
-                            </div><!--Post Date End-->
-
-                            <div class="post-container">
-                                <img src="~/images/users/user-1.jpg" alt="user" class="profile-photo-md pull-left" />
-                                <div class="post-detail">
-                                    <div class="user-info">
-                                        <h5><a href="timeline.html" class="profile-link">Sarah Cruiz</a> <span class="following">following</span></h5>
-                                        <p class="text-muted">2 days ago</p>
-                                    </div>
-                                    <div class="reaction">
-                                        <a class="btn text-green"><i class="icon ion-thumbsup"></i> 49</a>
-                                        <a class="btn text-red"><i class="fa fa-thumbs-down"></i> 0</a>
-                                    </div>
-                                    <div class="line-divider"></div>
-                                    <div class="post-text">
-                                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. <i class="em em-anguished"></i> <i class="em em-anguished"></i> <i class="em em-anguished"></i></p>
-                                    </div>
-                                    <div class="line-divider"></div>
-                                    <div class="post-comment">
-                                        <img src="~/images/users/user-11.jpg" alt="" class="profile-photo-sm" />
-                                        <p><a href="timeline.html" class="profile-link">Diana </a><i class="em em-laughing"></i> Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud </p>
-                                    </div>
-                                    <div class="post-comment">
-                                        <img src="~/images/users/user-4.jpg" alt="" class="profile-photo-sm" />
-                                        <p><a href="timeline.html" class="profile-link">John</a> Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud </p>
-                                    </div>
-                                    <div class="post-comment">
-                                        <img src="~/images/users/user-1.jpg" alt="" class="profile-photo-sm" />
-                                        <input type="text" class="form-control" placeholder="Post a comment">
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+                        
 
                     </div>
                     <div class="col-md-2 static">

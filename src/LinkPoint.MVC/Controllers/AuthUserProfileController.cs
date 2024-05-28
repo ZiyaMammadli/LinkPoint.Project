@@ -30,10 +30,24 @@ public class AuthUserProfileController : Controller
         response.EnsureSuccessStatusCode();
         var json1 = await response.Content.ReadAsStringAsync();
         var userInfo = JsonConvert.DeserializeObject<UserInfoViewModel>(json1);
+
+        var response3 = await client.GetAsync(baseAdress + "/Likes/GetAllLikes");
+        response3.EnsureSuccessStatusCode();
+        var json3 = await response3.Content.ReadAsStringAsync();
+        var likes = JsonConvert.DeserializeObject<List<LikeGetAllViewModel>>(json3);
+
+        var response2 = await client.GetAsync(baseAdress + "/Posts/GetAllOneUserPosts/"+userId);
+        response2.EnsureSuccessStatusCode();
+        var json2 = await response2.Content.ReadAsStringAsync();
+        var posts = JsonConvert.DeserializeObject<List<PostGetViewModel>>(json2);
+        var SortedPosts = posts.OrderByDescending(post => post.PostId).ToList();
         AuthUserProfileViewModel authUserProfileViewModel = new AuthUserProfileViewModel()
         {
             Token = token,
             UserInfo=userInfo,
+            Posts=SortedPosts,
+            LikeList=likes,
+
         };
         return View(authUserProfileViewModel);
     }

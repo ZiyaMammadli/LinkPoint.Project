@@ -10,5 +10,6 @@ public class PostGetViewModel
     public string? ImageUrl { get; set; }
     public string? VideoUrl { get; set; }
     public string ElapsedTime { get; set; }
+    public string UploadTime { get; set; }
     public List<CommentGetViewModel> Comments { get; set; }
 }

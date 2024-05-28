@@ -289,6 +289,8 @@ public class AccountSettingsService : IAccountSettingsService
             BackgroundImage= backgroundImage.ImageUrl,
             FollowersCount= followers.Count,
             FollowingsCount= followings.Count,
+            ProfileImageId=profileImage.Id,
+            BackgroundImageId=backgroundImage.Id,
         };
         return authUserGetDto;
     }

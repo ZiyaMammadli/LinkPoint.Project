@@ -13,5 +13,6 @@ public class PostGetDto
     public string? ImageUrl { get; set; }
     public string? VideoUrl { get; set; }
     public string ElapsedTime { get; set; }
+    public string UploadTime {  get; set; }
     public List<CommentGetDto> Comments { get; set; }
 }

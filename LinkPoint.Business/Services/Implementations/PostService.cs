@@ -64,6 +64,7 @@ public class PostService : IPostService
                     ImageUrl = UserPost.Image?.ImageUrl,
                     VideoUrl = UserPost.Video?.VideoUrl,
                     ElapsedTime = UserPost.CreatedDate.GetElapsedTime(),
+                    UploadTime = UserPost.CreatedDate.ToString("MMMM d, yyyy"),
                     Comments = UserPost.Comments.Select(c => new CommentGetDto
                     {
                         CommentId = c.Id,
