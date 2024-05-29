@@ -27,8 +27,10 @@
                     console.error('Video play failed:', error);
                 });
             } else {
-                video.pause();
-                video.currentTime = 0;
+                if (!video.paused) {
+                    video.pause();
+                    video.currentTime = 0;
+                }
             }
         });
     }
@@ -37,14 +39,15 @@
         userInteracted = true;
         document.removeEventListener('click', handleUserInteraction);
         document.removeEventListener('keydown', handleUserInteraction);
-        checkVideos(); // İlk etkileşimde videoları kontrol et
+        checkVideos();
     }
 
-    // Kullanıcı etkileşimini bekle
     document.addEventListener('click', handleUserInteraction);
     document.addEventListener('keydown', handleUserInteraction);
 
-    // Sayfa yüklendiğinde ve scroll yapıldığında videoları kontrol et
     window.addEventListener('scroll', checkVideos);
     window.addEventListener('resize', checkVideos);
+
+    // Initial check in case some videos are in viewport on page load
+    checkVideos();
 });

@@ -3913,6 +3913,10 @@
       "PackagePath": "staticwebassets\\js\\AddLikeToPost.js"
     },
     {
+      "Id": "C:\\Users\\user\\source\\repos\\LinkPoint\\src\\LinkPoint.MVC\\wwwroot\\js\\ChangeBackgroundImage.js",
+      "PackagePath": "staticwebassets\\js\\ChangeBackgroundImage.js"
+    },
+    {
       "Id": "C:\\Users\\user\\source\\repos\\LinkPoint\\src\\LinkPoint.MVC\\wwwroot\\js\\ChangeUserProfileImage.js",
       "PackagePath": "staticwebassets\\js\\ChangeUserProfileImage.js"
     },

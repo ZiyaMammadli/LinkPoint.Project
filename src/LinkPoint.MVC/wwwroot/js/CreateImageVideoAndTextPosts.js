@@ -14,8 +14,25 @@
         event.preventDefault();
         $('#videoModal').modal('show');
     });
-})
 
+    
+})
+var preloader = $('#spinner-wrapper');
+var preloaderFadeOutTime = 500;
+
+function showPreloader() {
+    preloader.show();
+}
+
+function hidePreloader() {
+    preloader.fadeOut(preloaderFadeOutTime);
+}
+
+function reloadWithAlert() {
+
+    location.reload();
+
+}
 
 //Test Create Box
 $('#CreateTextPost').on('click', function () {
@@ -24,6 +41,8 @@ $('#CreateTextPost').on('click', function () {
         text: $('#postTextt').val(),
     };
     var token = $('#tokenidd').val();
+
+    showPreloader();
 
     $.ajax({
         url: 'https://localhost:7255/api/Posts/CreatePostWithText',
@@ -34,15 +53,11 @@ $('#CreateTextPost').on('click', function () {
         },
         data: JSON.stringify(textData),
         success: function (response) {
-            Swal.fire({
-                position: "top-end",
-                icon: "success",
-                title: "Succesfully Created",
-                showConfirmButton: false,
-                timer: 1500
-            });
+            hidePreloader();
+            reloadWithAlert();
         },
         error: function (xhr, status, error) {
+            hidePreloader();
             var errors = JSON.parse(xhr.responseText).errors;
             $('#textValidationErrorss').html('');
             for (var key in errors) {
@@ -62,6 +77,8 @@ $('#submitTextPost').on('click', function () {
     };
     var token = $('#tokenid').val();
 
+    showPreloader();
+
     $.ajax({
         url: 'https://localhost:7255/api/Posts/CreatePostWithText',
         type: 'POST',
@@ -71,23 +88,17 @@ $('#submitTextPost').on('click', function () {
         },
         data: JSON.stringify(textData),
         success: function (response) {
-            Swal.fire({
-                position: "top-end",
-                icon: "success",
-                title: "Succesfully Created",
-                showConfirmButton: false,
-                timer: 1500
-            });
-            $('#textModal').modal('hide');
+            hidePreloader();
+            reloadWithAlert();
         },  
         error: function (xhr, status, error) {
-            var errors = JSON.parse(xhr.responseText).errors;
-            $('#textValidationErrors').html('');
-            for (var key in errors) {
-                if (errors.hasOwnProperty(key)) {
-                    $('#textValidationErrors').append('<p>' + errors[key] + '</p>');
-                }
-            }
+            hidePreloader();
+            console.error('Error:', error);
+            Swal.fire({
+                icon: "error",
+                title: "Oops...",
+                text: "Something went wrong!",
+            });
         }
     });
 });
@@ -102,6 +113,8 @@ $('#submitImagePost').on('click', function () {
     var token = $('#tokenid-forimage').val();
     $('#spinner-wrapper').show();
 
+    showPreloader();
+
     $.ajax({
         url: 'https://localhost:7255/api/Posts/CreatePostWithImage',
         type: 'POST',
@@ -112,26 +125,17 @@ $('#submitImagePost').on('click', function () {
             'Authorization': 'Bearer ' + token
         },
         success: function (response) {
-            location.reload();
-            $('#spinner-wrapper').hide();
-            Swal.fire({
-                position: "top-end",
-                icon: "success",
-                title: "Succesfully Created",
-                showConfirmButton: false,
-                timer: 1500
-            });
-            $('#imageModal').modal('hide');
+            hidePreloader();
+            reloadWithAlert();
         },
         error: function (xhr, status, error) {
-            $('#spinner-wrapper').hide();
-            var errors = JSON.parse(xhr.responseText).errors;
-            $('#imageValidationErrors').html('');
-            for (var key in errors) {
-                if (errors.hasOwnProperty(key)) {
-                    $('#imageValidationErrors').append('<p>' + errors[key] + '</p>');
-                }
-            }
+            hidePreloader();
+            console.error('Error:', error);
+            Swal.fire({
+                icon: "error",
+                title: "Oops...",
+                text: "Something went wrong!",
+            });
         }
     });
 });
@@ -146,6 +150,8 @@ $('#submitVideoPost').on('click', function () {
     var token = $('#tokenid-forvideo').val();
     $('#spinner-wrapper').show();
 
+    showPreloader();
+
     $.ajax({
         url: 'https://localhost:7255/api/Posts/CreatePostWithVideo',
         type: 'POST',
@@ -156,26 +162,17 @@ $('#submitVideoPost').on('click', function () {
             'Authorization': 'Bearer ' + token
         },
         success: function (response) {
-            location.reload();
-            $('#spinner-wrapper').hide();
-            Swal.fire({
-                position: "top-end",
-                icon: "success",
-                title: "Succesfully Created",
-                showConfirmButton: false,
-                timer: 1500
-            });
-            $('#videoModal').modal('hide');
+            hidePreloader();
+            reloadWithAlert();
         },
         error: function (xhr, status, error) {
-            $('#spinner-wrapper').hide();
-            var errors = JSON.parse(xhr.responseText).errors;
-            $('#videoValidationErrors').html('');
-            for (var key in errors) {
-                if (errors.hasOwnProperty(key)) {
-                    $('#videoValidationErrors').append('<p>' + errors[key] + '</p>');
-                }
-            }
+            hidePreloader();
+            console.error('Error:', error);
+            Swal.fire({
+                icon: "error",
+                title: "Oops...",
+                text: "Something went wrong!",
+            });
         }
     });
 });

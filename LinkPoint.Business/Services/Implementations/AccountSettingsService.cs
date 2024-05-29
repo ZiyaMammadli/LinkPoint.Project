@@ -198,7 +198,7 @@ public class AccountSettingsService : IAccountSettingsService
         //int startIndex = currentImage.ImageUrl.Length-55;
         //int lentgh = 55;
         string fileName=currentImage.ImageUrl.Substring(49);
-        await FileManager.DeleteFile(fileName, apiKey,"Images");
+        await FileManager.DeleteFile(fileName, apiKey, "Images");
         currentImage.ImageUrl = profileImagePostDto.ProfileImage.SaveFile(apiKey, "Images");
         currentImage.UpdatedDate = DateTime.UtcNow;
         await _imageRepository.CommitAsync();
