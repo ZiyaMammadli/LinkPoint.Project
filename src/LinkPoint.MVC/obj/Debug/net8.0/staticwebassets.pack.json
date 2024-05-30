@@ -3909,6 +3909,14 @@
       "PackagePath": "staticwebassets\\images\\users\\user-9.jpg"
     },
     {
+      "Id": "C:\\Users\\user\\source\\repos\\LinkPoint\\src\\LinkPoint.MVC\\wwwroot\\images\\work.png",
+      "PackagePath": "staticwebassets\\images\\work.png"
+    },
+    {
+      "Id": "C:\\Users\\user\\source\\repos\\LinkPoint\\src\\LinkPoint.MVC\\wwwroot\\images\\workIcon.png",
+      "PackagePath": "staticwebassets\\images\\workIcon.png"
+    },
+    {
       "Id": "C:\\Users\\user\\source\\repos\\LinkPoint\\src\\LinkPoint.MVC\\wwwroot\\js\\AddLikeToPost.js",
       "PackagePath": "staticwebassets\\js\\AddLikeToPost.js"
     },

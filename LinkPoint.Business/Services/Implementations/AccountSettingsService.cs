@@ -77,9 +77,14 @@ public class AccountSettingsService : IAccountSettingsService
         var user = await _userManager.FindByIdAsync(UserId);
         if (user is null) throw new UserNotFoundException(404, "User is not found");
         var userEducation=await _userEducationRepository.GetSingleAsync(ue=>ue.UserId==user.Id);
-        if (userEducation is null) throw new UserEducationNotFoundException(404, "UserEducation is not found");
-        var userEducationGetDto=_mapper.Map<UserEducationGetDto>(userEducation);
-        return userEducationGetDto;
+        UserEducationGetDto userEducationGetDto1 = new UserEducationGetDto();
+        userEducationGetDto1 = null;
+        if (userEducation is not null)
+        {
+            var userEducationGetDto = _mapper.Map<UserEducationGetDto>(userEducation);
+            return userEducationGetDto;
+        }
+        return userEducationGetDto1;
     }
     public async Task CreateUserInterestAsync(UserInterestPostDto userInterestPostDto)
     {
@@ -102,12 +107,14 @@ public class AccountSettingsService : IAccountSettingsService
         if (user is null) throw new UserNotFoundException(404, "User is not found");
         List<UserInterestGetDto> userInterestGetDtos = new List<UserInterestGetDto>();
         List<UserInterest> userInterests= await _userInterestRepository.GetAllAsync(ui=>ui.UserId==user.Id);
-        if (userInterests.Count==0) throw new UserInterestNotFoundException(404, "UserInterest is not found");
-        foreach (var userInterest in userInterests)
+        if (userInterests.Count > 0)
         {
-            var userInterestGetDto= _mapper.Map<UserInterestGetDto>(userInterest);
-            userInterestGetDtos.Add(userInterestGetDto);
-        }
+            foreach (var userInterest in userInterests)
+            {
+                var userInterestGetDto = _mapper.Map<UserInterestGetDto>(userInterest);
+                userInterestGetDtos.Add(userInterestGetDto);
+            }
+        }       
         return userInterestGetDtos;
     }
     public async Task UpdateUserWorkAsync(int Id,UserWorkPutDto userWorkPutDto)
@@ -134,9 +141,14 @@ public class AccountSettingsService : IAccountSettingsService
         var user = await _userManager.FindByIdAsync(UserId);
         if (user is null) throw new UserNotFoundException(404, "User is not found");
         var userWork=await _userWorkRepository.GetSingleAsync(uw=>uw.UserId==user.Id);
-        if (userWork is null) throw new UserWorkNotFoundException(404, "UserWork is not found");
-        var userwork=_mapper.Map<UserWorkGetDto>(userWork);
-        return userwork;
+        UserWorkGetDto userWorkGetDto = new UserWorkGetDto();
+        userWorkGetDto = null;
+        if (userWork is not null)
+        {
+            var userwork = _mapper.Map<UserWorkGetDto>(userWork);
+            return userwork;
+        }
+        return userWorkGetDto;
     }
     public async Task<UserAboutGetDto> GetUserAboutAsync(string UserId)
     {

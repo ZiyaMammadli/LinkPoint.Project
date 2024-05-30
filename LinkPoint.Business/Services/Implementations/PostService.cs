@@ -48,15 +48,16 @@ public class PostService : IPostService
         {
             throw new ProfileImageNotFoundException(404, "ProfileImage is not found");
         }
-        if (!await _postRepository.IsExist(p => p.UserId == user.Id && p.IsDeleted == false)) throw new PostNotFoundException(404, "Post is not found"); 
+        //if (!await _postRepository.IsExist(p => p.UserId == user.Id && p.IsDeleted == false)) throw new PostNotFoundException(404, "Post is not found"); 
         var UserPosts=await _postRepository.GetAllAsync(p=>p.UserId==user.Id && p.IsDeleted==false,"Image","Video", "Comments.User.Images");
         List<PostGetDto> posts = new List<PostGetDto>();
-        foreach (var UserPost in UserPosts)
+        if(UserPosts.Count > 0)
         {
-            
+            foreach (var UserPost in UserPosts)
+            {
                 PostGetDto Post = new PostGetDto()
                 {
-                    PostId= UserPost.Id,    
+                    PostId = UserPost.Id,
                     UserName = user.UserName,
                     LikeCount = UserPost.LikeCount,
                     Text = UserPost.Text,
@@ -75,6 +76,8 @@ public class PostService : IPostService
                     }).ToList()
                 };
                 posts.Add(Post);
+            }
+            return posts;
         }
         return posts;
     }

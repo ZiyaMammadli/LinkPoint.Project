@@ -439,11 +439,10 @@ namespace LinkPoint.Data.Migrations
                         .HasColumnType("datetime2");
 
                     b.Property<string>("Description")
-                        .IsRequired()
                         .HasMaxLength(300)
                         .HasColumnType("nvarchar(300)");
 
-                    b.Property<int>("FromDate")
+                    b.Property<int?>("FromDate")
                         .HasColumnType("int");
 
                     b.Property<bool>("Graduated")
@@ -452,11 +451,10 @@ namespace LinkPoint.Data.Migrations
                     b.Property<bool>("IsDeleted")
                         .HasColumnType("bit");
 
-                    b.Property<int>("ToDate")
+                    b.Property<int?>("ToDate")
                         .HasColumnType("int");
 
                     b.Property<string>("University")
-                        .IsRequired()
                         .HasMaxLength(50)
                         .HasColumnType("nvarchar(50)");
 
