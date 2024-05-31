@@ -3917,6 +3917,10 @@
       "PackagePath": "staticwebassets\\images\\workIcon.png"
     },
     {
+      "Id": "C:\\Users\\user\\source\\repos\\LinkPoint\\src\\LinkPoint.MVC\\wwwroot\\js\\AddAndDeleteInterest.js",
+      "PackagePath": "staticwebassets\\js\\AddAndDeleteInterest.js"
+    },
+    {
       "Id": "C:\\Users\\user\\source\\repos\\LinkPoint\\src\\LinkPoint.MVC\\wwwroot\\js\\AddLikeToPost.js",
       "PackagePath": "staticwebassets\\js\\AddLikeToPost.js"
     },

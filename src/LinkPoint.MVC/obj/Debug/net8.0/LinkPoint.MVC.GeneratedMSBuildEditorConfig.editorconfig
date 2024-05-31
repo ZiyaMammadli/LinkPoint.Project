@@ -50,6 +50,10 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQXV0aFVzZXJQcm9maWxlXEluZGV4LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
+[C:/Users/user/source/repos/LinkPoint/src/LinkPoint.MVC/Views/AuthUserProfile/Interests.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQXV0aFVzZXJQcm9maWxlXEludGVyZXN0cy5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
 [C:/Users/user/source/repos/LinkPoint/src/LinkPoint.MVC/Views/NewsFeed/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTmV3c0ZlZWRcSW5kZXguY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 

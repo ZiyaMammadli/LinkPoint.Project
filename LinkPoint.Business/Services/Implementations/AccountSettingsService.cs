@@ -113,6 +113,7 @@ public class AccountSettingsService : IAccountSettingsService
             foreach (var userInterest in userInterests)
             {
                 var userInterestGetDto = _mapper.Map<UserInterestGetDto>(userInterest);
+                userInterestGetDto.InterestId = userInterest.Id;
                 userInterestGetDtos.Add(userInterestGetDto);
             }
         }       

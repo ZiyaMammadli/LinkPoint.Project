@@ -199,4 +199,37 @@ public class AuthUserProfileController : Controller
         };
         return View(eduAndWorkViewModel);
     }
+
+    [HttpGet]
+    public async Task<IActionResult> Interests()
+    {
+        var token = HttpContext.Session.GetString("JWToken");
+        var userId = HttpContext.Request.Cookies["UserId"];
+        if (string.IsNullOrEmpty(token))
+        {
+            return RedirectToAction("Login", "Account");
+        }
+
+        var client = _httpClientFactory.CreateClient();
+        client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
+
+        var response = await client.GetAsync(baseAdress + "/AccountSettings/GetAuthUserInfo/" + userId);
+        response.EnsureSuccessStatusCode();
+        var json1 = await response.Content.ReadAsStringAsync();
+        var userInfo = JsonConvert.DeserializeObject<UserInfoViewModel>(json1);
+
+        var response4 = await client.GetAsync(baseAdress + "/AccountSettings/GetAllUserInterests/" + userId);
+        response4.EnsureSuccessStatusCode();
+        var json4 = await response4.Content.ReadAsStringAsync();
+        var userInterests = JsonConvert.DeserializeObject<List<UserInterestGetViewModel>>(json4);
+        InterestsViewModel interestsViewModel = new InterestsViewModel()
+        {
+            Token = token,
+            UserInfo=userInfo,
+            UserInterests=userInterests,
+        };
+        return View(interestsViewModel);
+    }
+
+    
 }

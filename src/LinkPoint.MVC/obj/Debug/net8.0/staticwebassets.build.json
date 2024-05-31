@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "tIMMONmYRaa0K9Rs4aRTxRG1zb3B1JshPnKwzO5OPF8=",
+  "Hash": "/Ne2aZ0tYyLQJi/J+SfgJ0a/+aKKletI77iFtO5SJFs=",
   "Source": "LinkPoint.MVC",
   "BasePath": "_content/LinkPoint.MVC",
   "Mode": "Default",
@@ -18635,6 +18635,25 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\images\\workIcon.png"
+    },
+    {
+      "Identity": "C:\\Users\\user\\source\\repos\\LinkPoint\\src\\LinkPoint.MVC\\wwwroot\\js\\AddAndDeleteInterest.js",
+      "SourceId": "LinkPoint.MVC",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\user\\source\\repos\\LinkPoint\\src\\LinkPoint.MVC\\wwwroot\\",
+      "BasePath": "_content/LinkPoint.MVC",
+      "RelativePath": "js/AddAndDeleteInterest.js",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\js\\AddAndDeleteInterest.js"
     },
     {
       "Identity": "C:\\Users\\user\\source\\repos\\LinkPoint\\src\\LinkPoint.MVC\\wwwroot\\js\\AddLikeToPost.js",
