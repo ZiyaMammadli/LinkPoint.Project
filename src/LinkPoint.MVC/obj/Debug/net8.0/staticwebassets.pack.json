@@ -3961,6 +3961,10 @@
       "PackagePath": "staticwebassets\\js\\SaveChangeUserWork.js"
     },
     {
+      "Id": "C:\\Users\\user\\source\\repos\\LinkPoint\\src\\LinkPoint.MVC\\wwwroot\\js\\ShowFollowersAndFollowings.js",
+      "PackagePath": "staticwebassets\\js\\ShowFollowersAndFollowings.js"
+    },
+    {
       "Id": "C:\\Users\\user\\source\\repos\\LinkPoint\\src\\LinkPoint.MVC\\wwwroot\\js\\ShowUsersLikedPost.js",
       "PackagePath": "staticwebassets\\js\\ShowUsersLikedPost.js"
     },
