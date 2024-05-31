@@ -82,6 +82,7 @@ public class AccountSettingsService : IAccountSettingsService
         if (userEducation is not null)
         {
             var userEducationGetDto = _mapper.Map<UserEducationGetDto>(userEducation);
+            userEducationGetDto.UserEducationId=userEducation.Id;
             return userEducationGetDto;
         }
         return userEducationGetDto1;
@@ -146,6 +147,7 @@ public class AccountSettingsService : IAccountSettingsService
         if (userWork is not null)
         {
             var userwork = _mapper.Map<UserWorkGetDto>(userWork);
+            userwork.UserWorkId=userWork.Id;
             return userwork;
         }
         return userWorkGetDto;
@@ -157,6 +159,7 @@ public class AccountSettingsService : IAccountSettingsService
         var userAbout= await _userAboutRepository.GetSingleAsync(ua=>ua.UserId==user.Id);
         if (userAbout is null) throw new UserAboutNotFoundException(404, "UserAbout is not found");
         var userAboutGetDto=_mapper.Map<UserAboutGetDto>(userAbout);
+        userAboutGetDto.UserAboutId=userAbout.Id;
         return userAboutGetDto;
     }
     public async Task UpdateUserAboutAsync(int Id,UserAboutPutDto userAboutPutDto)

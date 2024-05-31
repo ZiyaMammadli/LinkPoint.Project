@@ -2,6 +2,7 @@
 
 public class UserAboutGetViewModel
 {
+    public int UserAboutId { get; set; }
     public string UserId { get; set; }
     public string? AboutMe { get; set; }
     public string? CityName { get; set; }

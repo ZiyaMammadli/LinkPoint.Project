@@ -3921,6 +3921,10 @@
       "PackagePath": "staticwebassets\\js\\AddLikeToPost.js"
     },
     {
+      "Id": "C:\\Users\\user\\source\\repos\\LinkPoint\\src\\LinkPoint.MVC\\wwwroot\\js\\BirhDayDateMaker.js",
+      "PackagePath": "staticwebassets\\js\\BirhDayDateMaker.js"
+    },
+    {
       "Id": "C:\\Users\\user\\source\\repos\\LinkPoint\\src\\LinkPoint.MVC\\wwwroot\\js\\ChangeBackgroundImage.js",
       "PackagePath": "staticwebassets\\js\\ChangeBackgroundImage.js"
     },
@@ -3935,6 +3939,10 @@
     {
       "Id": "C:\\Users\\user\\source\\repos\\LinkPoint\\src\\LinkPoint.MVC\\wwwroot\\js\\PlayVideoWithScroll.js",
       "PackagePath": "staticwebassets\\js\\PlayVideoWithScroll.js"
+    },
+    {
+      "Id": "C:\\Users\\user\\source\\repos\\LinkPoint\\src\\LinkPoint.MVC\\wwwroot\\js\\SaveChangeUserAbout.js",
+      "PackagePath": "staticwebassets\\js\\SaveChangeUserAbout.js"
     },
     {
       "Id": "C:\\Users\\user\\source\\repos\\LinkPoint\\src\\LinkPoint.MVC\\wwwroot\\js\\ShowUsersLikedPost.js",
