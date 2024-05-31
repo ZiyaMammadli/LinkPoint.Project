@@ -231,5 +231,28 @@ public class AuthUserProfileController : Controller
         return View(interestsViewModel);
     }
 
-    
+    [HttpGet]
+    public async Task<IActionResult> ChangePassword()
+    {
+        var token = HttpContext.Session.GetString("JWToken");
+        var userId = HttpContext.Request.Cookies["UserId"];
+        if (string.IsNullOrEmpty(token))
+        {
+            return RedirectToAction("Login", "Account");
+        }
+
+        var client = _httpClientFactory.CreateClient();
+        client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
+
+        var response = await client.GetAsync(baseAdress + "/AccountSettings/GetAuthUserInfo/" + userId);
+        response.EnsureSuccessStatusCode();
+        var json1 = await response.Content.ReadAsStringAsync();
+        var userInfo = JsonConvert.DeserializeObject<UserInfoViewModel>(json1);
+        ChangePasswordViewModel changePasswordViewModel = new ChangePasswordViewModel()
+        {
+            Token=token,
+            UserInfo=userInfo
+        };
+        return View(changePasswordViewModel);
+    }
 }

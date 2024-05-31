@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("LinkPoint.Business")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+200498911cf0e7eb51eaaa4ed567eed84fcc54a6")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+c0e7cd1258204a04704cdfebf2a4d9637765888f")]
 [assembly: System.Reflection.AssemblyProductAttribute("LinkPoint.Business")]
 [assembly: System.Reflection.AssemblyTitleAttribute("LinkPoint.Business")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

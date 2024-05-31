@@ -3933,6 +3933,10 @@
       "PackagePath": "staticwebassets\\js\\ChangeBackgroundImage.js"
     },
     {
+      "Id": "C:\\Users\\user\\source\\repos\\LinkPoint\\src\\LinkPoint.MVC\\wwwroot\\js\\ChangePassword.js",
+      "PackagePath": "staticwebassets\\js\\ChangePassword.js"
+    },
+    {
       "Id": "C:\\Users\\user\\source\\repos\\LinkPoint\\src\\LinkPoint.MVC\\wwwroot\\js\\ChangeUserProfileImage.js",
       "PackagePath": "staticwebassets\\js\\ChangeUserProfileImage.js"
     },

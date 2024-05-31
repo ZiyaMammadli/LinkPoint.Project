@@ -69,7 +69,7 @@ public class CommentService : ICommentService
         };
         await _commentRepository.InsertAsync(comment);
         await _commentRepository.CommitAsync();
-        var userProfileImage = await _imageRepository.GetSingleAsync(i => i.UserId == commentPostDto.UserId && i.IsDeleted == false);
+        var userProfileImage = await _imageRepository.GetSingleAsync(i => i.UserId == commentPostDto.UserId && i.IsPostImage==false && i.IsDeleted == false);
         if (userProfileImage is null) throw new ProfileImageNotFoundException(404, "ProfileImage is not found");
         CommentGetDto commentGetDto = new CommentGetDto()
         {

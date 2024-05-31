@@ -42,6 +42,10 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQXV0aFVzZXJQcm9maWxlXEJhc2ljSW5mby5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
+[C:/Users/user/source/repos/LinkPoint/src/LinkPoint.MVC/Views/AuthUserProfile/ChangePassword.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQXV0aFVzZXJQcm9maWxlXENoYW5nZVBhc3N3b3JkLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
 [C:/Users/user/source/repos/LinkPoint/src/LinkPoint.MVC/Views/AuthUserProfile/EduAndWork.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQXV0aFVzZXJQcm9maWxlXEVkdUFuZFdvcmsuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
