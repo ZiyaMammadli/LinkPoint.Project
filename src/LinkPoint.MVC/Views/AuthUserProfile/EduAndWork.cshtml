@@ -1,0 +1,306 @@
+﻿@model EduAndWorkViewModel;
+    <div class="container">
+
+        <!-- Timeline
+        ================================================= -->
+        <div class="timeline">
+            <div class="timeline-cover"style="background-image: url('@Model.UserInfo.BackgroundImage');">
+                <!--Timeline Menu for Large Screens-->
+                <div class="timeline-nav-bar hidden-sm hidden-xs">
+                    <div class="row">
+                        <div class="col-md-3">
+                            <div class="profile-info">
+                                <img src="@Model.UserInfo.ProfileImage" alt="" class="img-responsive profile-photo" />
+                                <button class="btn" style="background-color:#8dc63f;color:white;border-radius:15px" data-toggle="modal" data-target="#profileImageModal">Edit</button>
+                                <h3>@Model.UserInfo.UserName</h3>
+                            </div>
+                        </div>
+                        <div class="col-md-9">
+                            <ul class="list-inline profile-menu">
+                                <li><a href="/AuthUserProfile/Index">My Posts</a></li>
+                                <li><a href="/AuthUserProfile/About">About</a></li>
+                                <li><a href="/AuthUserProfile/Album">Album</a></li>
+                                <li class="list-inline-item dropdown">
+                                <a href="#" class="dropdown-toggle active" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Settings <span><img src="~/images/down-arrow.png" alt="" /></span></a>
+                                    <div class="dropdown-menu">
+                                        <a class="dropdown-item" style="color:black" href="/AuthUserProfile/BasicInfo">Basic Information</a>
+                                        <a class="dropdown-item active" style="color:black" href="/AuthUserProfile/EduAndWork">Education and Work</a>
+                                        <a class="dropdown-item" style="color:black" href="/Settings/Privacy">My Interests</a>
+                                        <a class="dropdown-item" style="color:black" href="/Settings/Notifications">Account Settings</a>
+                                        <a class="dropdown-item" style="color:black" href="/Settings/Notifications">Change Password</a>
+                                    </div>
+                                </li>
+                            </ul>
+                            <ul class="follow-me list-inline">
+                                <li>@Model.UserInfo.FollowersCount<a href=""> Followers</a> </li>
+                                <li>@Model.UserInfo.FollowingsCount<a href=""> Followings </a></li>
+                                <button class="btn" style="background-color:#8dc63f;color:white;border-radius:15px" data-toggle="modal" data-target="#BackgroundImageModall">Edit</button>
+                            </ul>
+                        </div>
+                    </div>
+                </div><!--Timeline Menu for Large Screens End-->
+
+            <!-- ProfileImage Modal -->
+            <div class="modal fade" id="profileImageModal" tabindex="-1" aria-labelledby="editModalLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="editModalLabel">Edit Profile Image</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <input type="file" id="profileImage" name="profileImage" />
+                            <input type="hidden" id="tokenidforprofileimage" value="@Model.UserInfo.BackgroundImageId">
+                            <input type="hidden" id="profileImageId" value="@Model.UserInfo.ProfileImageId">
+                            <input type="hidden" id="userId" value="@Model.UserInfo.UserId">
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-danger" id="deleteProfileImageBtn" style="border-radius:15px">Delete Profile Image</button>
+                            <button type="button" class="btn btn-primary" id="updateProfileImageBtn">Save changes</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- BackgroundImage Modal -->
+            <div class="modal fade" id="BackgroundImageModall" tabindex="-1" aria-labelledby="editModalLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="editModalLabel">Edit Background Image</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <input type="file" id="backgroundImage" name="backgroundImage" />
+                            <input type="hidden" id="tokenidforbackgroundimage" value="@Model.UserInfo.BackgroundImageId">
+                            <input type="hidden" id="backgroundImageId" value="@Model.UserInfo.BackgroundImageId">
+                            <input type="hidden" id="userIdd" value="@Model.UserInfo.UserId">
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-danger" id="deleteBackgroundImageBtn" style="border-radius:15px">Delete Background Image</button>
+                            <button type="button" class="btn btn-primary" id="updateBackgroundImageBtn">Save changes</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            </div>
+            <div id="page-contents">
+                <div class="row">
+                    <div class="col-md-3">
+
+                        <!--Edit Profile Menu-->
+                        <ul class="edit-menu">
+                            <li><i class="icon ion-ios-information-outline"></i><a href="/AuthUserProfile/BasicInfo">Basic Information</a></li>
+                            <li class="active"><i class="icon ion-ios-briefcase-outline"></i><a href="/AuthUserProfile/EduAndWork">Education and Work</a></li>
+                            <li><i class="icon ion-ios-heart-outline"></i><a href="edit-profile-interests.html">My Interests</a></li>
+                            <li><i class="icon ion-ios-settings"></i><a href="edit-profile-settings.html">Account Settings</a></li>
+                            <li><i class="icon ion-ios-locked-outline"></i><a href="edit-profile-password.html">Change Password</a></li>
+                        </ul>
+                    </div>
+                    <div class="col-md-7">
+
+                        <!-- Edit Work and Education
+                        ================================================= -->
+                        <div class="edit-profile-container">
+                            <div class="block-title">
+                                <h4 class="grey"><i class="icon ion-ios-book-outline"></i>My education</h4>
+                                <div class="line"></div>
+                                <p>Please fill in information about your education</p>
+                                <div class="line"></div>
+                            </div>
+                            <div class="edit-block">
+                                    @if(Model.UserEducation==null){
+                                    <form name="education" id="education" class="form-inline">
+                                        <div class="row">
+                                            <div class="form-group col-xs-12">
+                                                <label for="school">My university</label>
+                                                <input id="school" class="form-control input-group-lg" type="text" name="school" title="Enter School" placeholder="My School" value="" />
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="form-group col-xs-6">
+                                                <label for="date-from">From</label>
+                                                <input id="date-from" class="form-control input-group-lg" type="number" name="date" title="Enter a Date" placeholder="from" value="" />
+                                            </div>
+                                            <div class="form-group col-xs-6">
+                                                <label for="date-to" class="">To</label>
+                                                <input id="date-to" class="form-control input-group-lg" type="number" name="date" title="Enter a Date" placeholder="to" value="" />
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="form-group col-xs-12">
+                                                <label for="edu-description">Description</label>
+                                                <textarea id="edu-description" name="description" class="form-control" placeholder="Some texts about my education" rows="4" cols="400"></textarea>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="form-group col-xs-12">
+                                                <label for="graduate">Graduated:</label>
+                                                <input id="graduate" type="checkbox" name="graduate" value=""> Yes!!
+                                            </div>
+                                        </div>
+                                        <input type="hidden" id="TokeN-id" value="@Model.Token">
+                                        <input type="hidden" id="UseR-iD" value="@Model.UserInfo.UserId">
+                                        <button type="button" id="eduNull-button" class="btn btn-primary">Save Changes</button>
+                                    </form>
+                                    }
+                                    else{
+                                    <form name="education" id="education" class="form-inline">
+                                        <div class="row">
+                                            <div class="form-group col-xs-12">
+                                                <label for="school">My university</label>
+                                                <input id="school" class="form-control input-group-lg" type="text" name="school" title="Enter School" placeholder="My School" value="@Model.UserEducation.University" />
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="form-group col-xs-6">
+                                                <label for="date-from">From</label>
+                                                <input id="date-from" class="form-control input-group-lg" type="number" name="date" title="Enter a Date" placeholder="from" value="@Model.UserEducation.FromDate" />
+                                            </div>
+                                            <div class="form-group col-xs-6">
+                                                <label for="date-to" class="">To</label>
+                                                <input id="date-to" class="form-control input-group-lg" type="number" name="date" title="Enter a Date" placeholder="to" value="@Model.UserEducation.ToDate" />
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="form-group col-xs-12">
+                                                <label for="edu-description">Description</label>
+                                                <textarea id="edu-description" name="description" class="form-control" placeholder="Some texts about my education" rows="4" cols="400">@Model.UserEducation.Description</textarea>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="form-group col-xs-12">
+                                                <label for="graduate">Graduated:</label>
+                                                <input id="graduate" type="checkbox" name="graduate" value="@Model.UserEducation.Graduated"> Yes!!
+                                            </div>
+                                        </div>
+                                        <input type="hidden" id="TokeN-id" value="@Model.Token">
+                                        <input type="hidden" id="UseR-iD" value="@Model.UserInfo.UserId">
+                                        <input type="hidden" id="UserEducation-iD" value="@Model.UserEducation.UserEducationId">
+                                        <button type="button" id="edu-button" class="btn btn-primary">Save Changes</button>
+                                    </form>
+                                    }
+                            </div>
+                            <div class="block-title">
+                                <h4 class="grey"><i class="icon ion-ios-briefcase-outline"></i>Work Experiences</h4>
+                                <div class="line"></div>
+                                <p>Please fill in your business information</p>
+                                <div class="line"></div>
+                            </div>
+                            <div class="edit-block">
+                                    @if(Model.UserWork==null){
+                                    <form name="work" id="work" class="form-inline">
+                                        <div class="row">
+                                            <div class="form-group col-xs-12">
+                                                <label for="company">Company</label>
+                                                <input id="company" class="form-control input-group-lg" type="text" name="company" title="Enter Company" placeholder="Company name"  />
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="form-group col-xs-12">
+                                                <label for="designation">Designation</label>
+                                                <input id="designation" class="form-control input-group-lg" type="text" name="designation" title="Enter designation" placeholder="designation name"  />
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="form-group col-xs-6">
+                                                <label for="from-date">From</label>
+                                                <input id="from-date" class="form-control input-group-lg" type="number" name="date" title="Enter a Date" placeholder="from"  />
+                                            </div>
+                                            <div class="form-group col-xs-6">
+                                                <label for="to-date" class="">To</label>
+                                                <input id="to-date" class="form-control input-group-lg" type="number" name="date" title="Enter a Date" placeholder="to"  />
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="form-group col-xs-12">
+                                                <label for="work-description">Description</label>
+                                                <textarea id="work-description" name="description" class="form-control" placeholder="Some texts about my work" rows="4" cols="400"></textarea>
+                                            </div>
+                                        </div>
+                                        <input type="hidden" id="TokeN-iD" value="@Model.Token">
+                                        <input type="hidden" id="UseR-ID" value="@Model.UserInfo.UserId">
+                                        <button type="button" id="workNull-button" class="btn btn-primary">Save Changes</button>
+                                    </form>
+                                    }
+                                    else{
+                                    <form name="work" id="work" class="form-inline">
+                                        <div class="row">
+                                            <div class="form-group col-xs-12">
+                                                <label for="company">Company</label>
+                                                <input id="company" class="form-control input-group-lg" type="text" name="company" title="Enter Company" placeholder="Company name" value="@Model.UserWork.Company" />
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="form-group col-xs-12">
+                                                <label for="designation">Designation</label>
+                                                <input id="designation" class="form-control input-group-lg" type="text" name="designation" title="Enter designation" placeholder="designation name" value="@Model.UserWork.Designation" />
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="form-group col-xs-6">
+                                                <label for="from-date">From</label>
+                                                <input id="from-date" class="form-control input-group-lg" type="number" name="date" title="Enter a Date" placeholder="from" value="@Model.UserWork.FromDate" />
+                                            </div>
+                                            <div class="form-group col-xs-6">
+                                                <label for="to-date" class="">To</label>
+                                                <input id="to-date" class="form-control input-group-lg" type="number" name="date" title="Enter a Date" placeholder="to" value="@Model.UserWork.ToDate" />
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="form-group col-xs-12">
+                                                <label for="work-description">Description</label>
+                                                <textarea id="work-description" name="description" class="form-control" placeholder="Some texts about my work" rows="4" cols="400">@Model.UserWork.Description</textarea>
+                                            </div>
+                                        </div>
+                                        <input type="hidden" id="TokeN-iD" value="@Model.Token">
+                                        <input type="hidden" id="UseR-ID" value="@Model.UserInfo.UserId">
+                                        <input type="hidden" id="UserWork-iD" value="@Model.UserWork.UserWorkId">
+                                        <button type="button" id="work-button" class="btn btn-primary">Save Changes</button>
+                                    </form>
+                                    }
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-2 static">
+
+                        <!--Sticky Timeline Activity Sidebar-->
+                        <div id="sticky-sidebar">
+                            <h4 class="grey">Sarah's activity</h4>
+                            <div class="feed-item">
+                                <div class="live-activity">
+                                    <p><a href="#" class="profile-link">Sarah</a> Commended on a Photo</p>
+                                    <p class="text-muted">5 mins ago</p>
+                                </div>
+                            </div>
+                            <div class="feed-item">
+                                <div class="live-activity">
+                                    <p><a href="#" class="profile-link">Sarah</a> Has posted a photo</p>
+                                    <p class="text-muted">an hour ago</p>
+                                </div>
+                            </div>
+                            <div class="feed-item">
+                                <div class="live-activity">
+                                    <p><a href="#" class="profile-link">Sarah</a> Liked her friend's post</p>
+                                    <p class="text-muted">4 hours ago</p>
+                                </div>
+                            </div>
+                            <div class="feed-item">
+                                <div class="live-activity">
+                                    <p><a href="#" class="profile-link">Sarah</a> has shared an album</p>
+                                    <p class="text-muted">a day ago</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+

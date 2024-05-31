@@ -162,4 +162,41 @@ public class AuthUserProfileController : Controller
         };
         return View(basicInfoViewModel);
     }
+
+    [HttpGet]
+    public async Task<IActionResult> EduAndWork()
+    {
+        var token = HttpContext.Session.GetString("JWToken");
+        var userId = HttpContext.Request.Cookies["UserId"];
+        if (string.IsNullOrEmpty(token))
+        {
+            return RedirectToAction("Login", "Account");
+        }
+
+        var client = _httpClientFactory.CreateClient();
+        client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
+
+        var response = await client.GetAsync(baseAdress + "/AccountSettings/GetAuthUserInfo/" + userId);
+        response.EnsureSuccessStatusCode();
+        var json1 = await response.Content.ReadAsStringAsync();
+        var userInfo = JsonConvert.DeserializeObject<UserInfoViewModel>(json1);
+
+        var response3 = await client.GetAsync(baseAdress + "/AccountSettings/GetUserWork/" + userId);
+        response3.EnsureSuccessStatusCode();
+        var json3 = await response3.Content.ReadAsStringAsync();
+        var userWork = JsonConvert.DeserializeObject<UserWorkGetViewModel>(json3);
+
+        var response5 = await client.GetAsync(baseAdress + "/AccountSettings/GetUserEducation/" + userId);
+        response5.EnsureSuccessStatusCode();
+        var json5 = await response5.Content.ReadAsStringAsync();
+        var userEducation = JsonConvert.DeserializeObject<UserEducationGetViewModel>(json5);
+        EduAndWorkViewModel eduAndWorkViewModel = new EduAndWorkViewModel()
+        {
+            Token = token,
+            UserInfo=userInfo,
+            UserEducation=userEducation,
+            UserWork=userWork,
+        };
+        return View(eduAndWorkViewModel);
+    }
 }

@@ -3945,6 +3945,14 @@
       "PackagePath": "staticwebassets\\js\\SaveChangeUserAbout.js"
     },
     {
+      "Id": "C:\\Users\\user\\source\\repos\\LinkPoint\\src\\LinkPoint.MVC\\wwwroot\\js\\SaveChangeUserEdu.js",
+      "PackagePath": "staticwebassets\\js\\SaveChangeUserEdu.js"
+    },
+    {
+      "Id": "C:\\Users\\user\\source\\repos\\LinkPoint\\src\\LinkPoint.MVC\\wwwroot\\js\\SaveChangeUserWork.js",
+      "PackagePath": "staticwebassets\\js\\SaveChangeUserWork.js"
+    },
+    {
       "Id": "C:\\Users\\user\\source\\repos\\LinkPoint\\src\\LinkPoint.MVC\\wwwroot\\js\\ShowUsersLikedPost.js",
       "PackagePath": "staticwebassets\\js\\ShowUsersLikedPost.js"
     },

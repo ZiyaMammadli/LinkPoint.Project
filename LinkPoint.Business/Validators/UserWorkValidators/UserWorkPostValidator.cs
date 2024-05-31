@@ -11,14 +11,15 @@ public class UserWorkPostValidator:AbstractValidator<UserWorkPostDto>
            .NotNull().WithMessage("UserId can't be null")
            .NotEmpty().WithMessage("UserId can't be empty");
         RuleFor(uw => uw.FromDate)
-            .LessThanOrEqualTo(DateTime.UtcNow.Year).WithMessage("The value of the FromDate must be down present time")
-            .GreaterThan(1920).WithMessage("The value of the FromDate must be up 1920");
+            .Must(fromDate => fromDate == null || (fromDate <= DateTime.UtcNow.Year && fromDate > 1920))
+            .WithMessage("The value of the FromDate must be either null or between 1920 and the present time.");
         RuleFor(uw => uw.ToDate)
-            .LessThanOrEqualTo(DateTime.UtcNow.Year).WithMessage("The value of the ToDate must be down present time")
-            .GreaterThan(1920).WithMessage("The value of the ToDate must be up 1920");
+            .Must(toDate => toDate == null || (toDate <= DateTime.UtcNow.Year && toDate > 1920))
+            .WithMessage("The value of the ToDate must be either null or between 1920 and the present time.");
         RuleFor(uw => uw.FromDate)
-            .Must((uw, fromdate) => fromdate <= uw.ToDate)
-            .WithMessage("The value of the FromDate must be down then the value of the ToDate");
+            .Must((uw, fromDate) =>
+                fromDate == null || uw.ToDate == null || fromDate <= uw.ToDate)
+            .WithMessage("The value of the FromDate must be less than or equal to the value of the ToDate when both dates are provided.");
         RuleFor(uw => uw.Company)
             .MaximumLength(85).WithMessage("The length of the Company must be maximum 85");
         RuleFor(uw => uw.Designation)

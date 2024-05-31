@@ -72,10 +72,23 @@
             error: function (xhr, status, error) {
                 hidePreloader();
                 console.error('Error:', error);
+
+                var errors = xhr.responseJSON;
+                var errorMessage = 'Something went wrong!';
+
+                if (errors && errors.errors) {
+                    errorMessage = '<ul>';
+
+                    $.each(errors.errors, function (key, value) {
+                        errorMessage += '<li>' + value + '</li>';
+                    });
+                    errorMessage += '</ul>';
+                }
+
                 Swal.fire({
                     icon: "error",
                     title: "Oops...",
-                    text: "Something went wrong!",
+                    html: errorMessage, 
                 });
             }
         });

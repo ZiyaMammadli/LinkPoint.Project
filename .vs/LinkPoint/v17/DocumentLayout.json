@@ -3,28 +3,24 @@
   "WorkspaceRootPath": "C:\\Users\\user\\source\\repos\\LinkPoint\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{1B9E36D0-C1A1-4BEE-8E85-BFF6B9ACC7B0}|src\\LinkPoint.MVC\\LinkPoint.MVC.csproj|c:\\users\\user\\source\\repos\\linkpoint\\src\\linkpoint.mvc\\wwwroot\\js\\savechangeuserabout.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}",
-      "RelativeMoniker": "D:0:0:{1B9E36D0-C1A1-4BEE-8E85-BFF6B9ACC7B0}|src\\LinkPoint.MVC\\LinkPoint.MVC.csproj|solutionrelative:src\\linkpoint.mvc\\wwwroot\\js\\savechangeuserabout.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}"
+      "AbsoluteMoniker": "D:0:0:{1B9E36D0-C1A1-4BEE-8E85-BFF6B9ACC7B0}|src\\LinkPoint.MVC\\LinkPoint.MVC.csproj|c:\\users\\user\\source\\repos\\linkpoint\\src\\linkpoint.mvc\\views\\authuserprofile\\eduandwork.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{1B9E36D0-C1A1-4BEE-8E85-BFF6B9ACC7B0}|src\\LinkPoint.MVC\\LinkPoint.MVC.csproj|solutionrelative:src\\linkpoint.mvc\\views\\authuserprofile\\eduandwork.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{1B9E36D0-C1A1-4BEE-8E85-BFF6B9ACC7B0}|src\\LinkPoint.MVC\\LinkPoint.MVC.csproj|c:\\users\\user\\source\\repos\\linkpoint\\src\\linkpoint.mvc\\wwwroot\\js\\birhdaydatemaker.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}",
-      "RelativeMoniker": "D:0:0:{1B9E36D0-C1A1-4BEE-8E85-BFF6B9ACC7B0}|src\\LinkPoint.MVC\\LinkPoint.MVC.csproj|solutionrelative:src\\linkpoint.mvc\\wwwroot\\js\\birhdaydatemaker.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}"
+      "AbsoluteMoniker": "D:0:0:{1B9E36D0-C1A1-4BEE-8E85-BFF6B9ACC7B0}|src\\LinkPoint.MVC\\LinkPoint.MVC.csproj|c:\\users\\user\\source\\repos\\linkpoint\\src\\linkpoint.mvc\\wwwroot\\js\\savechangeuseredu.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}",
+      "RelativeMoniker": "D:0:0:{1B9E36D0-C1A1-4BEE-8E85-BFF6B9ACC7B0}|src\\LinkPoint.MVC\\LinkPoint.MVC.csproj|solutionrelative:src\\linkpoint.mvc\\wwwroot\\js\\savechangeuseredu.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{3089F750-426F-4032-BB8D-33FC0FA9E42E}|LinkPoint.Business\\LinkPoint.Business.csproj|c:\\users\\user\\source\\repos\\linkpoint\\linkpoint.business\\dtos\\accountsettingsdtos\\useraboutdtos\\useraboutputdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{3089F750-426F-4032-BB8D-33FC0FA9E42E}|LinkPoint.Business\\LinkPoint.Business.csproj|solutionrelative:linkpoint.business\\dtos\\accountsettingsdtos\\useraboutdtos\\useraboutputdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{1B9E36D0-C1A1-4BEE-8E85-BFF6B9ACC7B0}|src\\LinkPoint.MVC\\LinkPoint.MVC.csproj|c:\\users\\user\\source\\repos\\linkpoint\\src\\linkpoint.mvc\\wwwroot\\js\\savechangeuserwork.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}",
+      "RelativeMoniker": "D:0:0:{1B9E36D0-C1A1-4BEE-8E85-BFF6B9ACC7B0}|src\\LinkPoint.MVC\\LinkPoint.MVC.csproj|solutionrelative:src\\linkpoint.mvc\\wwwroot\\js\\savechangeuserwork.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{3089F750-426F-4032-BB8D-33FC0FA9E42E}|LinkPoint.Business\\LinkPoint.Business.csproj|c:\\users\\user\\source\\repos\\linkpoint\\linkpoint.business\\validators\\useraboutvalidators\\useraboutputvalidator.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{3089F750-426F-4032-BB8D-33FC0FA9E42E}|LinkPoint.Business\\LinkPoint.Business.csproj|solutionrelative:linkpoint.business\\validators\\useraboutvalidators\\useraboutputvalidator.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{3089F750-426F-4032-BB8D-33FC0FA9E42E}|LinkPoint.Business\\LinkPoint.Business.csproj|c:\\users\\user\\source\\repos\\linkpoint\\linkpoint.business\\validators\\userworkvalidators\\userworkpostvalidator.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{3089F750-426F-4032-BB8D-33FC0FA9E42E}|LinkPoint.Business\\LinkPoint.Business.csproj|solutionrelative:linkpoint.business\\validators\\userworkvalidators\\userworkpostvalidator.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{DD6BBD22-AC9C-42C7-A5F7-CA0EA83063E0}|src\\LinkPoint.API\\LinkPoint.API.csproj|c:\\users\\user\\source\\repos\\linkpoint\\src\\linkpoint.api\\controllers\\accountsettingscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{DD6BBD22-AC9C-42C7-A5F7-CA0EA83063E0}|src\\LinkPoint.API\\LinkPoint.API.csproj|solutionrelative:src\\linkpoint.api\\controllers\\accountsettingscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{1B9E36D0-C1A1-4BEE-8E85-BFF6B9ACC7B0}|src\\LinkPoint.MVC\\LinkPoint.MVC.csproj|c:\\users\\user\\source\\repos\\linkpoint\\src\\linkpoint.mvc\\views\\authuserprofile\\basicinfo.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{1B9E36D0-C1A1-4BEE-8E85-BFF6B9ACC7B0}|src\\LinkPoint.MVC\\LinkPoint.MVC.csproj|solutionrelative:src\\linkpoint.mvc\\views\\authuserprofile\\basicinfo.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+      "AbsoluteMoniker": "D:0:0:{3089F750-426F-4032-BB8D-33FC0FA9E42E}|LinkPoint.Business\\LinkPoint.Business.csproj|c:\\users\\user\\source\\repos\\linkpoint\\linkpoint.business\\validators\\usereducationvalidators\\usereducationpostvalidator.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{3089F750-426F-4032-BB8D-33FC0FA9E42E}|LinkPoint.Business\\LinkPoint.Business.csproj|solutionrelative:linkpoint.business\\validators\\usereducationvalidators\\usereducationpostvalidator.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{3089F750-426F-4032-BB8D-33FC0FA9E42E}|LinkPoint.Business\\LinkPoint.Business.csproj|c:\\users\\user\\source\\repos\\linkpoint\\linkpoint.business\\services\\implementations\\accountsettingsservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -33,6 +29,10 @@
     {
       "AbsoluteMoniker": "D:0:0:{1B9E36D0-C1A1-4BEE-8E85-BFF6B9ACC7B0}|src\\LinkPoint.MVC\\LinkPoint.MVC.csproj|c:\\users\\user\\source\\repos\\linkpoint\\src\\linkpoint.mvc\\controllers\\authuserprofilecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{1B9E36D0-C1A1-4BEE-8E85-BFF6B9ACC7B0}|src\\LinkPoint.MVC\\LinkPoint.MVC.csproj|solutionrelative:src\\linkpoint.mvc\\controllers\\authuserprofilecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{DD6BBD22-AC9C-42C7-A5F7-CA0EA83063E0}|src\\LinkPoint.API\\LinkPoint.API.csproj|c:\\users\\user\\source\\repos\\linkpoint\\src\\linkpoint.api\\controllers\\accountsettingscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{DD6BBD22-AC9C-42C7-A5F7-CA0EA83063E0}|src\\LinkPoint.API\\LinkPoint.API.csproj|solutionrelative:src\\linkpoint.api\\controllers\\accountsettingscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{1B9E36D0-C1A1-4BEE-8E85-BFF6B9ACC7B0}|src\\LinkPoint.MVC\\LinkPoint.MVC.csproj|c:\\users\\user\\source\\repos\\linkpoint\\src\\linkpoint.mvc\\views\\shared\\_layout.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
@@ -46,58 +46,58 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 2,
+          "SelectedChildIndex": 8,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "UserAboutPutDto.cs",
-              "DocumentMoniker": "C:\\Users\\user\\source\\repos\\LinkPoint\\LinkPoint.Business\\DTOs\\AccountSettingsDTOs\\UserAboutDTOs\\UserAboutPutDto.cs",
-              "RelativeDocumentMoniker": "LinkPoint.Business\\DTOs\\AccountSettingsDTOs\\UserAboutDTOs\\UserAboutPutDto.cs",
-              "ToolTip": "C:\\Users\\user\\source\\repos\\LinkPoint\\LinkPoint.Business\\DTOs\\AccountSettingsDTOs\\UserAboutDTOs\\UserAboutPutDto.cs",
-              "RelativeToolTip": "LinkPoint.Business\\DTOs\\AccountSettingsDTOs\\UserAboutDTOs\\UserAboutPutDto.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAsAAAAsAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-05-31T05:41:42.12Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
               "DocumentIndex": 1,
-              "Title": "BirhDayDateMaker.js",
-              "DocumentMoniker": "C:\\Users\\user\\source\\repos\\LinkPoint\\src\\LinkPoint.MVC\\wwwroot\\js\\BirhDayDateMaker.js",
-              "RelativeDocumentMoniker": "src\\LinkPoint.MVC\\wwwroot\\js\\BirhDayDateMaker.js",
-              "ToolTip": "C:\\Users\\user\\source\\repos\\LinkPoint\\src\\LinkPoint.MVC\\wwwroot\\js\\BirhDayDateMaker.js",
-              "RelativeToolTip": "src\\LinkPoint.MVC\\wwwroot\\js\\BirhDayDateMaker.js",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAABwAAAAFAAAA",
+              "Title": "SaveChangeUserEdu.js",
+              "DocumentMoniker": "C:\\Users\\user\\source\\repos\\LinkPoint\\src\\LinkPoint.MVC\\wwwroot\\js\\SaveChangeUserEdu.js",
+              "RelativeDocumentMoniker": "src\\LinkPoint.MVC\\wwwroot\\js\\SaveChangeUserEdu.js",
+              "ToolTip": "C:\\Users\\user\\source\\repos\\LinkPoint\\src\\LinkPoint.MVC\\wwwroot\\js\\SaveChangeUserEdu.js",
+              "RelativeToolTip": "src\\LinkPoint.MVC\\wwwroot\\js\\SaveChangeUserEdu.js",
+              "ViewState": "AQIAABUAAAAAAAAAAAAYwCoAAAAXAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001646|",
-              "WhenOpened": "2024-05-31T05:21:40.774Z",
+              "WhenOpened": "2024-05-31T15:50:26.093Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "SaveChangeUserAbout.js",
-              "DocumentMoniker": "C:\\Users\\user\\source\\repos\\LinkPoint\\src\\LinkPoint.MVC\\wwwroot\\js\\SaveChangeUserAbout.js",
-              "RelativeDocumentMoniker": "src\\LinkPoint.MVC\\wwwroot\\js\\SaveChangeUserAbout.js",
-              "ToolTip": "C:\\Users\\user\\source\\repos\\LinkPoint\\src\\LinkPoint.MVC\\wwwroot\\js\\SaveChangeUserAbout.js",
-              "RelativeToolTip": "src\\LinkPoint.MVC\\wwwroot\\js\\SaveChangeUserAbout.js",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAABQAAAAAAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001646|",
-              "WhenOpened": "2024-05-31T05:04:09.905Z",
+              "DocumentIndex": 4,
+              "Title": "UserEducationPostValidator.cs",
+              "DocumentMoniker": "C:\\Users\\user\\source\\repos\\LinkPoint\\LinkPoint.Business\\Validators\\UserEducationValidators\\UserEducationPostValidator.cs",
+              "RelativeDocumentMoniker": "LinkPoint.Business\\Validators\\UserEducationValidators\\UserEducationPostValidator.cs",
+              "ToolTip": "C:\\Users\\user\\source\\repos\\LinkPoint\\LinkPoint.Business\\Validators\\UserEducationValidators\\UserEducationPostValidator.cs",
+              "RelativeToolTip": "LinkPoint.Business\\Validators\\UserEducationValidators\\UserEducationPostValidator.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAABsAAAABAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-05-31T15:48:32.175Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 3,
-              "Title": "UserAboutPutValidator.cs",
-              "DocumentMoniker": "C:\\Users\\user\\source\\repos\\LinkPoint\\LinkPoint.Business\\Validators\\UserAboutValidators\\UserAboutPutValidator.cs",
-              "RelativeDocumentMoniker": "LinkPoint.Business\\Validators\\UserAboutValidators\\UserAboutPutValidator.cs",
-              "ToolTip": "C:\\Users\\user\\source\\repos\\LinkPoint\\LinkPoint.Business\\Validators\\UserAboutValidators\\UserAboutPutValidator.cs",
-              "RelativeToolTip": "LinkPoint.Business\\Validators\\UserAboutValidators\\UserAboutPutValidator.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAUAAAA9AAAA",
+              "Title": "UserWorkPostValidator.cs",
+              "DocumentMoniker": "C:\\Users\\user\\source\\repos\\LinkPoint\\LinkPoint.Business\\Validators\\UserWorkValidators\\UserWorkPostValidator.cs",
+              "RelativeDocumentMoniker": "LinkPoint.Business\\Validators\\UserWorkValidators\\UserWorkPostValidator.cs",
+              "ToolTip": "C:\\Users\\user\\source\\repos\\LinkPoint\\LinkPoint.Business\\Validators\\UserWorkValidators\\UserWorkPostValidator.cs",
+              "RelativeToolTip": "LinkPoint.Business\\Validators\\UserWorkValidators\\UserWorkPostValidator.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAABUAAACKAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-05-31T05:02:04.579Z",
+              "WhenOpened": "2024-05-31T08:42:57.153Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "SaveChangeUserWork.js",
+              "DocumentMoniker": "C:\\Users\\user\\source\\repos\\LinkPoint\\src\\LinkPoint.MVC\\wwwroot\\js\\SaveChangeUserWork.js",
+              "RelativeDocumentMoniker": "src\\LinkPoint.MVC\\wwwroot\\js\\SaveChangeUserWork.js",
+              "ToolTip": "C:\\Users\\user\\source\\repos\\LinkPoint\\src\\LinkPoint.MVC\\wwwroot\\js\\SaveChangeUserWork.js",
+              "RelativeToolTip": "src\\LinkPoint.MVC\\wwwroot\\js\\SaveChangeUserWork.js",
+              "ViewState": "AQIAABEAAAAAAAAAAAAgwCUAAAAJAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001646|",
+              "WhenOpened": "2024-05-31T07:58:47.715Z",
               "EditorCaption": ""
             },
             {
@@ -108,60 +108,60 @@
               "RelativeDocumentMoniker": "src\\LinkPoint.MVC\\Views\\Shared\\_Layout.cshtml",
               "ToolTip": "C:\\Users\\user\\source\\repos\\LinkPoint\\src\\LinkPoint.MVC\\Views\\Shared\\_Layout.cshtml",
               "RelativeToolTip": "src\\LinkPoint.MVC\\Views\\Shared\\_Layout.cshtml",
-              "ViewState": "AQIAAHIAAAAAAAAAAAAAAM8AAAA3AAAA",
+              "ViewState": "AQIAAMIAAAAAAAAAAAAAANEAAAA2AAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
               "WhenOpened": "2024-05-30T14:03:57.903Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 7,
               "Title": "AccountSettingsController.cs",
               "DocumentMoniker": "C:\\Users\\user\\source\\repos\\LinkPoint\\src\\LinkPoint.API\\Controllers\\AccountSettingsController.cs",
               "RelativeDocumentMoniker": "src\\LinkPoint.API\\Controllers\\AccountSettingsController.cs",
               "ToolTip": "C:\\Users\\user\\source\\repos\\LinkPoint\\src\\LinkPoint.API\\Controllers\\AccountSettingsController.cs",
               "RelativeToolTip": "src\\LinkPoint.API\\Controllers\\AccountSettingsController.cs",
-              "ViewState": "AQIAABwAAAAAAAAAAAAQwGkAAABHAAAA",
+              "ViewState": "AQIAAMMAAAAAAAAAAAAIwMgAAAA9AAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-05-29T17:17:41.738Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 6,
+              "DocumentIndex": 5,
               "Title": "AccountSettingsService.cs",
               "DocumentMoniker": "C:\\Users\\user\\source\\repos\\LinkPoint\\LinkPoint.Business\\Services\\Implementations\\AccountSettingsService.cs",
               "RelativeDocumentMoniker": "LinkPoint.Business\\Services\\Implementations\\AccountSettingsService.cs",
               "ToolTip": "C:\\Users\\user\\source\\repos\\LinkPoint\\LinkPoint.Business\\Services\\Implementations\\AccountSettingsService.cs",
               "RelativeToolTip": "LinkPoint.Business\\Services\\Implementations\\AccountSettingsService.cs",
-              "ViewState": "AQIAAJgAAAAAAAAAAAAAAKQAAAA6AAAA",
+              "ViewState": "AQIAAK4AAAAAAAAAAAAMwL0AAAAvAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-05-29T16:17:01.469Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 7,
+              "DocumentIndex": 6,
               "Title": "AuthUserProfileController.cs",
               "DocumentMoniker": "C:\\Users\\user\\source\\repos\\LinkPoint\\src\\LinkPoint.MVC\\Controllers\\AuthUserProfileController.cs",
               "RelativeDocumentMoniker": "src\\LinkPoint.MVC\\Controllers\\AuthUserProfileController.cs",
               "ToolTip": "C:\\Users\\user\\source\\repos\\LinkPoint\\src\\LinkPoint.MVC\\Controllers\\AuthUserProfileController.cs",
               "RelativeToolTip": "src\\LinkPoint.MVC\\Controllers\\AuthUserProfileController.cs",
-              "ViewState": "AQIAAIIAAAAAAAAAAAAAAKAAAAAgAAAA",
+              "ViewState": "AQIAAKkAAAAAAAAAAADwv7oAAABCAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-05-28T15:42:55.336Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
-              "Title": "BasicInfo.cshtml",
-              "DocumentMoniker": "C:\\Users\\user\\source\\repos\\LinkPoint\\src\\LinkPoint.MVC\\Views\\AuthUserProfile\\BasicInfo.cshtml",
-              "RelativeDocumentMoniker": "src\\LinkPoint.MVC\\Views\\AuthUserProfile\\BasicInfo.cshtml",
-              "ToolTip": "C:\\Users\\user\\source\\repos\\LinkPoint\\src\\LinkPoint.MVC\\Views\\AuthUserProfile\\BasicInfo.cshtml",
-              "RelativeToolTip": "src\\LinkPoint.MVC\\Views\\AuthUserProfile\\BasicInfo.cshtml",
-              "ViewState": "AQIAAH8BAAAAAAAAAAAAAJMBAABCAAAA",
+              "DocumentIndex": 0,
+              "Title": "EduAndWork.cshtml",
+              "DocumentMoniker": "C:\\Users\\user\\source\\repos\\LinkPoint\\src\\LinkPoint.MVC\\Views\\AuthUserProfile\\EduAndWork.cshtml",
+              "RelativeDocumentMoniker": "src\\LinkPoint.MVC\\Views\\AuthUserProfile\\EduAndWork.cshtml",
+              "ToolTip": "C:\\Users\\user\\source\\repos\\LinkPoint\\src\\LinkPoint.MVC\\Views\\AuthUserProfile\\EduAndWork.cshtml",
+              "RelativeToolTip": "src\\LinkPoint.MVC\\Views\\AuthUserProfile\\EduAndWork.cshtml",
+              "ViewState": "AQIAAH4AAAAAAAAAAAAAAI0AAABOAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2024-05-30T11:19:29.226Z",
+              "WhenOpened": "2024-05-31T06:15:21.902Z",
               "EditorCaption": ""
             }
           ]
