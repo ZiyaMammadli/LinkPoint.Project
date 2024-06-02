@@ -9,6 +9,7 @@ using LinkPoint.Core.Repositories;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Newtonsoft.Json;
+using System.Collections.Generic;
 
 namespace LinkPoint.Business.Services.Implementations;
 
@@ -174,4 +175,67 @@ public class FriendShipService : IFriendShipService
         await _friendShipRepository.CommitAsync();
     }
 
+    public async Task<List<MyFriendsDto>> GetAllMyFriendsAsync(string UserId)
+    {
+        var user = await _userManager.FindByIdAsync(UserId);
+        if (user is null) throw new UserNotFoundException(404, "User is not found");
+        var FriendShips = await _friendShipRepository.GetAllAsync(fs => fs.FollowingUserId == user.Id && fs.Status == FollowStatus.Accepted);
+        List<AcceptedFollowerUserDto> followerUserDtos = new List<AcceptedFollowerUserDto>();
+        if (FriendShips.Count > 0)
+        {
+            foreach (var friendShip in FriendShips)
+            {
+                var followerUser = await _userManager.FindByIdAsync(friendShip.UserId);
+                var profileImage = await _imageRepository.GetSingleAsync(i => i.UserId == followerUser.Id && i.IsPostImage == false);
+                if (profileImage is null) throw new ProfileImageNotFoundException(404, "ProfileImage is not found");
+                var backgroundImage = await _imageRepository.GetSingleAsync(i => i.UserId == followerUser.Id && i.IsPostImage == null);
+                if (backgroundImage is null) throw new ProfileImageNotFoundException(404, "BackgroundImage is not found");
+                AcceptedFollowerUserDto followerUserDto = new AcceptedFollowerUserDto()
+                {
+                    UserId = followerUser.Id,
+                    UserName = followerUser.UserName,
+                    ProfileImageUrl = profileImage.ImageUrl,
+                    BackgroundImageUrl = backgroundImage.ImageUrl,
+                };
+                followerUserDtos.Add(followerUserDto);
+            }
+        }
+        var Friendships = await _friendShipRepository.GetAllAsync(fs => fs.UserId == user.Id && fs.Status == FollowStatus.Accepted);
+        List<AcceptedFollowingUserDto> followingUserDtos = new List<AcceptedFollowingUserDto>();
+        if (Friendships.Count > 0)
+        {
+            foreach (var friendShip in Friendships)
+            {
+                var followingUser = await _userManager.FindByIdAsync(friendShip.FollowingUserId);
+                var profileImage = await _imageRepository.GetSingleAsync(i => i.UserId == followingUser.Id && i.IsPostImage == false);
+                if (profileImage is null) throw new ProfileImageNotFoundException(404, "ProfileImage is not found");
+                var backgroundImage = await _imageRepository.GetSingleAsync(i => i.UserId == followingUser.Id && i.IsPostImage == null);
+                if (backgroundImage is null) throw new ProfileImageNotFoundException(404, "BackgroundImage is not found");
+
+                AcceptedFollowingUserDto followingUserDto = new AcceptedFollowingUserDto()
+                {
+                    UserId = followingUser.Id,
+                    UserName = followingUser.UserName,
+                    ProfileImageUrl = profileImage.ImageUrl,
+                    BackgroundImageUrl = backgroundImage.ImageUrl,
+                };
+                followingUserDtos.Add(followingUserDto);
+            }
+        }
+        List < MyFriendsDto > myFriendsDtos = new List<MyFriendsDto>();
+        var commonElements = followingUserDtos.Select(f=>f.UserId).Intersect(followerUserDtos.Select(f=>f.UserId)).ToList();
+        var commonUsers= followingUserDtos.Where(f=>commonElements.Contains(f.UserId)).ToList();
+        foreach (var userr in commonUsers)
+        {
+            MyFriendsDto myFriendsDto = new MyFriendsDto()
+            {
+                UserId = userr.UserId,
+                UserName = userr.UserName,
+                ProfileImageUrl = userr.ProfileImageUrl,
+                BackgroundImageUrl = userr.BackgroundImageUrl,
+            };
+            myFriendsDtos.Add (myFriendsDto);
+        }
+        return myFriendsDtos;
+    }   
 }

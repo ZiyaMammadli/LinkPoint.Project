@@ -3,6 +3,7 @@
         event.preventDefault();
         var token = $('#tokenidd').val();
         var userId = $('#us-er-Id').val();
+        var authUserId = $('#AuthUs-er-Id').val();
 
         if (!token || !userId) {
             console.error('Token veya User ID eksik!');
@@ -20,10 +21,17 @@
                 followingUsersContainer.html('');
 
                 data.forEach(d => {
+                    var userProfile = "";
+                    if (authUserId == d.userId) {
+                        userProfile = `/AuthUserProfile/Index`;
+                    }
+                    else {
+                        userProfile = `/UserProfile/Index/${d.userId}`;
+                    }
                     const userElement = `
                         <div class="following-user">
                             <img src="${d.profileImageUrl}" alt="${d.userName}'s profile image" class="profile-photo-sm"/>
-                            <a href="" class="profile-link">${d.userName}</a>
+                            <a href="${userProfile}" class="profile-link">${d.userName}</a>
                         </div>
                     `;
                     followingUsersContainer.append(userElement);
@@ -40,6 +48,7 @@
         event.preventDefault();
         var token = $('#tokenidd').val();
         var userId = $('#us-er-Id').val();
+        var authUserId = $('#AuthUs-er-Id').val();
 
         console.log('Token:', token);
         console.log('UserId:', userId);
@@ -60,10 +69,17 @@
                 followersUsersContainer.html('');
 
                 data.forEach(d => {
+                    var userProfile = "";
+                    if (authUserId == d.userId) {
+                        userProfile = `/AuthUserProfile/Index`;
+                    }
+                    else {
+                        userProfile = `/UserProfile/Index/${d.userId}`;
+                    }
                     const userElement = `
                         <div class="follower-user">
                             <img src="${d.profileImageUrl}" alt="${d.userName}'s profile image" class="profile-photo-sm"/>
-                            <a href="" class="profile-link">${d.userName}</a>
+                            <a href="${userProfile}" class="profile-link">${d.userName}</a>
                         </div>
                     `;
                     followersUsersContainer.append(userElement);

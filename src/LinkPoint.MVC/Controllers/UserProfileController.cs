@@ -69,6 +69,7 @@ namespace LinkPoint.MVC.Controllers
         public async Task<IActionResult> About(string UserId)
         {
             var token = HttpContext.Session.GetString("JWToken");
+            var userId = HttpContext.Request.Cookies["UserId"];
             if (string.IsNullOrEmpty(token))
             {
                 return RedirectToAction("Login", "Account");
@@ -101,14 +102,26 @@ namespace LinkPoint.MVC.Controllers
             response5.EnsureSuccessStatusCode();
             var json5 = await response5.Content.ReadAsStringAsync();
             var userEducation = JsonConvert.DeserializeObject<UserEducationGetViewModel>(json5);
+
+            var response6 = await client.GetAsync(baseAdress + "/AccountSettings/GetAuthUserInfo/" + userId);
+            response6.EnsureSuccessStatusCode();
+            var json6 = await response6.Content.ReadAsStringAsync();
+            var authUserInfo = JsonConvert.DeserializeObject<UserInfoViewModel>(json6);
+
+            var response7 = await client.GetAsync(baseAdress + "/FriendShips/GetAllAcceptedFollowerUsers/" + UserId);
+            response7.EnsureSuccessStatusCode();
+            var json7 = await response7.Content.ReadAsStringAsync();
+            var acceptedFollowerUsers = JsonConvert.DeserializeObject<List<AcceptedFollowerUsersGetViewModel>>(json7);
             AboutViewModel authUserProfileViewModel = new AboutViewModel()
             {
                 Token = token,
                 UserInfo = userInfo,
+                AuthUserInfo=authUserInfo,
                 UserAbout = userAbout,
                 UserWork = userWork,
                 UserInterests = userInterests,
                 UserEducation = userEducation,
+                AcceptedFollowerUsers=acceptedFollowerUsers
             };
             return View(authUserProfileViewModel);
         }
@@ -117,6 +130,7 @@ namespace LinkPoint.MVC.Controllers
         public async Task<IActionResult> Album(string UserId)
         {
             var token = HttpContext.Session.GetString("JWToken");
+            var userId = HttpContext.Request.Cookies["UserId"];
             if (string.IsNullOrEmpty(token))
             {
                 return RedirectToAction("Login", "Account");
@@ -135,11 +149,23 @@ namespace LinkPoint.MVC.Controllers
             var json2 = await response2.Content.ReadAsStringAsync();
             var posts = JsonConvert.DeserializeObject<List<PostGetViewModel>>(json2);
             var SortedPosts = posts.OrderByDescending(post => post.PostId).ToList();
+
+            var response6 = await client.GetAsync(baseAdress + "/AccountSettings/GetAuthUserInfo/" + userId);
+            response6.EnsureSuccessStatusCode();
+            var json6 = await response6.Content.ReadAsStringAsync();
+            var authUserInfo = JsonConvert.DeserializeObject<UserInfoViewModel>(json6);
+
+            var response7 = await client.GetAsync(baseAdress + "/FriendShips/GetAllAcceptedFollowerUsers/" + UserId);
+            response7.EnsureSuccessStatusCode();
+            var json7 = await response7.Content.ReadAsStringAsync();
+            var acceptedFollowerUsers = JsonConvert.DeserializeObject<List<AcceptedFollowerUsersGetViewModel>>(json7);
             AlbumViewModel albumViewModel = new AlbumViewModel()
             {
                 Token = token,
                 UserInfo = userInfo,
+                AuthUserInfo=authUserInfo,
                 Posts = posts,
+                AcceptedFollowerUsers=acceptedFollowerUsers
             };
             return View(albumViewModel);
         }

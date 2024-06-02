@@ -3,12 +3,48 @@
   "WorkspaceRootPath": "C:\\Users\\user\\source\\repos\\LinkPoint\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{1B9E36D0-C1A1-4BEE-8E85-BFF6B9ACC7B0}|src\\LinkPoint.MVC\\LinkPoint.MVC.csproj|c:\\users\\user\\source\\repos\\linkpoint\\src\\linkpoint.mvc\\views\\newsfeed\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{1B9E36D0-C1A1-4BEE-8E85-BFF6B9ACC7B0}|src\\LinkPoint.MVC\\LinkPoint.MVC.csproj|solutionrelative:src\\linkpoint.mvc\\views\\newsfeed\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+      "AbsoluteMoniker": "D:0:0:{1B9E36D0-C1A1-4BEE-8E85-BFF6B9ACC7B0}|src\\LinkPoint.MVC\\LinkPoint.MVC.csproj|c:\\users\\user\\source\\repos\\linkpoint\\src\\linkpoint.mvc\\views\\account\\login.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{1B9E36D0-C1A1-4BEE-8E85-BFF6B9ACC7B0}|src\\LinkPoint.MVC\\LinkPoint.MVC.csproj|solutionrelative:src\\linkpoint.mvc\\views\\account\\login.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{1B9E36D0-C1A1-4BEE-8E85-BFF6B9ACC7B0}|src\\LinkPoint.MVC\\LinkPoint.MVC.csproj|c:\\users\\user\\source\\repos\\linkpoint\\src\\linkpoint.mvc\\views\\shared\\_layout.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{1B9E36D0-C1A1-4BEE-8E85-BFF6B9ACC7B0}|src\\LinkPoint.MVC\\LinkPoint.MVC.csproj|solutionrelative:src\\linkpoint.mvc\\views\\shared\\_layout.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{1B9E36D0-C1A1-4BEE-8E85-BFF6B9ACC7B0}|src\\LinkPoint.MVC\\LinkPoint.MVC.csproj|c:\\users\\user\\source\\repos\\linkpoint\\src\\linkpoint.mvc\\controllers\\newsfeedcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{1B9E36D0-C1A1-4BEE-8E85-BFF6B9ACC7B0}|src\\LinkPoint.MVC\\LinkPoint.MVC.csproj|solutionrelative:src\\linkpoint.mvc\\controllers\\newsfeedcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{1B9E36D0-C1A1-4BEE-8E85-BFF6B9ACC7B0}|src\\LinkPoint.MVC\\LinkPoint.MVC.csproj|c:\\users\\user\\source\\repos\\linkpoint\\src\\linkpoint.mvc\\views\\newsfeed\\friends.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{1B9E36D0-C1A1-4BEE-8E85-BFF6B9ACC7B0}|src\\LinkPoint.MVC\\LinkPoint.MVC.csproj|solutionrelative:src\\linkpoint.mvc\\views\\newsfeed\\friends.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{1B9E36D0-C1A1-4BEE-8E85-BFF6B9ACC7B0}|src\\LinkPoint.MVC\\LinkPoint.MVC.csproj|c:\\users\\user\\source\\repos\\linkpoint\\src\\linkpoint.mvc\\controllers\\userprofilecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{1B9E36D0-C1A1-4BEE-8E85-BFF6B9ACC7B0}|src\\LinkPoint.MVC\\LinkPoint.MVC.csproj|solutionrelative:src\\linkpoint.mvc\\controllers\\userprofilecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{1B9E36D0-C1A1-4BEE-8E85-BFF6B9ACC7B0}|src\\LinkPoint.MVC\\LinkPoint.MVC.csproj|c:\\users\\user\\source\\repos\\linkpoint\\src\\linkpoint.mvc\\viewmodels\\friendsviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{1B9E36D0-C1A1-4BEE-8E85-BFF6B9ACC7B0}|src\\LinkPoint.MVC\\LinkPoint.MVC.csproj|solutionrelative:src\\linkpoint.mvc\\viewmodels\\friendsviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{1B9E36D0-C1A1-4BEE-8E85-BFF6B9ACC7B0}|src\\LinkPoint.MVC\\LinkPoint.MVC.csproj|c:\\users\\user\\source\\repos\\linkpoint\\src\\linkpoint.mvc\\viewmodels\\myfriendsgetviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{1B9E36D0-C1A1-4BEE-8E85-BFF6B9ACC7B0}|src\\LinkPoint.MVC\\LinkPoint.MVC.csproj|solutionrelative:src\\linkpoint.mvc\\viewmodels\\myfriendsgetviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{DD6BBD22-AC9C-42C7-A5F7-CA0EA83063E0}|src\\LinkPoint.API\\LinkPoint.API.csproj|c:\\users\\user\\source\\repos\\linkpoint\\src\\linkpoint.api\\controllers\\friendshipscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{DD6BBD22-AC9C-42C7-A5F7-CA0EA83063E0}|src\\LinkPoint.API\\LinkPoint.API.csproj|solutionrelative:src\\linkpoint.api\\controllers\\friendshipscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{3089F750-426F-4032-BB8D-33FC0FA9E42E}|LinkPoint.Business\\LinkPoint.Business.csproj|c:\\users\\user\\source\\repos\\linkpoint\\linkpoint.business\\services\\interfaces\\ifriendshipservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{3089F750-426F-4032-BB8D-33FC0FA9E42E}|LinkPoint.Business\\LinkPoint.Business.csproj|solutionrelative:linkpoint.business\\services\\interfaces\\ifriendshipservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{3089F750-426F-4032-BB8D-33FC0FA9E42E}|LinkPoint.Business\\LinkPoint.Business.csproj|c:\\users\\user\\source\\repos\\linkpoint\\linkpoint.business\\services\\implementations\\friendshipservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{3089F750-426F-4032-BB8D-33FC0FA9E42E}|LinkPoint.Business\\LinkPoint.Business.csproj|solutionrelative:linkpoint.business\\services\\implementations\\friendshipservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{3089F750-426F-4032-BB8D-33FC0FA9E42E}|LinkPoint.Business\\LinkPoint.Business.csproj|c:\\users\\user\\source\\repos\\linkpoint\\linkpoint.business\\services\\implementations\\accountsettingsservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{3089F750-426F-4032-BB8D-33FC0FA9E42E}|LinkPoint.Business\\LinkPoint.Business.csproj|solutionrelative:linkpoint.business\\services\\implementations\\accountsettingsservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -18,32 +54,149 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 0,
+          "SelectedChildIndex": 1,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "Index.cshtml",
-              "DocumentMoniker": "C:\\Users\\user\\source\\repos\\LinkPoint\\src\\LinkPoint.MVC\\Views\\NewsFeed\\Index.cshtml",
-              "RelativeDocumentMoniker": "src\\LinkPoint.MVC\\Views\\NewsFeed\\Index.cshtml",
-              "ToolTip": "C:\\Users\\user\\source\\repos\\LinkPoint\\src\\LinkPoint.MVC\\Views\\NewsFeed\\Index.cshtml",
-              "RelativeToolTip": "src\\LinkPoint.MVC\\Views\\NewsFeed\\Index.cshtml",
-              "ViewState": "AQIAAL0AAAAAAAAAAAAAAMQAAAAiAAAA",
+              "DocumentIndex": 1,
+              "Title": "_Layout.cshtml",
+              "DocumentMoniker": "C:\\Users\\user\\source\\repos\\LinkPoint\\src\\LinkPoint.MVC\\Views\\Shared\\_Layout.cshtml",
+              "RelativeDocumentMoniker": "src\\LinkPoint.MVC\\Views\\Shared\\_Layout.cshtml",
+              "ToolTip": "C:\\Users\\user\\source\\repos\\LinkPoint\\src\\LinkPoint.MVC\\Views\\Shared\\_Layout.cshtml",
+              "RelativeToolTip": "src\\LinkPoint.MVC\\Views\\Shared\\_Layout.cshtml",
+              "ViewState": "AQIAAA8AAAAAAAAAAAAAACwAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2024-06-02T17:36:35.317Z",
+              "WhenOpened": "2024-06-02T21:31:02.75Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 0,
+              "Title": "Login.cshtml",
+              "DocumentMoniker": "C:\\Users\\user\\source\\repos\\LinkPoint\\src\\LinkPoint.MVC\\Views\\Account\\Login.cshtml",
+              "RelativeDocumentMoniker": "src\\LinkPoint.MVC\\Views\\Account\\Login.cshtml",
+              "ToolTip": "C:\\Users\\user\\source\\repos\\LinkPoint\\src\\LinkPoint.MVC\\Views\\Account\\Login.cshtml",
+              "RelativeToolTip": "src\\LinkPoint.MVC\\Views\\Account\\Login.cshtml",
+              "ViewState": "AQIAABIAAAAAAAAAAAAAACgAAABGAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2024-06-02T21:30:55.235Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "MyFriendsGetViewModel.cs",
+              "DocumentMoniker": "C:\\Users\\user\\source\\repos\\LinkPoint\\src\\LinkPoint.MVC\\ViewModels\\MyFriendsGetViewModel.cs",
+              "RelativeDocumentMoniker": "src\\LinkPoint.MVC\\ViewModels\\MyFriendsGetViewModel.cs",
+              "ToolTip": "C:\\Users\\user\\source\\repos\\LinkPoint\\src\\LinkPoint.MVC\\ViewModels\\MyFriendsGetViewModel.cs",
+              "RelativeToolTip": "src\\LinkPoint.MVC\\ViewModels\\MyFriendsGetViewModel.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAIAAAAiAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-06-02T20:57:24.415Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "FriendShipsController.cs",
+              "DocumentMoniker": "C:\\Users\\user\\source\\repos\\LinkPoint\\src\\LinkPoint.API\\Controllers\\FriendShipsController.cs",
+              "RelativeDocumentMoniker": "src\\LinkPoint.API\\Controllers\\FriendShipsController.cs",
+              "ToolTip": "C:\\Users\\user\\source\\repos\\LinkPoint\\src\\LinkPoint.API\\Controllers\\FriendShipsController.cs",
+              "RelativeToolTip": "src\\LinkPoint.API\\Controllers\\FriendShipsController.cs",
+              "ViewState": "AQIAADcAAAAAAAAAAAAswEMAAAA4AAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-06-02T20:15:59.559Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "IFriendShipService.cs",
+              "DocumentMoniker": "C:\\Users\\user\\source\\repos\\LinkPoint\\LinkPoint.Business\\Services\\Interfaces\\IFriendShipService.cs",
+              "RelativeDocumentMoniker": "LinkPoint.Business\\Services\\Interfaces\\IFriendShipService.cs",
+              "ToolTip": "C:\\Users\\user\\source\\repos\\LinkPoint\\LinkPoint.Business\\Services\\Interfaces\\IFriendShipService.cs",
+              "RelativeToolTip": "LinkPoint.Business\\Services\\Interfaces\\IFriendShipService.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAABIAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-06-02T20:10:55.452Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "Friends.cshtml",
+              "DocumentMoniker": "C:\\Users\\user\\source\\repos\\LinkPoint\\src\\LinkPoint.MVC\\Views\\NewsFeed\\Friends.cshtml",
+              "RelativeDocumentMoniker": "src\\LinkPoint.MVC\\Views\\NewsFeed\\Friends.cshtml",
+              "ToolTip": "C:\\Users\\user\\source\\repos\\LinkPoint\\src\\LinkPoint.MVC\\Views\\NewsFeed\\Friends.cshtml",
+              "RelativeToolTip": "src\\LinkPoint.MVC\\Views\\NewsFeed\\Friends.cshtml",
+              "ViewState": "AQIAANgAAAAAAAAAAAAAAPgAAAAqAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2024-06-02T19:48:04.084Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "UserProfileController.cs",
+              "DocumentMoniker": "C:\\Users\\user\\source\\repos\\LinkPoint\\src\\LinkPoint.MVC\\Controllers\\UserProfileController.cs",
+              "RelativeDocumentMoniker": "src\\LinkPoint.MVC\\Controllers\\UserProfileController.cs",
+              "ToolTip": "C:\\Users\\user\\source\\repos\\LinkPoint\\src\\LinkPoint.MVC\\Controllers\\UserProfileController.cs",
+              "RelativeToolTip": "src\\LinkPoint.MVC\\Controllers\\UserProfileController.cs",
+              "ViewState": "AQIAAFkAAAAAAAAAAAAgwGsAAABEAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-06-02T19:44:54.898Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
               "Title": "NewsFeedController.cs",
               "DocumentMoniker": "C:\\Users\\user\\source\\repos\\LinkPoint\\src\\LinkPoint.MVC\\Controllers\\NewsFeedController.cs",
               "RelativeDocumentMoniker": "src\\LinkPoint.MVC\\Controllers\\NewsFeedController.cs",
               "ToolTip": "C:\\Users\\user\\source\\repos\\LinkPoint\\src\\LinkPoint.MVC\\Controllers\\NewsFeedController.cs",
               "RelativeToolTip": "src\\LinkPoint.MVC\\Controllers\\NewsFeedController.cs",
-              "ViewState": "AQIAAA4AAAAAAAAAAAAAwBMAAAAsAAAA",
+              "ViewState": "AQIAAFcAAAAAAAAAAAAuwIQAAAAqAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-06-02T17:35:35.211Z",
+              "WhenOpened": "2024-06-02T18:39:57.102Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "FriendsViewModel.cs",
+              "DocumentMoniker": "C:\\Users\\user\\source\\repos\\LinkPoint\\src\\LinkPoint.MVC\\ViewModels\\FriendsViewModel.cs",
+              "RelativeDocumentMoniker": "src\\LinkPoint.MVC\\ViewModels\\FriendsViewModel.cs",
+              "ToolTip": "C:\\Users\\user\\source\\repos\\LinkPoint\\src\\LinkPoint.MVC\\ViewModels\\FriendsViewModel.cs",
+              "RelativeToolTip": "src\\LinkPoint.MVC\\ViewModels\\FriendsViewModel.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAuwAYAAAAwAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-06-02T19:41:23.334Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
+              "Title": "FriendShipService.cs",
+              "DocumentMoniker": "C:\\Users\\user\\source\\repos\\LinkPoint\\LinkPoint.Business\\Services\\Implementations\\FriendShipService.cs",
+              "RelativeDocumentMoniker": "LinkPoint.Business\\Services\\Implementations\\FriendShipService.cs",
+              "ToolTip": "C:\\Users\\user\\source\\repos\\LinkPoint\\LinkPoint.Business\\Services\\Implementations\\FriendShipService.cs",
+              "RelativeToolTip": "LinkPoint.Business\\Services\\Implementations\\FriendShipService.cs",
+              "ViewState": "AQIAAMwAAAAAAAAAAAAAALEAAAA+AAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-06-02T20:10:49.707Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 10,
+              "Title": "AccountSettingsService.cs",
+              "DocumentMoniker": "C:\\Users\\user\\source\\repos\\LinkPoint\\LinkPoint.Business\\Services\\Implementations\\AccountSettingsService.cs",
+              "RelativeDocumentMoniker": "LinkPoint.Business\\Services\\Implementations\\AccountSettingsService.cs",
+              "ToolTip": "C:\\Users\\user\\source\\repos\\LinkPoint\\LinkPoint.Business\\Services\\Implementations\\AccountSettingsService.cs",
+              "RelativeToolTip": "LinkPoint.Business\\Services\\Implementations\\AccountSettingsService.cs",
+              "ViewState": "AQIAAFYBAAAAAAAAAAAAwAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-06-02T20:32:48.286Z",
               "EditorCaption": ""
             }
           ]

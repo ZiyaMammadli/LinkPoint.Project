@@ -13,5 +13,6 @@ public interface IFriendShipService
     Task RejectFriendShipRequestAsync(int friednShipId);//dostluq isteyin redd etmek
     Task<List<AcceptedFollowingUserDto>> GetAllAcceptedFollowingUsersAsync(string UserId);//dostlugu qebul etmis butun izlediyin userleri gosterir
     Task<List<AcceptedFollowerUserDto>> GetAllAcceptedFollowerUsersAsync(string UserId);//dostlugu qebul etdiyin butun seni izleyen userleri gosterir
+    Task<List<MyFriendsDto>> GetAllMyFriendsAsync(string UserId);//burada qarsiliqli bir-birimizi izlediyimiz userleri mene getirir
     Task<List<PendingFollowerUserDto>> GetAllPendingFollowerUsersAsync(string UserId);//dostlugu qebul olunmamis, gozlemede olan, seni izlemek isteyen userleri gosterir
 }

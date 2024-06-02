@@ -54,6 +54,7 @@ namespace LinkPoint.MVC.Controllers
             response5.EnsureSuccessStatusCode();
             var json5 = await response5.Content.ReadAsStringAsync();
             var acceptedFollowingUsers = JsonConvert.DeserializeObject<List<AcceptedFollowingUsersGetViewModel>>(json5);
+
             NewsFeedViewModel newsFeedViewModel = new NewsFeedViewModel()
             {
                 Token = token,
@@ -93,6 +94,43 @@ namespace LinkPoint.MVC.Controllers
                 Users=users
             };
             return PartialView("_UserDropdownPartial", searchVeiw);
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> Friends()
+        {
+            var token = HttpContext.Session.GetString("JWToken");
+            var userId = HttpContext.Request.Cookies["UserId"];
+            if (string.IsNullOrEmpty(token))
+            {
+                return RedirectToAction("Login", "Account");
+            }
+
+            var client = _httpClientFactory.CreateClient();
+            client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
+
+            var response1 = await client.GetAsync(baseAdress + "/AccountSettings/GetAuthUserInfo/" + userId);
+            response1.EnsureSuccessStatusCode();
+            var json1 = await response1.Content.ReadAsStringAsync();
+            var userInfo = JsonConvert.DeserializeObject<UserInfoViewModel>(json1);
+
+            var response4 = await client.GetAsync(baseAdress + "/AccountSettings/GetAllDontFollowingUsers/" + userId + "/" + 4);
+            response4.EnsureSuccessStatusCode();
+            var json4 = await response4.Content.ReadAsStringAsync();
+            var dontFollowingUsers = JsonConvert.DeserializeObject<List<DontFollowingUsersViewModel>>(json4);
+
+            var response5 = await client.GetAsync(baseAdress + "/FriendShips/GetAllMyFriends/" + userId);
+            response5.EnsureSuccessStatusCode();
+            var json5 = await response5.Content.ReadAsStringAsync();
+            var myFriends = JsonConvert.DeserializeObject<List<MyFriendsGetViewModel>>(json5);
+            FriendsViewModel friendsViewModel = new FriendsViewModel()
+            {
+                Token = token,
+                UserInfo=userInfo,
+                MyFriends = myFriends,
+                DontFollowingUsers=dontFollowingUsers
+            };
+            return View(friendsViewModel);
         }
     }
 }

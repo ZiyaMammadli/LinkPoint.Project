@@ -666,6 +666,22 @@
   },
   {
     "ContainingType": "LinkPoint.API.Controllers.FriendShipsController",
+    "Method": "GetAllMyFriends",
+    "RelativePath": "api/FriendShips/GetAllMyFriends/{UserId}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "UserId",
+        "Type": "System.String",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "LinkPoint.API.Controllers.FriendShipsController",
     "Method": "GetAllPendingFollowerUsers",
     "RelativePath": "api/FriendShips/GetAllPendingFollowerUsers/{UserId}",
     "HttpMethod": "GET",

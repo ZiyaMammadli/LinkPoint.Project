@@ -63,6 +63,32 @@ namespace LinkPoint.API.Controllers
                 return BadRequest(ex.Message);
             }
         }
+
+        [HttpGet("[action]/{UserId}")]
+        public async Task<IActionResult> GetAllMyFriends(string UserId)
+        {
+            try
+            {
+                return Ok(await _friendShipService.GetAllMyFriendsAsync(UserId));
+            }
+            catch (UserNotFoundException ex)
+            {
+                return StatusCode(ex.StatusCode, ex.Message);
+            }
+            catch (ProfileImageNotFoundException ex)
+            {
+                return StatusCode(ex.StatusCode, ex.Message);
+            }
+            catch (FriendShipNotFoundException ex)
+            {
+                return StatusCode(ex.StatusCode, ex.Message);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
+
         [HttpGet("[action]/{UserId}")]
         public async Task<IActionResult> GetAllPendingFollowerUsers(string UserId)
         {

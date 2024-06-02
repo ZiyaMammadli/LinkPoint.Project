@@ -34,6 +34,7 @@
                             }
                             <button style="padding:7px;border-radius:20px;border:0px" class="btn-success">Message</button>
                             <input type="hidden" id="us-er-Id" value="@Model.UserInfo.UserId">
+                            <input type="hidden" id="AuthUs-er-Id" value="@Model.AuthUserInfo.UserId">
                             <input type="hidden" id="tokenidd" value="@Model.Token">
                         </ul>
                     </div>
@@ -155,9 +156,9 @@
                                     @foreach (var comment in post.Comments)
                                     {
                                         var userProfile = "";
-                                        if (comment.UserName == Model.UserInfo.UserName)
+                                        if (comment.UserName == Model.AuthUserInfo.UserName)
                                         {
-                                            userProfile = $"/UserProfile/Index/{Model.UserInfo.UserId}";
+                                            userProfile = "/AuthUserProfile/Index";
                                         }
                                         else
                                         {
