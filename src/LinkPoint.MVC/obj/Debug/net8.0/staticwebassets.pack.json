@@ -3637,6 +3637,10 @@
       "PackagePath": "staticwebassets\\images\\404.png"
     },
     {
+      "Id": "C:\\Users\\user\\source\\repos\\LinkPoint\\src\\LinkPoint.MVC\\wwwroot\\images\\LinkPoint Logo.png",
+      "PackagePath": "staticwebassets\\images\\LinkPoint Logo.png"
+    },
+    {
       "Id": "C:\\Users\\user\\source\\repos\\LinkPoint\\src\\LinkPoint.MVC\\wwwroot\\images\\album\\1.jpg",
       "PackagePath": "staticwebassets\\images\\album\\1.jpg"
     },
@@ -3917,12 +3921,24 @@
       "PackagePath": "staticwebassets\\images\\workIcon.png"
     },
     {
+      "Id": "C:\\Users\\user\\source\\repos\\LinkPoint\\src\\LinkPoint.MVC\\wwwroot\\js\\AcceptAndRejectFriendShipRequests.js",
+      "PackagePath": "staticwebassets\\js\\AcceptAndRejectFriendShipRequests.js"
+    },
+    {
       "Id": "C:\\Users\\user\\source\\repos\\LinkPoint\\src\\LinkPoint.MVC\\wwwroot\\js\\AddAndDeleteInterest.js",
       "PackagePath": "staticwebassets\\js\\AddAndDeleteInterest.js"
     },
     {
       "Id": "C:\\Users\\user\\source\\repos\\LinkPoint\\src\\LinkPoint.MVC\\wwwroot\\js\\AddLikeToPost.js",
       "PackagePath": "staticwebassets\\js\\AddLikeToPost.js"
+    },
+    {
+      "Id": "C:\\Users\\user\\source\\repos\\LinkPoint\\src\\LinkPoint.MVC\\wwwroot\\js\\AddToFriendShip.js",
+      "PackagePath": "staticwebassets\\js\\AddToFriendShip.js"
+    },
+    {
+      "Id": "C:\\Users\\user\\source\\repos\\LinkPoint\\src\\LinkPoint.MVC\\wwwroot\\js\\AddToFriendShipForDiscoverPage.js",
+      "PackagePath": "staticwebassets\\js\\AddToFriendShipForDiscoverPage.js"
     },
     {
       "Id": "C:\\Users\\user\\source\\repos\\LinkPoint\\src\\LinkPoint.MVC\\wwwroot\\js\\BirhDayDateMaker.js",

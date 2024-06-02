@@ -592,6 +592,48 @@
   },
   {
     "ContainingType": "LinkPoint.API.Controllers.FriendShipsController",
+    "Method": "CancelFriendShip",
+    "RelativePath": "api/FriendShips/CancelFriendShip/{UserId}/{followingUserId}",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "UserId",
+        "Type": "System.String",
+        "IsRequired": true
+      },
+      {
+        "Name": "followingUserId",
+        "Type": "System.String",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "LinkPoint.API.Controllers.FriendShipsController",
+    "Method": "CheckFriendShipStatus",
+    "RelativePath": "api/FriendShips/CheckFriendShipStatus/{UserId}/{followingUserId}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "UserId",
+        "Type": "System.String",
+        "IsRequired": true
+      },
+      {
+        "Name": "followingUserId",
+        "Type": "System.String",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "LinkPoint.API.Controllers.FriendShipsController",
     "Method": "GetAllAcceptedFollowerUsers",
     "RelativePath": "api/FriendShips/GetAllAcceptedFollowerUsers/{UserId}",
     "HttpMethod": "GET",

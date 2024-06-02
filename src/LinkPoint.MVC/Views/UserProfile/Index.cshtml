@@ -1,0 +1,228 @@
+﻿@model UserProfileViewModel;
+
+<div class="container">
+
+    <!-- Timeline
+    ================================================= -->
+    <div class="timeline">
+        <div class="timeline-cover" style="background-image: url('@Model.UserInfo.BackgroundImage');">
+            <!--Timeline Menu for Large Screens-->
+            <div class="timeline-nav-bar hidden-sm hidden-xs">
+                <div class="row">
+                    <div class="col-md-3">
+                        <div class="profile-info">
+                            <img src="@Model.UserInfo.ProfileImage" alt="" class="img-responsive profile-photo" />
+                            <h3>@Model.UserInfo.UserName</h3>
+                        </div>
+                    </div>
+                    <div class="col-md-9">
+                        <ul class="list-inline profile-menu">
+                            <li><a href="/UserProfile/Index/@Model.UserInfo.UserId" class="active">Posts</a></li>
+                            <li><a href="/UserProfile/About/@Model.UserInfo.UserId">About</a></li>
+                            <li><a href="/UserProfile/Album/@Model.UserInfo.UserId" >Album</a></li>
+                        </ul>
+                        <ul class="follow-me list-inline">
+                            <li>@Model.UserInfo.FollowersCount<a id="followersId" href=""> Followers</a> </li>
+                            <li>@Model.UserInfo.FollowingsCount<a id="followingsId" href=""> Followings </a></li>
+                            @if (Model.AcceptedFollowerUsers.Any(fs => fs.UserId == Model.AuthUserInfo.UserId))
+                            {
+                                <button id="followingButton" style="padding:7px" class="btn-primary" data-user-id="@Model.AuthUserInfo.UserId" data-following-user-id="@Model.UserInfo.UserId">Following</button>
+                            }
+                            else
+                            {
+                                <button id="addFriendButton" style="padding:7px" class="btn-primary" data-user-id="@Model.AuthUserInfo.UserId" data-following-user-id="@Model.UserInfo.UserId">Add Friend</button>
+                            }
+                            <button style="padding:7px;border-radius:20px;border:0px" class="btn-success">Message</button>
+                            <input type="hidden" id="us-er-Id" value="@Model.UserInfo.UserId">
+                            <input type="hidden" id="tokenidd" value="@Model.Token">
+                        </ul>
+                    </div>
+                </div>
+            </div><!--Timeline Menu for Large Screens End-->
+            <!-- Modal for followings -->
+            <div id="followingUsersModal" class="modal fade" tabindex="-1" role="dialog">
+                <div class="modal-dialog modal-dialog-centered" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title">Following Users</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <div id="following-users-container" class="following-users-container">
+                                <!-- Dinamik içerik burada yüklenecek -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Modal for followers -->
+            <div id="followersUsersModal" class="modal fade" tabindex="-1" role="dialog">
+                <div class="modal-dialog modal-dialog-centered" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title">Followers</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <div id="followers-users-container" class="followers-users-container">
+                                <!-- Dinamik içerik burada yüklenecek -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <div id="page-contents" style="margin-top: 50px;">
+            <div class="row">
+                <div class="col-md-3" style="padding-top:50px;padding-left:65px">
+                </div>
+                <div class="col-md-7">
+
+                    <!-- Modal View for user liked -->
+                    <div id="likeUsersModal" class="modal fade" tabindex="-1" role="dialog">
+                        <div class="modal-dialog modal-dialog-centered" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title">Users who liked this post</h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <div class="modal-body">
+                                    <div id="like-users-container" class="like-users-container">
+                                        <!-- Dinamik içerik burada yüklenecek -->
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    
+
+                    <!-- Post Content
+                    ================================================= -->
+                    @foreach (var post in Model.Posts)
+                    {
+                        var userProfilee = "";
+                        if (post.UserName == Model.UserInfo.UserName)
+                        {
+                            userProfilee = $"/UserProfile/Index/{Model.UserInfo.UserId}";
+                        }
+                        var isliked = Model.LikeList.Any(l => l.PostId == post.PostId && l.UserId == Model.UserInfo.UserId);
+                        var LikeButtonClass = isliked ? "text-red addlike" : "text-green addlike";
+
+                        <div class="post-content">
+                            <div class="post-date hidden-xs hidden-sm">
+                                <h5 style="" >@post.UploadTime</h5>
+                            </div><!--Post Date End-->
+                            @if (!string.IsNullOrEmpty(post.ImageUrl))
+                            {
+                                <img src="@post.ImageUrl" alt="post-image" class="img-responsive post-image">
+                            }
+                            @if (!string.IsNullOrEmpty(post.VideoUrl))
+                            {
+                                <video class="post-video" controls> <source src="@post.VideoUrl" type="video/mp4"> </video>
+                            }
+                            <div class="post-container">
+                                <img src="@Model.UserInfo.ProfileImage" alt="user" class="profile-photo-md pull-left" />
+                                <div class="post-detail">
+                                    <div class="user-info">
+                                        <h5><a href="@userProfilee" class="profile-link">@post.UserName</a> <span class="following">following</span></h5>
+                                        <p class="text-muted">@post.ElapsedTime</p>
+                                    </div>
+                                    <div class="reaction" data-post-id="@post.PostId" data-user-id="@Model.UserInfo.UserId">
+                                        <input type="hidden" id="tokenidd" value="@Model.Token">
+                                        <button class="btn-group @LikeButtonClass" style="border:hidden;padding: 3px 12px"><i class="icon ion-thumbsup"></i></button>
+                                        @*                                     <div class="like-users-dropdown dropdown-menu" id="like-users-dropdown-@post.PostId">
+
+                                    </div> *@
+                                        <button class="btn like-count" href="">@post.LikeCount</button>
+                                    </div>
+                                    <div class="line-divider"></div>
+                                    <div class="post-text">
+                                        @if (!string.IsNullOrEmpty(post.Text))
+                                        {
+                                            <p>@post.Text</p>
+                                        }
+                                    </div>
+                                    <div class="line-divider"></div>
+                                    @foreach (var comment in post.Comments)
+                                    {
+                                        var userProfile = "";
+                                        if (comment.UserName == Model.UserInfo.UserName)
+                                        {
+                                            userProfile = $"/UserProfile/Index/{Model.UserInfo.UserId}";
+                                        }
+                                        else
+                                        {
+                                            userProfile = $"/UserProfile/Index/{comment.UserId}";
+                                        }
+                                        <div class="post-comment">
+                                            <img src="@comment.UserProfileImage" alt="" class="profile-photo-sm" />
+                                            <p><a href="@userProfile" class="profile-link">@comment.UserName </a>@comment.Text </p>
+                                        </div>
+                                    }
+                                    <div id="comments-@post.PostId">
+                                    </div>
+
+                                    <div class="post-comment">
+                                        <img src="@Model.AuthUserInfo.ProfileImage" alt="" class="profile-photo-sm" />
+                                        <input type="hidden" id="user-id-@post.PostId" value="@Model.AuthUserInfo.UserId">
+                                        <input type="hidden" id="post-id-@post.PostId" value="@post.PostId">
+                                        <input type="hidden" id="tokenid" value="@Model.Token">
+                                        <input type="text" id="comment-text-@post.PostId" class="form-control" placeholder="Post a comment">
+                                        <button class="adddd-comment-button" data-post-id="@post.PostId" style="width:60px;height:30px;">Send</button>
+                                    </div>
+                                    <div id="commentValidationErrors-@post.PostId" class="text-danger"></div>
+
+
+
+                                </div>
+                            </div>
+                        </div>
+                    }
+
+
+
+                </div>
+                <div class="col-md-2 static">
+                    <div id="sticky-sidebar">
+                        <h4 class="grey">Sarah's activity</h4>
+                        <div class="feed-item">
+                            <div class="live-activity">
+                                <p><a href="#" class="profile-link">Sarah</a> Commended on a Photo</p>
+                                <p class="text-muted">5 mins ago</p>
+                            </div>
+                        </div>
+                        <div class="feed-item">
+                            <div class="live-activity">
+                                <p><a href="#" class="profile-link">Sarah</a> Has posted a photo</p>
+                                <p class="text-muted">an hour ago</p>
+                            </div>
+                        </div>
+                        <div class="feed-item">
+                            <div class="live-activity">
+                                <p><a href="#" class="profile-link">Sarah</a> Liked her friend's post</p>
+                                <p class="text-muted">4 hours ago</p>
+                            </div>
+                        </div>
+                        <div class="feed-item">
+                            <div class="live-activity">
+                                <p><a href="#" class="profile-link">Sarah</a> has shared an album</p>
+                                <p class="text-muted">a day ago</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+

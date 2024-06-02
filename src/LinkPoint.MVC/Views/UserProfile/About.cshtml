@@ -1,0 +1,236 @@
+﻿@model AboutViewModel;
+<div class="container">
+
+    <!-- Timeline
+    ================================================= -->
+    <div class="timeline">
+        <div class="timeline-cover" style="background-image: url('@Model.UserInfo.BackgroundImage');">
+            <!--Timeline Menu for Large Screens-->
+            <div class="timeline-nav-bar hidden-sm hidden-xs">
+                <div class="row">
+                    <div class="col-md-3">
+                        <div class="profile-info">
+                            <img src="@Model.UserInfo.ProfileImage" alt="" class="img-responsive profile-photo" />
+                            <h3>@Model.UserInfo.UserName</h3>
+                        </div>
+                    </div>
+                    <div class="col-md-9">
+                        <ul class="list-inline profile-menu">
+                            <li><a href="/UserProfile/Index/@Model.UserInfo.UserId" >Posts</a></li>
+                            <li><a href="/UserProfile/About/@Model.UserInfo.UserId" class="active">About</a></li>
+                            <li><a href="/UserProfile/Album/@Model.UserInfo.UserId" >Album</a></li>
+                        </ul>
+                        <ul class="follow-me list-inline">
+                            <li>@Model.UserInfo.FollowersCount<a id="followersId" href=""> Followers</a> </li>
+                            <li>@Model.UserInfo.FollowingsCount<a id="followingsId" href=""> Followings </a></li>
+                            <button style="padding:7px" class="btn-primary">Add Friend</button>
+                            <button style="padding:7px;border-radius:20px;border:0px" class="btn-success">Message</button>
+                            <input type="hidden" id="us-er-Id" value="@Model.UserInfo.UserId">
+                            <input type="hidden" id="tokenidd" value="@Model.Token">
+                        </ul>
+                    </div>
+                </div>
+            </div><!--Timeline Menu for Large Screens End-->
+
+            <!-- Modal for followings -->
+            <div id="followingUsersModal" class="modal fade" tabindex="-1" role="dialog">
+                <div class="modal-dialog modal-dialog-centered" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title">Following Users</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <div id="following-users-container" class="following-users-container">
+                                <!-- Dinamik içerik burada yüklenecek -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Modal for followers -->
+            <div id="followersUsersModal" class="modal fade" tabindex="-1" role="dialog">
+                <div class="modal-dialog modal-dialog-centered" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title">Followers</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <div id="followers-users-container" class="followers-users-container">
+                                <!-- Dinamik içerik burada yüklenecek -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <div id="page-contents">
+            <div class="row">
+                <div class="col-md-3"></div>
+                <div class="col-md-7">
+
+                    <!-- About
+                    ================================================= -->
+                    <div class="about-profile">
+                        <div class="about-content-block">
+                            <h4 class="grey"><i class="ion-ios-information-outline icon-in-title"></i>Personal Information</h4>
+                            @{
+                                var defaultDate = new DateTime(0001, 01, 01, 0, 0, 0, 0);
+                                if (@Model.UserAbout.AboutMe is not null)
+                                {
+                                    <p>@Model.UserAbout.AboutMe</p>
+
+                                    <br />
+                                }
+                                if (Model.UserAbout.CountryName is not null)
+                                {
+                                    <p>Country -<span class="text-grey">@Model.UserAbout.CountryName</span></p>
+                                }
+                                if (Model.UserAbout.CityName is not null)
+                                {
+                                    <p>City -<span class="text-grey">@Model.UserAbout.CityName</span></p>
+                                }
+                                if (Model.UserAbout.BirthDate != defaultDate)
+                                {
+                                    <p>BirtDay -<span class="text-grey">@Model.UserAbout.BirthDate</span></p>
+                                }
+                                else if (@Model.UserAbout.AboutMe is null && Model.UserAbout.CountryName is null && Model.UserAbout.CityName is null && Model.UserAbout.BirthDate == defaultDate)
+                                {
+                                    <p>This area is empty</p>
+                                }
+                            }
+                        </div>
+                        <div class="about-content-block">
+                            <h4 class="grey"><i class="ion-ios-briefcase-outline icon-in-title"></i>Work Experiences</h4>
+                            <div class="organization">
+                                <img src="~/images/work.png" alt="" class="pull-left img-org" />
+                                <div class="work-info">
+                                    @{
+                                        if (Model.UserWork is not null)
+                                        {
+                                            if (Model.UserWork.Company is not null)
+                                            {
+                                                <h5>@Model.UserWork.Company</h5>
+                                            }
+                                            if (Model.UserWork.Designation is not null)
+                                            {
+                                                <p>@Model.UserWork.Designation </p>
+                                            }
+                                            if (Model.UserWork.FromDate is not null)
+                                            {
+                                                <p>From -<span class="text-grey">@Model.UserWork.FromDate</span></p>
+                                            }
+                                            if (Model.UserWork.ToDate is not null)
+                                            {
+                                                <p>To -<span class="text-grey">@Model.UserWork.ToDate</span></p>
+                                            }
+                                            if (Model.UserWork.Description is not null)
+                                            {
+                                                <p>About work -<span class="text-grey">@Model.UserWork.Description</span></p>
+                                            }
+                                        }
+                                        else
+                                        {
+                                            <p>This area is empty</p>
+                                        }
+                                    }
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="about-content-block">
+                            <h4 class="grey"><i class="ion-ios-briefcase-outline icon-in-title"></i>Education</h4>
+                            @{
+                                if (Model.UserEducation is not null)
+                                {
+                                    if (Model.UserEducation.University is not null)
+                                    {
+                                        <h5>@Model.UserEducation.University</h5>
+                                    }
+                                    if (Model.UserEducation.FromDate is not null)
+                                    {
+                                        <p>From -<span class="text-grey">@Model.UserEducation.FromDate</span></p>
+                                    }
+                                    if (Model.UserEducation.ToDate is not null)
+                                    {
+                                        <p>To -<span class="text-grey">@Model.UserEducation.ToDate</span></p>
+                                    }
+                                    if (Model.UserEducation.Graduated is true)
+                                    {
+                                        <p>Graduated -<span class="text-grey">I have graduated</span></p>
+                                    }
+                                    if (Model.UserEducation.Description is not null)
+                                    {
+                                        <p>About education -<span class="text-grey">@Model.UserEducation.Description</span></p>
+                                    }
+                                }
+                                else
+                                {
+                                    <p>This area is empty</p>
+                                }
+                            }
+                        </div>
+                        <div class="about-content-block">
+                            <h4 class="grey"><i class="ion-ios-heart-outline icon-in-title"></i>Interests</h4>
+                            <ul class="interests list-inline">
+                                @{
+                                    if (Model.UserInterests.Count > 0)
+                                    {
+                                        foreach (var interest in Model.UserInterests)
+                                        {
+                                            <li>@interest.Interest</li>
+                                        }
+                                    }
+                                    else
+                                    {
+                                        <li>"This area is empty"</li>
+                                    }
+                                }
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-2 static">
+                    <div id="sticky-sidebar">
+                        <h4 class="grey">Sarah's activity</h4>
+                        <div class="feed-item">
+                            <div class="live-activity">
+                                <p><a href="#" class="profile-link">Sarah</a> Commended on a Photo</p>
+                                <p class="text-muted">5 mins ago</p>
+                            </div>
+                        </div>
+                        <div class="feed-item">
+                            <div class="live-activity">
+                                <p><a href="#" class="profile-link">Sarah</a> Has posted a photo</p>
+                                <p class="text-muted">an hour ago</p>
+                            </div>
+                        </div>
+                        <div class="feed-item">
+                            <div class="live-activity">
+                                <p><a href="#" class="profile-link">Sarah</a> Liked her friend's post</p>
+                                <p class="text-muted">4 hours ago</p>
+                            </div>
+                        </div>
+                        <div class="feed-item">
+                            <div class="live-activity">
+                                <p><a href="#" class="profile-link">Sarah</a> has shared an album</p>
+                                <p class="text-muted">a day ago</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+

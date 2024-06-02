@@ -20,7 +20,16 @@
                             <li><a href="/AuthUserProfile/Index">My Posts</a></li>
                             <li><a href="/AuthUserProfile/About"class="active">About</a></li>
                             <li><a href="/AuthUserProfile/Album">Album</a></li>
-                            <li><a href="timeline-friends.html">Friends</a></li>
+                            <li class="list-inline-item dropdown">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Settings <span><img src="~/images/down-arrow.png" alt="" /></span></a>
+                                <div class="dropdown-menu">
+                                    <a class="dropdown-item" style="color:black" href="/AuthUserProfile/BasicInfo">Basic Information</a>
+                                    <a class="dropdown-item" style="color:black" href="/AuthUserProfile/EduAndWork">Education and Work</a>
+                                    <a class="dropdown-item" style="color:black" href="/AuthUserProfile/Interests">My Interests</a>
+                                    <a class="dropdown-item" style="color:black" href="/Settings/Notifications">Account Settings</a>
+                                    <a class="dropdown-item" style="color:black" href="/AuthUserProfile/ChangePassword">Change Password</a>
+                                </div>
+                            </li>
                         </ul>
                         <ul class="follow-me list-inline">
                             <li>@Model.UserInfo.FollowersCount<a id="followersId" href=""> Followers</a> </li>

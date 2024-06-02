@@ -1,0 +1,149 @@
+﻿@model AlbumViewModel;
+<div class="container">
+
+    <!-- Timeline
+    ================================================= -->
+    <div class="timeline">
+        <div class="timeline-cover" style="background-image: url('@Model.UserInfo.BackgroundImage');">
+            <!--Timeline Menu for Large Screens-->
+            <div class="timeline-nav-bar hidden-sm hidden-xs">
+                <div class="row">
+                    <div class="col-md-3">
+                        <div class="profile-info">
+                            <img src="@Model.UserInfo.ProfileImage" alt="" class="img-responsive profile-photo" />
+                            <h3>@Model.UserInfo.UserName</h3>
+                        </div>
+                    </div>
+                    <div class="col-md-9">
+                        <ul class="list-inline profile-menu">
+                            <li><a href="/UserProfile/Index/@Model.UserInfo.UserId">Posts</a></li>
+                            <li><a href="/UserProfile/About/@Model.UserInfo.UserId" >About</a></li>
+                            <li><a href="/UserProfile/Album/@Model.UserInfo.UserId" class="active">Album</a></li>
+                        </ul>
+                        <ul class="follow-me list-inline">
+                            <li>@Model.UserInfo.FollowersCount<a id="followersId" href=""> Followers</a> </li>
+                            <li>@Model.UserInfo.FollowingsCount<a id="followingsId" href=""> Followings </a></li>
+                            <button style="padding:7px" class="btn-primary">Add Friend</button>
+                            <button style="padding:7px;border-radius:20px;border:0px" class="btn-success">Message</button>
+                            <input type="hidden" id="us-er-Id" value="@Model.UserInfo.UserId">
+                            <input type="hidden" id="tokenidd" value="@Model.Token">
+                        </ul>
+                    </div>
+                </div>
+            </div><!--Timeline Menu for Large Screens End-->
+            <!-- Modal for followings -->
+            <div id="followingUsersModal" class="modal fade" tabindex="-1" role="dialog">
+                <div class="modal-dialog modal-dialog-centered" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title">Following Users</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <div id="following-users-container" class="following-users-container">
+                                <!-- Dinamik içerik burada yüklenecek -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Modal for followers -->
+            <div id="followersUsersModal" class="modal fade" tabindex="-1" role="dialog">
+                <div class="modal-dialog modal-dialog-centered" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title">Followers</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <div id="followers-users-container" class="followers-users-container">
+                                <!-- Dinamik içerik burada yüklenecek -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <div id="page-contents">
+            <div class="row">
+                <div class="col-md-3"></div>
+                <div class="col-md-7">
+
+                    <!-- Photo Album
+                    ================================================= -->
+                    <ul class="album-photos">
+                        @foreach (var post in Model.Posts)
+                        {
+                            <li>
+                                <div class="img-wrapper" data-toggle="modal" data-target="#photo-@post.PostId" style="height:107px;width:190px">
+                                    @if (!string.IsNullOrEmpty(post.ImageUrl))
+                                    {
+                                        <img src="@post.ImageUrl" style="height:107px;width:190px" alt="photo" class="img-responsive post-image">
+                                    }
+                                    @if (!string.IsNullOrEmpty(post.VideoUrl))
+                                    {
+                                        <video class="post-video" style="height:107px;width:190px" controls> <source src="@post.VideoUrl" type="video/mp4"> </video>
+                                    }
+                                </div>
+                                <div class="modal fade" id="photo-@post.PostId" tabindex="-1" role="dialog" aria-hidden="true">
+                                    <div class="modal-dialog modal-lg">
+                                        <div class="modal-content">
+                                            @if (!string.IsNullOrEmpty(post.ImageUrl))
+                                            {
+                                                <img src="@post.ImageUrl" alt="photo" class="img-responsive post-image">
+                                            }
+                                            @if (!string.IsNullOrEmpty(post.VideoUrl))
+                                            {
+                                                <video class="post-video" controls> <source src="@post.VideoUrl" type="video/mp4"> </video>
+                                            }
+                                        </div>
+                                    </div>
+                                </div>
+                            </li>
+                        }
+
+                    </ul>
+                </div>
+                <div class="col-md-2 static">
+                    <div id="sticky-sidebar">
+                        <h4 class="grey">Sarah's activity</h4>
+                        <div class="feed-item">
+                            <div class="live-activity">
+                                <p><a href="#" class="profile-link">Sarah</a> Commended on a Photo</p>
+                                <p class="text-muted">5 mins ago</p>
+                            </div>
+                        </div>
+                        <div class="feed-item">
+                            <div class="live-activity">
+                                <p><a href="#" class="profile-link">Sarah</a> Has posted a photo</p>
+                                <p class="text-muted">an hour ago</p>
+                            </div>
+                        </div>
+                        <div class="feed-item">
+                            <div class="live-activity">
+                                <p><a href="#" class="profile-link">Sarah</a> Liked her friend's post</p>
+                                <p class="text-muted">4 hours ago</p>
+                            </div>
+                        </div>
+                        <div class="feed-item">
+                            <div class="live-activity">
+                                <p><a href="#" class="profile-link">Sarah</a> has shared an album</p>
+                                <p class="text-muted">a day ago</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+

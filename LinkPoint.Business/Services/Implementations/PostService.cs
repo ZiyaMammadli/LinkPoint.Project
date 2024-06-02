@@ -57,6 +57,7 @@ public class PostService : IPostService
             {
                 PostGetDto Post = new PostGetDto()
                 {
+                    UserId = UserId,
                     PostId = UserPost.Id,
                     UserName = user.UserName,
                     LikeCount = UserPost.LikeCount,
@@ -68,6 +69,7 @@ public class PostService : IPostService
                     UploadTime = UserPost.CreatedDate.ToString("MMMM d, yyyy"),
                     Comments = UserPost.Comments.Select(c => new CommentGetDto
                     {
+                        UserId=c.UserId,
                         CommentId = c.Id,
                         Text = c.Text,
                         UserName = c.User.UserName,
@@ -96,6 +98,7 @@ public class PostService : IPostService
             }
                 PostGetDto postGetDto = new PostGetDto()
                 {
+                    UserId=Post.User.Id,
                     PostId=Post.Id,
                     UserName = Post.User.UserName,
                     LikeCount = Post.LikeCount,
@@ -106,6 +109,7 @@ public class PostService : IPostService
                     ElapsedTime = Post.CreatedDate.GetElapsedTime(),
                     Comments = Post.Comments.Select(c => new CommentGetDto
                     {
+                        UserId = c.UserId,
                         CommentId = c.Id,
                         Text = c.Text,
                         UserName = c.User.UserName,
@@ -129,6 +133,7 @@ public class PostService : IPostService
         }
         PostGetDto postGetDto = new PostGetDto()
         {
+            UserId = post.User.Id,
             PostId = PostId,
             UserName = post.User.UserName,
             LikeCount = post.LikeCount,
@@ -139,6 +144,7 @@ public class PostService : IPostService
             ElapsedTime = post.CreatedDate.GetElapsedTime(),
             Comments = post.Comments.Select(c => new CommentGetDto
             {
+                UserId = c.UserId,
                 CommentId = c.Id,
                 Text = c.Text,
                 UserName = c.User.UserName,
@@ -266,6 +272,7 @@ public class PostService : IPostService
                     ElapsedTime = Post.CreatedDate.GetElapsedTime(),
                     Comments = Post.Comments.Select(c => new CommentGetDto
                     {
+                        UserId = c.UserId,
                         CommentId = c.Id,
                         Text = c.Text,
                         UserName = c.User.UserName,
@@ -299,6 +306,7 @@ public class PostService : IPostService
                     ElapsedTime = Post.CreatedDate.GetElapsedTime(),
                     Comments = Post.Comments.Select(c => new CommentGetDto
                     {
+                        UserId = c.UserId,
                         CommentId = c.Id,
                         Text = c.Text,
                         UserName = c.User.UserName,

@@ -174,7 +174,7 @@
                             </div>
                             <div class="modal-body">
                                 <div id="like-users-container" class="like-users-container">
-                                    <!-- Dinamik içerik burada yüklenecek -->
+                                    
                                 </div>
                             </div>
                         </div>
@@ -192,7 +192,7 @@
                             </div>
                             <div class="modal-body">
                                 <div id="following-users-container" class="following-users-container">
-                                    <!-- Dinamik içerik burada yüklenecek -->
+                                   
                                 </div>
                             </div>
                         </div>
@@ -211,7 +211,7 @@
                             </div>
                             <div class="modal-body">
                                 <div id="followers-users-container" class="followers-users-container">
-                                    <!-- Dinamik içerik burada yüklenecek -->
+                                    
                                 </div>
                             </div>
                         </div>
@@ -229,6 +229,10 @@
                     {
                         userProfilee = "/AuthUserProfile/Index";
                     }
+                    else
+                    {
+                        userProfilee = $"/UserProfile/Index/{post.UserId}";
+                    }
                     var isliked = Model.LikeList.Any(l => l.PostId == post.PostId && l.UserId == Model.UserInfo.UserId);
                     var LikeButtonClass = isliked ? "text-red addlike" : "text-green addlike";
 
@@ -245,15 +249,19 @@
                             <img src="@post.UserProfileImage" alt="user" class="profile-photo-md pull-left" />
                             <div class="post-detail">
                                 <div class="user-info">
-                                    <h5><a href="@userProfilee" class="profile-link">@post.UserName</a> <span class="following">following</span></h5>
+                                    @if (Model.AcceptedFollowingUsers.Any(fs => fs.UserId == post.UserId))
+                                    {
+                                        <h5><a href="@userProfilee" class="profile-link">@post.UserName</a> <span class="following">following</span></h5>
+                                    }
+                                    else
+                                    {
+                                        <h5><a href="@userProfilee" class="profile-link">@post.UserName</a></h5>
+                                    }
                                     <p class="text-muted">@post.ElapsedTime</p>
                                 </div>
                                 <div class="reaction" data-post-id="@post.PostId" data-user-id="@Model.UserInfo.UserId">
                                     <input type="hidden" id="tokenidd" value="@Model.Token">
                                     <button class="btn-group @LikeButtonClass" style="border:hidden;padding: 3px 12px"><i class="icon ion-thumbsup"></i></button>
-@*                                     <div class="like-users-dropdown dropdown-menu" id="like-users-dropdown-@post.PostId">
-                                        
-                                    </div> *@
                                     <button class="btn like-count"  href="">@post.LikeCount</button>
                                 </div>
                                 <div class="line-divider"></div>
@@ -270,6 +278,10 @@
                                     if (comment.UserName == Model.UserInfo.UserName)
                                     {
                                         userProfile = "/AuthUserProfile/Index";
+                                    }
+                                    else
+                                    {
+                                        userProfile = $"/UserProfile/Index/{comment.UserId}";
                                     }
                                     <div class="post-comment">
                                         <img src="@comment.UserProfileImage" alt="" class="profile-photo-sm" />
@@ -306,11 +318,20 @@
                         <h4 class="grey">Who to Follow</h4>
                         @foreach (var user in Model.DontFollowingUsers)
                         {
+                            var UserProfilee="";
+                            if (user.UserName == Model.UserInfo.UserName)
+                            {
+                                UserProfilee = "/AuthUserProfile/Index";
+                            }
+                            else
+                            {
+                                UserProfilee = $"/UserProfile/Index/{user.UserId}";
+                            }
                             <div class="follow-user">
                                 <img src="@user.ProfileImage" alt="" class="profile-photo-sm pull-left" />
                                 <div>
-                                    <h5><a href="timeline.html">@user.UserName</a></h5>
-                                    <a href="#" class="text-green">Add friend</a>
+                                    <h5><a href="@UserProfilee">@user.UserName</a></h5>
+                                <a id="AddFriendBTN_@user.UserId" data-following-user-id="@user.UserId" class="text-green AddFriendBTN">Add friend</a>
                                 </div>
                             </div>
                         }

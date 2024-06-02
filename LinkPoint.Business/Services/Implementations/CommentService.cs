@@ -43,6 +43,7 @@ public class CommentService : ICommentService
 
             CommentGetDto commentGetDto = new CommentGetDto()
             {
+                UserId = comment.UserId,
                 CommentId = comment.Id,
                 Text = comment.Text,
                 UserName = comment.User.UserName,

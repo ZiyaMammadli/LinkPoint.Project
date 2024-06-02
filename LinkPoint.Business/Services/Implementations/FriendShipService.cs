@@ -128,13 +128,13 @@ public class FriendShipService : IFriendShipService
         var user = await _userManager.FindByIdAsync(UserId);
         if (user is null) throw new UserNotFoundException(404, "User is not found");
         //if (!await _friendShipRepository.IsExist(fs => fs.UserId == user.Id && fs.Status == FollowStatus.Pending)) throw new FriendShipNotFoundException(404, "FriendShip is not found");
-        var FriendShips = await _friendShipRepository.GetAllAsync(fs => fs.UserId == user.Id && fs.Status == FollowStatus.Pending);
+        var FriendShips = await _friendShipRepository.GetAllAsync(fs => fs.FollowingUserId == user.Id && fs.Status == FollowStatus.Pending);
         List<PendingFollowerUserDto> PendingFollowerUserDtos = new List<PendingFollowerUserDto>();
         if(FriendShips.Count > 0)
         {
             foreach (var friendShip in FriendShips)
             {
-                var PendingFollowerUser = await _userManager.FindByIdAsync(friendShip.FollowingUserId);
+                var PendingFollowerUser = await _userManager.FindByIdAsync(friendShip.UserId);
                 var profileImage = await _imageRepository.GetSingleAsync(i => i.UserId == PendingFollowerUser.Id && i.IsPostImage == false);
                 if (profileImage is null)
                 {
@@ -152,4 +152,26 @@ public class FriendShipService : IFriendShipService
         }        
         return PendingFollowerUserDtos;
     }
+
+    public async Task<bool> CheckFriendShipStatusAsync(string userId, string followingUserId)
+    {
+        var followingUser = await _userManager.FindByIdAsync(followingUserId);
+        if (followingUser is null) throw new UserNotFoundException(404, "User is not found");
+        var user = await _userManager.FindByIdAsync(userId);
+        if (user is null) throw new UserNotFoundException(404, "User is not found");
+        var isFriend =await _friendShipRepository.IsExist(f => f.UserId == userId && f.FollowingUserId == followingUserId && f.Status == FollowStatus.Pending);
+        return isFriend;
+    }
+
+    public async Task CancelFriendShipAsync(string userId, string followingUserId)
+    {
+        var followingUser = await _userManager.FindByIdAsync(followingUserId);
+        if (followingUser is null) throw new UserNotFoundException(404, "User is not found");
+        var user = await _userManager.FindByIdAsync(userId);
+        if (user is null) throw new UserNotFoundException(404, "User is not found");
+        var friendShip = await _friendShipRepository.GetSingleAsync(f => f.UserId == userId && f.FollowingUserId == followingUserId && f.Status == FollowStatus.Pending);
+        _friendShipRepository.Delete(friendShip);
+        await _friendShipRepository.CommitAsync();
+    }
+
 }

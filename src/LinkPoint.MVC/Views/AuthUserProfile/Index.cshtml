@@ -90,7 +90,7 @@
                 </div>
             </div>
 
-
+            
             </div>
             <div id="page-contents">
                 <div class="row">
@@ -333,6 +333,10 @@
                                         {
                                             userProfile = "/AuthUserProfile/Index";
                                         }
+                                        else
+                                        {
+                                            userProfile = $"/UserProfile/Index/{comment.UserId}";
+                                        }
                                         <div class="post-comment">
                                             <img src="@comment.UserProfileImage" alt="" class="profile-photo-sm" />
                                             <p><a href="@userProfile" class="profile-link">@comment.UserName </a>@comment.Text </p>
@@ -364,6 +368,11 @@
                     <div class="col-md-2 static">
                         <div id="sticky-sidebar">
                             <h4 class="grey">Sarah's activity</h4>
+                            <div class="feed-item">
+                                <div id="pendingRequestsContainer">
+                                    
+                                </div>
+                            </div>                            
                             <div class="feed-item">
                                 <div class="live-activity">
                                     <p><a href="#" class="profile-link">Sarah</a> Commended on a Photo</p>

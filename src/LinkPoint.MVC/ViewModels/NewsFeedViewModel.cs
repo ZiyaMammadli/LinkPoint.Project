@@ -7,4 +7,5 @@ public class NewsFeedViewModel
     public List<PostGetViewModel> Posts { get; set; }
     public List<LikeGetAllViewModel> LikeList { get; set; }
     public List<DontFollowingUsersViewModel> DontFollowingUsers { get; set; }
+    public List<AcceptedFollowingUsersGetViewModel> AcceptedFollowingUsers { get; set; }
 }

@@ -1,12 +1,22 @@
-﻿@model List<UserGetViewModel>
+﻿@model SearchVeiwModel
 
-@if (Model.Count > 0)
+@if (Model.Users.Count > 0)
 {
     <ul class="dropdown-menushow" style="position: relative">
-        @foreach (var user in Model)
+        @foreach (var user in Model.Users)
         {
+            var UserProfilee = "";
+            if (user.UserName == Model.UserInfo.UserName)
+            {
+                UserProfilee = "/AuthUserProfile/Index";
+            }
+            else
+            {
+                UserProfilee = $"/UserProfile/Index/{user.UserId}";
+            }
+
                 <li class="dropdown-itemmm">
-                <a href="sdsdsd" style="width:100%; display: flex; align-items: center;">
+                <a href="@UserProfilee" style="width:100%; display: flex; align-items: center;">
                         <img src="@user.ProfileImage" alt="" class="profile-photo-sm" />
                         <p style="color:black">@user.UserName </p>
                     </a>

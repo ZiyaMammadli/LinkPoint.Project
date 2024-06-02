@@ -104,6 +104,42 @@ namespace LinkPoint.API.Controllers
                 return BadRequest(ex.Message);
             }
         }
+
+        [HttpGet("[action]/{UserId}/{followingUserId}")]
+        public async Task<IActionResult> CheckFriendShipStatus(string UserId, string followingUserId)
+        {
+            try
+            {              
+                return Ok(await _friendShipService.CheckFriendShipStatusAsync(UserId, followingUserId));
+            }
+            catch (UserNotFoundException ex)
+            {
+                return StatusCode(ex.StatusCode, ex.Message);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
+
+        [HttpDelete("[action]/{UserId}/{followingUserId}")]
+        public async Task<IActionResult> CancelFriendShip(string UserId, string followingUserId)
+        {
+            try
+            {
+                await _friendShipService.CancelFriendShipAsync(UserId, followingUserId);
+                return Ok();
+            }
+            catch (UserNotFoundException ex)
+            {
+                return StatusCode(ex.StatusCode, ex.Message);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
+
         [HttpPut("[action]/{friendShipId}")]
         public async Task<IActionResult> AcceptFriendShipRequest(int friendShipId)
         {
