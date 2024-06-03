@@ -262,6 +262,7 @@ public class PostService : IPostService
             if (profileImage is null) throw new ProfileImageNotFoundException(404, "ProfileImage is not found");
                 PostGetDto postGetDto = new PostGetDto()
                 {
+                    UserId = Post.User.Id,
                     PostId = Post.Id,
                     UserName = Post.User.UserName,
                     LikeCount = Post.LikeCount,
@@ -296,6 +297,7 @@ public class PostService : IPostService
             if (profileImage is null) throw new ProfileImageNotFoundException(404, "ProfileImage is not found");
                 PostGetDto postGetDto = new PostGetDto()
                 {
+                    UserId = Post.User.Id,
                     PostId = Post.Id,
                     UserName = Post.User.UserName,
                     LikeCount = Post.LikeCount,
