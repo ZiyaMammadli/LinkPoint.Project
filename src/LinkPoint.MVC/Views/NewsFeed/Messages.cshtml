@@ -1,0 +1,321 @@
+﻿@model MessagesViewModel;
+
+    <div id="page-contents">
+        <div class="container">
+            <div class="row">
+
+                <!-- Newsfeed Common Side Bar Left
+                ================================================= -->
+                <div class="col-md-3 static">
+                    <div class="profile-card">
+                        <img src="@Model.UserInfo.ProfileImage" alt="user" class="profile-photo" />
+                        <h5><a href="/AuthUserProfile/Index" class="text-white">@Model.UserInfo.UserName</a></h5>
+                        <a href="#" class="text-white" id="followersId"><i class="ion ion-android-person-add"></i> @Model.UserInfo.FollowersCount followers</a><br />
+                        <a href="#" class="text-white" id="followingsId"><i class="ion ion-android-person-add"></i> @Model.UserInfo.FollowingsCount followings</a>
+                        <input type="hidden" id="us-er-Id" value="@Model.UserInfo.UserId">
+                    </div><!--profile card ends-->
+                    <ul class="nav-news-feed">
+                        <li><i class="icon ion-ios-paper"></i><div><a href="/NewsFeed/Index">My Newsfeed</a></div></li>
+                        <li><i class="icon ion-ios-people-outline"></i><div><a href="/NewsFeed/Friends">Friends</a></div></li>
+                        <li><i class="icon ion-chatboxes"></i><div><a href="/NewsFeed/Messages">Messages</a></div></li>
+                        <li><i class="icon ion-images"></i><div><a href="/NewsFeed/Images">Images</a></div></li>
+                        <li><i class="icon ion-ios-videocam"></i><div><a href="/NewsFeed/Videos">Videos</a></div></li>
+                    </ul><!--news-feed links ends-->
+                    <div id="chat-block">
+                        <div class="title">Chat online</div>
+                        <ul class="online-users list-inline">
+                            <li><a href="newsfeed-messages.html" title="Linda Lohan"><img src="~/images/users/user-2.jpg" alt="user" class="img-responsive profile-photo" /><span class="online-dot"></span></a></li>
+                            <li><a href="newsfeed-messages.html" title="Sophia Lee"><img src="~/images/users/user-3.jpg" alt="user" class="img-responsive profile-photo" /><span class="online-dot"></span></a></li>
+                            <li><a href="newsfeed-messages.html" title="John Doe"><img src="~/images/users/user-4.jpg" alt="user" class="img-responsive profile-photo" /><span class="online-dot"></span></a></li>
+                            <li><a href="newsfeed-messages.html" title="Alexis Clark"><img src="~/images/users/user-5.jpg" alt="user" class="img-responsive profile-photo" /><span class="online-dot"></span></a></li>
+                            <li><a href="newsfeed-messages.html" title="James Carter"><img src="~/images/users/user-6.jpg" alt="user" class="img-responsive profile-photo" /><span class="online-dot"></span></a></li>
+                            <li><a href="newsfeed-messages.html" title="Robert Cook"><img src="~/images/users/user-7.jpg" alt="user" class="img-responsive profile-photo" /><span class="online-dot"></span></a></li>
+                            <li><a href="newsfeed-messages.html" title="Richard Bell"><img src="~/images/users/user-8.jpg" alt="user" class="img-responsive profile-photo" /><span class="online-dot"></span></a></li>
+                            <li><a href="newsfeed-messages.html" title="Anna Young"><img src="~/images/users/user-9.jpg" alt="user" class="img-responsive profile-photo" /><span class="online-dot"></span></a></li>
+                            <li><a href="newsfeed-messages.html" title="Julia Cox"><img src="~/images/users/user-10.jpg" alt="user" class="img-responsive profile-photo" /><span class="online-dot"></span></a></li>
+                        </ul>
+                    </div><!--chat block ends-->
+                </div>
+                <div class="col-md-7">
+
+                    <!-- Post Create Box
+                    ================================================= -->
+                    <div class="create-post">
+                        <div class="row">
+                            <div class="col-md-7 col-sm-7">
+                                <form id="TextCreateBox">
+                                <div class="form-group">
+                                    <img src="@Model.UserInfo.ProfileImage" alt="" class="profile-photo-md" />
+                                    <input type="hidden" id="tokenidd" value="@Model.Token">
+                                    <input type="hidden" id="user-idd" value="@Model.UserInfo.UserId">
+                                    <textarea id="postTextt" cols="30" rows="1" class="form-control" placeholder="Write what you wish"></textarea>
+                                </div>
+                                <div class="form-group">
+                                    <div id="textValidationErrorss" class="text-danger"></div>
+                                </div>
+                                </form>                               
+                            </div>
+                            <div class="col-md-5 col-sm-5">
+                                <div class="tools">
+                                    <ul class="publishing-tools list-inline">
+                                        <li><a href="#" id="compose-icon"><i class="ion-compose"></i></a></li>
+                                        <li><a href="#" id="images-icon"><i class="ion-images"></i></a></li>
+                                        <li><a href="#" id="video-icon"><i class="ion-ios-videocam"></i></a></li>
+                                    </ul>
+                                <button class="btn btn-primary pull-right" id="CreateTextPost">Publish</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                <!-- Text Modal -->
+                <div id="textModal" class="modal fade" tabindex="-1" role="dialog">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title">Create Text Post</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <div class="modal-body">
+                                <form id="textForm" method="post" action="CreatePostWithtext">
+                                    <div class="form-group">
+                                        <input type="hidden" id="tokenid" value="@Model.Token">
+                                        <input type="hidden" id="user-id" value="@Model.UserInfo.UserId">
+                                        <textarea class="form-control" id="postText" placeholder="Write something..."></textarea>
+                                    </div>
+                                    <div class="form-group">
+                                        <div id="textValidationErrors" class="text-danger"></div>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-primary" id="submitTextPost">Post</button>
+                                    </div>
+                                </form>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Image Modal -->
+                <div id="imageModal" class="modal fade" tabindex="-1" role="dialog">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title">Create Image Post</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <div class="modal-body">
+                                <form id="imageForm">
+                                    <div class="form-group">
+                                        <input type="hidden" id="tokenid-forimage" value="@Model.Token">
+                                        <input type="hidden" id="user-id-forimage" name="UserId" value="@Model.UserInfo.UserId">
+                                        <textarea class="form-control" id="imageText" name="Text" placeholder="Write something..."></textarea>
+                                    </div>
+                                    <div class="form-group">
+                                        <input type="file" class="form-control-file" name="PostImageFile" id="imageFile">
+                                    </div>
+                                    <div class="form-group">
+                                        <div id="imageValidationErrors" class="text-danger"></div>
+                                    </div>
+                                </form>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-primary" id="submitImagePost">Post</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Video Modal -->
+                <div id="videoModal" class="modal fade" tabindex="-1" role="dialog">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title">Create Video Post</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <div class="modal-body">
+                                <form id="videoForm">
+                                    <div class="form-group">
+                                        <input type="hidden" id="tokenid-forvideo" value="@Model.Token">
+                                        <input type="hidden" id="user-id-forvideo" name="UserId" value="@Model.UserInfo.UserId">
+                                        <textarea class="form-control" id="videoText" name="Text" placeholder="Write something..."></textarea>
+                                    </div>
+                                    <div class="form-group">
+                                        <input type="file" class="form-control-file" name="PostVideoFile" id="videoFile">
+                                    </div>
+                                    <div class="form-group">
+                                        <div id="videoValidationErrors" class="text-danger"></div>
+                                    </div>
+                                </form>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-primary" id="submitVideoPost">Post</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                 
+                <!-- Modal View for user liked -->                
+                <div id="likeUsersModal" class="modal fade" tabindex="-1" role="dialog">
+                    <div class="modal-dialog modal-dialog-centered" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title">Users who liked this post</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <div class="modal-body">
+                                <div id="like-users-container" class="like-users-container">
+                                    
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Modal for followings -->
+                <div id="followingUsersModal" class="modal fade" tabindex="-1" role="dialog">
+                    <div class="modal-dialog modal-dialog-centered" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title">Following Users</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <div class="modal-body">
+                                <div id="following-users-container" class="following-users-container">
+                                   
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Modal for followers -->
+                <div id="followersUsersModal" class="modal fade" tabindex="-1" role="dialog">
+                    <div class="modal-dialog modal-dialog-centered" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title">Followers</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <div class="modal-body">
+                                <div id="followers-users-container" class="followers-users-container">
+                                    
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                    <!-- Chat Room
+                      ================================================= -->
+                <div class="chat-room">
+                    <div class="row">
+                        <div class="col-md-5">
+                            <!-- Contact List in Left-->
+                            <ul class="nav nav-tabs contact-list scrollbar-wrapper scrollbar-outer">
+                                @foreach (var conversation in Model.AllConversations)
+                                {
+                                    <li class="conversation" data-conversation-id="@conversation.ConversationId">
+                                        <a href="#contact-@conversation.ConversationId" data-toggle="tab">
+                                            <div class="contact">
+                                                <img src="@conversation.UserProfileImage" alt="" class="profile-photo-sm pull-left" />
+                                                <div class="msg-preview">
+                                                    <h6>@conversation.UserName</h6>
+                                                    <p class="text-muted">@conversation.LastMessage</p>
+                                                    <small class="text-muted">@conversation.LastMessageDate</small>
+                                                    <div class="chat-alert">1</div>
+                                                </div>
+                                            </div>
+                                        </a>
+                                    </li>
+                                }
+                            </ul>
+                            <!-- Contact List in Left End-->
+                        </div>
+                        <div class="col-md-7">
+                            <!-- Chat Messages in Right -->
+                            <div class="tab-content scrollbar-wrapper wrapper scrollbar-outer">
+                                @foreach (var conversation in Model.AllConversations)
+                                {
+                                    <div class="tab-pane active" id="contact-@conversation.ConversationId">
+                                        <div class="chat-body">
+                                            <ul class="chat-message" id="chat-@conversation.ConversationId">
+                                                @foreach (var message in conversation.Messages)
+                                                {
+                                                    <li class="@message.SenderClass">
+                                                        <img src="@message.ProfileImage" alt="" class="profile-photo-sm pull-@message.Alignment" />
+                                                        <div class="chat-item">
+                                                            <div class="chat-item-header">
+                                                                <h5>@message.UserName</h5>
+                                                                <small class="text-muted">@message.CreatedDate</small>
+                                                            </div>
+                                                            <p>@message.Content</p>
+                                                        </div>
+                                                    </li>
+                                                }
+                                            </ul>
+                                        </div>
+                                    </div>
+                                }
+                            </div>
+                            <!-- Chat Messages in Right End -->
+
+                            <div class="send-message">
+                                <div class="input-group">
+                                    <input type="hidden" class="sender-user-id" value="@Model.UserInfo.UserId">
+                                    <input type="text" class="sender-chat-message" placeholder="Type your message">
+                                    <span class="input-group-btn">
+                                        <button class="btn btn-default sendBtn" type="button">Send</button>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="clearfix"></div>
+                    </div>
+                </div>
+                </div>
+
+                <!-- Newsfeed Common Side Bar Right
+                  ================================================= -->
+                <div class="col-md-2 static">
+                    <div class="suggestions" id="sticky-sidebar">
+                        <h4 class="grey">Who to Follow</h4>
+                        @foreach (var user in Model.DontFollowingUsers)
+                        {
+                            var UserProfilee="";
+                            if (user.UserName == Model.UserInfo.UserName)
+                            {
+                                UserProfilee = "/AuthUserProfile/Index";
+                            }
+                            else
+                            {
+                                UserProfilee = $"/UserProfile/Index/{user.UserId}";
+                            }
+                            <div class="follow-user">
+                                <img src="@user.ProfileImage" alt="" class="profile-photo-sm pull-left" />
+                                <div>
+                                    <h5><a href="@UserProfilee">@user.UserName</a></h5>
+                                <a id="AddFriendBTN_@user.UserId" data-following-user-id="@user.UserId" class="text-green AddFriendBTN">Add friend</a>
+                                </div>
+                            </div>
+                        }
+                                         
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    
+    

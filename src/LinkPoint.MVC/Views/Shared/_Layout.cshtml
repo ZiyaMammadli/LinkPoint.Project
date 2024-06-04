@@ -51,49 +51,22 @@
                             <a href="/NewsFeed/Index">Discover</a>
                         </li>
                         <li class="dropdown">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Newsfeed <span><img src="~/images/down-arrow.png" alt="" /></span></a>
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Posts <span><img src="~/images/down-arrow.png" alt="" /></span></a>
                             <ul class="dropdown-menu newsfeed-home">
-                                <li><a href="newsfeed.html">Newsfeed</a></li>
-                                <li><a href="newsfeed-people-nearby.html">Poeple Nearly</a></li>
-                                <li><a href="newsfeed-friends.html">My friends</a></li>
-                                <li><a href="newsfeed-messages.html">Chatroom</a></li>
-                                <li><a href="newsfeed-images.html">Images</a></li>
-                                <li><a href="newsfeed-videos.html">Videos</a></li>
+                                <li><a href="/NewsFeed/Images">Images</a></li>
+                                <li><a href="/NewsFeed/Videos">Videos</a></li>
                             </ul>
                         </li>
                         <li class="dropdown">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Timeline <span><img src="~/images/down-arrow.png" alt="" /></span></a>
-                            <ul class="dropdown-menu login">
-                                <li><a href="timeline.html">Timeline</a></li>
-                                <li><a href="timeline-about.html">Timeline About</a></li>
-                                <li><a href="timeline-album.html">Timeline Album</a></li>
-                                <li><a href="timeline-friends.html">Timeline Friends</a></li>
-                                <li><a href="edit-profile-basic.html">Edit: Basic Info</a></li>
-                                <li><a href="edit-profile-work-edu.html">Edit: Work</a></li>
-                                <li><a href="edit-profile-interests.html">Edit: Interests</a></li>
-                                <li><a href="edit-profile-settings.html">Account Settings</a></li>
-                                <li><a href="edit-profile-password.html">Change Password</a></li>
-                            </ul>
+                            <a href="/AuthUserProfile/Index">Profile </a>
                         </li>
                         <li class="dropdown">
-                            <a href="#" class="dropdown-toggle pages" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">All Pages <span><img src="~/images/down-arrow.png" alt="" /></span></a>
+                            <a href="#" class="dropdown-toggle pages" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Settings <span><img src="~/images/down-arrow.png" alt="" /></span></a>
                             <ul class="dropdown-menu page-list">
-                                <li><a href="index-2.html">Landing Page 1</a></li>
-                                <li><a href="index-register.html">Landing Page 2</a></li>
-                                <li><a href="newsfeed.html">Newsfeed</a></li>
-                                <li><a href="newsfeed-people-nearby.html">Poeple Nearly</a></li>
-                                <li><a href="newsfeed-friends.html">My friends</a></li>
-                                <li><a href="newsfeed-messages.html">Chatroom</a></li>
-                                <li><a href="newsfeed-images.html">Images</a></li>
-                                <li><a href="newsfeed-videos.html">Videos</a></li>
-                                <li><a href="timeline.html">Timeline</a></li>
-                                <li><a href="timeline-about.html">Timeline About</a></li>
-                                <li><a href="timeline-album.html">Timeline Album</a></li>
-                                <li><a href="timeline-friends.html">Timeline Friends</a></li>
-                                <li><a href="edit-profile-basic.html">Edit Profile</a></li>
-                                <li><a href="contact.html">Contact Us</a></li>
-                                <li><a href="faq.html">FAQ Page</a></li>
-                                <li><a href="404.html">404 Not Found</a></li>
+                                <li><a href="/AuthUserProfile/BasicInfo">Basic Information</a></li>
+                                <li><a href="/AuthUserProfile/EduAndWork">Education and Work</a></li>
+                                <li><a href="/AuthUserProfile/Interests">My Interests</a></li>
+                                <li><a href="/AuthUserProfile/ChangePassword">Change Password</a></li>
                             </ul>
                         </li>
                         <li class="dropdown"><a href="contact.html">Contact</a></li>
@@ -191,7 +164,6 @@
     ================================================= -->
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCTMXfmDn0VlqWIyoOxK8997L-amWbUPiQ&amp;callback=initMap"></script>
     @* <script src="~/js/jquery-3.1.1.min.js"></script> *@
     <script src="~/js/bootstrap.min.js"></script>
     <script src="~/js/jquery.sticky-kit.min.js"></script>
@@ -214,6 +186,9 @@
     <script src="~/js/AddToFriendShip.js"></script>
     <script src="~/js/AcceptAndRejectFriendShipRequests.js"></script>
     <script src="~/js/AddToFriendShipForDiscoverPage.js"></script>
+    <script src="~/js/signalr/dist/browser/signalr.js"></script>
+    <script src="~/js/SendMessageWithSignalR.js"></script>
+    <script src="~/js/CreateConversation.js"></script>
         <script>
         $(document).ready(function () {
             function positionDropdown() {

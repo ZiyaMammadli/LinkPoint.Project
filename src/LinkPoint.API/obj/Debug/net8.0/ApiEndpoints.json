@@ -530,11 +530,17 @@
   {
     "ContainingType": "LinkPoint.API.Controllers.ConversationsController",
     "Method": "GetAllConversations",
-    "RelativePath": "api/Conversations/GetAllConversations",
+    "RelativePath": "api/Conversations/GetAllConversations/{UserId}",
     "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,
-    "Parameters": [],
+    "Parameters": [
+      {
+        "Name": "UserId",
+        "Type": "System.String",
+        "IsRequired": true
+      }
+    ],
     "ReturnTypes": []
   },
   {

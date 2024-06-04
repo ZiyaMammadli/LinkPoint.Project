@@ -1,6 +1,8 @@
 ﻿using LinkPoint.Business.DTOs.ConversationDTOs;
+using LinkPoint.Business.DTOs.MessageDTOs;
 using LinkPoint.Business.Services.Interfaces;
 using LinkPoint.Business.Utilities.Exceptions.NotFoundExceptions;
+using LinkPoint.Business.Utilities.Extentions;
 using LinkPoint.Core.Entities;
 using LinkPoint.Core.Repositories;
 using Microsoft.AspNetCore.Http;
@@ -45,29 +47,56 @@ public class ConversationService : IConversationService
         await _conversationRepository.CommitAsync();
     }
 
-    public async Task<List<ConversationGetDto>> GetAllConversationsAsync()
+    public async Task<List<ConversationGetDto>> GetAllConversationsAsync(string UserId)
     {
-        var conversations=await _conversationRepository.GetAllAsync();
-        if (conversations.Count == 0) throw new ConversationNotFoundException(404, "Conversation is not found");
+        var conversations=await _conversationRepository.GetAllAsync(conv=>conv.User1Id==UserId || conv.User2Id==UserId, "messages.User.Images");
         List<ConversationGetDto> conversationGetDtos = new List<ConversationGetDto>();
-        foreach (var conversation in conversations)
+        if (conversations.Count > 0)
         {
-            var user =await _userManager.FindByIdAsync(conversation.User2Id);
-            if (user is null) throw new UserNotFoundException(404, "User is not found");
-            var profileImage = await _imageRepository.GetSingleAsync(i => i.UserId == user.Id && i.IsPostImage == false);
-            if (profileImage is null) throw new ProfileImageNotFoundException(404, "ProfileImage is not found");
-            var lastMessage=await _messageRepository.GetLastMessageAsync(m=>m.UserId== user.Id && m.ConversationId==conversation.Id);
-            if (lastMessage is null) throw new MessageNotFoundException(404, "Message is not found");
-            ConversationGetDto conversationGetDto = new ConversationGetDto
+            foreach (var conversation in conversations)
             {
-                User1Id=conversation.User1Id,
-                User2Id=conversation.User2Id,
-                UserName=user.UserName,
-                UserProfileImage=profileImage.ImageUrl,
-                LastMessage=lastMessage.Content,
-                LastMessageDate=lastMessage.CreatedDate
-            };
-            conversationGetDtos.Add(conversationGetDto);
+                AppUser user = null;
+                if (conversation.User1Id == UserId)
+                {
+                     user = await _userManager.FindByIdAsync(conversation.User2Id);
+                    if (user is null) throw new UserNotFoundException(404, "User is not found");
+                }
+                else
+                {
+                     user = await _userManager.FindByIdAsync(conversation.User1Id);
+                    if (user is null) throw new UserNotFoundException(404, "User is not found");
+                }
+                var profileImage = await _imageRepository.GetSingleAsync(i => i.UserId == user.Id && i.IsPostImage == false);
+                if (profileImage is null) throw new ProfileImageNotFoundException(404, "ProfileImage is not found");
+                var messages=await _messageRepository.GetAllAsync(m => m.UserId == user.Id && m.ConversationId == conversation.Id);
+                Message lastMessage = null;
+                if (messages.Count > 0)
+                {
+                    lastMessage =messages.LastOrDefault();
+                    if (lastMessage is null) throw new MessageNotFoundException(404, "Message is not found");
+                }
+                ConversationGetDto conversationGetDto = new ConversationGetDto
+                {
+                    ConversationId=conversation.Id,
+                    User1Id = conversation.User1Id,
+                    User2Id = conversation.User2Id,
+                    UserName = user.UserName,
+                    UserProfileImage = profileImage.ImageUrl,
+                    LastMessage = lastMessage?.Content,
+                    LastMessageDate =lastMessage?.CreatedDate,
+                    Messages= conversation.messages.Select(m=> new MessageGetDto
+                    {
+                        UserName=m.User.UserName,
+                        ProfileImage=m.User.Images.FirstOrDefault(i => i.IsPostImage == false).ImageUrl,
+                        Content=m.Content,
+                        Alignment= m.UserId==UserId ? "right" : "left",
+                        SenderClass= m.UserId == UserId ? "right" : "left",
+                        CreatedDate=m.CreatedDate.GetElapsedTime(),
+                    }).ToList()
+                };
+                conversationGetDtos.Add(conversationGetDto);
+            }
+                return conversationGetDtos;
         }
         return conversationGetDtos;
     }
@@ -84,6 +113,7 @@ public class ConversationService : IConversationService
         if (lastMessage is null) throw new MessageNotFoundException(404, "Message is not found");
         ConversationGetDto conversationGetDto = new ConversationGetDto
         {
+            ConversationId = conversation.Id,
             User1Id = conversation.User1Id,
             User2Id = conversation.User2Id,
             UserName = user.UserName,

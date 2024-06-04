@@ -16,12 +16,12 @@ namespace LinkPoint.API.Controllers
         {
             _conversationService = conversationService;
         }
-        [HttpGet("[action]")]
-        public async Task <IActionResult> GetAllConversations()
+        [HttpGet("[action]/{UserId}")]
+        public async Task <IActionResult> GetAllConversations(string UserId)
         {
             try
             {
-               return Ok(await _conversationService.GetAllConversationsAsync());
+               return Ok(await _conversationService.GetAllConversationsAsync(UserId));
             }
             catch(ConversationNotFoundException ex)
             {

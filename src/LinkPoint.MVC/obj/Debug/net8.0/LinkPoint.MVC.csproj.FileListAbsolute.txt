@@ -32,3 +32,4 @@ C:\Users\user\source\repos\LinkPoint\src\LinkPoint.MVC\obj\Debug\net8.0\ref\Link
 C:\Users\user\source\repos\LinkPoint\src\LinkPoint.MVC\bin\Debug\net8.0\Newtonsoft.Json.dll
 C:\Users\user\source\repos\LinkPoint\src\LinkPoint.MVC\obj\Debug\net8.0\LinkPoint.MVC.csproj.AssemblyReference.cache
 C:\Users\user\source\repos\LinkPoint\src\LinkPoint.MVC\obj\Debug\net8.0\LinkPoin.977EC3F9.Up2Date
+C:\Users\user\source\repos\LinkPoint\src\LinkPoint.MVC\bin\Debug\net8.0\libman.json

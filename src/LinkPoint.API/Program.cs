@@ -74,8 +74,9 @@ app.UseHttpsRedirection();
 
 app.UseAuthentication();
 app.UseAuthorization();
-app.UseCors("AllowAll");
-app.UseCors("signalr");
+//app.UseCors("AllowAll");
+//app.UseCors("signalr");
+app.UseCors();
 app.MapControllers();
 app.MapHub<ChatHub>("/Chat");   
 app.Run();

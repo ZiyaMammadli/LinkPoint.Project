@@ -70,6 +70,14 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTmV3c0ZlZWRcSW5kZXguY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
+[C:/Users/user/source/repos/LinkPoint/src/LinkPoint.MVC/Views/NewsFeed/Messages.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTmV3c0ZlZWRcTWVzc2FnZXMuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/user/source/repos/LinkPoint/src/LinkPoint.MVC/Views/NewsFeed/Videos.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTmV3c0ZlZWRcVmlkZW9zLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
 [C:/Users/user/source/repos/LinkPoint/src/LinkPoint.MVC/Views/NewsFeed/_UserDropdownPartial.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTmV3c0ZlZWRcX1VzZXJEcm9wZG93blBhcnRpYWwuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 

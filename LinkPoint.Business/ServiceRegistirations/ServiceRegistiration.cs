@@ -37,33 +37,33 @@ public static class ServiceRegistiration
         });
         services.AddAutoMapper(typeof(UserEducationMapProfile));
         services.AddSignalR();
-        services.AddCors(options =>
-        {
-            options.AddPolicy("AllowAll",
-                builder =>
-                {
-                    builder
-                        .AllowAnyOrigin()
-                        .AllowAnyMethod()
-                        .AllowAnyHeader();
-                });
-            options.AddPolicy("signalr",
-                    builder => builder
-                    .AllowAnyMethod()
-                    .AllowAnyHeader()
-
-                    .AllowCredentials()
-                    .SetIsOriginAllowed(hostName => true));
-        });
-        //services.AddCors(opt =>
+        //services.AddCors(options =>
         //{
-        //    opt.AddDefaultPolicy(policy =>
-        //    {
-        //        policy.AllowCredentials();  
-        //        policy.AllowAnyHeader();
-        //        policy.AllowAnyMethod();
-        //        policy.SetIsOriginAllowed(x => true);
-        //    });
+        //    options.AddPolicy("AllowAll",
+        //        builder =>
+        //        {
+        //            builder
+        //                .AllowAnyOrigin()
+        //                .AllowAnyMethod()
+        //                .AllowAnyHeader();
+        //        });
+        //    options.AddPolicy("signalr",
+        //            builder => builder
+        //            .AllowAnyMethod()
+        //            .AllowAnyHeader()
+
+        //            .AllowCredentials()
+        //            .SetIsOriginAllowed(hostName => true));
         //});
+        services.AddCors(opt =>
+        {
+            opt.AddDefaultPolicy(policy =>
+            {
+                policy.AllowCredentials();
+                policy.AllowAnyHeader();
+                policy.AllowAnyMethod();
+                policy.SetIsOriginAllowed(x => true);
+            });
+        });
     }
 }

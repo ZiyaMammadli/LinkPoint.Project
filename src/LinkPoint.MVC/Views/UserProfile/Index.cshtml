@@ -32,7 +32,7 @@
                             {
                                 <button id="addFriendButton" style="padding:7px" class="btn-primary" data-user-id="@Model.AuthUserInfo.UserId" data-following-user-id="@Model.UserInfo.UserId">Add Friend</button>
                             }
-                            <button style="padding:7px;border-radius:20px;border:0px" class="btn-success">Message</button>
+                            <button id="message-button" style="padding:7px;border-radius:20px;border:0px" class="btn-success">Message</button>
                             <input type="hidden" id="us-er-Id" value="@Model.UserInfo.UserId">
                             <input type="hidden" id="AuthUs-er-Id" value="@Model.AuthUserInfo.UserId">
                             <input type="hidden" id="tokenidd" value="@Model.Token">
