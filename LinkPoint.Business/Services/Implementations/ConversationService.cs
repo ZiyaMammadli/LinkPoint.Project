@@ -83,7 +83,7 @@ public class ConversationService : IConversationService
                     UserName = user.UserName,
                     UserProfileImage = profileImage.ImageUrl,
                     LastMessage = lastMessage?.Content,
-                    LastMessageDate =lastMessage?.CreatedDate,
+                    LastMessageDate =lastMessage?.CreatedDate.GetElapsedTime(),
                     Messages= conversation.messages.Select(m=> new MessageGetDto
                     {
                         UserName=m.User.UserName,
@@ -119,7 +119,7 @@ public class ConversationService : IConversationService
             UserName = user.UserName,
             UserProfileImage = profileImage.ImageUrl,
             LastMessage = lastMessage.Content,
-            LastMessageDate = lastMessage.CreatedDate
+            LastMessageDate = lastMessage.CreatedDate.GetElapsedTime(),
         };
         return conversationGetDto;
     }

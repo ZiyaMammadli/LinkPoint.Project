@@ -77,6 +77,7 @@ public class AccountService:IAccountService
             new Claim(JwtRegisteredClaimNames.Name,user.UserName),
             new Claim(JwtRegisteredClaimNames.Email,user.Email),
             new Claim(JwtRegisteredClaimNames.Jti,Guid.NewGuid().ToString()),
+            new Claim(ClaimTypes.NameIdentifier, user.Id.ToString())
         };
         var roles = await _userManager.GetRolesAsync(user);
         Claims.AddRange(roles.Select(role => new Claim(ClaimTypes.Role, role)));

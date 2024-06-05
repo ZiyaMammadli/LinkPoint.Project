@@ -1,6 +1,8 @@
-﻿let sendBtns = document.querySelectorAll(".sendBtn");
+﻿let token = document.querySelector("#tokenidd-d");
+Token = token.value;
+let sendBtns = document.querySelectorAll(".sendBtn");
 let connection = new signalR.HubConnectionBuilder()
-    .withUrl("https://localhost:7255/chat")
+    .withUrl("https://localhost:7255/chat", { accessTokenFactory: () => Token })
     .configureLogging(signalR.LogLevel.Information)
     .build();
 
@@ -51,6 +53,23 @@ connection.on("ReceiveMessage", (conversationId, userName, userProfileImage, mes
     }
 });
 
+connection.on("UserConnected", (userId, userName, userProfileImage) => {
+    let onlineUsersList = document.querySelector(".online-users");
+    const li = document.createElement("li");
+    li.id = `user-${userId}`;
+    li.innerHTML = `<a href="newsfeed-messages.html" title="${userName}">
+                        <img src="${userProfileImage}" alt="user" class="img-responsive profile-photo" />
+                        <span class="online-dot"></span>
+                    </a>`;
+    onlineUsersList.appendChild(li);
+});
+
+connection.on("UserDisconnected", (userId) => {
+    let userElement = document.getElementById(`user-${userId}`);
+    if (userElement) {
+        userElement.remove();
+    }
+});
 function sendMessage(conversationId, userId, message) {
     connection.invoke("SendMessageAsync", conversationId, userId, message).catch(err => console.error(err.toString()));
 }

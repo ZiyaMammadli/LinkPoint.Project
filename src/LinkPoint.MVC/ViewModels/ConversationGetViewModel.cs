@@ -9,5 +9,5 @@ public class ConversationGetViewModel
     public string UserProfileImage { get; set; }
     public string? LastMessage { get; set; }
     public List<MessageGetViewModel> Messages { get; set; }
-    public DateTime? LastMessageDate { get; set; }
+    public string? LastMessageDate { get; set; }
 }

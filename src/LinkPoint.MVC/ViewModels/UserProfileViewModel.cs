@@ -6,6 +6,7 @@ public class UserProfileViewModel
     public UserInfoViewModel AuthUserInfo { get; set; }
     public UserInfoViewModel UserInfo { get; set; }
     public List<PostGetViewModel> Posts { get; set; }
-    public List<AcceptedFollowerUsersGetViewModel> AcceptedFollowerUsers { get; set; }
     public List<LikeGetAllViewModel> LikeList { get; set; }
+    public List<ConversationGetViewModel> AllConversations { get; set; }
+    public List<AcceptedFollowerUsersGetViewModel> AcceptedFollowerUsers { get; set; }
 }

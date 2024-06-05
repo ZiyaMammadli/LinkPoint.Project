@@ -9,6 +9,7 @@ public class AboutViewModel
     public UserWorkGetViewModel UserWork { get; set; }
     public UserEducationGetViewModel UserEducation { get; set; }
     public List<UserInterestGetViewModel> UserInterests { get; set; }
+    public List<ConversationGetViewModel> AllConversations { get; set; }
     public List<AcceptedFollowerUsersGetViewModel> AcceptedFollowerUsers { get; set; }
 
 }

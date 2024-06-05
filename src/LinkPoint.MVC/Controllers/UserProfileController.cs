@@ -53,6 +53,11 @@ namespace LinkPoint.MVC.Controllers
             response5.EnsureSuccessStatusCode();
             var json5 = await response5.Content.ReadAsStringAsync();
             var acceptedFollowerUsers = JsonConvert.DeserializeObject <List<AcceptedFollowerUsersGetViewModel>>(json5);
+
+            var response6 = await client.GetAsync(baseAdress + "/Conversations/GetAllConversations/" + userId);
+            response6.EnsureSuccessStatusCode();
+            var json6 = await response6.Content.ReadAsStringAsync();
+            var allConversations = JsonConvert.DeserializeObject<List<ConversationGetViewModel>>(json6);
             UserProfileViewModel userProfileViewModel = new UserProfileViewModel()
             {
                 Token = token,
@@ -60,7 +65,8 @@ namespace LinkPoint.MVC.Controllers
                 UserInfo =userInfo,
                 LikeList=likes,
                 Posts=SortedPosts,
-                AcceptedFollowerUsers=acceptedFollowerUsers
+                AcceptedFollowerUsers=acceptedFollowerUsers,
+                AllConversations=allConversations
             };
             return View(userProfileViewModel);
         }
@@ -112,6 +118,11 @@ namespace LinkPoint.MVC.Controllers
             response7.EnsureSuccessStatusCode();
             var json7 = await response7.Content.ReadAsStringAsync();
             var acceptedFollowerUsers = JsonConvert.DeserializeObject<List<AcceptedFollowerUsersGetViewModel>>(json7);
+
+            var response8 = await client.GetAsync(baseAdress + "/Conversations/GetAllConversations/" + userId);
+            response8.EnsureSuccessStatusCode();
+            var json8 = await response8.Content.ReadAsStringAsync();
+            var allConversations = JsonConvert.DeserializeObject<List<ConversationGetViewModel>>(json8);
             AboutViewModel authUserProfileViewModel = new AboutViewModel()
             {
                 Token = token,
@@ -121,7 +132,8 @@ namespace LinkPoint.MVC.Controllers
                 UserWork = userWork,
                 UserInterests = userInterests,
                 UserEducation = userEducation,
-                AcceptedFollowerUsers=acceptedFollowerUsers
+                AcceptedFollowerUsers=acceptedFollowerUsers,
+                AllConversations=allConversations
             };
             return View(authUserProfileViewModel);
         }
@@ -159,13 +171,19 @@ namespace LinkPoint.MVC.Controllers
             response7.EnsureSuccessStatusCode();
             var json7 = await response7.Content.ReadAsStringAsync();
             var acceptedFollowerUsers = JsonConvert.DeserializeObject<List<AcceptedFollowerUsersGetViewModel>>(json7);
+
+            var response8 = await client.GetAsync(baseAdress + "/Conversations/GetAllConversations/" + userId);
+            response8.EnsureSuccessStatusCode();
+            var json8 = await response8.Content.ReadAsStringAsync();
+            var allConversations = JsonConvert.DeserializeObject<List<ConversationGetViewModel>>(json8);
             AlbumViewModel albumViewModel = new AlbumViewModel()
             {
                 Token = token,
                 UserInfo = userInfo,
                 AuthUserInfo=authUserInfo,
                 Posts = posts,
-                AcceptedFollowerUsers=acceptedFollowerUsers
+                AcceptedFollowerUsers=acceptedFollowerUsers,
+                AllConversations=allConversations
             };
             return View(albumViewModel);
         }
