@@ -16,7 +16,9 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.IdentityModel.Tokens;
 using Newtonsoft.Json;
+using System;
 using System.IdentityModel.Tokens.Jwt;
+using System.Net;
 using System.Security.Claims;
 using System.Security.Cryptography;
 using System.Text;
@@ -208,12 +210,14 @@ public class AccountService:IAccountService
         _context.UserAbouts.Add(userAbout);
         await _context.SaveChangesAsync();
         string code=await _userManager.GenerateEmailConfirmationTokenAsync(appUser);
+        var encodedCode = WebUtility.UrlEncode(code);
         string subject = "LinkPoint Register Succesfully";
         string html =string.Empty;
         string FilePath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "email", "Register.html");
         html = System.IO.File.ReadAllText(FilePath);
-        var Url = _httpContextAccessor.HttpContext.Request.Scheme + "://" + _httpContextAccessor.HttpContext.Request.Host + _urlHelper.Action("EmailConfirm", "Account", new { UserId = appUser.Id, code });
-        html =html.Replace("{{Url}}",System.Text.Encodings.Web.HtmlEncoder.Default.Encode(Url));
+        //var Url = _httpContextAccessor.HttpContext.Request.Scheme + "://" + _httpContextAccessor.HttpContext.Request.Host + _urlHelper.Action("EmailConfirm", "Account", new { UserId = appUser.Id, code });
+        var url= $"{registerDto.callbackUrl}?UserId={appUser.Id}&code={encodedCode}";
+        html =html.Replace("{{Url}}",System.Text.Encodings.Web.HtmlEncoder.Default.Encode(url));
         _emailService.SendEmail(appUser.Email, subject, html);
     }
 
@@ -245,13 +249,28 @@ public class AccountService:IAccountService
         await _signInManager.SignOutAsync();
     }
 
-    public async Task ForgotPassword(ForgotPasswordDto forgotPasswordDto)
+    public async Task ForgotPasswordAsync(ForgotPasswordDto forgotPasswordDto)
     {
-        throw new NotImplementedException();
+        var user=await _userManager.FindByEmailAsync(forgotPasswordDto.Email);
+        if(user is null /*|| !(await _userManager.IsEmailConfirmedAsync(user))*/) throw new EmailNotFoundException(404,"Email is not found");
+        var token = await _userManager.GeneratePasswordResetTokenAsync(user);
+        var encodedToken = WebUtility.UrlEncode(token);
+        var link = $"{forgotPasswordDto.callbackUrl}?token={encodedToken}&email={forgotPasswordDto.Email}";
+        _emailService.SendEmail(forgotPasswordDto.Email, "Reset Password", $"Please reset your password by clicking here: <a href='{link}'>link</a>");
     }
 
-    public Task ResetPassword(ResetPasswordDto resetPasswordDto)
+    public async Task ResetPasswordAsync(ResetPasswordDto resetPasswordDto)
     {
-        throw new NotImplementedException();
+        var user = await _userManager.FindByEmailAsync(resetPasswordDto.Email);
+        if (user is null /*|| !(await _userManager.IsEmailConfirmedAsync(user))*/) throw new EmailNotFoundException(404, "Email is not found");
+
+        var result = await _userManager.ResetPasswordAsync(user, resetPasswordDto.Token, resetPasswordDto.NewPassword);
+        if (!result.Succeeded)
+        {
+            foreach (var err in result.Errors)
+            {
+                throw new Exception(err.Description);
+            }
+        }
     }
 }

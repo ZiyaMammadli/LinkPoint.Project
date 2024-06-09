@@ -21,6 +21,7 @@ app.UseStaticFiles();
 app.UseRouting();
 app.UseSession();
 app.UseAuthorization();
+app.UseStatusCodePagesWithReExecute("/NewsFeed/StatusCode", "?code={0}");
 app.MapControllerRoute(
     name: "default",
     pattern: "{controller=Account}/{action=Login}/{id?}");

@@ -3965,6 +3965,10 @@
       "PackagePath": "staticwebassets\\js\\CreateImageVideoAndTextPosts.js"
     },
     {
+      "Id": "C:\\Users\\user\\source\\repos\\LinkPoint\\src\\LinkPoint.MVC\\wwwroot\\js\\LogOut.js",
+      "PackagePath": "staticwebassets\\js\\LogOut.js"
+    },
+    {
       "Id": "C:\\Users\\user\\source\\repos\\LinkPoint\\src\\LinkPoint.MVC\\wwwroot\\js\\PlayVideoWithScroll.js",
       "PackagePath": "staticwebassets\\js\\PlayVideoWithScroll.js"
     },

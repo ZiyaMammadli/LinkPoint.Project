@@ -1,8 +1,8 @@
 [
   {
     "ContainingType": "LinkPoint.API.Controllers.AccountController",
-    "Method": "EmailConfirm",
-    "RelativePath": "api/Account/EmailConfirm",
+    "Method": "Emailconfirm",
+    "RelativePath": "api/Account/Emailconfirm",
     "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,
@@ -16,6 +16,22 @@
         "Name": "code",
         "Type": "System.String",
         "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "LinkPoint.API.Controllers.AccountController",
+    "Method": "ForgotPassword",
+    "RelativePath": "api/Account/ForgotPassword",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "forgotPasswordDto",
+        "Type": "LinkPoint.Business.DTOs.AccountDTOs.ForgotPasswordDto",
+        "IsRequired": true
       }
     ],
     "ReturnTypes": []
@@ -73,6 +89,22 @@
       {
         "Name": "registerDto",
         "Type": "LinkPoint.Business.DTOs.AccountDTOs.RegisterDto",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "LinkPoint.API.Controllers.AccountController",
+    "Method": "ResetPassword",
+    "RelativePath": "api/Account/ResetPassword",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "resetPasswordDto",
+        "Type": "LinkPoint.Business.DTOs.AccountDTOs.ResetPasswordDto",
         "IsRequired": true
       }
     ],

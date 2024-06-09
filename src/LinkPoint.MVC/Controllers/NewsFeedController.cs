@@ -1,6 +1,7 @@
-﻿using LinkPoint.MVC.ViewModels;
+﻿    using LinkPoint.MVC.ViewModels;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
+using System.Diagnostics;
 using System.Net;
 using System.Net.Http;
 using System.Net.Http.Headers;
@@ -273,6 +274,16 @@ namespace LinkPoint.MVC.Controllers
             };
             return View(messages);
         }
+        [Route("NewsFeed/StatusCode")]
+        public IActionResult StatusCode(int code)
+        {
+            if (code == 404)
+            {
+                return View("404");
+            }
+
+            return StatusCode(code);
+        }   
     }
 }
 

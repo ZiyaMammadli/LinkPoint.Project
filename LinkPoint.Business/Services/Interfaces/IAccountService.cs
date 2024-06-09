@@ -1,5 +1,6 @@
 ﻿using LinkPoint.Business.DTOs.AccountDTOs;
 using LinkPoint.Core.Entities;
+using Microsoft.EntityFrameworkCore.Storage.ValueConversion.Internal;
 
 namespace LinkPoint.Business.Services.Interfaces;
 
@@ -12,6 +13,6 @@ public interface IAccountService
     Task<TokenDto> RefreshTokenLoginAsync(string refreshToken);
     Task EmailConfirmAsync(string UserId, string code);
     Task LogOutAsync();
-    Task ForgotPassword(ForgotPasswordDto forgotPasswordDto);
-    Task ResetPassword(ResetPasswordDto resetPasswordDto);
+    Task ForgotPasswordAsync(ForgotPasswordDto forgotPasswordDto);
+    Task ResetPasswordAsync(ResetPasswordDto resetPasswordDto);
 }

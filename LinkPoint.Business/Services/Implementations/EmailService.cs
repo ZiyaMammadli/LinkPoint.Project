@@ -17,16 +17,31 @@ public class EmailService : IEmailService
     }
     public void SendEmail(string To, string Subject, string HtmlBody)
     {
-        var email = new MimeMessage();
-        email.From.Add(MailboxAddress.Parse(_config.GetSection("EmailSettings:From").Value));
-        email.To.Add(MailboxAddress.Parse(To));
-        email.Subject = Subject;
-        email.Body = new TextPart(TextFormat.Html) { Text = HtmlBody };
+        try
+        {
+            var email = new MimeMessage();
+            email.From.Add(MailboxAddress.Parse(_config.GetSection("EmailSettings:From").Value));
+            email.To.Add(MailboxAddress.Parse(To));
+            email.Subject = Subject;
+            email.Body = new TextPart(TextFormat.Html) { Text = HtmlBody };
 
-        using var smtp = new SmtpClient();
-        smtp.Connect(_config.GetSection("EmailSettings:Host").Value, 587, SecureSocketOptions.StartTls);
-        smtp.Authenticate(_config.GetSection("EmailSettings:From").Value, _config.GetSection("EmailSettings:Password").Value);
-        smtp.Send(email);
-        smtp.Disconnect(true);
+            using var smtp = new SmtpClient();
+            smtp.Connect(_config.GetSection("EmailSettings:Host").Value, 587, SecureSocketOptions.StartTls);
+            smtp.Authenticate(_config.GetSection("EmailSettings:From").Value, _config.GetSection("EmailSettings:Password").Value);
+            smtp.Send(email);
+            smtp.Disconnect(true);
+        }
+        catch (SmtpCommandException ex)
+        {
+            Console.WriteLine($"SMTP Command Error: {ex.StatusCode}: {ex.Message}");
+        }
+        catch (SmtpProtocolException ex)
+        {
+            Console.WriteLine($"SMTP Protocol Error: {ex.Message}");
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine($"Error: {ex.Message}");
+        }
     }
 }

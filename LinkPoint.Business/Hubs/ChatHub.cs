@@ -38,7 +38,7 @@ public class ChatHub : Hub
             var userProfileImage = user.Images.FirstOrDefault(i => i.IsPostImage==false)?.ImageUrl;
             var userName = user.UserName;
 
-            await Clients.All.SendAsync("UserConnected", userId, userName, userProfileImage);
+            await Clients.All.SendAsync("UserConnected", userId, userName, userProfileImage,OnlineUsers.Count);
         }
 
         await base.OnConnectedAsync();

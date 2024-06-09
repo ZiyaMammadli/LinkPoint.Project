@@ -29,4 +29,5 @@ public class RegisterViewModel
     public string ConfirmPassword { get; set; }//
     public bool Male { get; set; }//
     public bool Female { get; set; }//
+    public string? callbackUrl { get; set; }
 }

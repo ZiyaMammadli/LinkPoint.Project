@@ -8,6 +8,7 @@
                 ================================================= -->
                 <div class="col-md-3 static">
                     <div class="profile-card">
+                        <input type="hidden" id="tokenidd-d" value="@Model.Token">
                         <img src="@Model.UserInfo.ProfileImage" alt="user" class="profile-photo" />
                         <h5><a href="/AuthUserProfile/Index" class="text-white">@Model.UserInfo.UserName</a></h5>
                         <a href="#" class="text-white" id="followersId"><i class="ion ion-android-person-add"></i> @Model.UserInfo.FollowersCount followers</a><br />

@@ -77,13 +77,13 @@ namespace LinkPoint.API.Controllers
                 return BadRequest(new ErrorDto { message = ex.Message });
             }
         }
-        [HttpGet("[action]")]
-        public async Task<IActionResult> EmailConfirm([FromRoute]string UserId, [FromRoute]string code)
+        [HttpGet("[action]/{UserId}/{code}")]
+        public async Task<IActionResult> Emailconfirm(string UserId,string code)
         {
             try
             {
                 await _accountService.EmailConfirmAsync(UserId, code);
-                return Ok("Email Confirmed Succesfully");
+                return Ok();
             }
             catch(ValueNullException ex)
             {
@@ -103,6 +103,40 @@ namespace LinkPoint.API.Controllers
         {
             await _accountService.LogOutAsync();
             return Ok();
+        }
+        [HttpPost("[action]")]
+        public async Task <IActionResult> ForgotPassword(ForgotPasswordDto forgotPasswordDto)
+        {
+            try
+            {
+                await _accountService.ForgotPasswordAsync(forgotPasswordDto);
+                return Ok();
+            }
+            catch(EmailNotFoundException ex)
+            {
+                return StatusCode(ex.StatusCode,ex.Message);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
+        [HttpPost("[action]")]
+        public async Task<IActionResult> ResetPassword(ResetPasswordDto resetPasswordDto)
+        {
+            try
+            {
+                await _accountService.ResetPasswordAsync(resetPasswordDto);
+                return Ok();
+            }
+            catch (EmailNotFoundException ex)
+            {
+                return StatusCode(ex.StatusCode, ex.Message);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
         }
     }
 }

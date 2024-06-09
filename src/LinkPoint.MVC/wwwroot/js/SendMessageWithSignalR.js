@@ -53,7 +53,9 @@ connection.on("ReceiveMessage", (conversationId, userName, userProfileImage, mes
     }
 });
 
-connection.on("UserConnected", (userId, userName, userProfileImage) => {
+connection.on("UserConnected", (userId, userName, userProfileImage,onlineuserscount) => {
+    let div = document.querySelector(".title");
+    div.textContent = `Online:${onlineuserscount}`
     let onlineUsersList = document.querySelector(".online-users");
     const li = document.createElement("li");
     li.id = `user-${userId}`;
