@@ -2,7 +2,7 @@
   {
     "ContainingType": "LinkPoint.API.Controllers.AccountController",
     "Method": "Emailconfirm",
-    "RelativePath": "api/Account/Emailconfirm",
+    "RelativePath": "api/Account/Emailconfirm/{UserId}/{code}",
     "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,
@@ -10,12 +10,12 @@
       {
         "Name": "UserId",
         "Type": "System.String",
-        "IsRequired": false
+        "IsRequired": true
       },
       {
         "Name": "code",
         "Type": "System.String",
-        "IsRequired": false
+        "IsRequired": true
       }
     ],
     "ReturnTypes": []
@@ -459,6 +459,80 @@
       {
         "Name": "userWorkPutDto",
         "Type": "LinkPoint.Business.DTOs.AccountSettingsDTOs.UserWorkDTOs.UserWorkPutDto",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "LinkPoint.API.Controllers.AdminController",
+    "Method": "ForgotPassword",
+    "RelativePath": "api/Admin/ForgotPassword",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "forgotPasswordDto",
+        "Type": "LinkPoint.Business.DTOs.AccountDTOs.ForgotPasswordDto",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "LinkPoint.API.Controllers.AdminController",
+    "Method": "Login",
+    "RelativePath": "api/Admin/Login",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "loginDto",
+        "Type": "LinkPoint.Business.DTOs.AccountDTOs.LoginDto",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "LinkPoint.API.Controllers.AdminController",
+    "Method": "LoginRefreshToken",
+    "RelativePath": "api/Admin/LoginRefreshToken",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "refreshToken",
+        "Type": "System.String",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "LinkPoint.API.Controllers.AdminController",
+    "Method": "LogOut",
+    "RelativePath": "api/Admin/LogOut",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "LinkPoint.API.Controllers.AdminController",
+    "Method": "ResetPassword",
+    "RelativePath": "api/Admin/ResetPassword",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "resetPasswordDto",
+        "Type": "LinkPoint.Business.DTOs.AccountDTOs.ResetPasswordDto",
         "IsRequired": true
       }
     ],

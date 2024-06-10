@@ -16,6 +16,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="8.0.2" />
     <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
   </ItemGroup>
 
@@ -24,6 +25,29 @@
   </ItemGroup>
 
   <ItemGroup>
+    <None Include="wwwroot\admin\assets\js\config.js" />
+    <None Include="wwwroot\admin\assets\js\dashboards-analytics.js" />
+    <None Include="wwwroot\admin\assets\js\DeleteJs.js" />
+    <None Include="wwwroot\admin\assets\js\extended-ui-perfect-scrollbar.js" />
+    <None Include="wwwroot\admin\assets\js\form-basic-inputs.js" />
+    <None Include="wwwroot\admin\assets\js\main.js" />
+    <None Include="wwwroot\admin\assets\js\pages-account-settings-account.js" />
+    <None Include="wwwroot\admin\assets\js\ui-modals.js" />
+    <None Include="wwwroot\admin\assets\js\ui-popover.js" />
+    <None Include="wwwroot\admin\assets\js\ui-toasts.js" />
+    <None Include="wwwroot\admin\assets\vendor\fonts\boxicons\boxicons.svg" />
+    <None Include="wwwroot\admin\assets\vendor\fonts\boxicons\boxicons.woff2" />
+    <None Include="wwwroot\admin\assets\vendor\js\bootstrap.js" />
+    <None Include="wwwroot\admin\assets\vendor\js\helpers.js" />
+    <None Include="wwwroot\admin\assets\vendor\js\menu.js" />
+    <None Include="wwwroot\admin\assets\vendor\libs\apex-charts\apexcharts.js" />
+    <None Include="wwwroot\admin\assets\vendor\libs\highlight\highlight.js" />
+    <None Include="wwwroot\admin\assets\vendor\libs\jquery\jquery.js" />
+    <None Include="wwwroot\admin\assets\vendor\libs\masonry\masonry.js" />
+    <None Include="wwwroot\admin\assets\vendor\libs\perfect-scrollbar\perfect-scrollbar.js" />
+    <None Include="wwwroot\admin\assets\vendor\libs\popper\popper.js" />
+    <None Include="wwwroot\admin\fonts\boxicons.scss" />
+    <None Include="wwwroot\admin\_Layout.cshtml" />
     <None Include="wwwroot\js\AddComment.js" />
   </ItemGroup>
 

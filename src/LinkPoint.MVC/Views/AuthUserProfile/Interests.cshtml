@@ -156,9 +156,11 @@
                                 {
                                     @foreach (var interest in Model.UserInterests)
                                     {
-                                        <li><a href="#"><i class="icon ion-android-bicycle"></i>@interest.Interest</a></li>
-                                        <i class="icon ion-close-circled delete-interest" data-interestid="@interest.InterestId"></i>
-                                        <div class="interest-id" style="display:none;">@interest.InterestId</div>
+                                        <li>
+                                            <a href="#"><i class="icon ion-android-bicycle"></i>@interest.Interest</a>
+                                            <i class="icon ion-close-circled delete-interest" data-interestid="@interest.InterestId"></i>
+                                            <div class="interest-id" style="display:none;">@interest.InterestId</div>
+                                        </li>
                                     }
                                 }                                                                                                      
                                 </ul>

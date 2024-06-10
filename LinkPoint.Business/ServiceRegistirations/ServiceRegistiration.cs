@@ -23,6 +23,7 @@ public static class ServiceRegistiration
         services.AddScoped<ILikeService, LikeService>();
         services.AddScoped<IConversationService, ConversationService>();
         services.AddScoped<IEmailService, EmailService>();
+        services.AddScoped<IAdminAuthService, AdminAuthService>();
         services.AddHttpContextAccessor();
         services.AddSingleton<IActionContextAccessor, ActionContextAccessor>();
         services.AddScoped<IUrlHelper>(x =>
