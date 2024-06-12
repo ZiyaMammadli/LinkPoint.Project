@@ -1,0 +1,74 @@
+﻿@model List<PostGetViewModel>;
+@{
+    int counter = 0;
+}
+<div class="container">
+    <div class="row">
+        <div style="display:flex;justify-content:space-between;align-items:center;align-content:center;margin-top:20px;border:1px solid grey;padding:10px">
+            <h3 style="margin-bottom:0">Posts</h3>            
+        </div>
+        <table class="table table-striped" style="margin-top:40px;border:1px solid grey">
+            <thead>
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Username</th>
+                    <th scope="col">Text</th>
+                    <th scope="col">Image</th>
+                    <th scope="col">Video</th>
+                    <th scope="col">UploadDate</th>
+                    <th scope="col">Activate</th>
+                    <th scope="col">Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var post in Model)
+                {
+                    counter++;
+                    <tr>
+                        <th scope="row">@counter</th>
+                        <td>@post.UserName</td>
+                        @if(post.Text is not null)
+                        {
+                            <td>@post.Text</td>
+                        }
+                        else
+                        {
+                            <td>No text</td>
+                        }
+                        @if (post.ImageUrl is not null)
+                        {
+                            <td>
+                                <img style="width:150px" src="@post.ImageUrl" alt="Alternate Text" />
+                            </td>
+                        }
+                        else
+                        {
+                            <td>No image</td>
+                        }
+                        @if (post.VideoUrl is not null)
+                        {
+                            <td>
+                                <video style="width:150px" src="@post.VideoUrl" alt="Alternate Text" />
+                            </td>
+                        }
+                        else
+                        {
+                            <td>No video</td>
+                        }                       
+                        <td>@post.UploadTime</td>
+                        <td>activate</td>
+
+                        <td>
+                            <div style="display:flex;">
+                                <a style="margin-right:10px;color:white" class="btn btn-warning" asp-controller="post" asp-action="detail" asp-route-postId="@post.PostId">Detail</a>
+                                <a style="color:white" class="btn btn-danger deleteButton" asp-controller="post" asp-action="delete" asp-route-id="@post.PostId">Delete</a>
+                            </div>
+                        </td>
+                    </tr>
+                }
+
+            </tbody>
+        </table>
+    </div>
+</div>
+

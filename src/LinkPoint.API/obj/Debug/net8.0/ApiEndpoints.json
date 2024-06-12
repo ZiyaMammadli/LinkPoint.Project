@@ -482,6 +482,59 @@
   },
   {
     "ContainingType": "LinkPoint.API.Controllers.AdminController",
+    "Method": "GetAllUsersForAdmin",
+    "RelativePath": "api/Admin/GetAllUsersForAdmin/{query}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "query",
+        "Type": "System.String",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "LinkPoint.API.Controllers.AdminController",
+    "Method": "GetAllUsersWithPages",
+    "RelativePath": "api/Admin/GetAllUsersWithPages/{pageNumber}/{pageSize}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "pageNumber",
+        "Type": "System.Int32",
+        "IsRequired": true
+      },
+      {
+        "Name": "pageSize",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "LinkPoint.API.Controllers.AdminController",
+    "Method": "GetUserById",
+    "RelativePath": "api/Admin/GetUserById/{UserId}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "UserId",
+        "Type": "System.String",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "LinkPoint.API.Controllers.AdminController",
     "Method": "Login",
     "RelativePath": "api/Admin/Login",
     "HttpMethod": "POST",
@@ -1004,6 +1057,22 @@
         "Name": "PostVideoFile",
         "Type": "Microsoft.AspNetCore.Http.IFormFile",
         "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "LinkPoint.API.Controllers.PostsController",
+    "Method": "DeletePost",
+    "RelativePath": "api/Posts/DeletePost/{PostId}",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "PostId",
+        "Type": "System.Int32",
+        "IsRequired": true
       }
     ],
     "ReturnTypes": []

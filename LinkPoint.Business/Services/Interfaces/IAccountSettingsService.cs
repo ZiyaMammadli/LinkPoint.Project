@@ -31,5 +31,6 @@ public interface IAccountSettingsService
     Task DeleteUserProfileImageAsync(int ImageId, ProfileImageDeleteDto profileImageDeleteDto);//
     Task UpdateUserBacgroundImageAsync(int ImageId,BackgroundImagePutDto backgroundImagePutDto);//
     Task DeleteUserBackgroundImageAsync(int ImageId,BackgroundImageDeleteDto backgroundImageDeleteDto);//
+    
 }
     

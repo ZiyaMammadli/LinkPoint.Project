@@ -18,6 +18,7 @@ using LinkPoint.Core.Repositories;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 
 namespace LinkPoint.Business.Services.Implementations;
@@ -76,7 +77,7 @@ public class AccountSettingsService : IAccountSettingsService
     {
         var user = await _userManager.FindByIdAsync(UserId);
         if (user is null) throw new UserNotFoundException(404, "User is not found");
-        var userEducation=await _userEducationRepository.GetSingleAsync(ue=>ue.UserId==user.Id);
+        var userEducation=await _userEducationRepository.GetSingleAsync(ue=>ue.UserId==user.Id && ue.IsDeleted==false);
         UserEducationGetDto userEducationGetDto1 = new UserEducationGetDto();
         userEducationGetDto1 = null;
         if (userEducation is not null)
@@ -107,7 +108,7 @@ public class AccountSettingsService : IAccountSettingsService
         var user = await _userManager.FindByIdAsync(UserId);
         if (user is null) throw new UserNotFoundException(404, "User is not found");
         List<UserInterestGetDto> userInterestGetDtos = new List<UserInterestGetDto>();
-        List<UserInterest> userInterests= await _userInterestRepository.GetAllAsync(ui=>ui.UserId==user.Id);
+        List<UserInterest> userInterests= await _userInterestRepository.GetAllAsync(ui=>ui.UserId==user.Id && ui.IsDeleted == false);
         if (userInterests.Count > 0)
         {
             foreach (var userInterest in userInterests)
@@ -122,7 +123,7 @@ public class AccountSettingsService : IAccountSettingsService
     public async Task UpdateUserWorkAsync(int Id,UserWorkPutDto userWorkPutDto)
     {
         if (Id != userWorkPutDto.Id) throw new IdNotValidException(400, "Id is not valid");
-        var userwork= await _userWorkRepository.GetSingleAsync(uw=>uw.UserId==userWorkPutDto.UserId);
+        var userwork= await _userWorkRepository.GetSingleAsync(uw=>uw.UserId==userWorkPutDto.UserId && uw.IsDeleted == false);
         if(userwork is null)
         {
             var userworkk=_mapper.Map<UserWork>(userWorkPutDto);
@@ -142,7 +143,7 @@ public class AccountSettingsService : IAccountSettingsService
     {
         var user = await _userManager.FindByIdAsync(UserId);
         if (user is null) throw new UserNotFoundException(404, "User is not found");
-        var userWork=await _userWorkRepository.GetSingleAsync(uw=>uw.UserId==user.Id);
+        var userWork=await _userWorkRepository.GetSingleAsync(uw=>uw.UserId==user.Id && uw.IsDeleted == false);
         UserWorkGetDto userWorkGetDto = new UserWorkGetDto();
         userWorkGetDto = null;
         if (userWork is not null)
@@ -157,7 +158,7 @@ public class AccountSettingsService : IAccountSettingsService
     {
         var user = await _userManager.FindByIdAsync(UserId);
         if (user is null) throw new UserNotFoundException(404, "User is not found");
-        var userAbout= await _userAboutRepository.GetSingleAsync(ua=>ua.UserId==user.Id);
+        var userAbout= await _userAboutRepository.GetSingleAsync(ua=>ua.UserId==user.Id && ua.IsDeleted == false);
         if (userAbout is null) throw new UserAboutNotFoundException(404, "UserAbout is not found");
         var userAboutGetDto=_mapper.Map<UserAboutGetDto>(userAbout);
         userAboutGetDto.UserAboutId=userAbout.Id;
@@ -166,7 +167,7 @@ public class AccountSettingsService : IAccountSettingsService
     public async Task UpdateUserAboutAsync(int Id,UserAboutPutDto userAboutPutDto)
     {
         if (Id != userAboutPutDto.Id) throw new IdNotValidException(400, "Id is not valid");
-        var CurrentUserAbout=await _userAboutRepository.GetSingleAsync(ua=>ua.UserId== userAboutPutDto.UserId);
+        var CurrentUserAbout=await _userAboutRepository.GetSingleAsync(ua=>ua.UserId== userAboutPutDto.UserId && ua.IsDeleted == false);
         if (CurrentUserAbout is null) throw new UserAboutNotFoundException(404, "UserAbout is not found");
         var UserAbout = _mapper.Map(userAboutPutDto, CurrentUserAbout);
         UserAbout.UpdatedDate = DateTime.UtcNow;
@@ -209,7 +210,7 @@ public class AccountSettingsService : IAccountSettingsService
        
         if (ImageId != profileImagePostDto.ImageId) throw new IdNotValidException(400, "ImageId is not Valid");
         var currentImage=await _imageRepository.GetByIdAsync(profileImagePostDto.ImageId);
-        if (currentImage is null) throw new ImageNotFoundException(404, "Image is not found");
+        if (currentImage is null || currentImage.IsDeleted==true) throw new ImageNotFoundException(404, "Image is not found");
         string apiKey = _configuration["GoogleCloud:ApiKey"];
         //int startIndex = currentImage.ImageUrl.Length-55;
         //int lentgh = 55;
@@ -251,7 +252,7 @@ public class AccountSettingsService : IAccountSettingsService
     {
         if (ImageId != backgroundImagePutDto.ImageId) throw new IdNotValidException(400, "ImageId is not Valid");
         var currentImage = await _imageRepository.GetByIdAsync(backgroundImagePutDto.ImageId);
-        if (currentImage is null) throw new ImageNotFoundException(404, "Image is not found");
+        if (currentImage is null || currentImage.IsDeleted==true) throw new ImageNotFoundException(404, "Image is not found");
         string apiKey = _configuration["GoogleCloud:ApiKey"];
         string fileName = currentImage.ImageUrl.Substring(49);
         await FileManager.DeleteFile(fileName, apiKey, "Images");
@@ -313,13 +314,13 @@ public class AccountSettingsService : IAccountSettingsService
 
     public async Task<List<UserGetDto>> GetAllUsersAsync(string query)
     {
-        var users=await _appUserRepository.GetAllAsync(u=>u.EmailConfirmed==true);
+        var users=await _appUserRepository.GetAllAsync(u=>u.EmailConfirmed==true && u.IsDeleted==false);
         List<UserGetDto> usersDto = new List<UserGetDto>();
         if (users.Count > 0)
         {       
             foreach (var user in users)
             {
-                var profileImage = await _imageRepository.GetSingleAsync(i => i.UserId == user.Id && i.IsPostImage == false);
+                var profileImage = await _imageRepository.GetSingleAsync(i => i.UserId == user.Id && i.IsPostImage == false && i.IsDeleted==false);
                 if (profileImage is null) throw new ProfileImageNotFoundException(404, "ProfileImage is not found");
                 UserGetDto userGetDto = new UserGetDto()
                 {
@@ -351,7 +352,7 @@ public class AccountSettingsService : IAccountSettingsService
                 userGetDtos.Add(userGetDto);
             }
         }
-        var users = await _appUserRepository.GetAllAsync(u => u.EmailConfirmed == true && u.Id !=UserId);
+        var users = await _appUserRepository.GetAllAsync(u => u.EmailConfirmed == true && u.Id !=UserId && u.IsDeleted == false);
         List<UserGetDto> usersDto = new List<UserGetDto>();
         if (users.Count > 0)
         {
@@ -373,4 +374,6 @@ public class AccountSettingsService : IAccountSettingsService
         var randomUsers=notFollowedUsers.OrderBy(u => random.Next()).Take(count).ToList();
         return randomUsers;
     }
+
+    
 }

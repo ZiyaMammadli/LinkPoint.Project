@@ -7,6 +7,7 @@ using LinkPoint.Business.Utilities.Exceptions.NotFoundExceptions;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System.Security.Authentication;
+using static Microsoft.EntityFrameworkCore.DbLoggerCategory;
 
 namespace LinkPoint.API.Controllers
 {
@@ -15,10 +16,12 @@ namespace LinkPoint.API.Controllers
     public class AdminController : ControllerBase
     {
         private readonly IAdminAuthService _adminAuthService;
+        private readonly IAdminUserService _adminUserService;
 
-        public AdminController(IAdminAuthService adminAuthService)
+        public AdminController(IAdminAuthService adminAuthService,IAdminUserService adminUserService)
         {
             _adminAuthService = adminAuthService;
+            _adminUserService = adminUserService;
         }
         [HttpPost("[action]")]
         public async Task<IActionResult> Login(LoginDto loginDto)
@@ -88,6 +91,58 @@ namespace LinkPoint.API.Controllers
                 return Ok();
             }
             catch (EmailNotFoundException ex)
+            {
+                return StatusCode(ex.StatusCode, ex.Message);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
+        [HttpGet("[action]/{query}")]
+        public async Task<IActionResult> GetAllUsersForAdmin(string query)
+        {
+            try
+            {
+                return Ok(await _adminUserService.GetAllUsersAsync(query));
+            }
+            catch (ProfileImageNotFoundException ex)
+            {
+                return StatusCode(ex.StatusCode, ex.Message);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
+        [HttpGet("[action]/{pageNumber}/{pageSize}")]
+        public async Task<IActionResult> GetAllUsersWithPages(int pageNumber = 1, int pageSize = 10)
+        {
+            try
+            {
+                return Ok(await _adminUserService.GetAllUsersWithPagesAsync(pageNumber,pageSize));
+            }
+            catch (ProfileImageNotFoundException ex)
+            {
+                return StatusCode(ex.StatusCode, ex.Message);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
+        [HttpGet("[action]/{UserId}")]
+        public async Task<IActionResult> GetUserById(string UserId)
+        {
+            try
+            {
+                return Ok(await _adminUserService.GetUserByIdAsync(UserId));
+            }
+            catch (UserNotFoundException ex)
+            {
+                return StatusCode(ex.StatusCode, ex.Message);
+            }
+            catch (ProfileImageNotFoundException ex)
             {
                 return StatusCode(ex.StatusCode, ex.Message);
             }

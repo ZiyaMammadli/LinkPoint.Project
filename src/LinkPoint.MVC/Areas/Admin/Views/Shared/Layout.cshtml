@@ -33,6 +33,9 @@
 
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="stylesheet" href="~/admin/assets/css/Post.css">
+    <link rel="stylesheet" href="~/admin/assets/css/User.css">
+    <link rel="stylesheet" href="~/admin/assets/css/dropDownMenu.css">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Public+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap"
           rel="stylesheet" />
@@ -237,15 +240,15 @@
                     <li class="menu-header small text-uppercase"><span class="menu-header-text">Components</span></li>
                     <!-- Cards -->
                     <li class="menu-item">
-                        <a href="/admin/category/index" class="menu-link">
+                        <a href="/admin/post/index" class="menu-link">
                             <i class="menu-icon tf-icons bx bx-collection"></i>
-                            <div data-i18n="Basic">Category CRUD</div>
+                            <div data-i18n="Basic">Posts</div>
                         </a>
                     </li>
                     <li class="menu-item">
-                        <a href="/admin/brand/index" class="menu-link">
+                        <a href="/admin/user/index" class="menu-link">
                             <i class="menu-icon tf-icons bx bx-collection"></i>
-                            <div data-i18n="Basic">Brand CRUD</div>
+                            <div data-i18n="Basic">Users</div>
                         </a>
                     </li>
                     <li class="menu-item">
@@ -364,10 +367,15 @@
                             <div class="nav-item d-flex align-items-center">
                                 <i class="bx bx-search fs-4 lh-0"></i>
                                 <input type="text"
+                                       id="searchBox"
                                        class="form-control border-0 shadow-none"
-                                       placeholder="Search..."
+                                       placeholder="Search Users..."
                                        aria-label="Search..." />
+                                       
                             </div>
+                        </div>
+                        <div id="searchResults" class="dropdown-menu">
+                            <!-- Dropdown results will be injected here -->
                         </div>
                         <!-- /Search -->
 
@@ -457,21 +465,8 @@
                                     document.write(new Date().getFullYear());
                                 </script>
                                 , made with ❤️ by
-                                <a href="https://themeselection.com" target="_blank" class="footer-link fw-bolder">ThemeSelection</a>
+                                <a href="https://themeselection.com" target="_blank" class="footer-link fw-bolder">LinkPoint</a>
                             </div>
-                            <div>
-                                <a href="https://themeselection.com/license/" class="footer-link me-4" target="_blank">License</a>
-                                <a href="https://themeselection.com/" target="_blank" class="footer-link me-4">More Themes</a>
-
-                                <a href="https://themeselection.com/demo/sneat-bootstrap-html-admin-template/documentation/"
-                                   target="_blank"
-                                   class="footer-link me-4">Documentation</a>
-
-                                <a href="https://github.com/themeselection/sneat-html-admin-template-free/issues"
-                                   target="_blank"
-                                   class="footer-link me-4">Support</a>
-                            </div>
-                        </div>
                     </footer>
                     <!-- / Footer -->
 
@@ -517,5 +512,62 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/11.10.6/sweetalert2.min.js" integrity="sha512-RJQj9OXEQyrPPOxSPNIXcRi61EGHulbS/SzuXw1nAyvBwYE6782rxLm/G6OKB51igh5eBoT8AUU2+K1gJxXatw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <script src="https://kit.fontawesome.com/e53435fdf0.js" crossorigin="anonymous"></script>
+    <script>
+        $(document).ready(function () {
+            function positionDropdown() {
+                var searchBox = $('#searchBox');
+                var searchBoxOffset = searchBox.offset();
+                var searchBoxHeight = searchBox.outerHeight();
+
+                // Get the scroll position of the window
+                var scrollTop = $(window).scrollTop();
+
+                $('#searchResults').css({
+                    top: searchBoxOffset.top + searchBoxHeight - scrollTop + "px", // Adjust position based on scroll
+                    left: '50%',
+                    transform: 'translateX(-50%) translateY(0)',
+                    width: '500px'
+                });
+            }
+
+            $('#searchBox').on('input', function () {
+                var query = $(this).val();
+
+                if (query.length >= 2) {
+                    $.get('@Url.Action("SearchResults", "User")', { query: query }, function (data) {
+                        $('#searchResults').html(data).css({
+                            display: "block",
+                            opacity: 1,
+                            visibility: 'visible'
+                        }).addClass('show');
+                        positionDropdown();
+                    });
+                } else {
+                    $('#searchResults').removeClass('show').css({
+                        display: 'none',
+                        opacity: 0,
+                        visibility: 'hidden'
+                    });
+                }
+            });
+
+
+            $(window).on('scroll resize', function () {
+                if ($('#searchResults').hasClass('show')) {
+                    positionDropdown();
+                }
+            });
+
+            $(document).click(function (e) {
+                if (!$(e.target).closest('#searchBox').length) {
+                    $('#searchResults').removeClass('show').css({
+                        display: 'none',
+                        opacity: 0,
+                        visibility: 'hidden'
+                    });
+                }
+            });
+        });
+    </script>
 </body>
 </html>

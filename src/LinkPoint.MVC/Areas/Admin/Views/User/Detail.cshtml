@@ -1,0 +1,102 @@
+﻿
+
+
+<div class="about-profile">
+    <div class="about-content-block">
+        <h4 class="grey"><i class="ion-ios-information-outline icon-in-title"></i>Personal Information</h4>
+        @{
+            var defaultDate = new DateTime(0001, 01, 01, 0, 0, 0, 0);
+            if (@Model.UserAbout.AboutMe is not null)
+            {
+                <p>@Model.UserAbout.AboutMe</p>
+
+                <br />
+            }
+            if (Model.UserAbout.CountryName is not null)
+            {
+                <p>Country -<span class="text-grey">@Model.UserAbout.CountryName</span></p>
+            }
+            if (Model.UserAbout.CityName is not null)
+            {
+                <p>City -<span class="text-grey">@Model.UserAbout.CityName</span></p>
+            }
+            if (Model.UserAbout.BirthDate != defaultDate)
+            {
+                <p>BirtDay -<span class="text-grey">@Model.UserAbout.BirthDate</span></p>
+            }
+            else if (@Model.UserAbout.AboutMe is null && Model.UserAbout.CountryName is null && Model.UserAbout.CityName is null && Model.UserAbout.BirthDate == defaultDate)
+            {
+                <p>This area is empty</p>
+            }
+        }
+    </div>
+    <div class="about-content-block">
+        <h4 class="grey"><i class="ion-ios-briefcase-outline icon-in-title"></i>Work Experiences</h4>
+        <div class="organization">
+            <img src="~/images/work.png" alt="" class="pull-left img-org" />
+            <div class="work-info">
+                @{
+                    if (Model.UserWork is not null)
+                    {
+                        if (Model.UserWork.Company is not null)
+                        {
+                            <h5>@Model.UserWork.Company</h5>
+                        }
+                        if (Model.UserWork.Designation is not null)
+                        {
+                            <p>@Model.UserWork.Designation </p>
+                        }
+                        if (Model.UserWork.FromDate is not null)
+                        {
+                            <p>From -<span class="text-grey">@Model.UserWork.FromDate</span></p>
+                        }
+                        if (Model.UserWork.ToDate is not null)
+                        {
+                            <p>To -<span class="text-grey">@Model.UserWork.ToDate</span></p>
+                        }
+                        if (Model.UserWork.Description is not null)
+                        {
+                            <p>About work -<span class="text-grey">@Model.UserWork.Description</span></p>
+                        }
+                    }
+                    else
+                    {
+                        <p>This area is empty</p>
+                    }
+                }
+
+            </div>
+        </div>
+    </div>
+    <div class="about-content-block">
+        <h4 class="grey"><i class="ion-ios-briefcase-outline icon-in-title"></i>Education</h4>
+        @{
+            if (Model.UserEducation is not null)
+            {
+                if (Model.UserEducation.University is not null)
+                {
+                    <h5>@Model.UserEducation.University</h5>
+                }
+                if (Model.UserEducation.FromDate is not null)
+                {
+                    <p>From -<span class="text-grey">@Model.UserEducation.FromDate</span></p>
+                }
+                if (Model.UserEducation.ToDate is not null)
+                {
+                    <p>To -<span class="text-grey">@Model.UserEducation.ToDate</span></p>
+                }
+                if (Model.UserEducation.Graduated is true)
+                {
+                    <p>Graduated -<span class="text-grey">I have graduated</span></p>
+                }
+                if (Model.UserEducation.Description is not null)
+                {
+                    <p>About education -<span class="text-grey">@Model.UserEducation.Description</span></p>
+                }
+            }
+            else
+            {
+                <p>This area is empty</p>
+            }
+        }
+    </div>

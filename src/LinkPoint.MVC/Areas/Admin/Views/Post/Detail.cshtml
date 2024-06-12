@@ -1,0 +1,55 @@
+﻿@model PostGetViewModel;
+
+
+<div class="container">
+    <div class="post-container">
+        <!-- Post Header -->
+        <div class="post-header">
+            <img src="@Model.UserProfileImage" alt="Profile Image">
+            <div class="username">@Model.UserName</div>
+        </div>
+
+        <!-- Post Content -->
+        @if (!string.IsNullOrEmpty(Model.ImageUrl))
+        {
+            <img src="@Model.ImageUrl" alt="Post Image" class="post-image">
+        }
+        @if (!string.IsNullOrEmpty(Model.VideoUrl))
+        {
+            <video controls class="post-media">
+                <source src="@Model.VideoUrl" type="video/mp4">
+            </video>
+        }
+
+        <!-- Post Text -->
+        <div class="post-text">
+            @if (!string.IsNullOrEmpty(Model.Text))
+                {
+                    <p>@Model.Text</p>
+                }
+        </div>
+        <!-- Like Section -->
+        <div class="like-section">
+            <span class="like-count">Like Count: @Model.LikeCount</span>
+        </div>
+
+        <!-- Comment Section -->
+        <div class="comment-section">
+            <div>
+                <b>Comments</b>
+            </div>
+            @foreach (var comment in Model.Comments){
+
+                <div class="comment">
+                    <img src="@comment.UserProfileImage" alt="Commenter Profile Image">
+                    <div class="comment-text">
+                        @comment.Text
+                    </div>
+                </div>
+            }
+        </div>
+        <div>
+            <a href="/Admin/Post/Index">Go to Previous page</a>
+        </div>
+    </div>
+</div>  
