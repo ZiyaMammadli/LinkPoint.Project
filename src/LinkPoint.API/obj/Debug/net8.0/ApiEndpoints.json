@@ -466,6 +466,38 @@
   },
   {
     "ContainingType": "LinkPoint.API.Controllers.AdminController",
+    "Method": "ActivatePost",
+    "RelativePath": "api/Admin/ActivatePost/{PostId}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "PostId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "LinkPoint.API.Controllers.AdminController",
+    "Method": "Delete",
+    "RelativePath": "api/Admin/Delete/{PostId}",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "PostId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "LinkPoint.API.Controllers.AdminController",
     "Method": "ForgotPassword",
     "RelativePath": "api/Admin/ForgotPassword",
     "HttpMethod": "POST",
@@ -478,6 +510,16 @@
         "IsRequired": true
       }
     ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "LinkPoint.API.Controllers.AdminController",
+    "Method": "GetAllPosts",
+    "RelativePath": "api/Admin/GetAllPosts",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
     "ReturnTypes": []
   },
   {
@@ -527,6 +569,22 @@
       },
       {
         "Name": "pageSize",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "LinkPoint.API.Controllers.AdminController",
+    "Method": "GetByIdPost",
+    "RelativePath": "api/Admin/GetByIdPost/{PostId}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "PostId",
         "Type": "System.Int32",
         "IsRequired": true
       }
@@ -650,6 +708,22 @@
       {
         "Name": "resetPasswordDto",
         "Type": "LinkPoint.Business.DTOs.AccountDTOs.ResetPasswordDto",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "LinkPoint.API.Controllers.AdminController",
+    "Method": "SoftDeletePost",
+    "RelativePath": "api/Admin/SoftDeletePost/{PostId}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "PostId",
+        "Type": "System.Int32",
         "IsRequired": true
       }
     ],
@@ -1153,22 +1227,6 @@
         "Name": "PostVideoFile",
         "Type": "Microsoft.AspNetCore.Http.IFormFile",
         "IsRequired": false
-      }
-    ],
-    "ReturnTypes": []
-  },
-  {
-    "ContainingType": "LinkPoint.API.Controllers.PostsController",
-    "Method": "DeletePost",
-    "RelativePath": "api/Posts/DeletePost/{PostId}",
-    "HttpMethod": "DELETE",
-    "IsController": true,
-    "Order": 0,
-    "Parameters": [
-      {
-        "Name": "PostId",
-        "Type": "System.Int32",
-        "IsRequired": true
       }
     ],
     "ReturnTypes": []

@@ -268,23 +268,89 @@ namespace LinkPoint.API.Controllers
                 return BadRequest(ex.Message);
             }
         }
-        [HttpGet]
+        [HttpGet("[action]")]
         public async Task<IActionResult> GetAllPosts()
         {
             try
             {
-                await _adminPostService.GetAllPostsAsync();
+                return Ok(await _adminPostService.GetAllPostsAsync());
+            }
+            catch (PostNotFoundException ex)
+            {
+                return StatusCode(ex.StatusCode, ex.Message);
+            }
+            catch (ProfileImageNotFoundException ex)
+            {
+                return StatusCode(ex.StatusCode, ex.Message);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
+        [HttpGet("[action]/{PostId}")]
+        public async Task<IActionResult> GetByIdPost(int PostId)
+        {
+            try
+            {              
+                return Ok(await _adminPostService.GetByIdPostAsync(PostId));
+            }
+            catch (PostNotFoundException ex)
+            {
+                return StatusCode(ex.StatusCode, ex.Message);
+            }
+            catch (ProfileImageNotFoundException ex)
+            {
+                return StatusCode(ex.StatusCode, ex.Message);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
+        [HttpGet("[action]/{PostId}")]
+        public async Task<IActionResult> SoftDeletePost(int PostId)
+        {
+            try
+            {
+                await _adminPostService.SoftDeletePostAsync(PostId);
                 return Ok();
             }
-            catch (UserNotFoundException ex)
+            catch (PostNotFoundException ex)
             {
                 return StatusCode(ex.StatusCode, ex.Message);
             }
-            catch (UserAboutNotFoundException ex)
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
+        [HttpGet("[action]/{PostId}")]
+        public async Task<IActionResult> ActivatePost(int PostId)
+        {
+            try
+            {
+                await _adminPostService.ActivatePostAsync(PostId);
+                return Ok();
+            }
+            catch (PostNotFoundException ex)
             {
                 return StatusCode(ex.StatusCode, ex.Message);
             }
-            catch (ImageNotFoundException ex)
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
+        [HttpDelete("[action]/{PostId}")]
+        public async Task<IActionResult> Delete(int PostId)
+        {
+            try
+            {
+                await _adminPostService.DeleteAsync(PostId);
+                return Ok();
+            }
+            catch (PostNotFoundException ex)
             {
                 return StatusCode(ex.StatusCode, ex.Message);
             }

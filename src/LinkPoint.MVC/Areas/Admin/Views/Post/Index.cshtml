@@ -1,4 +1,4 @@
-﻿@model List<PostGetViewModel>;
+﻿@model List<GetPostViewModel>;
 @{
     int counter = 0;
 }
@@ -56,7 +56,16 @@
                             <td>No video</td>
                         }                       
                         <td>@post.UploadTime</td>
-                        <td>activate</td>
+                        <td>
+                            @if (post.IsDelete == false)
+                            {
+                                <span style="color:green">Activate</span>
+                            }
+                            else
+                            {
+                                <span style="color:red">Deactivate</span>
+                            }
+                        </td>
 
                         <td>
                             <div style="display:flex;">

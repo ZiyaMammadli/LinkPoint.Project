@@ -5,6 +5,7 @@ using LinkPoint.Business.Services.Interfaces;
 using LinkPoint.Business.Utilities.Exceptions.NotFoundExceptions;
 using LinkPoint.Business.Utilities.Exceptions.NotValidExceptions;
 using LinkPoint.Business.Utilities.Extentions;
+using LinkPoint.Core.Entities;
 using LinkPoint.Core.Repositories;
 using LinkPoint.Data.Repositories;
 
@@ -45,6 +46,7 @@ public class AdminPostService:IAdminPostService
                 ImageUrl = Post.Image?.ImageUrl,
                 VideoUrl = Post.Video?.VideoUrl,
                 ElapsedTime = Post.CreatedDate.GetElapsedTime(),
+                UploadTime = Post.CreatedDate.ToString(),
                 IsDelete=Post.IsDeleted,
                 Comments = Post.Comments.Select(c => new CommentGetDto
                 {
@@ -80,7 +82,8 @@ public class AdminPostService:IAdminPostService
             ImageUrl = post.Image?.ImageUrl,
             VideoUrl = post.Video?.VideoUrl,
             ElapsedTime = post.CreatedDate.GetElapsedTime(),
-            IsDelete=post.IsDeleted,
+            UploadTime = post.CreatedDate.ToString(),
+            IsDelete =post.IsDeleted,
             Comments = post.Comments.Select(c => new CommentGetDto
             {
                 UserId = c.UserId,
