@@ -1,9 +1,23 @@
-﻿
+﻿@model UserDetailViewModel;
+@{
+    var IsActive = "";
+    var color = "";
+    if (Model.UserInfo.IsDelete == false)
+    {
+        IsActive = "Active";
+        color = "green";
 
+    }
+    else
+    {
+        IsActive = "Deactive";
+        color = "red";
 
+    }
+}
 <div class="about-profile">
     <div class="about-content-block">
-        <h4 class="grey"><i class="ion-ios-information-outline icon-in-title"></i>Personal Information</h4>
+        <h4 class="grey"><i class="ion-ios-information-outline icon-in-title"></i>Personal Information<span style="color:@color;margin-left:10px">@IsActive</span></h4>
         @{
             var defaultDate = new DateTime(0001, 01, 01, 0, 0, 0, 0);
             if (@Model.UserAbout.AboutMe is not null)
@@ -98,5 +112,16 @@
             {
                 <p>This area is empty</p>
             }
+        }
+    </div>
+    <div>
+        <a href="/Admin/User/Index" style="margin-top:10px" class="btn btn-warning btn-sm">Go to back</a>
+        @if (Model.UserInfo.IsDelete == false)
+        {
+            <a href="@Url.Action("UserSoftDelete", "User", new { UserId = Model.UserInfo.UserId })" style="margin-top:10px" class="btn btn-danger btn-sm">Soft Delete</a>
+        }
+        @if (Model.UserInfo.IsDelete == true)
+        {
+            <a href="@Url.Action("UserActivate", "User", new { UserId = Model.UserInfo.UserId })" style="margin-top:10px" class="btn btn-success btn-sm">Activate</a>
         }
     </div>

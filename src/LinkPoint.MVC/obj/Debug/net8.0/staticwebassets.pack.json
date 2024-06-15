@@ -13,6 +13,10 @@
       "PackagePath": "staticwebassets\\admin\\assets\\css\\User.css"
     },
     {
+      "Id": "C:\\Users\\user\\source\\repos\\LinkPoint\\src\\LinkPoint.MVC\\wwwroot\\admin\\assets\\css\\UserDetail.css",
+      "PackagePath": "staticwebassets\\admin\\assets\\css\\UserDetail.css"
+    },
+    {
       "Id": "C:\\Users\\user\\source\\repos\\LinkPoint\\src\\LinkPoint.MVC\\wwwroot\\admin\\assets\\css\\demo.css",
       "PackagePath": "staticwebassets\\admin\\assets\\css\\demo.css"
     },

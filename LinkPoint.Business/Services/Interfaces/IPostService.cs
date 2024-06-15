@@ -14,5 +14,4 @@ public interface IPostService
     Task CreatePostWithTextAsync(PostCreateWithTextDto postCreateWithTextDto);//
     Task UpdatePostWithTextAsync(int PostId,PostUpdateWithTextDto postUpdateWithTextDto);//
     Task SoftDeletePostAsync(int PostId,PostDeleteDto postDeleteDto);//
-    Task DeleteAsync(int PostId);//
 }

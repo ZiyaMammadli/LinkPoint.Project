@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "5bmLlbHAx5VWcBB/LViM8MLe0xsFdJHvBtc0dNjxByU=",
+  "Hash": "AGtJ6kYrlaFkdEzIK0BEtpzEm4xulnKAh7jLWj2JE2o=",
   "Source": "LinkPoint.MVC",
   "BasePath": "_content/LinkPoint.MVC",
   "Mode": "Default",
@@ -148,6 +148,25 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\admin\\assets\\css\\User.css"
+    },
+    {
+      "Identity": "C:\\Users\\user\\source\\repos\\LinkPoint\\src\\LinkPoint.MVC\\wwwroot\\admin\\assets\\css\\UserDetail.css",
+      "SourceId": "LinkPoint.MVC",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\user\\source\\repos\\LinkPoint\\src\\LinkPoint.MVC\\wwwroot\\",
+      "BasePath": "_content/LinkPoint.MVC",
+      "RelativePath": "admin/assets/css/UserDetail.css",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\admin\\assets\\css\\UserDetail.css"
     },
     {
       "Identity": "C:\\Users\\user\\source\\repos\\LinkPoint\\src\\LinkPoint.MVC\\wwwroot\\admin\\assets\\img\\avatars\\1.png",

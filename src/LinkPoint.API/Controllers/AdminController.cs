@@ -1,13 +1,10 @@
 ﻿using LinkPoint.Business.DTOs.AccountDTOs;
-using LinkPoint.Business.Services.Implementations;
 using LinkPoint.Business.Services.Interfaces;
 using LinkPoint.Business.Utilities.Exceptions.ConfirmedExceptions;
 using LinkPoint.Business.Utilities.Exceptions.NotFoundException;
 using LinkPoint.Business.Utilities.Exceptions.NotFoundExceptions;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System.Security.Authentication;
-using static Microsoft.EntityFrameworkCore.DbLoggerCategory;
 
 namespace LinkPoint.API.Controllers
 {
@@ -17,11 +14,13 @@ namespace LinkPoint.API.Controllers
     {
         private readonly IAdminAuthService _adminAuthService;
         private readonly IAdminUserService _adminUserService;
+        private readonly IAdminPostService _adminPostService;
 
-        public AdminController(IAdminAuthService adminAuthService,IAdminUserService adminUserService)
+        public AdminController(IAdminAuthService adminAuthService,IAdminUserService adminUserService,IAdminPostService adminPostService)
         {
             _adminAuthService = adminAuthService;
             _adminUserService = adminUserService;
+            _adminPostService = adminPostService;
         }
         [HttpPost("[action]")]
         public async Task<IActionResult> Login(LoginDto loginDto)
@@ -143,6 +142,149 @@ namespace LinkPoint.API.Controllers
                 return StatusCode(ex.StatusCode, ex.Message);
             }
             catch (ProfileImageNotFoundException ex)
+            {
+                return StatusCode(ex.StatusCode, ex.Message);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
+        [HttpGet("[action]/{UserId}")]
+        public async Task<IActionResult> GetUserAbout(string UserId)
+        {
+            try
+            {
+                return Ok(await _adminUserService.GetUserAboutAsync(UserId));
+            }
+            catch (UserNotFoundException ex)
+            {
+                return StatusCode(ex.StatusCode, ex.Message);
+            }
+            catch (UserAboutNotFoundException ex)
+            {
+                return StatusCode(ex.StatusCode, ex.Message);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
+        [HttpGet("[action]/{UserId}")]
+        public async Task<IActionResult> GetUserWork(string UserId)
+        {
+            try
+            {
+                return Ok(await _adminUserService.GetUserWorkAsync(UserId));
+            }
+            catch (UserNotFoundException ex)
+            {
+                return StatusCode(ex.StatusCode, ex.Message);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
+        [HttpGet("[action]/{UserId}")]
+        public async Task<IActionResult> GetUserEducation(string UserId)
+        {
+            try
+            {
+                return Ok(await _adminUserService.GetUserEducationAsync(UserId));
+            }
+            catch (UserNotFoundException ex)
+            {
+                return StatusCode(ex.StatusCode, ex.Message);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
+        [HttpGet("[action]/{UserId}")]
+        public async Task<IActionResult> GetAllUserInterests(string UserId)
+        {
+            try
+            {
+                return Ok(await _adminUserService.GetAllUserInterestsAsync(UserId));
+            }
+            catch (UserNotFoundException ex)
+            {
+                return StatusCode(ex.StatusCode, ex.Message);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
+        [HttpGet("[action]/{UserId}")]
+        public async Task<IActionResult> UserSoftDelete(string UserId)
+        {
+            try
+            {
+                await _adminUserService.UserSoftDeleteAsync(UserId);
+                return Ok();
+            }
+            catch (UserNotFoundException ex)
+            {
+                return StatusCode(ex.StatusCode, ex.Message);
+            }
+            catch (UserAboutNotFoundException ex)
+            {
+                return StatusCode(ex.StatusCode, ex.Message);
+            }
+            catch (ImageNotFoundException ex)
+            {
+                return StatusCode(ex.StatusCode, ex.Message);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
+        [HttpGet("[action]/{UserId}")]
+        public async Task<IActionResult> UserActivate(string UserId)
+        {
+            try
+            {
+                await _adminUserService.UserActivateAsync(UserId);
+                return Ok();
+            }
+            catch (UserNotFoundException ex)
+            {
+                return StatusCode(ex.StatusCode, ex.Message);
+            }
+            catch (UserAboutNotFoundException ex)
+            {
+                return StatusCode(ex.StatusCode, ex.Message);
+            }
+            catch (ImageNotFoundException ex)
+            {
+                return StatusCode(ex.StatusCode, ex.Message);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
+        [HttpGet]
+        public async Task<IActionResult> GetAllPosts()
+        {
+            try
+            {
+                await _adminPostService.GetAllPostsAsync();
+                return Ok();
+            }
+            catch (UserNotFoundException ex)
+            {
+                return StatusCode(ex.StatusCode, ex.Message);
+            }
+            catch (UserAboutNotFoundException ex)
+            {
+                return StatusCode(ex.StatusCode, ex.Message);
+            }
+            catch (ImageNotFoundException ex)
             {
                 return StatusCode(ex.StatusCode, ex.Message);
             }

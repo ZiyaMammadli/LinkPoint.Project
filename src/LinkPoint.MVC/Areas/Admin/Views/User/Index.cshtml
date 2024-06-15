@@ -4,14 +4,37 @@
     <div class="row">
         @foreach (var user in Model.Users)
         {
+            var activateButton ="";
+            var deleteButton ="";
+            var IsActive = "";
+            var color = "";
+            if (user.IsDelete == false)
+            {
+                IsActive = "Active";
+                color = "green";
+                
+            }
+            else
+            {
+                IsActive = "Deactive";
+                color = "red";
+                
+            }
+
             <div class="col-md-3">
                 <div class="card mb-4">
                     <img class="card-img-top" src="@user.ProfileImage" alt="Profile Image" style="width: 100px; height: 100px; object-fit: cover; margin: 10px auto;">
                     <div class="card-body text-center">
-                        <h5 class="card-title">@user.UserName</h5>
-                        <a href="@Url.Action("Detail", "User", new { id = user.UserId })" class="btn btn-info btn-sm">Details</a>
-                        <a href="@Url.Action("SoftDelete", "User", new { id = user.UserId })" class="btn btn-danger btn-sm">Soft Delete</a>
-                        <a href="@Url.Action("Activate", "User", new { id = user.UserId })" class="btn btn-success btn-sm">Activate</a>
+                        <h5 class="card-title">@user.UserName<span style="color:@color;margin-left:10px">@IsActive</span></h5>
+                        <a href="@Url.Action("Detail", "User", new { UserId = user.UserId })" class="btn btn-info btn-sm">Details</a>
+                        @if (user.IsDelete == false)
+                        {
+                            <a href="@Url.Action("UserSoftDelete", "User", new { UserId = user.UserId })" class="btn btn-danger btn-sm">Soft Delete</a>                        
+                        }
+                        @if (user.IsDelete == true)
+                        {                           
+                            <a href="@Url.Action("UserActivate", "User", new { UserId = user.UserId })" class="btn btn-success btn-sm">Activate</a>
+                        }
                     </div>
                 </div>
             </div>

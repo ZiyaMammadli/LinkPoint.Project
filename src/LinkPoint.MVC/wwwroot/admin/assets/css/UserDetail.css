@@ -1,0 +1,107 @@
+﻿/* Genel ayarlar */
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #f4f4f4;
+    color: #333;
+    margin: 0;
+    padding: 0;
+}
+
+/* Profil genel düzeni */
+.about-profile {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    margin-top: 20px; /* Yukarıdan margin */
+    margin-left: auto;
+    margin-right: auto;
+    max-width: 800px; /* Maksimum genişlik */
+}
+
+/* Başlık stili */
+.about-content-block h4 {
+    font-size: 18px;
+    color: #666;
+    margin-bottom: 15px;
+    border-bottom: 1px solid #ddd;
+    padding-bottom: 10px;
+}
+
+/* Paragraf stili */
+.about-content-block p {
+    font-size: 14px;
+    line-height: 1.6;
+    margin: 5px 0;
+    color: #666;
+}
+
+/* İkon stili */
+.icon-in-title {
+    color: #007bff;
+    margin-right: 5px;
+}
+
+/* Text-Grey sınıfı */
+.text-grey {
+    color: #888;
+}
+
+/* Organization bölümü */
+.organization {
+    display: flex;
+    align-items: flex-start;
+    margin-top: 10px;
+}
+
+    .organization img.img-org {
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+        margin-right: 10px;
+    }
+
+/* İş bilgileri stili */
+.work-info {
+    flex: 1;
+}
+
+    /* Üniversite başlık stili */
+    .work-info h5 {
+        font-size: 16px;
+        margin: 0;
+        color: #333;
+    }
+
+    /* Üniversite detayları */
+    .work-info p {
+        margin: 5px 0;
+    }
+
+/* Eğitim bilgileri */
+.about-content-block .education {
+    display: flex;
+    align-items: flex-start;
+    margin-top: 10px;
+}
+
+    .about-content-block .education img {
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+        margin-right: 10px;
+    }
+
+.about-content-block .education-info {
+    flex: 1;
+}
+
+    .about-content-block .education-info h5 {
+        font-size: 16px;
+        margin: 0;
+        color: #333;
+    }
+
+    .about-content-block .education-info p {
+        margin: 5px 0;
+    }

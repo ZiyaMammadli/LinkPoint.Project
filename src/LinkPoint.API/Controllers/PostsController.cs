@@ -213,26 +213,5 @@ namespace LinkPoint.API.Controllers
                 return BadRequest(ex.Message);
             }
         }
-        [HttpDelete("[action]/{PostId}")]
-        public async Task<IActionResult> DeletePost(int PostId)
-        {
-            try
-            {
-                await _postService.DeleteAsync(PostId);
-                return Ok();
-            }
-            catch (IdNotValidException ex)
-            {
-                return StatusCode(ex.StatusCode, ex.Message);
-            }
-            catch (PostNotFoundException ex)
-            {
-                return StatusCode(ex.StatusCode, ex.Message);
-            }
-            catch (Exception ex)
-            {
-                return BadRequest(ex.Message);
-            }
-        }
     }
 }

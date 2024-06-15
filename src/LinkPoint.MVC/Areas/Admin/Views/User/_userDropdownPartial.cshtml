@@ -7,7 +7,7 @@
         {
 
             <li class="dropdown-itemmm">
-                <a href="" style="width:100%; display: flex; align-items: center;">
+                <a href="@Url.Action("Detail", "User", new { UserId = user.UserId })" style="width:100%; display: flex; align-items: center;">
                     <img src="@user.ProfileImage" alt="" class="profile-photo-sm" />
                     <p style="color:black">@user.UserName </p>
                 </a>

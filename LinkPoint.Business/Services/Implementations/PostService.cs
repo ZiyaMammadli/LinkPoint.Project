@@ -321,24 +321,4 @@ public class PostService : IPostService
         return postGetDtos;
     }
 
-    public async Task DeleteAsync(int PostId)
-    {
-        var currentPost = await _postRepository.GetByIdAsync(PostId);
-        if (currentPost is null) throw new PostNotFoundException(404, "Post is not found");
-        var postImage = await _imageRepository.GetSingleAsync(i => i.PostId == PostId);
-        if (postImage is not null)
-        {
-            _imageRepository.Delete(postImage);
-        }
-        var postComments = await _commentRepository.GetAllAsync(c => c.PostId == PostId);
-        if (postComments.Count > 0)
-        {
-            foreach (var postComment in postComments)
-            {
-                _commentRepository.Delete(postComment);
-            }
-        }
-        _postRepository.Delete(currentPost);
-        await _postRepository.CommitAsync();
-    }
 }

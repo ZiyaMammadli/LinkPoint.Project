@@ -4,6 +4,7 @@ using LinkPoint.Business.DTOs.AccountSettingsDTOs.UserDTOs;
 using LinkPoint.Business.DTOs.AccountSettingsDTOs.UserEducationDTOs;
 using LinkPoint.Business.DTOs.AccountSettingsDTOs.UserInterestDTOs;
 using LinkPoint.Business.DTOs.AccountSettingsDTOs.UserWorkDTOs;
+using LinkPoint.Business.DTOs.AdminUserDTOs;
 using LinkPoint.Business.Services.Interfaces;
 using LinkPoint.Business.Utilities.Exceptions.NotFoundExceptions;
 using LinkPoint.Core.Entities;
@@ -16,7 +17,7 @@ using Microsoft.Extensions.Configuration;
 
 namespace LinkPoint.Business.Services.Implementations;
 
-public class AdminUserService:IAdminUserService
+public class AdminUserService : IAdminUserService
 {
     private readonly IUserEducationRepository _userEducationRepository;
     private readonly UserManager<AppUser> _userManager;
@@ -30,6 +31,10 @@ public class AdminUserService:IAdminUserService
     private readonly IWebHostEnvironment _webHostEnvironment;
     private readonly IFriendShipService _friendShipService;
     private readonly IAppUserRepository _appUserRepository;
+    private readonly IPostRepository _postRepository;
+    private readonly ICommentRepository _commentRepository;
+    private readonly ILikeRepository _likeRepository;
+    private readonly IVideoRepository _videoRepository;
 
     public AdminUserService(IUserEducationRepository userEducationRepository,
         UserManager<AppUser> userManager,
@@ -42,7 +47,11 @@ public class AdminUserService:IAdminUserService
         IConfiguration configuration,
         IWebHostEnvironment webHostEnvironment,
         IFriendShipService friendShipService,
-        IAppUserRepository appUserRepository)
+        IAppUserRepository appUserRepository,
+        IPostRepository postRepository,
+        ICommentRepository commentRepository,
+        ILikeRepository likeRepository,
+        IVideoRepository videoRepository)
     {
         _userEducationRepository = userEducationRepository;
         _userManager = userManager;
@@ -56,6 +65,10 @@ public class AdminUserService:IAdminUserService
         _webHostEnvironment = webHostEnvironment;
         _friendShipService = friendShipService;
         _appUserRepository = appUserRepository;
+        _postRepository = postRepository;
+        _commentRepository = commentRepository;
+        _likeRepository = likeRepository;
+        _videoRepository = videoRepository;
     }
     public async Task<PaginatedUsersDto> GetAllUsersWithPagesAsync(int pageNumber, int pageSize)
     {
@@ -70,18 +83,19 @@ public class AdminUserService:IAdminUserService
 
         var totalUsers = await _userManager.Users.CountAsync();
 
-        List<UserGetDto> userGetDtos = new List<UserGetDto>();
+        List<UserGetDtoForPage> userGetDtos = new List<UserGetDtoForPage>();
         if (users.Count > 0)
         {
             foreach (var user in users)
             {
                 var profileImage = await _imageRepository.GetSingleAsync(i => i.UserId == user.Id && i.IsPostImage == false);
                 if (profileImage is null) throw new ProfileImageNotFoundException(404, "ProfileImage is not found");
-                UserGetDto userGetDto = new UserGetDto
+                UserGetDtoForPage userGetDto = new UserGetDtoForPage
                 {
                     UserId = user.Id,
                     UserName = user.UserName,
-                    ProfileImage = profileImage.ImageUrl
+                    ProfileImage = profileImage.ImageUrl,
+                    IsDelete=user.IsDeleted
                 };
                 userGetDtos.Add(userGetDto);
             }
@@ -117,7 +131,7 @@ public class AdminUserService:IAdminUserService
         var userss = usersDto.Where(u => u.UserName.Contains(query)).ToList();
         return userss;
     }
-    public async Task<AuthUserGetDto> GetUserByIdAsync(string UserId)
+    public async Task<GetUserrDto> GetUserByIdAsync(string UserId)
     {
         var user = await _userManager.FindByIdAsync(UserId);
         if (user is null) throw new UserNotFoundException(404, "User is not found");
@@ -127,7 +141,7 @@ public class AdminUserService:IAdminUserService
         if (backgroundImage is null) throw new ProfileImageNotFoundException(404, "BackgroundImage is not found");
         var followings = await _friendShipService.GetAllAcceptedFollowingUsersAsync(UserId);
         var followers = await _friendShipService.GetAllAcceptedFollowerUsersAsync(UserId);
-        AuthUserGetDto authUserGetDto = new AuthUserGetDto()
+        GetUserrDto getUserrDto = new GetUserrDto()
         {
             UserId = user.Id,
             UserName = user.UserName,
@@ -137,8 +151,9 @@ public class AdminUserService:IAdminUserService
             FollowingsCount = followings.Count,
             ProfileImageId = profileImage.Id,
             BackgroundImageId = backgroundImage.Id,
+            IsDelete=user.IsDeleted,
         };
-        return authUserGetDto;
+        return getUserrDto;
     }
     public async Task<UserAboutGetDto> GetUserAboutAsync(string UserId)
     {
@@ -196,5 +211,123 @@ public class AdminUserService:IAdminUserService
             }
         }
         return userInterestGetDtos;
+    }
+
+    public async Task UserSoftDeleteAsync(string UserId)
+    {
+        var user= await _appUserRepository.GetSingleAsync(u=>u.Id == UserId && u.IsDeleted==false);
+        if (user is null) throw new UserNotFoundException(404, "User is not found");
+        var userAbout=await _userAboutRepository.GetSingleAsync(ua=>ua.UserId == user.Id && ua.IsDeleted==false);
+        if (userAbout is null) throw new UserAboutNotFoundException(404, "UserAbout is not found");
+        var userWork = await _userWorkRepository.GetSingleAsync(uw => uw.UserId == user.Id && uw.IsDeleted == false);
+        if (userWork is not null) { userWork.IsDeleted = true; }
+        var userEducation=await _userEducationRepository.GetSingleAsync(ue=>ue.UserId==UserId && ue.IsDeleted==false);
+        if (userEducation is not null) { userEducation.IsDeleted = true; }
+        var userInterests=await _userInterestRepository.GetAllAsync(ui=>ui.UserId == user.Id && ui.IsDeleted==false);
+        if(userInterests.Count > 0)
+        {
+            foreach (var userInterest in userInterests)
+            {
+                userInterest.IsDeleted=true;
+            }
+        }
+        var userProfileImage=await _imageRepository.GetSingleAsync(i=>i.UserId == user.Id && i.IsPostImage==false && i.IsDeleted==false);
+        if (userProfileImage is null) throw new ImageNotFoundException(404, "ProfileImage is not found");
+        var userBackgroundImage = await _imageRepository.GetSingleAsync(i => i.UserId == user.Id && i.IsPostImage == null && i.IsDeleted == false);
+        if (userBackgroundImage is null) throw new ImageNotFoundException(404, "BackgroundImage is not found");
+        var userPosts = await _postRepository.GetAllAsync(p => p.UserId == user.Id && p.IsDeleted == false);
+        if (userPosts.Count > 0)
+        {
+            foreach(var post in userPosts)
+            {
+                var postImage = await _imageRepository.GetSingleAsync(i => i.PostId == post.Id && i.IsPostImage == true && i.IsDeleted == false);
+                if (postImage is not null) { postImage.IsDeleted = true; }
+                var postVideo=await _videoRepository.GetSingleAsync(v=>v.PostId == post.Id && v.IsDeleted==false);
+                if (postVideo is not null) { postVideo.IsDeleted = true; }
+                post.IsDeleted=true;
+            }
+        }
+        var userComments=await _commentRepository.GetAllAsync(c=>c.UserId==user.Id && c.IsDeleted==false);
+        if (userComments.Count > 0) 
+        { 
+            foreach(var comment in userComments)
+            {
+                comment.IsDeleted=true;
+            }
+                
+        }
+        var userLikes=await _likeRepository.GetAllAsync(l=>l.UserId==user.Id && l.IsDeleted==false);
+        if (userLikes.Count > 0) 
+        { 
+            foreach(var like in userLikes)
+            {
+                like.IsDeleted=true;
+            }
+                
+        }
+        userAbout.IsDeleted=true;       
+        userProfileImage.IsDeleted=true;
+        userBackgroundImage.IsDeleted=true;
+        user.IsDeleted=true;
+        await _appUserRepository.CommitAsync();
+    }
+
+    public async Task UserActivateAsync(string UserId)
+    {
+        var user = await _appUserRepository.GetSingleAsync(u => u.Id == UserId && u.IsDeleted == true);
+        if (user is null) throw new UserNotFoundException(404, "User is not found");
+        var userAbout = await _userAboutRepository.GetSingleAsync(ua => ua.UserId == user.Id && ua.IsDeleted == true);
+        if (userAbout is null) throw new UserAboutNotFoundException(404, "UserAbout is not found");
+        var userWork = await _userWorkRepository.GetSingleAsync(uw => uw.UserId == user.Id && uw.IsDeleted == true);
+        if (userWork is not null) { userWork.IsDeleted = false; }
+        var userEducation = await _userEducationRepository.GetSingleAsync(ue => ue.UserId == UserId && ue.IsDeleted == true);
+        if (userEducation is not null) { userEducation.IsDeleted = false; }
+        var userInterests = await _userInterestRepository.GetAllAsync(ui => ui.UserId == user.Id && ui.IsDeleted == true);
+        if (userInterests.Count > 0)
+        {
+            foreach (var userInterest in userInterests)
+            {
+                userInterest.IsDeleted = false;
+            }
+        }
+        var userProfileImage = await _imageRepository.GetSingleAsync(i => i.UserId == user.Id && i.IsPostImage == false && i.IsDeleted == true);
+        if (userProfileImage is null) throw new ImageNotFoundException(404, "ProfileImage is not found");
+        var userBackgroundImage = await _imageRepository.GetSingleAsync(i => i.UserId == user.Id && i.IsPostImage == null && i.IsDeleted == true);
+        if (userBackgroundImage is null) throw new ImageNotFoundException(404, "BackgroundImage is not found");
+        var userPosts = await _postRepository.GetAllAsync(p => p.UserId == user.Id && p.IsDeleted == true);
+        if (userPosts.Count > 0)
+        {
+            foreach (var post in userPosts)
+            {
+                var postImage = await _imageRepository.GetSingleAsync(i => i.PostId == post.Id && i.IsPostImage == true && i.IsDeleted == true);
+                if (postImage is not null) { postImage.IsDeleted = false; }
+                var postVideo = await _videoRepository.GetSingleAsync(v => v.PostId == post.Id && v.IsDeleted == true);
+                if (postVideo is not null) { postVideo.IsDeleted = false; }
+                post.IsDeleted = false;
+            }
+        }
+        var userComments = await _commentRepository.GetAllAsync(c => c.UserId == user.Id && c.IsDeleted == true);
+        if (userComments.Count > 0)
+        {
+            foreach (var comment in userComments)
+            {
+                comment.IsDeleted = false;
+            }
+
+        }
+        var userLikes = await _likeRepository.GetAllAsync(l => l.UserId == user.Id && l.IsDeleted == true);
+        if (userLikes.Count > 0)
+        {
+            foreach (var like in userLikes)
+            {
+                like.IsDeleted = false;
+            }
+
+        }
+        userAbout.IsDeleted = false;
+        userProfileImage.IsDeleted = false;
+        userBackgroundImage.IsDeleted = false;
+        user.IsDeleted = false;
+        await _appUserRepository.CommitAsync();
     }
 }

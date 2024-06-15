@@ -482,6 +482,22 @@
   },
   {
     "ContainingType": "LinkPoint.API.Controllers.AdminController",
+    "Method": "GetAllUserInterests",
+    "RelativePath": "api/Admin/GetAllUserInterests/{UserId}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "UserId",
+        "Type": "System.String",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "LinkPoint.API.Controllers.AdminController",
     "Method": "GetAllUsersForAdmin",
     "RelativePath": "api/Admin/GetAllUsersForAdmin/{query}",
     "HttpMethod": "GET",
@@ -519,8 +535,56 @@
   },
   {
     "ContainingType": "LinkPoint.API.Controllers.AdminController",
+    "Method": "GetUserAbout",
+    "RelativePath": "api/Admin/GetUserAbout/{UserId}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "UserId",
+        "Type": "System.String",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "LinkPoint.API.Controllers.AdminController",
     "Method": "GetUserById",
     "RelativePath": "api/Admin/GetUserById/{UserId}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "UserId",
+        "Type": "System.String",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "LinkPoint.API.Controllers.AdminController",
+    "Method": "GetUserEducation",
+    "RelativePath": "api/Admin/GetUserEducation/{UserId}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "UserId",
+        "Type": "System.String",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "LinkPoint.API.Controllers.AdminController",
+    "Method": "GetUserWork",
+    "RelativePath": "api/Admin/GetUserWork/{UserId}",
     "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,
@@ -586,6 +650,38 @@
       {
         "Name": "resetPasswordDto",
         "Type": "LinkPoint.Business.DTOs.AccountDTOs.ResetPasswordDto",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "LinkPoint.API.Controllers.AdminController",
+    "Method": "UserActivate",
+    "RelativePath": "api/Admin/UserActivate/{UserId}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "UserId",
+        "Type": "System.String",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "LinkPoint.API.Controllers.AdminController",
+    "Method": "UserSoftDelete",
+    "RelativePath": "api/Admin/UserSoftDelete/{UserId}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "UserId",
+        "Type": "System.String",
         "IsRequired": true
       }
     ],
