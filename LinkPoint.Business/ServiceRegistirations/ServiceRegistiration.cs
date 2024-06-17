@@ -26,6 +26,7 @@ public static class ServiceRegistiration
         services.AddScoped<IAdminAuthService, AdminAuthService>();
         services.AddScoped<IAdminUserService, AdminUserService>();
         services.AddScoped<IAdminPostService, AdminPostService>();
+        services.AddScoped<IContactMessageService, ContactMessageService>();
         services.AddHttpContextAccessor();
         services.AddSingleton<IActionContextAccessor, ActionContextAccessor>();
         services.AddScoped<IUrlHelper>(x =>
