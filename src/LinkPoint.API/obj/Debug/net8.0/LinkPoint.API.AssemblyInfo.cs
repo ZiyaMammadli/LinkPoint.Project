@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("LinkPoint.API")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+72b30b41038a1659ed74d2a994495692c59bb640")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+934d5e9b823a4256a035f2370d11f1fd1979be3c")]
 [assembly: System.Reflection.AssemblyProductAttribute("LinkPoint.API")]
 [assembly: System.Reflection.AssemblyTitleAttribute("LinkPoint.API")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

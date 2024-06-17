@@ -4,9 +4,10 @@ namespace LinkPoint.Business.Services.Interfaces;
 
 public interface IContactMessageService
 {
-    Task CreateContactMessage(ContactMessagePostDto contactMessagePostDto);
-    Task<List<ContactMessageGetDto>> GetAllContactMessage();
-    Task<ContactMessageGetDto> GetContactMessageById(int id);
-    Task AcceptContactMessage(int ContactMessageId);
-    Task RejectContactMessage(int ContactMessageId);
+    Task CreateContactMessageAsync(ContactMessagePostDto contactMessagePostDto);
+    Task<List<ContactMessageGetDto>> GetAllContactMessageAsync();
+    Task<List<ContactMessageGetDto>> GetAllContactMessagesForUserAsync(string userId);
+    Task<ContactMessageGetDto> GetContactMessageByIdAsync(int id);
+    Task AcceptContactMessageAsync(int ContactMessageId);
+    Task RejectContactMessageAsync(int ContactMessageId);
 }

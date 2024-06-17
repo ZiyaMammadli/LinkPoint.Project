@@ -22,7 +22,7 @@ public class ContactMessageService : IContactMessageService
         _mapper = mapper;
     }
 
-    public async Task CreateContactMessage(ContactMessagePostDto contactMessagePostDto)
+    public async Task CreateContactMessageAsync(ContactMessagePostDto contactMessagePostDto)
     {
         var user= await _userManager.FindByIdAsync(contactMessagePostDto.UserId);
         if (user is null) throw new UserNotFoundException(404, "User is not found");
@@ -34,7 +34,7 @@ public class ContactMessageService : IContactMessageService
         await _contactMessageRepository.CommitAsync();
     }
 
-    public async Task<List<ContactMessageGetDto>> GetAllContactMessage()
+    public async Task<List<ContactMessageGetDto>> GetAllContactMessageAsync()
     {
         var ContactMessages=await _contactMessageRepository.GetAllAsync();
         List<ContactMessageGetDto> contactMessageGetDtos = new List<ContactMessageGetDto>();
@@ -48,8 +48,24 @@ public class ContactMessageService : IContactMessageService
         }
         return contactMessageGetDtos;
     }
+    public async Task<List<ContactMessageGetDto>> GetAllContactMessagesForUserAsync(string userId)
+    {
+        var user=await _userManager.FindByIdAsync(userId);
+        if (user is null) throw new UserNotFoundException(404, "User is not found");
+        var contactMessages=await _contactMessageRepository.GetAllAsync(cm=>cm.UserId==user.Id);
+        List<ContactMessageGetDto> contactMessageGetDtos = new List<ContactMessageGetDto>();
+        if (contactMessages.Count > 0)
+        {
+            foreach (var contactMessage in contactMessages)
+            {
+                var contactMessageGetDto = _mapper.Map<ContactMessageGetDto>(contactMessage);
+                contactMessageGetDtos.Add(contactMessageGetDto);
+            }
+        }
+        return contactMessageGetDtos;
+    }
 
-    public async Task<ContactMessageGetDto> GetContactMessageById(int id)
+    public async Task<ContactMessageGetDto> GetContactMessageByIdAsync(int id)
     {
         var contactMessage=await _contactMessageRepository.GetByIdAsync(id);
         if (contactMessage is null) throw new ContactMessageNotFoundException(404, "ContactMessage is not found");
@@ -57,7 +73,7 @@ public class ContactMessageService : IContactMessageService
         return contactMessageGetDto;
     }
 
-    public async Task AcceptContactMessage(int ContactMessageId)
+    public async Task AcceptContactMessageAsync(int ContactMessageId)
     {
         var contactMessage=await _contactMessageRepository.GetByIdAsync(ContactMessageId);
         if (contactMessage is null) throw new ContactMessageNotFoundException(404, "ContactMessage is not found");
@@ -66,7 +82,7 @@ public class ContactMessageService : IContactMessageService
         await _contactMessageRepository.CommitAsync();
     }
 
-    public async Task RejectContactMessage(int ContactMessageId)
+    public async Task RejectContactMessageAsync(int ContactMessageId)
     {
         var contactMessage = await _contactMessageRepository.GetByIdAsync(ContactMessageId);
         if (contactMessage is null) throw new ContactMessageNotFoundException(404, "ContactMessage is not found");
@@ -74,4 +90,5 @@ public class ContactMessageService : IContactMessageService
         contactMessage.UpdatedDate=DateTime.UtcNow;
         await _contactMessageRepository.CommitAsync();
     }
+
 }

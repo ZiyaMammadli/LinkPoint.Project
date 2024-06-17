@@ -4,11 +4,6 @@ using LinkPoint.Business.Utilities.Exceptions.CommonExceptions;
 using LinkPoint.Business.Utilities.Exceptions.ConfirmedExceptions;
 using LinkPoint.Business.Utilities.Exceptions.NotFoundException;
 using LinkPoint.Business.Utilities.Exceptions.NotFoundExceptions;
-using LinkPoint.Core.Entities;
-using LinkPoint.Data.Contexts;
-using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using System.Security.Authentication;
 
