@@ -76,6 +76,11 @@ public class AppUserConfiguration : IEntityTypeConfiguration<AppUser>
             .HasMany(u=>u.messages)
             .WithOne(m=>m.User)
             .HasForeignKey(m=>m.UserId)
+            .OnDelete(DeleteBehavior.NoAction); 
+        builder
+            .HasMany(u=>u.ContactMessages)
+            .WithOne(cm=>cm.User)
+            .HasForeignKey(cm=>cm.UserId)
             .OnDelete(DeleteBehavior.NoAction);
     }
 }

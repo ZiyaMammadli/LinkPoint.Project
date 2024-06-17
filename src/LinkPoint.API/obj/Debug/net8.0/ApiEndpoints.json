@@ -484,7 +484,7 @@
     "ContainingType": "LinkPoint.API.Controllers.AdminController",
     "Method": "Delete",
     "RelativePath": "api/Admin/Delete/{PostId}",
-    "HttpMethod": "DELETE",
+    "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,
     "Parameters": [

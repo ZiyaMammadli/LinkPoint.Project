@@ -3,20 +3,24 @@
   "WorkspaceRootPath": "C:\\Users\\user\\source\\repos\\LinkPoint\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{1B9E36D0-C1A1-4BEE-8E85-BFF6B9ACC7B0}|src\\LinkPoint.MVC\\LinkPoint.MVC.csproj|c:\\users\\user\\source\\repos\\linkpoint\\src\\linkpoint.mvc\\areas\\admin\\views\\post\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{1B9E36D0-C1A1-4BEE-8E85-BFF6B9ACC7B0}|src\\LinkPoint.MVC\\LinkPoint.MVC.csproj|solutionrelative:src\\linkpoint.mvc\\areas\\admin\\views\\post\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+      "AbsoluteMoniker": "D:0:0:{CF92D72E-4C6F-4F37-8804-3196252F92F7}|src\\LinkPoint.Data\\LinkPoint.Data.csproj|c:\\users\\user\\source\\repos\\linkpoint\\src\\linkpoint.data\\repositories\\contactmessagerepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{CF92D72E-4C6F-4F37-8804-3196252F92F7}|src\\LinkPoint.Data\\LinkPoint.Data.csproj|solutionrelative:src\\linkpoint.data\\repositories\\contactmessagerepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{1B9E36D0-C1A1-4BEE-8E85-BFF6B9ACC7B0}|src\\LinkPoint.MVC\\LinkPoint.MVC.csproj|c:\\users\\user\\source\\repos\\linkpoint\\src\\linkpoint.mvc\\areas\\admin\\views\\post\\detail.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{1B9E36D0-C1A1-4BEE-8E85-BFF6B9ACC7B0}|src\\LinkPoint.MVC\\LinkPoint.MVC.csproj|solutionrelative:src\\linkpoint.mvc\\areas\\admin\\views\\post\\detail.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+      "AbsoluteMoniker": "D:0:0:{E87A09CB-C66F-48A0-88F5-2C5B17245375}|src\\LinkPoint.Core\\LinkPoint.Core.csproj|c:\\users\\user\\source\\repos\\linkpoint\\src\\linkpoint.core\\entities\\contactmessage.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{E87A09CB-C66F-48A0-88F5-2C5B17245375}|src\\LinkPoint.Core\\LinkPoint.Core.csproj|solutionrelative:src\\linkpoint.core\\entities\\contactmessage.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{1B9E36D0-C1A1-4BEE-8E85-BFF6B9ACC7B0}|src\\LinkPoint.MVC\\LinkPoint.MVC.csproj|c:\\users\\user\\source\\repos\\linkpoint\\src\\linkpoint.mvc\\areas\\admin\\controllers\\postcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{1B9E36D0-C1A1-4BEE-8E85-BFF6B9ACC7B0}|src\\LinkPoint.MVC\\LinkPoint.MVC.csproj|solutionrelative:src\\linkpoint.mvc\\areas\\admin\\controllers\\postcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{E87A09CB-C66F-48A0-88F5-2C5B17245375}|src\\LinkPoint.Core\\LinkPoint.Core.csproj|c:\\users\\user\\source\\repos\\linkpoint\\src\\linkpoint.core\\repositories\\icontactmessagerepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{E87A09CB-C66F-48A0-88F5-2C5B17245375}|src\\LinkPoint.Core\\LinkPoint.Core.csproj|solutionrelative:src\\linkpoint.core\\repositories\\icontactmessagerepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{DD6BBD22-AC9C-42C7-A5F7-CA0EA83063E0}|src\\LinkPoint.API\\LinkPoint.API.csproj|c:\\users\\user\\source\\repos\\linkpoint\\src\\linkpoint.api\\controllers\\admincontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{DD6BBD22-AC9C-42C7-A5F7-CA0EA83063E0}|src\\LinkPoint.API\\LinkPoint.API.csproj|solutionrelative:src\\linkpoint.api\\controllers\\admincontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{E87A09CB-C66F-48A0-88F5-2C5B17245375}|src\\LinkPoint.Core\\LinkPoint.Core.csproj|c:\\users\\user\\source\\repos\\linkpoint\\src\\linkpoint.core\\repositories\\iconversationrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{E87A09CB-C66F-48A0-88F5-2C5B17245375}|src\\LinkPoint.Core\\LinkPoint.Core.csproj|solutionrelative:src\\linkpoint.core\\repositories\\iconversationrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{CF92D72E-4C6F-4F37-8804-3196252F92F7}|src\\LinkPoint.Data\\LinkPoint.Data.csproj|c:\\users\\user\\source\\repos\\linkpoint\\src\\linkpoint.data\\repositories\\commentrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{CF92D72E-4C6F-4F37-8804-3196252F92F7}|src\\LinkPoint.Data\\LinkPoint.Data.csproj|solutionrelative:src\\linkpoint.data\\repositories\\commentrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -30,54 +34,67 @@
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "Detail.cshtml",
-              "DocumentMoniker": "C:\\Users\\user\\source\\repos\\LinkPoint\\src\\LinkPoint.MVC\\Areas\\Admin\\Views\\Post\\Detail.cshtml",
-              "RelativeDocumentMoniker": "src\\LinkPoint.MVC\\Areas\\Admin\\Views\\Post\\Detail.cshtml",
-              "ToolTip": "C:\\Users\\user\\source\\repos\\LinkPoint\\src\\LinkPoint.MVC\\Areas\\Admin\\Views\\Post\\Detail.cshtml",
-              "RelativeToolTip": "src\\LinkPoint.MVC\\Areas\\Admin\\Views\\Post\\Detail.cshtml",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAsAAAAdAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2024-06-15T08:57:48.414Z",
+              "DocumentIndex": 4,
+              "Title": "CommentRepository.cs",
+              "DocumentMoniker": "C:\\Users\\user\\source\\repos\\LinkPoint\\src\\LinkPoint.Data\\Repositories\\CommentRepository.cs",
+              "RelativeDocumentMoniker": "src\\LinkPoint.Data\\Repositories\\CommentRepository.cs",
+              "ToolTip": "C:\\Users\\user\\source\\repos\\LinkPoint\\src\\LinkPoint.Data\\Repositories\\CommentRepository.cs",
+              "RelativeToolTip": "src\\LinkPoint.Data\\Repositories\\CommentRepository.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-06-17T07:03:25.555Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 0,
-              "Title": "Index.cshtml",
-              "DocumentMoniker": "C:\\Users\\user\\source\\repos\\LinkPoint\\src\\LinkPoint.MVC\\Areas\\Admin\\Views\\Post\\Index.cshtml",
-              "RelativeDocumentMoniker": "src\\LinkPoint.MVC\\Areas\\Admin\\Views\\Post\\Index.cshtml",
-              "ToolTip": "C:\\Users\\user\\source\\repos\\LinkPoint\\src\\LinkPoint.MVC\\Areas\\Admin\\Views\\Post\\Index.cshtml",
-              "RelativeToolTip": "src\\LinkPoint.MVC\\Areas\\Admin\\Views\\Post\\Index.cshtml",
-              "ViewState": "AQIAACEAAAAAAAAAAAAAACkAAAAhAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2024-06-15T08:53:38.893Z",
+              "Title": "ContactMessageRepository.cs",
+              "DocumentMoniker": "C:\\Users\\user\\source\\repos\\LinkPoint\\src\\LinkPoint.Data\\Repositories\\ContactMessageRepository.cs",
+              "RelativeDocumentMoniker": "src\\LinkPoint.Data\\Repositories\\ContactMessageRepository.cs",
+              "ToolTip": "C:\\Users\\user\\source\\repos\\LinkPoint\\src\\LinkPoint.Data\\Repositories\\ContactMessageRepository.cs",
+              "RelativeToolTip": "src\\LinkPoint.Data\\Repositories\\ContactMessageRepository.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAwAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-06-17T07:02:58.774Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 3,
-              "Title": "AdminController.cs",
-              "DocumentMoniker": "C:\\Users\\user\\source\\repos\\LinkPoint\\src\\LinkPoint.API\\Controllers\\AdminController.cs",
-              "RelativeDocumentMoniker": "src\\LinkPoint.API\\Controllers\\AdminController.cs",
-              "ToolTip": "C:\\Users\\user\\source\\repos\\LinkPoint\\src\\LinkPoint.API\\Controllers\\AdminController.cs",
-              "RelativeToolTip": "src\\LinkPoint.API\\Controllers\\AdminController.cs",
-              "ViewState": "AQIAAOgAAAAAAAAAAAAwwCIBAAAmAAAA",
+              "Title": "IConversationRepository.cs",
+              "DocumentMoniker": "C:\\Users\\user\\source\\repos\\LinkPoint\\src\\LinkPoint.Core\\Repositories\\IConversationRepository.cs",
+              "RelativeDocumentMoniker": "src\\LinkPoint.Core\\Repositories\\IConversationRepository.cs",
+              "ToolTip": "C:\\Users\\user\\source\\repos\\LinkPoint\\src\\LinkPoint.Core\\Repositories\\IConversationRepository.cs",
+              "RelativeToolTip": "src\\LinkPoint.Core\\Repositories\\IConversationRepository.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-06-15T06:51:34.933Z",
+              "WhenOpened": "2024-06-17T07:01:33.107Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 2,
-              "Title": "PostController.cs",
-              "DocumentMoniker": "C:\\Users\\user\\source\\repos\\LinkPoint\\src\\LinkPoint.MVC\\Areas\\Admin\\Controllers\\PostController.cs",
-              "RelativeDocumentMoniker": "src\\LinkPoint.MVC\\Areas\\Admin\\Controllers\\PostController.cs",
-              "ToolTip": "C:\\Users\\user\\source\\repos\\LinkPoint\\src\\LinkPoint.MVC\\Areas\\Admin\\Controllers\\PostController.cs",
-              "RelativeToolTip": "src\\LinkPoint.MVC\\Areas\\Admin\\Controllers\\PostController.cs",
-              "ViewState": "AQIAADEAAAAAAAAAAAAgwCcAAAAtAAAA",
+              "Title": "IContactMessageRepository.cs",
+              "DocumentMoniker": "C:\\Users\\user\\source\\repos\\LinkPoint\\src\\LinkPoint.Core\\Repositories\\IContactMessageRepository.cs",
+              "RelativeDocumentMoniker": "src\\LinkPoint.Core\\Repositories\\IContactMessageRepository.cs",
+              "ToolTip": "C:\\Users\\user\\source\\repos\\LinkPoint\\src\\LinkPoint.Core\\Repositories\\IContactMessageRepository.cs",
+              "RelativeToolTip": "src\\LinkPoint.Core\\Repositories\\IContactMessageRepository.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAcAAAABAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-06-15T06:02:12.301Z",
+              "WhenOpened": "2024-06-17T07:00:52.69Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "ContactMessage.cs",
+              "DocumentMoniker": "C:\\Users\\user\\source\\repos\\LinkPoint\\src\\LinkPoint.Core\\Entities\\ContactMessage.cs",
+              "RelativeDocumentMoniker": "src\\LinkPoint.Core\\Entities\\ContactMessage.cs",
+              "ToolTip": "C:\\Users\\user\\source\\repos\\LinkPoint\\src\\LinkPoint.Core\\Entities\\ContactMessage.cs",
+              "RelativeToolTip": "src\\LinkPoint.Core\\Entities\\ContactMessage.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAMAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-06-17T06:03:58.511Z",
               "EditorCaption": ""
             }
           ]

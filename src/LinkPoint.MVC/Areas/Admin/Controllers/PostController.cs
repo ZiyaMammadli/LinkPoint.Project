@@ -55,7 +55,7 @@ namespace LinkPoint.MVC.Areas.Admin.Controllers
             var post = JsonConvert.DeserializeObject<GetPostViewModel>(json2);
             return View(post);
         }
-        [HttpGet]
+        [HttpGet("[action]/{postId}")]
         public async Task<IActionResult> SoftDelete(int postId)
         {
             var token = HttpContext.Session.GetString("JWToken");
@@ -73,7 +73,7 @@ namespace LinkPoint.MVC.Areas.Admin.Controllers
 
             return RedirectToAction("Index","Post");
         }
-        [HttpGet]
+        [HttpGet("[action]/{postId}")]
         public async Task<IActionResult> Activate(int postId)
         {
             var token = HttpContext.Session.GetString("JWToken");
@@ -91,7 +91,7 @@ namespace LinkPoint.MVC.Areas.Admin.Controllers
 
             return RedirectToAction("Index","Post");
         }
-        [HttpDelete]
+        [HttpGet("[action]/{postId}")]
         public async Task<IActionResult> Delete(int postId)
         {
             var token = HttpContext.Session.GetString("JWToken");

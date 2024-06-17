@@ -22,5 +22,6 @@ public class AppUser:IdentityUser
     public List<Message>? messages { get; set; }
     public List<Conversation>? ConversationsAsUser1 { get; set; }
     public List<Conversation>? ConversationsAsUser2 { get; set; }
+    public List<ContactMessage>? ContactMessages { get; set; }
 
 }

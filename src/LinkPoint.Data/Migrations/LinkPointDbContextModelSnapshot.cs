@@ -150,6 +150,56 @@ namespace LinkPoint.Data.Migrations
                     b.ToTable("Comments");
                 });
 
+            modelBuilder.Entity("LinkPoint.Core.Entities.ContactMessage", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<DateTime>("CreatedDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Email")
+                        .IsRequired()
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
+
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("Message")
+                        .IsRequired()
+                        .HasMaxLength(350)
+                        .HasColumnType("nvarchar(350)");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
+
+                    b.Property<int>("PhoneNumber")
+                        .HasMaxLength(20)
+                        .HasColumnType("int");
+
+                    b.Property<int>("Status")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("UpdatedDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("UserId")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(450)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("ContactMessages");
+                });
+
             modelBuilder.Entity("LinkPoint.Core.Entities.Conversation", b =>
                 {
                     b.Property<int>("Id")
@@ -741,6 +791,17 @@ namespace LinkPoint.Data.Migrations
                     b.Navigation("User");
                 });
 
+            modelBuilder.Entity("LinkPoint.Core.Entities.ContactMessage", b =>
+                {
+                    b.HasOne("LinkPoint.Core.Entities.AppUser", "User")
+                        .WithMany("ContactMessages")
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.NoAction)
+                        .IsRequired();
+
+                    b.Navigation("User");
+                });
+
             modelBuilder.Entity("LinkPoint.Core.Entities.Conversation", b =>
                 {
                     b.HasOne("LinkPoint.Core.Entities.AppUser", "User1")
@@ -953,6 +1014,8 @@ namespace LinkPoint.Data.Migrations
 
             modelBuilder.Entity("LinkPoint.Core.Entities.AppUser", b =>
                 {
+                    b.Navigation("ContactMessages");
+
                     b.Navigation("ConversationsAsUser1");
 
                     b.Navigation("ConversationsAsUser2");

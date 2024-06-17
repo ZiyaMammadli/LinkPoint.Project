@@ -29,4 +29,5 @@ public class LinkPointDbContext:IdentityDbContext<AppUser>
     public DbSet<Image> Images {  get; set; }  
     public DbSet<Conversation> Conversations {  get; set; }  
     public DbSet<Message> Messages {  get; set; }  
+    public DbSet<ContactMessage> ContactMessages {  get; set; }  
 }

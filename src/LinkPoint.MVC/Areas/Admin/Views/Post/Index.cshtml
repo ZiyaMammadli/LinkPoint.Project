@@ -70,7 +70,15 @@
                         <td>
                             <div style="display:flex;">
                                 <a style="margin-right:10px;color:white" class="btn btn-warning" asp-controller="post" asp-action="detail" asp-route-postId="@post.PostId">Detail</a>
-                                <a style="color:white" class="btn btn-danger deleteButton" asp-controller="post" asp-action="delete" asp-route-id="@post.PostId">Delete</a>
+                                @if (post.IsDelete == false)
+                                {
+                                    <a style ="margin-right:10px" href="@Url.Action("SoftDelete", "Post", new { postId = post.PostId })" class="btn btn-warning btn-sm">Soft Delete</a>
+                                }
+                                @if (post.IsDelete == true)
+                                {
+                                    <a style="margin-right:10px" href="@Url.Action("Activate", "Post", new { postId = post.PostId })" class="btn btn-success btn-sm">Activate</a>
+                                }
+                                <a asp-controller="Post" asp-action="Delete" asp-route-postId="@post.PostId" class="btn btn-danger btn-sm">Delete</a>
                             </div>
                         </td>
                     </tr>

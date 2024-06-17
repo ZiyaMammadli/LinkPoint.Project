@@ -342,7 +342,7 @@ namespace LinkPoint.API.Controllers
                 return BadRequest(ex.Message);
             }
         }
-        [HttpDelete("[action]/{PostId}")]
+        [HttpGet("[action]/{PostId}")]
         public async Task<IActionResult> Delete(int PostId)
         {
             try

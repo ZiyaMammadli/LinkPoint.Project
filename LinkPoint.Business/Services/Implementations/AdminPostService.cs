@@ -16,16 +16,18 @@ public class AdminPostService:IAdminPostService
     private readonly IPostRepository _postRepository;
     private readonly IImageRepository _imageRepository;
     private readonly ICommentRepository _commentRepository;
+    private readonly IVideoRepository _videoRepository;
 
-    public AdminPostService(IPostRepository postRepository,IImageRepository imageRepository,ICommentRepository commentRepository)
+    public AdminPostService(IPostRepository postRepository,IImageRepository imageRepository,ICommentRepository commentRepository,IVideoRepository videoRepository)
     {
         _postRepository = postRepository;
         _imageRepository = imageRepository;
         _commentRepository = commentRepository;
+        _videoRepository = videoRepository;
     }
     public async Task<List<GetPostDto>> GetAllPostsAsync()
     {
-        var posts = await _postRepository.GetAllAsync(p => p.IsDeleted == false, "Image", "Video", "User", "Comments.User.Images");
+        var posts = await _postRepository.GetAllAsync(null, "Image", "Video", "User", "Comments.User.Images");
         if (posts.Count == 0) throw new PostNotFoundException(404, "Post is not found");
         List<GetPostDto> postGetDtos = new List<GetPostDto>();
         foreach (var Post in posts)
@@ -64,7 +66,7 @@ public class AdminPostService:IAdminPostService
     }
     public async Task<GetPostDto> GetByIdPostAsync(int PostId)
     {
-        var post = await _postRepository.GetSingleAsync(p => p.Id == PostId && p.IsDeleted == false, "User", "Video", "Image", "Comments.User.Images");
+        var post = await _postRepository.GetSingleAsync(p => p.Id == PostId, "User", "Video", "Image", "Comments.User.Images");
         if (post is null) throw new PostNotFoundException(404, "Post is not found");
         var profileImage = await _imageRepository.GetSingleAsync(i => i.UserId == post.User.Id && i.IsPostImage == false);
         if (profileImage is null)
@@ -121,6 +123,11 @@ public class AdminPostService:IAdminPostService
         if (postImage is not null)
         {
             _imageRepository.Delete(postImage);
+        }
+        var postVideo = await _videoRepository.GetByIdAsync(PostId);
+        if (postVideo is not null)
+        {
+            _videoRepository.Delete(postVideo);
         }
         var postComments = await _commentRepository.GetAllAsync(c => c.PostId == PostId);
         if (postComments.Count > 0)
