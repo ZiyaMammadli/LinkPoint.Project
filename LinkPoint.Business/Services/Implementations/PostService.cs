@@ -107,7 +107,7 @@ public class PostService : IPostService
                     ImageUrl = Post.Image?.ImageUrl,
                     VideoUrl = Post.Video?.VideoUrl,
                     ElapsedTime = Post.CreatedDate.GetElapsedTime(),
-                    Comments = Post.Comments.Select(c => new CommentGetDto
+                    Comments = Post.Comments.Where(c => c.IsDeleted == false).Select(c => new CommentGetDto
                     {
                         UserId = c.UserId,
                         CommentId = c.Id,
@@ -142,7 +142,7 @@ public class PostService : IPostService
             ImageUrl = post.Image?.ImageUrl,
             VideoUrl = post.Video?.VideoUrl,
             ElapsedTime = post.CreatedDate.GetElapsedTime(),
-            Comments = post.Comments.Select(c => new CommentGetDto
+            Comments = post.Comments.Where(c => c.IsDeleted == false).Select(c => new CommentGetDto
             {
                 UserId = c.UserId,
                 CommentId = c.Id,
@@ -271,7 +271,7 @@ public class PostService : IPostService
                     ImageUrl = null,
                     VideoUrl = Post.Video.VideoUrl,
                     ElapsedTime = Post.CreatedDate.GetElapsedTime(),
-                    Comments = Post.Comments.Select(c => new CommentGetDto
+                    Comments = Post.Comments.Where(c => c.IsDeleted == false).Select(c => new CommentGetDto
                     {
                         UserId = c.UserId,
                         CommentId = c.Id,
@@ -306,7 +306,7 @@ public class PostService : IPostService
                     ImageUrl = Post.Image.ImageUrl,
                     VideoUrl = null,
                     ElapsedTime = Post.CreatedDate.GetElapsedTime(),
-                    Comments = Post.Comments.Select(c => new CommentGetDto
+                    Comments = Post.Comments.Where(c => c.IsDeleted == false).Select(c => new CommentGetDto
                     {
                         UserId = c.UserId,
                         CommentId = c.Id,
