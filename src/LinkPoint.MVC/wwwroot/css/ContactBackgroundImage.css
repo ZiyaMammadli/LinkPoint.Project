@@ -1,0 +1,7 @@
+﻿.contact-map {
+    background-image: url('/images/Nube.jpg'); /* Resminizin yolu */
+    background-size: cover; /* Resmin div'e sığması için */
+    background-position: center; /* Resmin ortalanması için */
+    width: 100%; /* Genişliği belirtme */
+    height: 300px; /* Yüksekliği belirtme */
+}

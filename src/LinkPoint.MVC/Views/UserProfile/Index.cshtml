@@ -59,7 +59,7 @@
                         </div>
                         <div class="modal-body">
                             <div id="following-users-container" class="following-users-container">
-                                <!-- Dinamik içerik burada yüklenecek -->
+                              
                             </div>
                         </div>
                     </div>
@@ -78,7 +78,7 @@
                         </div>
                         <div class="modal-body">
                             <div id="followers-users-container" class="followers-users-container">
-                                <!-- Dinamik içerik burada yüklenecek -->
+                              
                             </div>
                         </div>
                     </div>
@@ -104,7 +104,7 @@
                                 </div>
                                 <div class="modal-body">
                                     <div id="like-users-container" class="like-users-container">
-                                        <!-- Dinamik içerik burada yüklenecek -->
+                                       
                                     </div>
                                 </div>
                             </div>
@@ -144,7 +144,7 @@
                                         <h5><a href="@userProfilee" class="profile-link">@post.UserName</a> <span class="following">following</span></h5>
                                         <p class="text-muted">@post.ElapsedTime</p>
                                     </div>
-                                    <div class="reaction" data-post-id="@post.PostId" data-user-id="@Model.UserInfo.UserId">
+                                    <div class="reaction" data-post-id="@post.PostId" data-user-id="@Model.AuthUserInfo.UserId">
                                         <input type="hidden" id="tokenidd" value="@Model.Token">
                                         <button class="btn-group @LikeButtonClass" style="border:hidden;padding: 3px 12px"><i class="icon ion-thumbsup"></i></button>
                                         @*                                     <div class="like-users-dropdown dropdown-menu" id="like-users-dropdown-@post.PostId">
@@ -185,7 +185,7 @@
                                         <input type="hidden" id="post-id-@post.PostId" value="@post.PostId">
                                         <input type="hidden" id="tokenid" value="@Model.Token">
                                         <input type="text" id="comment-text-@post.PostId" class="form-control" placeholder="Post a comment">
-                                        <button class="adddd-comment-button" data-post-id="@post.PostId" style="width:60px;height:30px;">Send</button>
+                                        <button class="adddd-comment-button" data-post-id="@post.PostId" style="width:60px;margin-top: 7px;height:30px;background-color: #149AC9;border-radius: 5px;border: 1px;margin-left: 7px;color: white;">Send</button>
                                     </div>
                                     <div id="commentValidationErrors-@post.PostId" class="text-danger"></div>
 
