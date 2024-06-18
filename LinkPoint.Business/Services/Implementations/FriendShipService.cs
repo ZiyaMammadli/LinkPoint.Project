@@ -21,7 +21,11 @@ public class FriendShipService : IFriendShipService
     private readonly IMapper _mapper;
     private readonly IImageRepository _imageRepository;
 
-    public FriendShipService(UserManager<AppUser> userManager, IHttpContextAccessor httpContextAccessor,IFriendShipRepository friendShipRepository,IMapper mapper,IImageRepository imageRepository)
+    public FriendShipService(UserManager<AppUser> userManager,
+        IHttpContextAccessor httpContextAccessor,
+        IFriendShipRepository friendShipRepository,
+        IMapper mapper,
+        IImageRepository imageRepository)
     {
         _userManager = userManager;
         _httpContextAccessor = httpContextAccessor;
@@ -77,19 +81,19 @@ public class FriendShipService : IFriendShipService
             foreach (var friendShip in FriendShips)
             {
                 var followingUser = await _userManager.FindByIdAsync(friendShip.FollowingUserId);
-                var profileImage = await _imageRepository.GetSingleAsync(i => i.UserId == followingUser.Id && i.IsPostImage == false);
-                if (profileImage is null)
+                if(followingUser is not null && followingUser.IsDeleted == false)
                 {
-                    throw new ProfileImageNotFoundException(404, "ProfileImage is not found");
-                }
+                    var profileImage = await _imageRepository.GetSingleAsync(i => i.UserId == followingUser.Id && i.IsPostImage == false && i.IsDeleted == false);
+                    if (profileImage is null) throw new ProfileImageNotFoundException(404, "ProfileImage is not found");
 
-                AcceptedFollowingUserDto followingUserDto = new AcceptedFollowingUserDto()
-                {
-                    UserId = followingUser.Id,
-                    UserName = followingUser.UserName,
-                    ProfileImageUrl = profileImage.ImageUrl
-                };
-                followingUserDtos.Add(followingUserDto);
+                    AcceptedFollowingUserDto followingUserDto = new AcceptedFollowingUserDto()
+                    {
+                        UserId = followingUser.Id,
+                        UserName = followingUser.UserName,
+                        ProfileImageUrl = profileImage.ImageUrl
+                    };
+                    followingUserDtos.Add(followingUserDto);
+                }            
             }
         }    
         return followingUserDtos;
@@ -107,18 +111,21 @@ public class FriendShipService : IFriendShipService
             foreach (var friendShip in FriendShips)
             {
                 var followerUser = await _userManager.FindByIdAsync(friendShip.UserId);
-                var profileImage = await _imageRepository.GetSingleAsync(i => i.UserId == followerUser.Id && i.IsPostImage == false);
-                if (profileImage is null)
+                if(followerUser is not null && followerUser.IsDeleted == false)
                 {
-                    throw new ProfileImageNotFoundException(404, "ProfileImage is not found");
-                }
-                AcceptedFollowerUserDto followerUserDto = new AcceptedFollowerUserDto()
-                {
-                    UserId = followerUser.Id,
-                    UserName = followerUser.UserName,
-                    ProfileImageUrl = profileImage.ImageUrl
-                };
-                followerUserDtos.Add(followerUserDto);
+                    var profileImage = await _imageRepository.GetSingleAsync(i => i.UserId == followerUser.Id && i.IsPostImage == false);
+                    if (profileImage is null)
+                    {
+                        throw new ProfileImageNotFoundException(404, "ProfileImage is not found");
+                    }
+                    AcceptedFollowerUserDto followerUserDto = new AcceptedFollowerUserDto()
+                    {
+                        UserId = followerUser.Id,
+                        UserName = followerUser.UserName,
+                        ProfileImageUrl = profileImage.ImageUrl
+                    };
+                    followerUserDtos.Add(followerUserDto);
+                }        
             }
         }        
         return followerUserDtos;
@@ -136,19 +143,22 @@ public class FriendShipService : IFriendShipService
             foreach (var friendShip in FriendShips)
             {
                 var PendingFollowerUser = await _userManager.FindByIdAsync(friendShip.UserId);
-                var profileImage = await _imageRepository.GetSingleAsync(i => i.UserId == PendingFollowerUser.Id && i.IsPostImage == false);
-                if (profileImage is null)
+                if (PendingFollowerUser is not null && PendingFollowerUser.IsDeleted==false)
                 {
-                    throw new ProfileImageNotFoundException(404, "ProfileImage is not found");
-                }
-                PendingFollowerUserDto pendingFollowerUserDto = new PendingFollowerUserDto()
-                {
-                    FriendShipId=friendShip.Id,
-                    UserId = PendingFollowerUser.Id,
-                    UserName = PendingFollowerUser.UserName,
-                    ProfileImageUrl = profileImage.ImageUrl
-                };
-                PendingFollowerUserDtos.Add(pendingFollowerUserDto);
+                    var profileImage = await _imageRepository.GetSingleAsync(i => i.UserId == PendingFollowerUser.Id && i.IsPostImage == false);
+                    if (profileImage is null)
+                    {
+                        throw new ProfileImageNotFoundException(404, "ProfileImage is not found");
+                    }
+                    PendingFollowerUserDto pendingFollowerUserDto = new PendingFollowerUserDto()
+                    {
+                        FriendShipId = friendShip.Id,
+                        UserId = PendingFollowerUser.Id,
+                        UserName = PendingFollowerUser.UserName,
+                        ProfileImageUrl = profileImage.ImageUrl
+                    };
+                    PendingFollowerUserDtos.Add(pendingFollowerUserDto);
+                }               
             }
         }        
         return PendingFollowerUserDtos;
@@ -186,18 +196,21 @@ public class FriendShipService : IFriendShipService
             foreach (var friendShip in FriendShips)
             {
                 var followerUser = await _userManager.FindByIdAsync(friendShip.UserId);
-                var profileImage = await _imageRepository.GetSingleAsync(i => i.UserId == followerUser.Id && i.IsPostImage == false);
-                if (profileImage is null) throw new ProfileImageNotFoundException(404, "ProfileImage is not found");
-                var backgroundImage = await _imageRepository.GetSingleAsync(i => i.UserId == followerUser.Id && i.IsPostImage == null);
-                if (backgroundImage is null) throw new ProfileImageNotFoundException(404, "BackgroundImage is not found");
-                AcceptedFollowerUserDto followerUserDto = new AcceptedFollowerUserDto()
+                if(followerUser is not null && followerUser.IsDeleted==false)
                 {
-                    UserId = followerUser.Id,
-                    UserName = followerUser.UserName,
-                    ProfileImageUrl = profileImage.ImageUrl,
-                    BackgroundImageUrl = backgroundImage.ImageUrl,
-                };
-                followerUserDtos.Add(followerUserDto);
+                    var profileImage = await _imageRepository.GetSingleAsync(i => i.UserId == followerUser.Id && i.IsPostImage == false);
+                    if (profileImage is null) throw new ProfileImageNotFoundException(404, "ProfileImage is not found");
+                    var backgroundImage = await _imageRepository.GetSingleAsync(i => i.UserId == followerUser.Id && i.IsPostImage == null);
+                    if (backgroundImage is null) throw new ProfileImageNotFoundException(404, "BackgroundImage is not found");
+                    AcceptedFollowerUserDto followerUserDto = new AcceptedFollowerUserDto()
+                    {
+                        UserId = followerUser.Id,
+                        UserName = followerUser.UserName,
+                        ProfileImageUrl = profileImage.ImageUrl,
+                        BackgroundImageUrl = backgroundImage.ImageUrl,
+                    };
+                    followerUserDtos.Add(followerUserDto);
+                }             
             }
         }
         var Friendships = await _friendShipRepository.GetAllAsync(fs => fs.UserId == user.Id && fs.Status == FollowStatus.Accepted);
@@ -207,19 +220,22 @@ public class FriendShipService : IFriendShipService
             foreach (var friendShip in Friendships)
             {
                 var followingUser = await _userManager.FindByIdAsync(friendShip.FollowingUserId);
-                var profileImage = await _imageRepository.GetSingleAsync(i => i.UserId == followingUser.Id && i.IsPostImage == false);
-                if (profileImage is null) throw new ProfileImageNotFoundException(404, "ProfileImage is not found");
-                var backgroundImage = await _imageRepository.GetSingleAsync(i => i.UserId == followingUser.Id && i.IsPostImage == null);
-                if (backgroundImage is null) throw new ProfileImageNotFoundException(404, "BackgroundImage is not found");
-
-                AcceptedFollowingUserDto followingUserDto = new AcceptedFollowingUserDto()
+                if (followingUser is not null && followingUser.IsDeleted==false)
                 {
-                    UserId = followingUser.Id,
-                    UserName = followingUser.UserName,
-                    ProfileImageUrl = profileImage.ImageUrl,
-                    BackgroundImageUrl = backgroundImage.ImageUrl,
-                };
-                followingUserDtos.Add(followingUserDto);
+                    var profileImage = await _imageRepository.GetSingleAsync(i => i.UserId == followingUser.Id && i.IsPostImage == false);
+                    if (profileImage is null) throw new ProfileImageNotFoundException(404, "ProfileImage is not found");
+                    var backgroundImage = await _imageRepository.GetSingleAsync(i => i.UserId == followingUser.Id && i.IsPostImage == null);
+                    if (backgroundImage is null) throw new ProfileImageNotFoundException(404, "BackgroundImage is not found");
+
+                    AcceptedFollowingUserDto followingUserDto = new AcceptedFollowingUserDto()
+                    {
+                        UserId = followingUser.Id,
+                        UserName = followingUser.UserName,
+                        ProfileImageUrl = profileImage.ImageUrl,
+                        BackgroundImageUrl = backgroundImage.ImageUrl,
+                    };
+                    followingUserDtos.Add(followingUserDto);
+                }              
             }
         }
         List < MyFriendsDto > myFriendsDtos = new List<MyFriendsDto>();

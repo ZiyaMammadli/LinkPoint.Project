@@ -39,7 +39,7 @@ public class LikeService : ILikeService
         var post = await _postRepository.GetByIdAsync(PostId);
         if (post is null) throw new PostNotFoundException(404, "Post is not found");
         if (!await _likeRepository.IsExist(l => l.PostId == PostId)) throw new LikeNotFoundException(404, "Like is not found");
-        var likes = await _likeRepository.GetAllAsync(l => l.PostId == PostId);
+        var likes = await _likeRepository.GetAllAsync(l => l.PostId == PostId && l.IsDeleted==false);
         List<LikeGetDto> likeGetDtos = new List<LikeGetDto>();
         foreach (var like in likes)
         {
@@ -95,7 +95,7 @@ public class LikeService : ILikeService
 
     public async Task<List<LikeGetAllDto>> GetAllLikesAsync()
     {
-        var likes= await _likeRepository.GetAllAsync();
+        var likes= await _likeRepository.GetAllAsync(l=>l.IsDeleted==false);
         if (likes.Count == 0) throw new LikeNotFoundException(404, "Like is not found");
         List<LikeGetAllDto> likeGetAllDtos = new List<LikeGetAllDto>();
         foreach (var like in likes)
