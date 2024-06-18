@@ -3989,6 +3989,10 @@
       "PackagePath": "staticwebassets\\images\\LinkPoint Logo.png"
     },
     {
+      "Id": "C:\\Users\\user\\source\\repos\\LinkPoint\\src\\LinkPoint.MVC\\wwwroot\\images\\LinkPoint_Logo_black.png",
+      "PackagePath": "staticwebassets\\images\\LinkPoint_Logo_black.png"
+    },
+    {
       "Id": "C:\\Users\\user\\source\\repos\\LinkPoint\\src\\LinkPoint.MVC\\wwwroot\\images\\album\\1.jpg",
       "PackagePath": "staticwebassets\\images\\album\\1.jpg"
     },
