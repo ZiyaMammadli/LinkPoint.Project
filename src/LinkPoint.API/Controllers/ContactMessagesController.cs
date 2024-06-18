@@ -77,7 +77,7 @@ namespace LinkPoint.API.Controllers
                 return BadRequest(ex.Message);
             }
         }
-        [HttpGet("[action]/{ContactMessageId}")]
+        [HttpPut("[action]/{ContactMessageId}")]
         public async Task<IActionResult> AcceptContactMessage(int ContactMessageId)
         {
             try
@@ -94,7 +94,7 @@ namespace LinkPoint.API.Controllers
                 return BadRequest(ex.Message);
             }
         }
-        [HttpGet("[action]/{ContactMessageId}")]
+        [HttpPut("[action]/{ContactMessageId}")]
         public async Task<IActionResult> RejectContactMessage(int ContactMessageId)
         {
             try

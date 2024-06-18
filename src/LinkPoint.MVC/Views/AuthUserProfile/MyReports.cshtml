@@ -1,0 +1,201 @@
+﻿@model MyReportsViewModel;
+@{
+    var counter = 0;
+}
+
+<div class="container">
+
+    <!-- Timeline
+    ================================================= -->
+    <div class="timeline">
+        <div class="timeline-cover" style="background-image: url('@Model.UserInfo.BackgroundImage');">
+            <!--Timeline Menu for Large Screens-->
+            <div class="timeline-nav-bar hidden-sm hidden-xs">
+                <div class="row">
+                    <div class="col-md-3">
+                        <div class="profile-info">
+                            <img src="@Model.UserInfo.ProfileImage" alt="" class="img-responsive profile-photo" />
+                            <button class="btn" style="background-color:#8dc63f;color:white;border-radius:15px" data-toggle="modal" data-target="#profileImageModal">Edit</button>
+                            <h3>@Model.UserInfo.UserName</h3>
+                        </div>
+                    </div>
+                    <div class="col-md-9">
+                        <ul class="list-inline profile-menu">
+                            <li><a href="/AuthUserProfile/Index">My Posts</a></li>
+                            <li><a href="/AuthUserProfile/About">About</a></li>
+                            <li><a href="/AuthUserProfile/Album">Album</a></li>
+                            <li class="list-inline-item dropdown">
+                                <a href="#" class="dropdown-toggle active" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Settings <span><img src="~/images/down-arrow.png" alt="" /></span></a>
+                                <div class="dropdown-menu">
+                                    <a class="dropdown-item" style="color:black" href="/AuthUserProfile/BasicInfo">Basic Information</a>
+                                    <a class="dropdown-item" style="color:black" href="/AuthUserProfile/EduAndWork">Education and Work</a>
+                                    <a class="dropdown-item active" style="color:black" href="/AuthUserProfile/Interests">My Interests</a>
+                                    <a class="dropdown-item" style="color:black" href="/AuthUserProfile/ChangePassword">Change Password</a>
+                                    <a class="dropdown-item" style="color:black" href="/AuthUserProfile/MyReports">My Reports</a>
+                                </div>
+                            </li>
+                        </ul>
+                        <ul class="follow-me list-inline">
+                            <li>@Model.UserInfo.FollowersCount<a id="followersId" href=""> Followers</a> </li>
+                            <li>@Model.UserInfo.FollowingsCount<a id="followingsId" href=""> Followings </a></li>
+                            <input type="hidden" id="us-er-Id" value="@Model.UserInfo.UserId">
+                            <input type="hidden" id="tokenidd" value="@Model.Token">
+                            <button class="btn" style="background-color:#8dc63f;color:white;border-radius:15px" data-toggle="modal" data-target="#BackgroundImageModall">Edit</button>
+                        </ul>
+                    </div>
+                </div>
+            </div><!--Timeline Menu for Large Screens End-->
+            <!-- ProfileImage Modal -->
+            <div class="modal fade" id="profileImageModal" tabindex="-1" aria-labelledby="editModalLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="editModalLabel">Edit Profile Image</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <input type="file" id="profileImage" name="profileImage" />
+                            <input type="hidden" id="tokenidforprofileimage" value="@Model.UserInfo.BackgroundImageId">
+                            <input type="hidden" id="profileImageId" value="@Model.UserInfo.ProfileImageId">
+                            <input type="hidden" id="userId" value="@Model.UserInfo.UserId">
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-danger" id="deleteProfileImageBtn" style="border-radius:15px">Delete Profile Image</button>
+                            <button type="button" class="btn btn-primary" id="updateProfileImageBtn">Save changes</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- BackgroundImage Modal -->
+            <div class="modal fade" id="BackgroundImageModall" tabindex="-1" aria-labelledby="editModalLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="editModalLabel">Edit Background Image</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <input type="file" id="backgroundImage" name="backgroundImage" />
+                            <input type="hidden" id="tokenidforbackgroundimage" value="@Model.UserInfo.BackgroundImageId">
+                            <input type="hidden" id="backgroundImageId" value="@Model.UserInfo.BackgroundImageId">
+                            <input type="hidden" id="userIdd" value="@Model.UserInfo.UserId">
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-danger" id="deleteBackgroundImageBtn" style="border-radius:15px">Delete Background Image</button>
+                            <button type="button" class="btn btn-primary" id="updateBackgroundImageBtn">Save changes</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Modal for followings -->
+            <div id="followingUsersModal" class="modal fade" tabindex="-1" role="dialog">
+                <div class="modal-dialog modal-dialog-centered" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title">Following Users</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <div id="following-users-container" class="following-users-container">
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Modal for followers -->
+            <div id="followersUsersModal" class="modal fade" tabindex="-1" role="dialog">
+                <div class="modal-dialog modal-dialog-centered" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title">Followers</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <div id="followers-users-container" class="followers-users-container">
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="page-contents">
+            <div class="row">
+                <div class="col-md-3">
+
+                    <!--Edit Profile Menu-->
+                    <ul class="edit-menu">
+                        <li><i class="icon ion-ios-information-outline"></i><a href="/AuthUserProfile/BasicInfo">Basic Information</a></li>
+                        <li><i class="icon ion-ios-briefcase-outline"></i><a href="/AuthUserProfile/EduAndWork">Education and Work</a></li>
+                        <li><i class="icon ion-ios-heart-outline"></i><a href="/AuthUserProfile/Interests">My Interests</a></li>
+                        <li><i class="icon ion-ios-locked-outline"></i><a href="/AuthUserProfile/ChangePassword">Change Password</a></li>
+                        <li class="active"><i class="icon ion-ios-information-outline"></i><a href="/AuthUserProfile/MyReports">My Reports</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-7">
+
+                    <div class="people-nearby">
+
+                        @foreach (var contact in Model.contactMessages)
+                        {
+                            counter++;
+                            <div class="nearby-user">
+                                <div class="row">
+                                    <div class="col-md-2 col-sm-2">
+                                        <p>@counter</p>
+                                    </div>
+                                    <div class="col-md-7 col-sm-7">
+                                        <h5><a href="#" class="profile-link">@contact.Name</a></h5>
+                                        <p>@contact.CreatedDate</p>
+                                        <p class="text-muted">@contact.Message</p>
+                                    </div>
+                                    @if (contact.Status is 0)
+                                    {
+                                        <div class="col-md-3 col-sm-3">
+                                            <a class="btn btn-primary pull-right">Pending</a>
+                                        </div>
+                                    }
+                                    else if (contact.Status is 1)
+                                    {
+                                        <div class="col-md-3 col-sm-3">
+                                            <a class="btn btn-success pull-right">Accepted</a>
+                                        </div>
+                                    }
+                                    else if (contact.Status is 2)
+                                    {
+                                        <div class="col-md-3 col-sm-3">
+                                            <a class="btn btn-danger pull-right">Rejected</a>
+                                        </div>
+                                    }
+                                </div>
+                            </div>
+                        }
+
+                    </div>
+                </div>
+                <div class="col-md-2 static">
+                    <div id="chat-block">
+                        <input type="hidden" id="tokenidd-d" value="@Model.Token">
+                        <div class="title">Online Users</div>
+                        <ul class="online-users list-inline">
+                        </ul>
+                    </div><!--chat block ends-->
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+

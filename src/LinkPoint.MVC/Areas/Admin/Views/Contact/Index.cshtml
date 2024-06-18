@@ -1,0 +1,31 @@
+﻿
+@model List<ContactMessageGetViewModel>;
+
+<div class="container">
+    <h1>Contacts</h1>
+    @foreach (var contact in Model)
+    {
+        <div class="contact-card">
+            <div class="contact-header">
+                <span class="contact-name">@contact.Name</span>
+                <span class="contact-date">@contact.CreatedDate</span>
+            </div>
+            <div class="contact-actions">
+                <a asp-action="Detail" asp-controller="Contact" asp-route-Id="@contact.Id" class="detail-btn">Detail</a>
+                @if(contact.Status is 0)
+                {
+                    <a asp-action="AcceptContact" asp-controller="Contact" asp-route-ContactMessageId="@contact.Id" class="accept-btn">Accept</a>
+                    <a asp-action="RejectContact" asp-controller="Contact" asp-route-ContactMessageId="@contact.Id" class="reject-btn">Reject</a>
+                }
+                else if(contact.Status is 1)
+                {
+                    <a class="accept-btn" style="color:white">Accepted</a>
+                }
+                else if(contact.Status is 2)
+                {
+                    <a class="reject-btn" style="color:white">Rejected</a>
+                }
+            </div>
+        </div>
+    }
+</div>

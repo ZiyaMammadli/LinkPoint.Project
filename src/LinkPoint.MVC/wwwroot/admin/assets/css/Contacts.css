@@ -1,0 +1,82 @@
+﻿body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    margin: 0;
+    padding: 0;
+}
+
+.container {
+    max-width: 800px;
+    margin: 50px auto;
+    padding: 20px;
+    background-color: #fff;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+h1 {
+    text-align: center;
+    color: #333;
+}
+
+.contact-card {
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    padding: 15px;
+    margin-bottom: 20px;
+    background-color: #fff;
+}
+
+.contact-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.contact-name {
+    font-weight: bold;
+    font-size: 1.2em;
+    color: #333;
+}
+
+.contact-date {
+    font-size: 0.9em;
+    color: #888;
+}
+
+.contact-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+}
+
+.accept-btn, .reject-btn, .detail-btn {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 0.9em;
+}
+
+.accept-btn {
+    background-color: #28a745;
+    color: #fff;
+}
+
+.reject-btn {
+    background-color: #dc3545;
+    color: #fff;
+}
+
+.detail-btn {
+    background-color: orange;
+    color: #fff;
+}
+
+.accept-btn:hover {
+    background-color: #218838;
+}
+
+.reject-btn:hover {
+    background-color: #c82333;
+}

@@ -20,7 +20,8 @@ public class ContactMessagePostValidator:AbstractValidator<ContactMessagePostDto
             .MaximumLength(50).WithMessage("Max Lentgh of Email is 50");
         RuleFor(cm => cm.PhoneNumber)
             .NotNull().WithMessage("PhoneNumber can't be null")
-            .NotEmpty().WithMessage("PhoneNumber can't be empty");
+            .NotEmpty().WithMessage("PhoneNumber can't be empty")
+            .MaximumLength(50).WithMessage("Max Lentgh of PhoneNumber is 50");
         RuleFor(cm => cm.Message)
             .NotNull().WithMessage("Message can't be null")
             .NotEmpty().WithMessage("Message can't be empty")

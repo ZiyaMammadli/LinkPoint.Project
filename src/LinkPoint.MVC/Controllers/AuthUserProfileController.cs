@@ -255,4 +255,36 @@ public class AuthUserProfileController : Controller
         };
         return View(changePasswordViewModel);
     }
+
+    [HttpGet]
+    public async Task<IActionResult> MyReports()
+    {
+        var token = HttpContext.Session.GetString("JWToken");
+        var userId = HttpContext.Request.Cookies["UserId"];
+        if (string.IsNullOrEmpty(token))
+        {
+            return RedirectToAction("Login", "Account");
+        }
+
+        var client = _httpClientFactory.CreateClient();
+        client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
+
+        var response = await client.GetAsync(baseAdress + "/AccountSettings/GetAuthUserInfo/" + userId);
+        response.EnsureSuccessStatusCode();
+        var json1 = await response.Content.ReadAsStringAsync();
+        var userInfo = JsonConvert.DeserializeObject<UserInfoViewModel>(json1);
+
+        var response2 = await client.GetAsync(baseAdress + "/ContactMessages/GetAllContactMessagesForUser/"+userId);
+        response2.EnsureSuccessStatusCode();
+        var json2 = await response2.Content.ReadAsStringAsync();
+        var contacts = JsonConvert.DeserializeObject<List<ContactMessageGetViewModel>>(json2);
+        var SortedContacts = contacts.OrderByDescending(post => post.Id).ToList();
+        MyReportsViewModel myReportsViewModel = new MyReportsViewModel()
+        {
+            Token = token,
+            UserInfo=userInfo,
+            contactMessages= SortedContacts,
+        };
+        return View(myReportsViewModel);
+    }
 }

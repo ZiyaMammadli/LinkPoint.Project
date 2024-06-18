@@ -836,6 +836,96 @@
     "ReturnTypes": []
   },
   {
+    "ContainingType": "LinkPoint.API.Controllers.ContactMessagesController",
+    "Method": "AcceptContactMessage",
+    "RelativePath": "api/ContactMessages/AcceptContactMessage/{ContactMessageId}",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "ContactMessageId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "LinkPoint.API.Controllers.ContactMessagesController",
+    "Method": "CreateContactMessage",
+    "RelativePath": "api/ContactMessages/CreateContactMessage",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "contactMessagePostDto",
+        "Type": "LinkPoint.Business.DTOs.ContactMessageDTOs.ContactMessagePostDto",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "LinkPoint.API.Controllers.ContactMessagesController",
+    "Method": "GetAllContactMessage",
+    "RelativePath": "api/ContactMessages/GetAllContactMessage",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "LinkPoint.API.Controllers.ContactMessagesController",
+    "Method": "GetAllContactMessagesForUser",
+    "RelativePath": "api/ContactMessages/GetAllContactMessagesForUser/{userId}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "userId",
+        "Type": "System.String",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "LinkPoint.API.Controllers.ContactMessagesController",
+    "Method": "GetContactMessageById",
+    "RelativePath": "api/ContactMessages/GetContactMessageById/{id}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "LinkPoint.API.Controllers.ContactMessagesController",
+    "Method": "RejectContactMessage",
+    "RelativePath": "api/ContactMessages/RejectContactMessage/{ContactMessageId}",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "ContactMessageId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
     "ContainingType": "LinkPoint.API.Controllers.ConversationsController",
     "Method": "CreateConversation",
     "RelativePath": "api/Conversations/CreateConversation/{UserId}/{User2Id}",

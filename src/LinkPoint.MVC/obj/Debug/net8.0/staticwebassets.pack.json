@@ -5,6 +5,14 @@
       "PackagePath": "staticwebassets\\LinkPoint.MVC.bundle.scp.css"
     },
     {
+      "Id": "C:\\Users\\user\\source\\repos\\LinkPoint\\src\\LinkPoint.MVC\\wwwroot\\admin\\assets\\css\\ContactDetail.css",
+      "PackagePath": "staticwebassets\\admin\\assets\\css\\ContactDetail.css"
+    },
+    {
+      "Id": "C:\\Users\\user\\source\\repos\\LinkPoint\\src\\LinkPoint.MVC\\wwwroot\\admin\\assets\\css\\Contacts.css",
+      "PackagePath": "staticwebassets\\admin\\assets\\css\\Contacts.css"
+    },
+    {
       "Id": "C:\\Users\\user\\source\\repos\\LinkPoint\\src\\LinkPoint.MVC\\wwwroot\\admin\\assets\\css\\Post.css",
       "PackagePath": "staticwebassets\\admin\\assets\\css\\Post.css"
     },
