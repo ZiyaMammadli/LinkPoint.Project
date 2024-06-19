@@ -254,12 +254,13 @@ public class PostService : IPostService
     public async Task<List<PostGetDto>> GetAllPostsForVideoAsync()
     {
         var posts = await _postRepository.GetAllAsync(p => p.IsDeleted == false && p.Image==null && p.Video!=null, "Image", "Video", "User", "Comments.User.Images");
-        if (posts.Count == 0) throw new PostNotFoundException(404, "Post is not found");
         List<PostGetDto> postGetDtos = new List<PostGetDto>();
-        foreach (var Post in posts)
+        if (posts.Count > 0)
         {
-            var profileImage = await _imageRepository.GetSingleAsync(i => i.UserId == Post.User.Id && i.IsPostImage == false);
-            if (profileImage is null) throw new ProfileImageNotFoundException(404, "ProfileImage is not found");
+            foreach (var Post in posts)
+            {
+                var profileImage = await _imageRepository.GetSingleAsync(i => i.UserId == Post.User.Id && i.IsPostImage == false);
+                if (profileImage is null) throw new ProfileImageNotFoundException(404, "ProfileImage is not found");
                 PostGetDto postGetDto = new PostGetDto()
                 {
                     UserId = Post.User.Id,
@@ -282,19 +283,22 @@ public class PostService : IPostService
                     }).ToList()
                 };
                 postGetDtos.Add(postGetDto);
-        }
+            }
+        } 
+        
         return postGetDtos;
     }
 
     public async Task<List<PostGetDto>> GetAllPostsForImageAsync()
     {
         var posts = await _postRepository.GetAllAsync(p => p.IsDeleted == false && p.Video==null && p.Image!=null, "Image", "Video", "User", "Comments.User.Images");
-        if (posts.Count == 0) throw new PostNotFoundException(404, "Post is not found");
         List<PostGetDto> postGetDtos = new List<PostGetDto>();
-        foreach (var Post in posts)
+        if (posts.Count > 0)
         {
-            var profileImage = await _imageRepository.GetSingleAsync(i => i.UserId == Post.User.Id && i.IsPostImage == false);
-            if (profileImage is null) throw new ProfileImageNotFoundException(404, "ProfileImage is not found");
+            foreach (var Post in posts)
+            {
+                var profileImage = await _imageRepository.GetSingleAsync(i => i.UserId == Post.User.Id && i.IsPostImage == false);
+                if (profileImage is null) throw new ProfileImageNotFoundException(404, "ProfileImage is not found");
                 PostGetDto postGetDto = new PostGetDto()
                 {
                     UserId = Post.User.Id,
@@ -317,7 +321,8 @@ public class PostService : IPostService
                     }).ToList()
                 };
                 postGetDtos.Add(postGetDto);
-        }
+            }
+        }     
         return postGetDtos;
     }
 

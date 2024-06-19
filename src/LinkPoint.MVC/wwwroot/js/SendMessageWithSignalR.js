@@ -59,7 +59,7 @@ connection.on("UserConnected", (userId, userName, userProfileImage,onlineusersco
     let onlineUsersList = document.querySelector(".online-users");
     const li = document.createElement("li");
     li.id = `user-${userId}`;
-    li.innerHTML = `<a href="newsfeed-messages.html" title="${userName}">
+    li.innerHTML = `<a href="/newsfeed/messages" title="${userName}">
                         <img src="${userProfileImage}" alt="user" class="img-responsive profile-photo" />
                         <span class="online-dot"></span>
                     </a>`;
