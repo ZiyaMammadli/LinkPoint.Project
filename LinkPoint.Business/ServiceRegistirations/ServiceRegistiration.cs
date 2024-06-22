@@ -51,13 +51,6 @@ public static class ServiceRegistiration
         //                .AllowAnyMethod()
         //                .AllowAnyHeader();
         //        });
-        //    options.AddPolicy("signalr",
-        //            builder => builder
-        //            .AllowAnyMethod()
-        //            .AllowAnyHeader()
-
-        //            .AllowCredentials()
-        //            .SetIsOriginAllowed(hostName => true));
         //});
         services.AddCors(opt =>
         {

@@ -7,6 +7,7 @@ using LinkPoint.Core.Entities;
 using LinkPoint.Data.Contexts;
 using LinkPoint.Data.ServiceRegistirations;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Http.Features;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
@@ -75,6 +76,15 @@ builder.Services.AddSingleton(sp =>
     return StorageClient.Create(credential);
 });
 
+builder.Services.Configure<FormOptions>(options =>
+{
+    options.MultipartBodyLengthLimit = 100 * 1024 * 1024; // 100 MB
+});
+
+builder.WebHost.ConfigureKestrel(serverOptions =>
+{
+    serverOptions.Limits.MaxRequestBodySize = 100 * 1024 * 1024; // 100 MB
+});
 
 var app = builder.Build();
 
@@ -90,7 +100,6 @@ app.UseHttpsRedirection();
 app.UseAuthentication();
 app.UseAuthorization();
 //app.UseCors("AllowAll");
-//app.UseCors("signalr");
 app.UseCors();
 app.MapControllers();
 app.MapHub<ChatHub>("/Chat");   
