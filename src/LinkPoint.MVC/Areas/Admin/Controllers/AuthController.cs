@@ -37,7 +37,7 @@ namespace LinkPoint.MVC.Areas.Admin.Controllers
                     var tokenResponse = await response.Content.ReadFromJsonAsync<TokenViewModel>();
                     HttpContext.Session.SetString("JWToken", tokenResponse.AccesToken);
                     HttpContext.Response.Cookies.Append("UserId", tokenResponse.UserId);
-                    return RedirectToAction("Index", "Dashboard");
+                    return RedirectToAction("Index", "Post");
                 }
                 else
                 {

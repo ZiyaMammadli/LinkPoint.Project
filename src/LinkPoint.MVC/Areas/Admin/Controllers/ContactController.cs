@@ -1,5 +1,6 @@
 ﻿using LinkPoint.MVC.Areas.Admin.ViewModels;
 using LinkPoint.MVC.ViewModels;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
 using System.Net.Http.Headers;
@@ -31,11 +32,23 @@ public class ContactController : Controller
         client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
 
         var response2 = await client.GetAsync(baseAdress + "/ContactMessages/GetAllContactMessage");
-        response2.EnsureSuccessStatusCode();
-        var json2 = await response2.Content.ReadAsStringAsync();
-        var contacts = JsonConvert.DeserializeObject<List<ContactMessageGetViewModel>>(json2);
-        var SortedContacts = contacts.OrderByDescending(post => post.Id).ToList();
-        return View(SortedContacts);
+        if (response2.IsSuccessStatusCode)
+        {
+            var json2 = await response2.Content.ReadAsStringAsync();
+            var contacts = JsonConvert.DeserializeObject<List<ContactMessageGetViewModel>>(json2);
+            var SortedContacts = contacts.OrderByDescending(post => post.Id).ToList();
+            return View(SortedContacts);
+        }
+        else if (response2.StatusCode == System.Net.HttpStatusCode.Forbidden)
+        {
+            ModelState.AddModelError(string.Empty, "You are not allowed to enter here.");
+        }
+        else
+        {
+            ModelState.AddModelError(string.Empty, "An error occurred.");
+        }
+
+        return View("Error");
     }
     [HttpGet]
     public async Task<IActionResult> Detail(int Id)
@@ -70,8 +83,20 @@ public class ContactController : Controller
         client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
 
         var response2 = await client.PutAsync(baseAdress + "/ContactMessages/AcceptContactMessage/"+ ContactMessageId,null);
-        response2.EnsureSuccessStatusCode();
-        return RedirectToAction("Index","Contact");
+        if (response2.IsSuccessStatusCode)
+        {
+            return RedirectToAction("Index", "Contact");
+        }
+        else if (response2.StatusCode == System.Net.HttpStatusCode.Forbidden)
+        {
+            ModelState.AddModelError(string.Empty, "You are not allowed to enter here.");
+        }
+        else
+        {
+            ModelState.AddModelError(string.Empty, "An error occurred.");
+        }
+
+        return View("Error");
     }
     [HttpGet]
     public async Task<IActionResult> RejectContact(int ContactMessageId)
@@ -87,7 +112,19 @@ public class ContactController : Controller
         client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
 
         var response2 = await client.PutAsync(baseAdress + "/ContactMessages/RejectContactMessage/" + ContactMessageId,null);
-        response2.EnsureSuccessStatusCode();
-        return RedirectToAction("Index","Contact");
+        if (response2.IsSuccessStatusCode)
+        {
+            return RedirectToAction("Index", "Contact");
+        }
+        else if (response2.StatusCode == System.Net.HttpStatusCode.Forbidden)
+        {
+            ModelState.AddModelError(string.Empty, "You are not allowed to enter here.");
+        }
+        else
+        {
+            ModelState.AddModelError(string.Empty, "An error occurred.");
+        }
+
+        return View("Error");
     }
 }

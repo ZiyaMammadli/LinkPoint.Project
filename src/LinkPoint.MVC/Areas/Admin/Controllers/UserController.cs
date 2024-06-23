@@ -1,5 +1,6 @@
 ﻿using LinkPoint.MVC.Areas.Admin.ViewModels;
 using LinkPoint.MVC.ViewModels;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
 using System.Net.Http.Headers;
@@ -31,10 +32,22 @@ namespace LinkPoint.MVC.Areas.Admin.Controllers
             client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
 
             var response2 = await client.GetAsync(baseAdress + "/Admin/GetAllUsersWithPages/"+1+"/"+10);
-            response2.EnsureSuccessStatusCode();
-            var json2 = await response2.Content.ReadAsStringAsync();
-            var users = JsonConvert.DeserializeObject<PaginatedUsersGetViewModel>(json2);
-            return View(users);
+            if (response2.IsSuccessStatusCode)
+            {
+                var json2 = await response2.Content.ReadAsStringAsync();
+                var users = JsonConvert.DeserializeObject<PaginatedUsersGetViewModel>(json2);
+                return View(users);
+            }
+            else if (response2.StatusCode == System.Net.HttpStatusCode.Forbidden)
+            {
+                ModelState.AddModelError(string.Empty, "You are not allowed to enter here.");
+            }
+            else
+            {
+                ModelState.AddModelError(string.Empty, "An error occurred.");
+            }
+
+            return View("Error");
         }
         [HttpGet]
         public async Task<IActionResult> SearchResults(string query)
@@ -121,9 +134,21 @@ namespace LinkPoint.MVC.Areas.Admin.Controllers
             client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
 
             var response = await client.GetAsync(baseAdress + "/Admin/UserSoftDelete/" + UserId);
-            response.EnsureSuccessStatusCode();
+            if (response.IsSuccessStatusCode)
+            {
+                return RedirectToAction("Index", "User");
+            }
+            else if (response.StatusCode == System.Net.HttpStatusCode.Forbidden)
+            {
+                ModelState.AddModelError(string.Empty, "You are not allowed to enter here.");
+            }
+            else
+            {
+                ModelState.AddModelError(string.Empty, "An error occurred.");
+            }
 
-            return RedirectToAction("Index","User");
+            return View("Error");
+
         }
         [HttpGet("[action]/{UserId}")]
         public async Task<IActionResult> UserActivate(string UserId)
@@ -139,9 +164,21 @@ namespace LinkPoint.MVC.Areas.Admin.Controllers
             client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
 
             var response = await client.GetAsync(baseAdress + "/Admin/UserActivate/" + UserId);
-            response.EnsureSuccessStatusCode();
+            if (response.IsSuccessStatusCode)
+            {
+                return RedirectToAction("Index", "User");
+            }
+            else if (response.StatusCode == System.Net.HttpStatusCode.Forbidden)
+            {
+                ModelState.AddModelError(string.Empty, "You are not allowed to enter here.");
+            }
+            else
+            {
+                ModelState.AddModelError(string.Empty, "An error occurred.");
+            }
 
-            return RedirectToAction("Index", "User");
+            return View("Error");
+
         }
     }
 }

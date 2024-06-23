@@ -1,6 +1,7 @@
 ﻿using LinkPoint.Business.DTOs.ContactMessageDTOs;
 using LinkPoint.Business.Services.Interfaces;
 using LinkPoint.Business.Utilities.Exceptions.NotFoundExceptions;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -17,6 +18,7 @@ namespace LinkPoint.API.Controllers
             _contactMessageService = contactMessageService;
         }
         [HttpGet("[action]")]
+        [Authorize(Roles = "Admin,SuperAdmin")]
         public async Task<IActionResult> GetAllContactMessage()
         {
             try
@@ -78,6 +80,7 @@ namespace LinkPoint.API.Controllers
             }
         }
         [HttpPut("[action]/{ContactMessageId}")]
+        [Authorize(Roles = "Admin,SuperAdmin")]
         public async Task<IActionResult> AcceptContactMessage(int ContactMessageId)
         {
             try
@@ -95,6 +98,7 @@ namespace LinkPoint.API.Controllers
             }
         }
         [HttpPut("[action]/{ContactMessageId}")]
+        [Authorize(Roles = "Admin,SuperAdmin")]
         public async Task<IActionResult> RejectContactMessage(int ContactMessageId)
         {
             try

@@ -3,6 +3,7 @@ using LinkPoint.Business.Services.Interfaces;
 using LinkPoint.Business.Utilities.Exceptions.ConfirmedExceptions;
 using LinkPoint.Business.Utilities.Exceptions.NotFoundException;
 using LinkPoint.Business.Utilities.Exceptions.NotFoundExceptions;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.Security.Authentication;
 
@@ -115,6 +116,7 @@ namespace LinkPoint.API.Controllers
             }
         }
         [HttpGet("[action]/{pageNumber}/{pageSize}")]
+        [Authorize(Roles = "Admin,SuperAdmin")]
         public async Task<IActionResult> GetAllUsersWithPages(int pageNumber = 1, int pageSize = 10)
         {
             try
@@ -219,6 +221,7 @@ namespace LinkPoint.API.Controllers
             }
         }
         [HttpGet("[action]/{UserId}")]
+        [Authorize(Roles = "Admin,SuperAdmin")]
         public async Task<IActionResult> UserSoftDelete(string UserId)
         {
             try
@@ -244,6 +247,7 @@ namespace LinkPoint.API.Controllers
             }
         }
         [HttpGet("[action]/{UserId}")]
+        [Authorize(Roles = "Admin,SuperAdmin")]
         public async Task<IActionResult> UserActivate(string UserId)
         {
             try
@@ -269,6 +273,7 @@ namespace LinkPoint.API.Controllers
             }
         }
         [HttpGet("[action]")]
+        [Authorize(Roles = "Admin,SuperAdmin")]
         public async Task<IActionResult> GetAllPosts()
         {
             try
@@ -309,6 +314,7 @@ namespace LinkPoint.API.Controllers
             }
         }
         [HttpGet("[action]/{PostId}")]
+        [Authorize(Roles = "Admin,SuperAdmin")]
         public async Task<IActionResult> SoftDeletePost(int PostId)
         {
             try
@@ -326,6 +332,7 @@ namespace LinkPoint.API.Controllers
             }
         }
         [HttpGet("[action]/{PostId}")]
+        [Authorize(Roles = "Admin,SuperAdmin")]
         public async Task<IActionResult> ActivatePost(int PostId)
         {
             try
