@@ -1138,6 +1138,27 @@
     "ReturnTypes": []
   },
   {
+    "ContainingType": "LinkPoint.API.Controllers.FriendShipsController",
+    "Method": "Unfollow",
+    "RelativePath": "api/FriendShips/Unfollow/{UserId}/{followingUserId}",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "UserId",
+        "Type": "System.String",
+        "IsRequired": true
+      },
+      {
+        "Name": "followingUserId",
+        "Type": "System.String",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
     "ContainingType": "LinkPoint.API.Controllers.GoogleCloudTestController",
     "Method": "GetImage",
     "RelativePath": "api/GoogleCloudTest",

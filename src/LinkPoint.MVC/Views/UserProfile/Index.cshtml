@@ -26,7 +26,7 @@
                             <li>@Model.UserInfo.FollowingsCount<a id="followingsId" href=""> Followings </a></li>
                             @if (Model.AcceptedFollowerUsers.Any(fs => fs.UserId == Model.AuthUserInfo.UserId))
                             {
-                                <button id="followingButton" style="padding:7px" class="btn-primary" data-user-id="@Model.AuthUserInfo.UserId" data-following-user-id="@Model.UserInfo.UserId">Following</button>
+                                <button id="UnfollowButton" style="padding:7px" class="btn-primary" data-user-id="@Model.AuthUserInfo.UserId" data-following-user-id="@Model.UserInfo.UserId">Following</button>
                             }
                             else
                             {

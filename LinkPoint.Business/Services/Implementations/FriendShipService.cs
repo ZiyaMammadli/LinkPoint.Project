@@ -253,5 +253,17 @@ public class FriendShipService : IFriendShipService
             myFriendsDtos.Add (myFriendsDto);
         }
         return myFriendsDtos;
-    }   
+    }
+
+    public async Task UnfollowAsync(string UserId, string followingUserId)
+    {
+        var authUser=await _userManager.FindByIdAsync(UserId);
+        if(authUser is null || authUser.IsDeleted==true) throw new UserNotFoundException(404,"User is not found");
+        var followingUser = await _userManager.FindByIdAsync(followingUserId);
+        if (followingUser is null || followingUser.IsDeleted == true) throw new UserNotFoundException(404, "FollowingUser is not found");
+        var friendShip=await _friendShipRepository.GetSingleAsync(fs=>fs.UserId == authUser.Id && fs.FollowingUserId==followingUser.Id && fs.Status==FollowStatus.Accepted);
+        if (friendShip is null || friendShip.IsDeleted == true) throw new FriendShipNotFoundException(404, "FriendShip is not found");
+        _friendShipRepository.Delete(friendShip);
+        await _friendShipRepository.CommitAsync();
+    }
 }

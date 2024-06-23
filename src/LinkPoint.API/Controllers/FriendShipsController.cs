@@ -200,5 +200,26 @@ namespace LinkPoint.API.Controllers
                 return BadRequest(ex.Message);
             }
         }
+        [HttpDelete("[action]/{UserId}/{followingUserId}")]
+        public async Task<IActionResult> Unfollow(string UserId, string followingUserId)
+        {
+            try
+            {
+                await _friendShipService.UnfollowAsync(UserId, followingUserId);
+                return Ok();
+            }
+            catch (UserNotFoundException ex)
+            {
+                return StatusCode(ex.StatusCode, ex.Message);
+            }
+            catch (FriendShipNotFoundException ex)
+            {
+                return StatusCode(ex.StatusCode, ex.Message);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
     }
 }

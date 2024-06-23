@@ -4357,6 +4357,10 @@
       "PackagePath": "staticwebassets\\js\\ShowUsersLikedPost.js"
     },
     {
+      "Id": "C:\\Users\\user\\source\\repos\\LinkPoint\\src\\LinkPoint.MVC\\wwwroot\\js\\Unfollow.js",
+      "PackagePath": "staticwebassets\\js\\Unfollow.js"
+    },
+    {
       "Id": "C:\\Users\\user\\source\\repos\\LinkPoint\\src\\LinkPoint.MVC\\wwwroot\\js\\bootstrap.min.js",
       "PackagePath": "staticwebassets\\js\\bootstrap.min.js"
     },

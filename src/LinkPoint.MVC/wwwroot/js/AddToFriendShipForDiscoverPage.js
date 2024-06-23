@@ -1,13 +1,13 @@
 ﻿$(document).ready(function () {
     var token = $('#tokenidd').val();
 
-    // id'si "AddFriendBTN_" ile başlayan her eleman üzerinde iterasyon
+
     $('[id^=AddFriendBTN_]').each(function () {
         var button = $(this);
         var userId = $('#user-idd').val();
         var followingUserId = button.data('following-user-id');
 
-        // Arkadaşlık durumu kontrolü
+
         $.ajax({
             url: `https://localhost:7255/api/FriendShips/CheckFriendShipStatus/${userId}/${followingUserId}`,
             type: 'GET',
@@ -24,7 +24,6 @@
             }
         });
 
-        // Butona tıklama işlemi
         button.on('click', function (event) {
             event.preventDefault();
 
