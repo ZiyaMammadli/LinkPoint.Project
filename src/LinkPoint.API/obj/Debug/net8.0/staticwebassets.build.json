@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "XmeW1HxwqJankz5oG6Jr12sf4Riokp0Bv77oAoB75tc=",
+  "Hash": "kc45oqgsglcVS3JegDQ/euZ5oknKvvr/xlqkFYG0NBs=",
   "Source": "LinkPoint.API",
   "BasePath": "_content/LinkPoint.API",
   "Mode": "Default",
@@ -22,15 +22,17 @@
       "SourceType": "Discovered",
       "ContentRoot": "C:\\Users\\user\\source\\repos\\LinkPoint\\src\\LinkPoint.API\\wwwroot\\",
       "BasePath": "_content/LinkPoint.API",
-      "RelativePath": "email/Register.html",
+      "RelativePath": "email/Register#[.{fingerprint}]?.html",
       "AssetKind": "All",
       "AssetMode": "All",
       "AssetRole": "Primary",
-      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeBehavior": "",
       "AssetMergeSource": "",
       "RelatedAsset": "",
       "AssetTraitName": "",
       "AssetTraitValue": "",
+      "Fingerprint": "7kqve0tkk1",
+      "Integrity": "ycnYXMw8bPTMCdJzLopfpVWVTVDoUXKd3wif9AZCXss=",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\email\\Register.html"
@@ -41,15 +43,17 @@
       "SourceType": "Discovered",
       "ContentRoot": "C:\\Users\\user\\source\\repos\\LinkPoint\\src\\LinkPoint.API\\wwwroot\\",
       "BasePath": "_content/LinkPoint.API",
-      "RelativePath": "UserDefaultProfileImage/DefaultBackgraoundImage.jpg",
+      "RelativePath": "UserDefaultProfileImage/DefaultBackgraoundImage#[.{fingerprint}]?.jpg",
       "AssetKind": "All",
       "AssetMode": "All",
       "AssetRole": "Primary",
-      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeBehavior": "",
       "AssetMergeSource": "",
       "RelatedAsset": "",
       "AssetTraitName": "",
       "AssetTraitValue": "",
+      "Fingerprint": "rvamgvy1mg",
+      "Integrity": "lyxooBA1JVkt3L2ejRL0I93PRR2Agg+o01NkK9mw5wM=",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\UserDefaultProfileImage\\DefaultBackgraoundImage.jpg"
@@ -60,18 +64,268 @@
       "SourceType": "Discovered",
       "ContentRoot": "C:\\Users\\user\\source\\repos\\LinkPoint\\src\\LinkPoint.API\\wwwroot\\",
       "BasePath": "_content/LinkPoint.API",
-      "RelativePath": "UserDefaultProfileImage/DefaultPerson.jpg",
+      "RelativePath": "UserDefaultProfileImage/DefaultPerson#[.{fingerprint}]?.jpg",
       "AssetKind": "All",
       "AssetMode": "All",
       "AssetRole": "Primary",
-      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeBehavior": "",
       "AssetMergeSource": "",
       "RelatedAsset": "",
       "AssetTraitName": "",
       "AssetTraitValue": "",
+      "Fingerprint": "vv4z31j50e",
+      "Integrity": "e/ptnc46SAtx1VasAQb7oBclCx63dA7jgFo06mJBn8c=",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\UserDefaultProfileImage\\DefaultPerson.jpg"
+    }
+  ],
+  "Endpoints": [
+    {
+      "Route": "email/Register.7kqve0tkk1.html",
+      "AssetFile": "C:\\Users\\user\\source\\repos\\LinkPoint\\src\\LinkPoint.API\\wwwroot\\email\\Register.html",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "251"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/html"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"ycnYXMw8bPTMCdJzLopfpVWVTVDoUXKd3wif9AZCXss=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Wed, 08 May 2024 08:27:46 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "7kqve0tkk1"
+        },
+        {
+          "Name": "label",
+          "Value": "email/Register.html"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-ycnYXMw8bPTMCdJzLopfpVWVTVDoUXKd3wif9AZCXss="
+        }
+      ]
+    },
+    {
+      "Route": "email/Register.html",
+      "AssetFile": "C:\\Users\\user\\source\\repos\\LinkPoint\\src\\LinkPoint.API\\wwwroot\\email\\Register.html",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "251"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/html"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"ycnYXMw8bPTMCdJzLopfpVWVTVDoUXKd3wif9AZCXss=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Wed, 08 May 2024 08:27:46 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "no-cache"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-ycnYXMw8bPTMCdJzLopfpVWVTVDoUXKd3wif9AZCXss="
+        }
+      ]
+    },
+    {
+      "Route": "UserDefaultProfileImage/DefaultBackgraoundImage.jpg",
+      "AssetFile": "C:\\Users\\user\\source\\repos\\LinkPoint\\src\\LinkPoint.API\\wwwroot\\UserDefaultProfileImage\\DefaultBackgraoundImage.jpg",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "11208870"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/jpeg"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"lyxooBA1JVkt3L2ejRL0I93PRR2Agg+o01NkK9mw5wM=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Mon, 13 May 2024 20:01:38 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=3600, must-revalidate"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-lyxooBA1JVkt3L2ejRL0I93PRR2Agg+o01NkK9mw5wM="
+        }
+      ]
+    },
+    {
+      "Route": "UserDefaultProfileImage/DefaultBackgraoundImage.rvamgvy1mg.jpg",
+      "AssetFile": "C:\\Users\\user\\source\\repos\\LinkPoint\\src\\LinkPoint.API\\wwwroot\\UserDefaultProfileImage\\DefaultBackgraoundImage.jpg",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "11208870"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/jpeg"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"lyxooBA1JVkt3L2ejRL0I93PRR2Agg+o01NkK9mw5wM=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Mon, 13 May 2024 20:01:38 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "rvamgvy1mg"
+        },
+        {
+          "Name": "label",
+          "Value": "UserDefaultProfileImage/DefaultBackgraoundImage.jpg"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-lyxooBA1JVkt3L2ejRL0I93PRR2Agg+o01NkK9mw5wM="
+        }
+      ]
+    },
+    {
+      "Route": "UserDefaultProfileImage/DefaultPerson.jpg",
+      "AssetFile": "C:\\Users\\user\\source\\repos\\LinkPoint\\src\\LinkPoint.API\\wwwroot\\UserDefaultProfileImage\\DefaultPerson.jpg",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "10385"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/jpeg"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"e/ptnc46SAtx1VasAQb7oBclCx63dA7jgFo06mJBn8c=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Mon, 13 May 2024 06:21:03 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=3600, must-revalidate"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-e/ptnc46SAtx1VasAQb7oBclCx63dA7jgFo06mJBn8c="
+        }
+      ]
+    },
+    {
+      "Route": "UserDefaultProfileImage/DefaultPerson.vv4z31j50e.jpg",
+      "AssetFile": "C:\\Users\\user\\source\\repos\\LinkPoint\\src\\LinkPoint.API\\wwwroot\\UserDefaultProfileImage\\DefaultPerson.jpg",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "10385"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/jpeg"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"e/ptnc46SAtx1VasAQb7oBclCx63dA7jgFo06mJBn8c=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Mon, 13 May 2024 06:21:03 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "vv4z31j50e"
+        },
+        {
+          "Name": "label",
+          "Value": "UserDefaultProfileImage/DefaultPerson.jpg"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-e/ptnc46SAtx1VasAQb7oBclCx63dA7jgFo06mJBn8c="
+        }
+      ]
     }
   ]
 }

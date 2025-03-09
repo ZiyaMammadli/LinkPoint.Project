@@ -1,0 +1,3 @@
+wwwroot\email\Register.html
+wwwroot\UserDefaultProfileImage\DefaultBackgraoundImage.jpg
+wwwroot\UserDefaultProfileImage\DefaultPerson.jpg

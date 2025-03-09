@@ -2,7 +2,7 @@
   "Files": [
     {
       "Id": "C:\\Users\\user\\source\\repos\\LinkPoint\\src\\LinkPoint.MVC\\obj\\Debug\\net8.0\\scopedcss\\projectbundle\\LinkPoint.MVC.bundle.scp.css",
-      "PackagePath": "staticwebassets\\LinkPoint.MVC.bundle.scp.css"
+      "PackagePath": "staticwebassets\\LinkPoint.MVC.gop38roa90.bundle.scp.css"
     },
     {
       "Id": "C:\\Users\\user\\source\\repos\\LinkPoint\\src\\LinkPoint.MVC\\wwwroot\\admin\\assets\\css\\ContactDetail.css",
@@ -5535,6 +5535,10 @@
     {
       "Id": "C:\\Users\\user\\source\\repos\\LinkPoint\\src\\LinkPoint.MVC\\wwwroot\\videos\\8.mp4",
       "PackagePath": "staticwebassets\\videos\\8.mp4"
+    },
+    {
+      "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.LinkPoint.MVC.Microsoft.AspNetCore.StaticWebAssetEndpoints.props",
+      "PackagePath": "build\\Microsoft.AspNetCore.StaticWebAssetEndpoints.props"
     },
     {
       "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.LinkPoint.MVC.Microsoft.AspNetCore.StaticWebAssets.props",

@@ -568,7 +568,10 @@
           "System.IdentityModel.Tokens.Jwt": "7.5.1"
         },
         "runtime": {
-          "LinkPoint.Core.dll": {}
+          "LinkPoint.Core.dll": {
+            "assemblyVersion": "1.0.0",
+            "fileVersion": "1.0.0.0"
+          }
         }
       }
     }
